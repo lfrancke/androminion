@@ -126,8 +126,8 @@ public class CardImpl implements Card, Comparable<Card> {
       if (!behaveAsCard().equals(this)) {
         return behaveAsCard().is(t, player);
       }
-      for (int i = 0; i < types.length; ++i) {
-        if (types[i] == t) {
+      for (Type type : types) {
+        if (type == t) {
           return true;
         }
       }
@@ -137,8 +137,8 @@ public class CardImpl implements Card, Comparable<Card> {
     if (player.getInheritance().is(t)) {
       return true;
     }
-    for (int i = 0; i < types.length; ++i) {
-      if (types[i] == t) {
+    for (Type type : types) {
+      if (type == t) {
         return true;
       }
     }

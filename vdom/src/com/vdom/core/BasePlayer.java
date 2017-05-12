@@ -472,8 +472,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    for (int i = 0; i < handCards.size(); i++) {
-      Card card = handCards.get(i);
+    for (Card card : handCards) {
       if (treasureCardValues.contains(card.getCost(context) + 3)) {
         return card;
       }
@@ -2213,12 +2212,12 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   public PutBackOption selectPutBackOption(MoveContext context, List<PutBackOption> options) {
         /* don't put prince cards back on top */
     Collections.sort(options);
-    for (int i = 0; i < options.size(); i++) {
-      if (!(options.get(i) == PutBackOption.Treasury && context.getPlayer().getPlayedByPrince().contains(Cards.treasury)
-            || options.get(i) == PutBackOption.WalledVillage && context.getPlayer().getPlayedByPrince()
-                                                                  .contains(Cards.walledVillage)
+    for (PutBackOption option : options) {
+      if (!(option == PutBackOption.Treasury && context.getPlayer().getPlayedByPrince().contains(Cards.treasury)
+            || option == PutBackOption.WalledVillage && context.getPlayer().getPlayedByPrince()
+                                                          .contains(Cards.walledVillage)
       )) {
-        return options.get(i);
+        return option;
       }
     }
     return PutBackOption.None;
@@ -2828,8 +2827,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     }
 
     ArrayList<Card> ret = new ArrayList<Card>();
-    for (int i = 0; i < handCards.size(); i++) {
-      Card card = handCards.get(i);
+    for (Card card : handCards) {
       if (treasureCardValues.contains(card.getCost(context) + 3)) {
         return card;
       }
@@ -4125,9 +4123,9 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   @Override
   public boolean survivors_shouldDiscardTopCards(MoveContext context, Card[] array) {
     ArrayList<Card> cards = new ArrayList<Card>();
-    for (int i = 0; i < array.length; i++) {
-      if (array[i] != null) {
-        cards.add(array[i]);
+    for (Card anArray : array) {
+      if (anArray != null) {
+        cards.add(anArray);
       }
     }
     return oracle_shouldDiscard(context, this, cards);
@@ -4264,8 +4262,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     ArrayList<Card> cardListGood = new ArrayList<Card>();
     ArrayList<Card> cardListBad = new ArrayList<Card>();
     int maxPotionCost = potion ? 1 : 0;
-    for (int i = 0; i < cards.length; i++) {
-      Card card = cards[i];
+    for (Card card : cards) {
       int cardCost = card.getCost(context);
       int cardDebt = card.getDebtCost(context);
       int cardPotion = card.costPotion() ? 1 : 0;

@@ -1401,8 +1401,8 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     }
 
     ArrayList<Card> treasures = new ArrayList<Card>();
-    for (int i = 0; i < cards.length; i++) {
-      treasures.add(cards[i]);
+    for (Card card : cards) {
+      treasures.add(card);
     }
     return treasures;
   }

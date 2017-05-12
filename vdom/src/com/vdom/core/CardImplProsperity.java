@@ -152,9 +152,7 @@ public class CardImplProsperity extends CardImpl {
   private void countingHouse(MoveContext context, Player currentPlayer) {
     if (!currentPlayer.discard.isEmpty()) {
       int coppers = 0;
-      for (Iterator<Card> it = currentPlayer.discard.iterator(); it.hasNext(); ) {
-        Card card = it.next();
-
+      for (Card card : currentPlayer.discard) {
         if (Cards.copper.equals(card)) {
           coppers++;
         }

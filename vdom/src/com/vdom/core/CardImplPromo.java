@@ -86,9 +86,9 @@ public class CardImplPromo extends CardImpl {
     if (currentPlayer.getDebtTokenCount() == 0) {
       // get one buy from BlackMarkt pile
       ArrayList<Card> canBuy = new ArrayList<Card>();
-      for (int i = 0; i < cards.size(); i++) {
-        if (context.game.isValidBuy(context, cards.get(i), context.getCoinAvailableForBuy())) {
-          canBuy.add(cards.get(i));
+      for (Card card1 : cards) {
+        if (context.game.isValidBuy(context, card1, context.getCoinAvailableForBuy())) {
+          canBuy.add(card1);
         }
       }
       if (!canBuy.isEmpty()) {
@@ -140,8 +140,8 @@ public class CardImplPromo extends CardImpl {
         Util.playerError(currentPlayer, "Black Market order cards error, ignoring.");
         order = cards.toArray(new Card[cards.size()]);
       }
-      for (int i = 0; i < order.length; i++) {
-        context.game.blackMarketPileShuffled.add(order[i]);
+      for (Card anOrder : order) {
+        context.game.blackMarketPileShuffled.add(anOrder);
       }
     }
 

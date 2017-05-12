@@ -661,9 +661,9 @@ public class CardImplSeaside extends CardImpl {
       }
     }
 
-    for (int i = 0; i < cards.length; i++) {
-      currentPlayer.hand.remove(cards[i]);
-      currentPlayer.discard(cards[i], this.getControlCard(), context);
+    for (Card card : cards) {
+      currentPlayer.hand.remove(card);
+      currentPlayer.discard(card, this.getControlCard(), context);
     }
   }
 }

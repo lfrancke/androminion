@@ -238,8 +238,7 @@ public class CardImplEmpires extends CardImpl {
     }
     int coppers = 0;
     int settlers = 0;
-    for (Iterator<Card> it = currentPlayer.discard.iterator(); it.hasNext(); ) {
-      Card card = it.next();
+    for (Card card : currentPlayer.discard) {
       if (Cards.copper.equals(card)) {
         coppers++;
       }
@@ -660,8 +659,7 @@ public class CardImplEmpires extends CardImpl {
     }
     int coppers = 0;
     int settlers = 0;
-    for (Iterator<Card> it = currentPlayer.discard.iterator(); it.hasNext(); ) {
-      Card card = it.next();
+    for (Card card : currentPlayer.discard) {
       if (Cards.copper.equals(card)) {
         coppers++;
       }

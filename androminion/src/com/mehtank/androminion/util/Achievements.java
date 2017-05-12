@@ -192,8 +192,8 @@ public class Achievements {
       int numPlayersWins = prefs.getInt(numPlayersPrefix + "wins_" + name, 0);
       int numPlayersLosses = prefs.getInt(numPlayersPrefix + "losses_" + name, 0);
       boolean won = false;
-      for (int j = 0; j < winners.size(); j++) {
-        if (winners.get(j).intValue() == i) {
+      for (Integer winner : winners) {
+        if (winner == i) {
           won = true;
           totalWins++;
           numPlayersWins++;
@@ -221,8 +221,8 @@ public class Achievements {
       editor.commit();
     }
 
-    for (int j = 0; j < winners.size(); j++) {
-      String player = allPlayers.get(winners.get(j).intValue());
+    for (Integer winner : winners) {
+      String player = allPlayers.get(winner);
       if (isHumanPlayer(player)) {
         if (!player.equals(winStreakPlayer)) {
           winStreakPlayer = player;

@@ -181,9 +181,9 @@ public class UI extends JFrame implements GameEventListener {
     }
 
     clear(handPanel);
-    for (int i = 0; i < sortHand.length; i++) {
+    for (Card aSortHand : sortHand) {
       JLabel cardLabel = new JLabel();
-      cardLabel.setIcon(getCardIcon(sortHand[i]));
+      cardLabel.setIcon(getCardIcon(aSortHand));
       handPanel.add(cardLabel);
     }
     handPanel.revalidate();
@@ -311,8 +311,8 @@ public class UI extends JFrame implements GameEventListener {
       playedPanel.revalidate();
       playedPanel.repaint();
 
-      for (int i = 0; i < playerStats.length; i++) {
-        playerStats[i].showTurnIndicator(false);
+      for (PlayerStats playerStat : playerStats) {
+        playerStat.showTurnIndicator(false);
       }
 
       sleep(GAME_END_SLEEP);

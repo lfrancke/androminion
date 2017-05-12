@@ -414,10 +414,10 @@ public class CardImplHinterlands extends CardImpl {
       }
     }
 
-    for (int i = 0; i < cards.length; i++) {
-      currentPlayer.hand.remove(cards[i]);
-      currentPlayer.reveal(cards[i], this.getControlCard(), context);
-      currentPlayer.discard(cards[i], this.getControlCard(), null);
+    for (Card card : cards) {
+      currentPlayer.hand.remove(card);
+      currentPlayer.reveal(card, this.getControlCard(), context);
+      currentPlayer.discard(card, this.getControlCard(), null);
     }
   }
 
@@ -460,10 +460,10 @@ public class CardImplHinterlands extends CardImpl {
       }
     }
 
-    for (int i = 0; i < cards.length; i++) {
-      currentPlayer.hand.remove(cards[i]);
-      currentPlayer.reveal(cards[i], this.getControlCard(), context);
-      currentPlayer.discard(cards[i], this.getControlCard(), context);
+    for (Card card : cards) {
+      currentPlayer.hand.remove(card);
+      currentPlayer.reveal(card, this.getControlCard(), context);
+      currentPlayer.discard(card, this.getControlCard(), context);
     }
   }
 

@@ -429,10 +429,10 @@ public class CardImplDarkAges extends CardImpl {
             }
           }
 
-          for (int i = 0; i < cards.length; i++) {
-            currentPlayer.hand.remove(cards[i]);
-            currentPlayer.reveal(cards[i], this.getControlCard(), context);
-            currentPlayer.discard(cards[i], this.getControlCard(), null);
+          for (Card card1 : cards) {
+            currentPlayer.hand.remove(card1);
+            currentPlayer.reveal(card1, this.getControlCard(), context);
+            currentPlayer.discard(card1, this.getControlCard(), null);
           }
           break;
         case PutOnDeck:

@@ -302,8 +302,7 @@ public class Game {
   }
 
   private static void printGameTypeStats() {
-    for (int i = 0; i < gameTypeStats.size(); i++) {
-      GameStats stats = gameTypeStats.get(i);
+    for (GameStats stats : gameTypeStats) {
       StringBuilder sb = new StringBuilder();
       sb.append(stats.gameType);
       if (stats.gameType.toString().length() < 8) {
@@ -1563,8 +1562,8 @@ public class Game {
         Card[] cs = player.controlPlayer.actionCardsToPlayInOrder(context);
         if (cs != null && cs.length != 0) {
           actionCards = new ArrayList<Card>();
-          for (int i = 0; i < cs.length; i++) {
-            actionCards.add(cs[i]);
+          for (Card c : cs) {
+            actionCards.add(c);
           }
         }
       }
@@ -2520,10 +2519,10 @@ public class Game {
       }
 
       List<Card> remainingCards = new ArrayList<Card>();
-      for (int i = 0; i < allCards.size(); i++) {
-        if (!piles.containsKey(allCards.get(i).getName())) {
-          CardPile tempPile = allCards.get(i).getPileCreator()
-                                .create(allCards.get(i), 12); //count doesn't matter as we only need templates
+      for (Card allCard : allCards) {
+        if (!piles.containsKey(allCard.getName())) {
+          CardPile tempPile = allCard.getPileCreator()
+                                .create(allCard, 12); //count doesn't matter as we only need templates
           ArrayList<Card> templates = tempPile.getTemplateCards();
           if (Cards.variablePileCards.contains(templates.get(0)) || Cards.castleCards.contains(templates.get(0))) {
             if (blackMarketSplitPileOptions == BlackMarketSplitPileOptions.ANY) {
@@ -2533,7 +2532,7 @@ public class Game {
             } else if (blackMarketSplitPileOptions == BlackMarketSplitPileOptions.ONE) {
               remainingCards.add(Util.randomCard(templates));
             } else if (blackMarketSplitPileOptions == BlackMarketSplitPileOptions.ALL) {
-              remainingCards.add(allCards.get(i));
+              remainingCards.add(allCard);
             }
           } else {
             remainingCards.add(Util.randomCard(templates));
@@ -2573,9 +2572,9 @@ public class Game {
         }
       }
 
-      for (int i = 0; i < cards.size(); i++) {
-        remainingCards.remove(cards.get(i));
-        blackMarketPile.add(cards.get(i).instantiate());
+      for (Card card : cards) {
+        remainingCards.remove(card);
+        blackMarketPile.add(card.instantiate());
       }
 
       if (this.baneCard == null && blackMarketPile.contains(Cards.youngWitch)) {
@@ -2588,10 +2587,10 @@ public class Game {
       Collections.sort(blackMarketPile, new Util.CardCostNameComparator());
       // put all in piles
       cards.clear();
-      for (int i = 0; i < blackMarketPile.size(); i++) {
-        cards.add(blackMarketPile.get(i));
-        addPile(blackMarketPile.get(i).getTemplateCard(), 1, false, true);
-        Cards.blackMarketCards.add(blackMarketPile.get(i));
+      for (Card aBlackMarketPile : blackMarketPile) {
+        cards.add(aBlackMarketPile);
+        addPile(aBlackMarketPile.getTemplateCard(), 1, false, true);
+        Cards.blackMarketCards.add(aBlackMarketPile);
       }
       // shuffle
       while (!cards.isEmpty()) {
