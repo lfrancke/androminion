@@ -104,9 +104,7 @@ public class Achievements {
     ArrayList<String> prefsToClear = new ArrayList<String>();
 
     Map<String, ?> all = prefs.getAll();
-    Iterator<String> keys = all.keySet().iterator();
-    while (keys.hasNext()) {
-      String key = keys.next();
+    for (String key : all.keySet()) {
       if (key.startsWith("wins_") || key.startsWith("losses_")) {
         prefsToClear.add(key);
       }
