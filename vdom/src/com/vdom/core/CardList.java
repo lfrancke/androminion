@@ -154,6 +154,7 @@ public class CardList implements Iterable<Card> {
     a.clear();
   }
 
+  @Override
   public Iterator<Card> iterator() {
     return a.iterator();
   }

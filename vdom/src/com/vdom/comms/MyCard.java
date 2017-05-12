@@ -148,7 +148,7 @@ public class MyCard implements Serializable {
     return "Card #" + id + " (" + cost + ") " + name + ": " + desc;
   }
 
-  static public class CardNameComparator implements Comparator<MyCard> {
+  public static class CardNameComparator implements Comparator<MyCard> {
 
     @Override
     public int compare(MyCard card0, MyCard card1) {
@@ -156,7 +156,7 @@ public class MyCard implements Serializable {
     }
   }
 
-  static public class CardCostComparator implements Comparator<MyCard> {
+  public static class CardCostComparator implements Comparator<MyCard> {
 
     @Override
     public int compare(MyCard card0, MyCard card1) {
@@ -174,7 +174,7 @@ public class MyCard implements Serializable {
     }
   }
 
-  static public class CardDebtComparator implements Comparator<MyCard> {
+  public static class CardDebtComparator implements Comparator<MyCard> {
 
     @Override
     public int compare(MyCard card0, MyCard card1) {
@@ -188,7 +188,7 @@ public class MyCard implements Serializable {
     }
   }
 
-  static public class CardPotionComparator implements Comparator<MyCard> {
+  public static class CardPotionComparator implements Comparator<MyCard> {
 
     @Override
     public int compare(MyCard card0, MyCard card1) {
@@ -206,7 +206,7 @@ public class MyCard implements Serializable {
     }
   }
 
-  static public class CardTypeComparator implements Comparator<MyCard> {
+  public static class CardTypeComparator implements Comparator<MyCard> {
 
     @Override
     public int compare(MyCard card0, MyCard card1) {
@@ -232,7 +232,7 @@ public class MyCard implements Serializable {
     }
   }
 
-  static private class CardNonSupplyGroupComparator implements Comparator<MyCard> {
+  private static class CardNonSupplyGroupComparator implements Comparator<MyCard> {
 
     private int getCardNonSupplyGroup(MyCard c) {
       if (c.originalSafeName.equals("TreasureHunter")
@@ -257,7 +257,7 @@ public class MyCard implements Serializable {
 
   }
 
-  static private class CardEventLandmarkTypeComparator implements Comparator<MyCard> {
+  private static class CardEventLandmarkTypeComparator implements Comparator<MyCard> {
 
     private int getCardTypeOrder(MyCard c) {
       if (c.isEvent) {
@@ -277,7 +277,7 @@ public class MyCard implements Serializable {
    * Comparator for sorting cards by cost, potion and then by name
    * Used for sorting on table
    */
-  static public class CardCostNameComparator extends MultilevelComparator<MyCard> {
+  public static class CardCostNameComparator extends MultilevelComparator<MyCard> {
 
     private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<>();
 
@@ -297,7 +297,7 @@ public class MyCard implements Serializable {
    * Comparator for sorting cards in hand.
    * Sort by type then by cost and last by name
    */
-  static public class CardHandComparator extends MultilevelComparator<MyCard> {
+  public static class CardHandComparator extends MultilevelComparator<MyCard> {
 
     private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<>();
 
@@ -316,7 +316,7 @@ public class MyCard implements Serializable {
    * Comparator for sorting cards in hand.
    * Sort by type then by cost and last by name
    */
-  static public class CardNonSupplyComparator extends MultilevelComparator<MyCard> {
+  public static class CardNonSupplyComparator extends MultilevelComparator<MyCard> {
 
     private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<>();
 
@@ -335,7 +335,7 @@ public class MyCard implements Serializable {
    * Comparator for sorting cards in event/landmark pile.
    * Sort by type then by cost and last by name
    */
-  static public class CardEventLandmarkComparator extends MultilevelComparator<MyCard> {
+  public static class CardEventLandmarkComparator extends MultilevelComparator<MyCard> {
 
     private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<>();
 

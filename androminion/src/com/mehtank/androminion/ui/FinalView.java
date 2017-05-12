@@ -18,10 +18,14 @@ public class FinalView extends FrameLayout implements OnClickListener {
   @SuppressWarnings("unused")
   private static final String TAG = "FinalView";
   public ToggleButton showCards;
-  private GameTable gt;
-  private int[] cardCounts, embargos, pileVpTokens, pileDebtTokens, pileTradeRouteTokens;
-  private int[][][] tokens;
-  private TextView name;
+  private final GameTable gt;
+  private final int[] cardCounts;
+  private final int[] embargos;
+  private final int[] pileVpTokens;
+  private final int[] pileDebtTokens;
+  private final int[] pileTradeRouteTokens;
+  private final int[][][] tokens;
+  private final TextView name;
 
   public FinalView(Context context, GameTable gt, String nameStr, int numTurns, int[] embargos, int[] pileVpTokens,
                     int[] pileDebtTokens, int[] pileTradeRouteTokens, int[][][] tokens, int numCards, int[] cardCounts,
@@ -38,7 +42,7 @@ public class FinalView extends FrameLayout implements OnClickListener {
 
     LayoutInflater.from(context).inflate(R.layout.view_final, this, true);
     name = (TextView) findViewById(R.id.name);
-    name.setText(context.getString(R.string.final_view_text, nameStr, "" + vp, "" + numTurns, "" + numCards));
+    name.setText(context.getString(R.string.final_view_text, nameStr, String.valueOf(vp), String.valueOf(numTurns), String.valueOf(numCards)));
     if (winner) {
       name.setTextColor(Color.BLACK);
       name.setBackgroundColor(Color.YELLOW);

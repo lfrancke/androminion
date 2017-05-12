@@ -104,18 +104,22 @@ public class CardImpl implements Card, Comparable<Card> {
   protected CardImpl() {
   }
 
+  @Override
   public Cards.Kind getKind() {
     return kind;
   }
 
+  @Override
   public String getName() {
     return name;
   }
 
+  @Override
   public String getSafeName() {
     return name;
   }
 
+  @Override
   public Expansion getExpansion() {
     return expansion;
   }
@@ -150,6 +154,7 @@ public class CardImpl implements Card, Comparable<Card> {
     return is(t, null);
   }
 
+  @Override
   public int getNumberOfTypes(Player player) {
     if (player == null || player.getInheritance() == null || !equals(Cards.estate)) {
       return types.length;
@@ -160,6 +165,7 @@ public class CardImpl implements Card, Comparable<Card> {
     return typeSet.size();
   }
 
+  @Override
   public String getStats() {
     StringBuilder sb = new StringBuilder();
     String costString = "(" + cost + (costPotion ? "p" : "") + (debtCost > 0 ? "d" + debtCost : "") + ") ";
@@ -267,10 +273,12 @@ public class CardImpl implements Card, Comparable<Card> {
     return sb.toString();
   }
 
+  @Override
   public String getDescription() {
     return description;
   }
 
+  @Override
   public int getCost(MoveContext context) {
     if (context == null) {
       return cost;
@@ -278,6 +286,7 @@ public class CardImpl implements Card, Comparable<Card> {
     return getCost(context, context.phase == TurnPhase.Buy);
   }
 
+  @Override
   public int getCost(MoveContext context, boolean buyPhase) {
     if (is(Type.Event, null)) {
       return cost; //Costs of Events are not affected by cards like Bridge Troll.
@@ -316,10 +325,12 @@ public class CardImpl implements Card, Comparable<Card> {
     return Math.max(0, cost + costModifier + context.cardCostModifier/*bridge*/);
   }
 
+  @Override
   public boolean costPotion() {
     return costPotion;
   }
 
+  @Override
   public int getDebtCost(MoveContext context) {
     return debtCost;
   }
@@ -488,7 +499,7 @@ public class CardImpl implements Card, Comparable<Card> {
     }
 
     if (!isInheritedAbility) {
-      GameEvent event = new GameEvent(GameEvent.EventType.PlayingCard, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.PlayingCard, context);
       event.card = this;
       event.newCard = newCard;
       game.broadcastEvent(event);
@@ -564,7 +575,7 @@ public class CardImpl implements Card, Comparable<Card> {
     if (!isInheritedAbility && !playedCard.is(Type.Treasure, currentPlayer) || playedCard
                                                                                  .is(Type.Action, currentPlayer)) {
       // Don't broadcast card played event for only treasures
-      GameEvent event = new GameEvent(GameEvent.EventType.PlayedCard, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.PlayedCard, context);
       event.card = playedCard;
       game.broadcastEvent(event);
     } else {
@@ -610,6 +621,7 @@ public class CardImpl implements Card, Comparable<Card> {
   /**
    * @return the id
    */
+  @Override
   public Integer getId() {
     return id;
   }
@@ -642,8 +654,9 @@ public class CardImpl implements Card, Comparable<Card> {
     getControlCard().stopInheritingCardAbilities();
   }
 
+  @Override
   public boolean isImpersonatingAnotherCard() {
-    return this.impersonatingCard != null;
+    return impersonatingCard != null;
   }
 
   @Override
@@ -665,22 +678,27 @@ public class CardImpl implements Card, Comparable<Card> {
     return controlCard.getControlCard();
   }
 
+  @Override
   public boolean isTemplateCard() {
     return templateCard == null;
   }
 
+  @Override
   public CardImpl getTemplateCard() {
     return templateCard == null ? this : templateCard;
   }
 
+  @Override
   public boolean isPlaceholderCard() {
     return isPlaceholderCard;
   }
 
+  @Override
   public void setPlaceholderCard() {
     isPlaceholderCard = true;
   }
 
+  @Override
   public CardImpl instantiate() {
     checkInstantiateOK();
     CardImpl c = null;
@@ -734,6 +752,7 @@ public class CardImpl implements Card, Comparable<Card> {
     return c;
   }
 
+  @Override
   public PileCreator getPileCreator() {
     if (pileCreator == null) {
       return new DefaultPileCreator();
@@ -762,6 +781,7 @@ public class CardImpl implements Card, Comparable<Card> {
     return debtCost;
   }
 
+  @Override
   public int compareTo(Card other) {
     return getName().compareTo(other.getName());
   }
@@ -968,18 +988,18 @@ public class CardImpl implements Card, Comparable<Card> {
             }
             // Need to move throning card to NextTurnCards first
             // (but does not play)
-            if (playingCardIsInNextTurn && !this.getControlCard().movedToNextTurnPile) {
-              this.getControlCard().movedToNextTurnPile = true;
-              int idx = currentPlayer.playedCards.lastIndexOf(this.getControlCard());
+            if (playingCardIsInNextTurn && !getControlCard().movedToNextTurnPile) {
+              getControlCard().movedToNextTurnPile = true;
+              int idx = currentPlayer.playedCards.lastIndexOf(getControlCard());
               int ntidx = currentPlayer.nextTurnCards.size() - 1;
               if (idx >= 0 && ntidx >= 0) {
                 currentPlayer.playedCards.remove(idx);
-                currentPlayer.nextTurnCards.add(ntidx, this.getControlCard());
+                currentPlayer.nextTurnCards.add(ntidx, getControlCard());
               }
             }
           }
         } else {
-          Util.playerError(currentPlayer, this.getControlCard().name + " card selection error, ignoring");
+          Util.playerError(currentPlayer, getControlCard().name + " card selection error, ignoring");
         }
 
         if (kind == Cards.Kind.Procession) {
@@ -989,7 +1009,7 @@ public class CardImpl implements Card, Comparable<Card> {
               currentPlayer.playedCards.remove(cardToPlay);
             }
             if (currentPlayer.nextTurnCards.contains(cardToPlay)) {
-              ((CardImpl) cardToPlay).trashAfterPlay = true;
+              cardToPlay.trashAfterPlay = true;
             }
           }
 

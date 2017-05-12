@@ -28,8 +28,8 @@ public class CardSet {
   public static final GameType defaultGameType = GameType.Random;
   private static final Map<GameType, CardSet> CardSetMap = new HashMap<>();
   public static Random rand = new Random(System.currentTimeMillis());
-  private static int MIN_RECOMMENDED_ALCHEMY = 3;
-  private static int MAX_RECOMMENDED_ALCHEMY = 5;
+  private static final int MIN_RECOMMENDED_ALCHEMY = 3;
+  private static final int MAX_RECOMMENDED_ALCHEMY = 5;
   private final List<Card> cards;
   private final Card baneCard;
   private final boolean isRandom;
@@ -46,10 +46,10 @@ public class CardSet {
                                     boolean randomIncludeLandmarks, int numRandomLandmarks,
                                     boolean linkMaxEventsAndLandmarks,
                                     boolean adjustRandomForAlchemy) {
-    CardSet set = CardSet.CardSetMap.get(type);
+    CardSet set = CardSetMap.get(type);
 
     if (set == null) {
-      set = CardSet.getCardSet(CardSet.defaultGameType, count);
+      set = getCardSet(defaultGameType, count);
     }
 
     if (set.isRandom) {
@@ -62,8 +62,7 @@ public class CardSet {
           }
           cardSet.addAll(expansion.getKingdomCards());
         }
-        cards = new ArrayList<>();
-        cards.addAll(cardSet);
+        cards = new ArrayList<>(cardSet);
       } else {
         List<Expansion> expansions = new ArrayList<>();
         for (Expansion expansion : Expansion.values()) {
@@ -77,8 +76,7 @@ public class CardSet {
         for (Expansion expansion : expansions) {
           cardSet.addAll(expansion.getKingdomCards());
         }
-        cards = new ArrayList<>();
-        cards.addAll(cardSet);
+        cards = new ArrayList<>(cardSet);
       }
       if (randomIncludeEvents) {
         cards.addAll(Cards.eventsCards);
@@ -86,7 +84,7 @@ public class CardSet {
       if (randomIncludeLandmarks) {
         cards.addAll(Cards.landmarkCards);
       }
-      set = CardSet.getRandomCardSet(cards, count, numRandomEvents, numRandomLandmarks, linkMaxEventsAndLandmarks,
+      set = getRandomCardSet(cards, count, numRandomEvents, numRandomLandmarks, linkMaxEventsAndLandmarks,
         adjustRandomForAlchemy);
     }
 
@@ -143,9 +141,9 @@ public class CardSet {
     int numEvents = countEvents(possibleCards);
     int numLandmarks = countLandmarks(possibleCards);
     count = Math.min(possibleCards.size() - numEvents - numLandmarks, count);
-    List<Card> landmarkList = new ArrayList<Card>();
-    List<Card> eventList = new ArrayList<Card>();
-    List<Card> cardSetList = new ArrayList<Card>();
+    List<Card> landmarkList = new ArrayList<>();
+    List<Card> eventList = new ArrayList<>();
+    List<Card> cardSetList = new ArrayList<>();
     for (Card c : possibleCards) {
       if (c.is(Type.Event, null)) {
         if (drawEvents) {

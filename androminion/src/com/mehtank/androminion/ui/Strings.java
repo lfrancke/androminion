@@ -180,7 +180,7 @@ public class Strings {
         e.printStackTrace();
       }
 
-      if (expansionStr.equals("")) {
+      if (expansionStr.isEmpty()) {
         expansionStr = expansion.toString();
       }
 
@@ -357,10 +357,10 @@ public class Strings {
         swampHagAttacks = (Integer) extras[3];
       }
       if (swampHagAttacks == 1) {
-        statusText += "\n" + Strings.format(R.string.SwampHagAttacks_single, swampHagAttacks);
+        statusText += "\n" + format(R.string.SwampHagAttacks_single, swampHagAttacks);
       }
       if (swampHagAttacks >= 2) {
-        statusText += "\n" + Strings.format(R.string.SwampHagAttacks_multiple, swampHagAttacks);
+        statusText += "\n" + format(R.string.SwampHagAttacks_multiple, swampHagAttacks);
       }
       boolean hauntedWoodsAttacks = false;
       if (extras[4] != null) {
@@ -456,102 +456,102 @@ public class Strings {
   }
 
   public static String getFullCardDescription(Card c) {
-    String ret = Strings.getCardDescription(c);
+    String ret = getCardDescription(c);
 
     if (c.equals(Cards.curse)) {
-      ret = Strings.format(R.string.vp_single, "" + c.getVictoryPoints()) + "\n" + ret;
+      ret = format(R.string.vp_single, String.valueOf(c.getVictoryPoints())) + "\n" + ret;
     }
     if (c.is(Type.Victory)) {
       if (c.getVictoryPoints() > 1) {
-        ret = Strings.format(R.string.vp_multiple, "" + c.getVictoryPoints()) + "\n" + ret;
+        ret = format(R.string.vp_multiple, String.valueOf(c.getVictoryPoints())) + "\n" + ret;
       } else if (c.getVictoryPoints() > 0) {
-        ret = Strings.format(R.string.vp_single, "" + c.getVictoryPoints()) + "\n" + ret;
+        ret = format(R.string.vp_single, String.valueOf(c.getVictoryPoints())) + "\n" + ret;
       } else if (c.getVictoryPoints() < -1) {
-        ret = Strings.format(R.string.vp_multiple, "" + c.getVictoryPoints()) + "\n" + ret;
+        ret = format(R.string.vp_multiple, String.valueOf(c.getVictoryPoints())) + "\n" + ret;
       } else if (c.getVictoryPoints() < 0) {
-        ret = Strings.format(R.string.vp_single, "" + c.getVictoryPoints()) + "\n" + ret;
+        ret = format(R.string.vp_single, String.valueOf(c.getVictoryPoints())) + "\n" + ret;
       }
     }
     if (c.is(Type.Treasure)) {
       if (c.getAddBuys() > 1) {
-        ret = Strings.format(R.string.card_buys_multiple, "" + c.getAddBuys()) + "\n" + ret;
+        ret = format(R.string.card_buys_multiple, String.valueOf(c.getAddBuys())) + "\n" + ret;
       } else if (c.getAddBuys() > 0) {
-        ret = Strings.format(R.string.card_buy_single, "" + c.getAddBuys()) + "\n" + ret;
+        ret = format(R.string.card_buy_single, String.valueOf(c.getAddBuys())) + "\n" + ret;
       }
       int value = c.getAddGold();
       if (value == 1) {
-        ret = Strings.format(R.string.card_coin_single, value) + "\n" + ret;
+        ret = format(R.string.card_coin_single, value) + "\n" + ret;
       } else if (value > 1) {
-        ret = Strings.format(R.string.card_coin_multiple, value) + "\n" + ret;
+        ret = format(R.string.card_coin_multiple, value) + "\n" + ret;
       }
       if (c.getAddVictoryTokens() > 1) {
-        ret = Strings.format(R.string.card_victory_tokens_multiple, "" + c.getAddVictoryTokens()) + "\n" + ret;
+        ret = format(R.string.card_victory_tokens_multiple, String.valueOf(c.getAddVictoryTokens())) + "\n" + ret;
       } else if (c.getAddVictoryTokens() > 0) {
-        ret = Strings.format(R.string.card_victory_token_single, "" + c.getAddVictoryTokens()) + "\n" + ret;
+        ret = format(R.string.card_victory_token_single, String.valueOf(c.getAddVictoryTokens())) + "\n" + ret;
       }
     }
     if (c.is(Type.Action)) {
       if (c.is(Type.Duration)) {
         if (c.getAddGoldNextTurn() > 1) {
-          ret = Strings.format(R.string.coin_next_turn_multiple, "" + c.getAddGoldNextTurn()) + "\n" + ret;
+          ret = format(R.string.coin_next_turn_multiple, String.valueOf(c.getAddGoldNextTurn())) + "\n" + ret;
         } else if (c.getAddGoldNextTurn() > 0) {
-          ret = Strings.format(R.string.coin_next_turn_single, "" + c.getAddGoldNextTurn()) + "\n" + ret;
+          ret = format(R.string.coin_next_turn_single, String.valueOf(c.getAddGoldNextTurn())) + "\n" + ret;
         }
         if (c.getAddBuysNextTurn() > 1) {
-          ret = Strings.format(R.string.buys_next_turn_multiple, "" + c.getAddBuysNextTurn()) + "\n" + ret;
+          ret = format(R.string.buys_next_turn_multiple, String.valueOf(c.getAddBuysNextTurn())) + "\n" + ret;
         } else if (c.getAddBuysNextTurn() > 0) {
-          ret = Strings.format(R.string.buy_next_turn_single, "" + c.getAddBuysNextTurn()) + "\n" + ret;
+          ret = format(R.string.buy_next_turn_single, String.valueOf(c.getAddBuysNextTurn())) + "\n" + ret;
         }
         if (c.getAddActionsNextTurn() > 1) {
-          ret = Strings.format(R.string.actions_next_turn_multiple, "" + c.getAddActionsNextTurn()) + "\n" + ret;
+          ret = format(R.string.actions_next_turn_multiple, String.valueOf(c.getAddActionsNextTurn())) + "\n" + ret;
         } else if (c.getAddActionsNextTurn() > 0) {
-          ret = Strings.format(R.string.action_next_turn_single, "" + c.getAddActionsNextTurn()) + "\n" + ret;
+          ret = format(R.string.action_next_turn_single, String.valueOf(c.getAddActionsNextTurn())) + "\n" + ret;
         }
         if (c.getAddCardsNextTurn() > 1) {
-          ret = Strings.format(R.string.cards_next_turn_multiple, "" + c.getAddCardsNextTurn()) + "\n" + ret;
+          ret = format(R.string.cards_next_turn_multiple, String.valueOf(c.getAddCardsNextTurn())) + "\n" + ret;
         } else if (c.getAddCardsNextTurn() > 0) {
-          ret = Strings.format(R.string.card_next_turn_single, "" + c.getAddCardsNextTurn()) + "\n" + ret;
+          ret = format(R.string.card_next_turn_single, String.valueOf(c.getAddCardsNextTurn())) + "\n" + ret;
         }
 
       }
 
       if (c.getAddGold() > 1) {
-        ret = Strings.format(R.string.card_coin_multiple, "" + c.getAddGold()) + "\n" + ret;
+        ret = format(R.string.card_coin_multiple, String.valueOf(c.getAddGold())) + "\n" + ret;
       } else if (c.getAddGold() > 0) {
-        ret = Strings.format(R.string.card_coin_single, "" + c.getAddGold()) + "\n" + ret;
+        ret = format(R.string.card_coin_single, String.valueOf(c.getAddGold())) + "\n" + ret;
       }
       if (c.getAddBuys() > 1) {
-        ret = Strings.format(R.string.card_buys_multiple, "" + c.getAddBuys()) + "\n" + ret;
+        ret = format(R.string.card_buys_multiple, String.valueOf(c.getAddBuys())) + "\n" + ret;
       } else if (c.getAddBuys() > 0) {
-        ret = Strings.format(R.string.card_buy_single, "" + c.getAddBuys()) + "\n" + ret;
+        ret = format(R.string.card_buy_single, String.valueOf(c.getAddBuys())) + "\n" + ret;
       }
       if (c.getAddActions() > 1) {
-        ret = Strings.format(R.string.card_actions_multiple, "" + c.getAddActions()) + "\n" + ret;
+        ret = format(R.string.card_actions_multiple, String.valueOf(c.getAddActions())) + "\n" + ret;
       } else if (c.getAddActions() > 0) {
-        ret = Strings.format(R.string.card_action_single, "" + c.getAddActions()) + "\n" + ret;
+        ret = format(R.string.card_action_single, String.valueOf(c.getAddActions())) + "\n" + ret;
       }
       if (c.getAddCards() > 1) {
-        ret = Strings.format(R.string.card_cards_multiple, "" + c.getAddCards()) + "\n" + ret;
+        ret = format(R.string.card_cards_multiple, String.valueOf(c.getAddCards())) + "\n" + ret;
       } else if (c.getAddCards() > 0) {
-        ret = Strings.format(R.string.card_card_single, "" + c.getAddCards()) + "\n" + ret;
+        ret = format(R.string.card_card_single, String.valueOf(c.getAddCards())) + "\n" + ret;
       }
       if (c.getAddVictoryTokens() > 1) {
-        ret = Strings.format(R.string.card_victory_tokens_multiple, "" + c.getAddVictoryTokens()) + "\n" + ret;
+        ret = format(R.string.card_victory_tokens_multiple, String.valueOf(c.getAddVictoryTokens())) + "\n" + ret;
       } else if (c.getAddVictoryTokens() > 0) {
-        ret = Strings.format(R.string.card_victory_token_single, "" + c.getAddVictoryTokens()) + "\n" + ret;
+        ret = format(R.string.card_victory_token_single, String.valueOf(c.getAddVictoryTokens())) + "\n" + ret;
       }
     }
 
     if (c.is(Type.Event)) {
       if (c.getAddBuys() > 1) {
-        ret = Strings.format(R.string.card_buys_multiple, "" + c.getAddBuys()) + "\n" + ret;
+        ret = format(R.string.card_buys_multiple, String.valueOf(c.getAddBuys())) + "\n" + ret;
       } else if (c.getAddBuys() > 0) {
-        ret = Strings.format(R.string.card_buy_single, "" + c.getAddBuys()) + "\n" + ret;
+        ret = format(R.string.card_buy_single, String.valueOf(c.getAddBuys())) + "\n" + ret;
       }
       if (c.getAddVictoryTokens() > 1) {
-        ret = Strings.format(R.string.card_victory_tokens_multiple, "" + c.getAddVictoryTokens()) + "\n" + ret;
+        ret = format(R.string.card_victory_tokens_multiple, String.valueOf(c.getAddVictoryTokens())) + "\n" + ret;
       } else if (c.getAddVictoryTokens() > 0) {
-        ret = Strings.format(R.string.card_victory_token_single, "" + c.getAddVictoryTokens()) + "\n" + ret;
+        ret = format(R.string.card_victory_token_single, String.valueOf(c.getAddVictoryTokens())) + "\n" + ret;
       }
     }
     return ret;
@@ -585,10 +585,10 @@ public class Strings {
       String[] strings2 = new String[(options.length - startIndex) / 2];
       for (int i = startIndex; i < options.length - 1; i += 2) {
         if (options[i] != null && options[i + 1] != null) {
-          if (((Card) options[i]).equals(Cards.haven)) {
+          if (options[i].equals(Cards.haven)) {
             strings2[(i - startIndex) / 2] = getCardName((Card) options[i])
                                              + " (" + "\u261e" + getCardName(((Card) options[i + 1])) + ")";
-          } else if (((Card) options[i]).equals(Cards.gear)) {
+          } else if (options[i].equals(Cards.gear)) {
             @SuppressWarnings("unchecked")
             ArrayList<Card> gearCards = (ArrayList<Card>) options[i + 1];
             String cardsString = getCardName(gearCards.get(0));
@@ -597,7 +597,7 @@ public class Strings {
             }
             strings2[(i - startIndex) / 2] = getCardName((Card) options[i])
                                              + " (" + "\u261e" + cardsString + ")";
-          } else if (((Card) options[i]).equals(Cards.archive)) {
+          } else if (options[i].equals(Cards.archive)) {
             @SuppressWarnings("unchecked")
             ArrayList<Card> archiveCards = (ArrayList<Card>) options[i + 1];
             String cardsString = getCardName(archiveCards.get(0));
@@ -606,14 +606,14 @@ public class Strings {
             }
             strings2[(i - startIndex) / 2] = getCardName((Card) options[i])
                                              + " (" + cardsString + ")";
-          } else if (((Card) options[i]).equals(Cards.prince)
-                     || ((Card) options[i]).equals(Cards.summon)) {
+          } else if (options[i].equals(Cards.prince)
+                     || options[i].equals(Cards.summon)) {
             strings2[(i - startIndex) / 2] = getCardName((Card) options[i + 1])
                                              + " (" + getCardName(((Card) options[i])) + ")";
-          } else if (((Card) options[i]).equals(Cards.horseTraders)) {
+          } else if (options[i].equals(Cards.horseTraders)) {
             strings2[(i - startIndex) / 2] = "\u261e" + getCardName((Card) options[i])
                                              + ", " + getString(R.string.pawn_one);
-          } else if (((Card) options[i]).isCallableWhenTurnStarts() || ((Card) options[i]).equals(Cards.estate)) {
+          } else if (((Card) options[i]).isCallableWhenTurnStarts() || options[i].equals(Cards.estate)) {
             strings2[(i - startIndex) / 2] = format(R.string.call_optional, getCardName((Card) options[i]));
           } else {
             strings2[(i - startIndex) / 2] = getCardName((Card) options[i]);
@@ -662,13 +662,13 @@ public class Strings {
     if (card != null && getCardName(card).equals(getCardName(Cards.mountainPass))) {
       strings[0] = getString(R.string.pass);
       for (int i = startIndex + 1; i < options.length; i++) {
-        strings[i - startIndex] = options[i] + "";
+        strings[i - startIndex] = String.valueOf(options[i]);
       }
       return strings;
     }
 
     for (int i = startIndex; i < options.length; i++) {
-      strings[i - startIndex] = Strings.getOptionText(options[i], options);
+      strings[i - startIndex] = getOptionText(options[i], options);
     }
     return strings;
   }
@@ -744,26 +744,26 @@ public class Strings {
   }
 
   public static String getSelectOptionHeader(Card card, Object[] extras) {
-    if (extras[0] instanceof String && ((String) extras[0]).equals(IndirectPlayer.OPTION_PUTBACK)) {
+    if (extras[0] instanceof String && extras[0].equals(IndirectPlayer.OPTION_PUTBACK)) {
       return getString(R.string.putback_query);
-    } else if (extras[0] instanceof String && ((String) extras[0]).equals(IndirectPlayer.OPTION_REACTION)) {
+    } else if (extras[0] instanceof String && extras[0].equals(IndirectPlayer.OPTION_REACTION)) {
       return getString(R.string.reaction_query) + " [" + getCardName(card) + "]";
-    } else if (extras[0] instanceof String && ((String) extras[0]).equals(IndirectPlayer.OPTION_SPEND_GUILD_COINS)) {
+    } else if (extras[0] instanceof String && extras[0].equals(IndirectPlayer.OPTION_SPEND_GUILD_COINS)) {
       return getString(R.string.spend_guilds_coin_tokens);
-    } else if (extras[0] instanceof String && ((String) extras[0]).equals(IndirectPlayer.OPTION_OVERPAY)) {
+    } else if (extras[0] instanceof String && extras[0].equals(IndirectPlayer.OPTION_OVERPAY)) {
       return getString(R.string.buy_overpay);
-    } else if (extras[0] instanceof String && ((String) extras[0]).equals(IndirectPlayer.OPTION_OVERPAY_POTION)) {
+    } else if (extras[0] instanceof String && extras[0].equals(IndirectPlayer.OPTION_OVERPAY_POTION)) {
       return getString(R.string.buy_overpay_by_potions);
-    } else if (extras[0] instanceof String && ((String) extras[0]).equals(IndirectPlayer.OPTION_PAY_DEBT)) {
+    } else if (extras[0] instanceof String && extras[0].equals(IndirectPlayer.OPTION_PAY_DEBT)) {
       return getString(R.string.pay_off_debt);
-    } else if (extras[0] instanceof String && ((String) extras[0]).equals(IndirectPlayer.OPTION_CALL_WHEN_GAIN)) {
+    } else if (extras[0] instanceof String && extras[0].equals(IndirectPlayer.OPTION_CALL_WHEN_GAIN)) {
       return format(R.string.call_when_gain_query, getCardName(card));
-    } else if (extras[0] instanceof String && ((String) extras[0]).equals(IndirectPlayer.OPTION_CALL_RESOLVE_ACTION)) {
+    } else if (extras[0] instanceof String && extras[0].equals(IndirectPlayer.OPTION_CALL_RESOLVE_ACTION)) {
       return format(R.string.call_resolve_action_query, getCardName(card));
-    } else if (extras[0] instanceof String && ((String) extras[0]).equals(IndirectPlayer.OPTION_START_TURN_EFFECT)) {
+    } else if (extras[0] instanceof String && extras[0].equals(IndirectPlayer.OPTION_START_TURN_EFFECT)) {
       return getString(R.string.call_start_turn_query);
-    } else if (extras[0] instanceof String && (((String) extras[0]).equals(IndirectPlayer.OPTION_STASH)
-                                               || ((String) extras[0]).equals(IndirectPlayer.OPTION_STASH_POSITION))) {
+    } else if (extras[0] instanceof String && (extras[0].equals(IndirectPlayer.OPTION_STASH)
+                                               || extras[0].equals(IndirectPlayer.OPTION_STASH_POSITION))) {
       if ((Integer) extras[2] == 1) {
         return getString(R.string.place_stash_query);
       }
@@ -1100,7 +1100,7 @@ public class Strings {
     } else if (option == null) {
       return getString(R.string.none);
     } else if (option instanceof Integer) {
-      return "" + option;
+      return String.valueOf(option);
     }
     throw new RuntimeException("I got passed an option object that I don't understand!");
   }
@@ -1194,7 +1194,7 @@ public class Strings {
       strings[2] = getString(R.string.keep);
     } else if (cardName.equals(getCardName(Cards.miningVillage))) {
       if (!controlName.equals(cardName)) {
-        strings[0] = Strings.format(getString(R.string.card_played_as_card), controlName, cardName);
+        strings[0] = format(getString(R.string.card_played_as_card), controlName, cardName);
       }
       strings[1] = getString(R.string.mining_village_option_one);
       strings[2] = getString(R.string.keep);
@@ -1210,20 +1210,20 @@ public class Strings {
       strings[1] = getString(R.string.pearldiver_option_one);
       strings[2] = getString(R.string.pearldiver_option_two);
     } else if (cardName.equals(getCardName(Cards.pirateShip))) {
-      strings[1] = format(R.string.pirate_ship_option_one, "" + (Integer) extras[0]);
+      strings[1] = format(R.string.pirate_ship_option_one, String.valueOf((Integer) extras[0]));
       strings[2] = getString(R.string.pirate_ship_option_two);
     } else if (cardName.equals(getCardName(Cards.miser))) {
-      strings[1] = format(R.string.miser_option_one, "" + (Integer) extras[0]);
+      strings[1] = format(R.string.miser_option_one, String.valueOf((Integer) extras[0]));
       strings[2] = getString(R.string.miser_option_two);
     } else if (cardName.equals(getCardName(Cards.nativeVillage))) {
       strings[1] = getString(R.string.native_village_option_one);
       strings[2] = getString(R.string.native_village_option_two);
     } else if (cardName.equals(getCardName(Cards.navigator))) {
-      strings[0] = Strings.format(R.string.navigator_header, combineCardNames(extras));
+      strings[0] = format(R.string.navigator_header, combineCardNames(extras));
       strings[1] = getString(R.string.discard);
       strings[2] = getString(R.string.navigator_option_two);
     } else if (cardName.equals(getCardName(Cards.nobleBrigand))) {
-      strings[0] = Strings.format(R.string.noble_brigand_query, extras[0]);
+      strings[0] = format(R.string.noble_brigand_query, extras[0]);
       strings[1] = getCardName((Card) extras[1]);
       strings[2] = getCardName((Card) extras[2]);
     } else if (cardName.equals(getCardName(Cards.oracle))) {
@@ -1233,7 +1233,7 @@ public class Strings {
       strings[2] = getString(R.string.discard);
     } else if (cardName.equals(getCardName(Cards.raze))) {
       if (!controlName.equals(cardName)) {
-        strings[0] = Strings.format(getString(R.string.card_played_as_card), controlName, cardName);
+        strings[0] = format(getString(R.string.card_played_as_card), controlName, cardName);
       }
       strings[1] = getString(R.string.trash_this);
       strings[2] = getString(R.string.trash_card_from_hand);
@@ -1250,7 +1250,7 @@ public class Strings {
       strings[1] = getString(R.string.discard);
       strings[2] = getString(R.string.replace);
     } else if (cardName.equals(getCardName(Cards.survivors))) {
-      strings[0] = Strings.format(R.string.survivors_header, combineCardNames(extras));
+      strings[0] = format(R.string.survivors_header, combineCardNames(extras));
       strings[1] = getString(R.string.discard);
       strings[2] = getString(R.string.navigator_option_two);
     } else if (cardName.equals(getCardName(Cards.tournament))) {
@@ -1266,7 +1266,7 @@ public class Strings {
       strings[2] = getString(R.string.pass);
     } else if (cardName.equals(getCardName(Cards.urchin))) {
       if (!controlName.equals(cardName)) {
-        strings[0] = Strings.format(getString(R.string.card_played_as_card), controlName, cardName);
+        strings[0] = format(getString(R.string.card_played_as_card), controlName, cardName);
       }
       strings[1] = getString(R.string.urchin_trash_for_mercenary);
       strings[2] = getString(R.string.pass);
@@ -1292,7 +1292,7 @@ public class Strings {
                || cardName.equals(getCardName(Cards.hero))
              ) {
       if (!controlName.equals(cardName)) {
-        strings[0] = Strings.format(getString(R.string.card_played_as_card), controlName, cardName);
+        strings[0] = format(getString(R.string.card_played_as_card), controlName, cardName);
       }
       strings[1] = format(R.string.traveller_exchange, getCardName((Card) extras[0]));
       strings[2] = getString(R.string.pass);
@@ -1314,7 +1314,7 @@ public class Strings {
       strings[2] = getString(R.string.pass);
     } else if (cardName.equals(getCardName(Cards.smallCastle))) {
       if (!controlName.equals(cardName)) {
-        strings[0] = Strings.format(getString(R.string.card_played_as_card), controlName, cardName);
+        strings[0] = format(getString(R.string.card_played_as_card), controlName, cardName);
       }
       strings[1] = getString(R.string.trash_this);
       strings[2] = getString(R.string.trash_castle_from_hand);
@@ -1370,9 +1370,9 @@ public class Strings {
   }
 
   public static String getSelectCardText(SelectCardOptions sco, String header) {
-    String minCostString = (sco.minCost <= 0) ? "" : "" + sco.minCost;
+    String minCostString = (sco.minCost <= 0) ? "" : String.valueOf(sco.minCost);
     String maxCostString = (sco.maxCost == Integer.MAX_VALUE) ?
-                             "" : "" + sco.maxCost + sco.debtString() + sco.potionString();
+                             "" : sco.maxCost + sco.debtString() + sco.potionString();
 
     if (sco.fromTable) {
       String selectString;
@@ -1380,59 +1380,57 @@ public class Strings {
         selectString = header;
       } else if (sco.minCost == sco.maxCost) {
         if (sco.isAttack) {
-          selectString = Strings.format(R.string.select_from_table_attack, maxCostString, header);
+          selectString = format(R.string.select_from_table_attack, maxCostString, header);
         } else if (sco.isAction) {
-          selectString = Strings.format(R.string.select_from_table_exact_action, maxCostString, header);
+          selectString = format(R.string.select_from_table_exact_action, maxCostString, header);
         } else if (sco.except != null) {
           selectString =
-            Strings
-              .format(R.string.select_from_table_exact_except, getCardName(sco.except), maxCostString, header);
+            format(R.string.select_from_table_exact_except, getCardName(sco.except), maxCostString, header);
         } else {
-          selectString = Strings.format(R.string.select_from_table_exact, maxCostString, header);
+          selectString = format(R.string.select_from_table_exact, maxCostString, header);
         }
       } else if (sco.minCost <= 0 && sco.maxCost < Integer.MAX_VALUE) {
         if (sco.isVictory) {
-          selectString = Strings.format(R.string.select_from_table_max_vp, maxCostString, header);
+          selectString = format(R.string.select_from_table_max_vp, maxCostString, header);
         } else if (sco.isNonVictory) {
           if (sco.isAction) {
-            selectString = Strings.format(R.string.select_from_table_max_non_vp_action, maxCostString, header);
+            selectString = format(R.string.select_from_table_max_non_vp_action, maxCostString, header);
           } else if (sco.lessThanMax) {
-            selectString = Strings.format(R.string.select_from_table_less_non_vp, maxCostString, header);
+            selectString = format(R.string.select_from_table_less_non_vp, maxCostString, header);
           } else {
-            selectString = Strings.format(R.string.select_from_table_max_non_vp, maxCostString, header);
+            selectString = format(R.string.select_from_table_max_non_vp, maxCostString, header);
           }
         } else if (sco.isTreasure) {
-          selectString = Strings.format(R.string.select_from_table_max_treasure, maxCostString, header);
+          selectString = format(R.string.select_from_table_max_treasure, maxCostString, header);
         } else if (sco.isAction) {
-          selectString = Strings.format(R.string.select_from_table_max_action, maxCostString, header);
+          selectString = format(R.string.select_from_table_max_action, maxCostString, header);
         } else if (containsOnlyEvents(sco)) {
-          selectString = Strings.format(R.string.select_from_table_max_events, maxCostString, header);
+          selectString = format(R.string.select_from_table_max_events, maxCostString, header);
         } else if (containsOnlyCards(sco)) {
           if (sco.lessThanMax) {
-            selectString = Strings.format(R.string.select_from_table_less, maxCostString, header);
+            selectString = format(R.string.select_from_table_less, maxCostString, header);
           } else {
-            selectString = Strings.format(R.string.select_from_table_max, maxCostString, header);
+            selectString = format(R.string.select_from_table_max, maxCostString, header);
           }
         } else {
-          selectString = Strings.format(R.string.select_from_table_max_cards_events, maxCostString, header);
+          selectString = format(R.string.select_from_table_max_cards_events, maxCostString, header);
         }
       } else if (sco.minCost > 0 && sco.maxCost < Integer.MAX_VALUE) {
-        selectString = Strings.format(R.string.select_from_table_between, minCostString, maxCostString, header);
+        selectString = format(R.string.select_from_table_between, minCostString, maxCostString, header);
       } else if (sco.minCost > 0) {
         selectString =
-          Strings
-            .format(R.string.select_from_table_min, minCostString + sco.debtString() + sco.potionString(), header);
+          format(R.string.select_from_table_min, minCostString + sco.debtString() + sco.potionString(), header);
       } else {
         if (sco.isAttack) {
-          selectString = Strings.format(R.string.select_from_table_attack, header);
+          selectString = format(R.string.select_from_table_attack, header);
         } else if (sco.isAction) {
-          selectString = Strings.format(R.string.select_from_table_action, header);
+          selectString = format(R.string.select_from_table_action, header);
         } else if (sco.isTreasure) {
-          selectString = Strings.format(R.string.select_from_table_treasure, header);
+          selectString = format(R.string.select_from_table_treasure, header);
         } else if (sco.isVictory) {
-          selectString = Strings.format(R.string.select_from_table_victory, header);
+          selectString = format(R.string.select_from_table_victory, header);
         } else {
-          selectString = Strings.format(R.string.select_from_table, header);
+          selectString = format(R.string.select_from_table, header);
         }
       }
       return selectString;
@@ -1440,68 +1438,67 @@ public class Strings {
       String str = "";
       if (sco.isAction) {
         if (sco.count == 1) {
-          str = Strings.format(R.string.select_one_action_from_hand, header);
+          str = format(R.string.select_one_action_from_hand, header);
         } else if (sco.exactCount) {
-          str = Strings.format(R.string.select_exactly_x_actions_from_hand, "" + sco.count, header);
+          str = format(R.string.select_exactly_x_actions_from_hand, String.valueOf(sco.count), header);
         } else {
-          str = Strings.format(R.string.select_up_to_x_actions_from_hand, "" + sco.count, header);
+          str = format(R.string.select_up_to_x_actions_from_hand, String.valueOf(sco.count), header);
         }
       } else if (sco.isTreasure) {
         if (sco.count == 1) {
-          str = Strings.format(R.string.select_one_treasure_from_hand, header);
+          str = format(R.string.select_one_treasure_from_hand, header);
         } else if (sco.exactCount) {
-          str = Strings.format(R.string.select_exactly_x_treasures_from_hand, "" + sco.count, header);
+          str = format(R.string.select_exactly_x_treasures_from_hand, String.valueOf(sco.count), header);
         } else {
-          str = Strings.format(R.string.select_up_to_x_treasures_from_hand, "" + sco.count, header);
+          str = format(R.string.select_up_to_x_treasures_from_hand, String.valueOf(sco.count), header);
         }
       } else if (sco.isVictory) {
         if (sco.count == 1) {
-          str = Strings.format(R.string.select_one_victory_from_hand, header);
+          str = format(R.string.select_one_victory_from_hand, header);
         } else if (sco.exactCount) {
-          str = Strings.format(R.string.select_exactly_x_victorys_from_hand, "" + sco.count, header);
+          str = format(R.string.select_exactly_x_victorys_from_hand, String.valueOf(sco.count), header);
         } else {
-          str = Strings.format(R.string.select_up_to_x_victorys_from_hand, "" + sco.count, header);
+          str = format(R.string.select_up_to_x_victorys_from_hand, String.valueOf(sco.count), header);
         }
       } else if (sco.isNonTreasure) {
         if (sco.count == 1) {
-          str = Strings.format(R.string.select_one_nontreasure_from_hand, header);
+          str = format(R.string.select_one_nontreasure_from_hand, header);
         } else if (sco.exactCount) {
-          str = Strings.format(R.string.select_exactly_x_nontreasures_from_hand, "" + sco.count, header);
+          str = format(R.string.select_exactly_x_nontreasures_from_hand, String.valueOf(sco.count), header);
         } else {
-          str = Strings.format(R.string.select_up_to_x_nontreasures_from_hand, "" + sco.count, header);
+          str = format(R.string.select_up_to_x_nontreasures_from_hand, String.valueOf(sco.count), header);
         }
       } else {
         if (sco.count == 1) {
-          str = Strings.format(R.string.select_one_card_from_hand, header);
+          str = format(R.string.select_one_card_from_hand, header);
         } else if (sco.exactCount) {
-          str = Strings.format(R.string.select_exactly_x_cards_from_hand, "" + sco.count, header);
+          str = format(R.string.select_exactly_x_cards_from_hand, String.valueOf(sco.count), header);
         } else if (sco.minCount > 0) {
           if (sco.different) {
-            str = Strings
-                    .format(R.string.select_from_x_to_y_different_cards_from_hand, "" + sco.minCount,
-                      "" + sco.count,
+            str =
+              format(R.string.select_from_x_to_y_different_cards_from_hand, String.valueOf(sco.minCount),
+                String.valueOf(sco.count),
                       header);
           } else {
             str =
-              Strings
-                .format(R.string.select_from_x_to_y_cards_from_hand, "" + sco.minCount, "" + sco.count, header);
+              format(R.string.select_from_x_to_y_cards_from_hand, String.valueOf(sco.minCount), String.valueOf(sco.count), header);
           }
         } else {
-          str = Strings.format(R.string.select_up_to_x_cards_from_hand, "" + sco.count, header);
+          str = format(R.string.select_up_to_x_cards_from_hand, String.valueOf(sco.count), header);
         }
       }
       return str;
     } else if (sco.fromPlayed) {
       String str = "";
       if (sco.count == 1) {
-        str = Strings.format(R.string.select_one_card_from_played, header);
+        str = format(R.string.select_one_card_from_played, header);
       } else if (sco.exactCount) {
-        str = Strings.format(R.string.select_exactly_x_cards_from_played, "" + sco.count, header);
+        str = format(R.string.select_exactly_x_cards_from_played, String.valueOf(sco.count), header);
       } else {
         if (sco.different) {
-          str = Strings.format(R.string.select_up_to_x_different_cards_from_played, "" + sco.count, header);
+          str = format(R.string.select_up_to_x_different_cards_from_played, String.valueOf(sco.count), header);
         } else {
-          str = Strings.format(R.string.select_up_to_x_cards_from_played, "" + sco.count, header);
+          str = format(R.string.select_up_to_x_cards_from_played, String.valueOf(sco.count), header);
         }
       }
       return str;
@@ -1542,27 +1539,27 @@ public class Strings {
     // distinguishes between DISCARDFORCARD and DISCARDFORCOIN, while PickType doesn't.  But
     // this isn't necessary for the multiplayer stuff, so I'll leave it for later.
     if (action == null) {
-      return "WRONG TEXT" + Strings.format(R.string.card_to_discard, getCardName(cardResponsible));
+      return "WRONG TEXT" + format(R.string.card_to_discard, getCardName(cardResponsible));
     }
     switch (action) {
       case DISCARD:
-        return Strings.format(R.string.card_to_discard, getCardName(cardResponsible));
+        return format(R.string.card_to_discard, getCardName(cardResponsible));
       case DISCARDFORCARD:
-        return Strings.format(R.string.card_to_discard_for_card, getCardName(cardResponsible));
+        return format(R.string.card_to_discard_for_card, getCardName(cardResponsible));
       case DISCARDFORCOIN:
-        return Strings.format(R.string.card_to_discard_for_coin, getCardName(cardResponsible));
+        return format(R.string.card_to_discard_for_coin, getCardName(cardResponsible));
       case REVEAL:
-        return Strings.format(R.string.card_to_reveal, getCardName(cardResponsible));
+        return format(R.string.card_to_reveal, getCardName(cardResponsible));
       case GAIN:
-        return Strings.format(R.string.card_to_gain, getCardName(cardResponsible));
+        return format(R.string.card_to_gain, getCardName(cardResponsible));
       case TRASH:
-        return Strings.format(R.string.card_to_trash, getCardName(cardResponsible));
+        return format(R.string.card_to_trash, getCardName(cardResponsible));
       case NAMECARD:
-        return Strings.format(R.string.card_to_name, getCardName(cardResponsible));
+        return format(R.string.card_to_name, getCardName(cardResponsible));
       case OPPONENTDISCARD:
-        return Strings.format(R.string.opponent_discard, opponentName, getCardName(cardResponsible));
+        return format(R.string.opponent_discard, opponentName, getCardName(cardResponsible));
       case SETASIDE:
-        return Strings.format(R.string.card_to_set_aside, getCardName(cardResponsible));
+        return format(R.string.card_to_set_aside, getCardName(cardResponsible));
     }
     return null;
   }
@@ -1680,7 +1677,7 @@ public class Strings {
     actionStringMap.put(getCardName(Cards.bandOfMisfits), getString(R.string.part_play));
     actionStringMap.put(getCardName(Cards.ferry), getString(R.string.part_move_token_minus_2_cost));
     actionStringMap.put(getCardName(Cards.courtyard),
-      Strings.format(R.string.courtyard_part_top_of_deck,
+      format(R.string.courtyard_part_top_of_deck,
         getCardName(Cards.courtyard)));
     actionStringMap.put(getCardName(Cards.contraband), getString(R.string.contraband_part));
     actionStringMap.put(getCardName(Cards.embargo), getString(R.string.embargo_part));
@@ -1745,8 +1742,8 @@ public class Strings {
         return getString(R.string.mandarin_part);
       }
     } else if (cardName.equals(getCardName(Cards.swindler))) {
-      return Strings.format(R.string.swindler_part,
-        "" + sco.maxCost + (sco.maxDebtCost == 0 ? "" : "d" + sco.maxDebtCost) + (sco.maxPotionCost == 0 ? "" : "p"));
+      return format(R.string.swindler_part,
+        sco.maxCost + (sco.maxDebtCost == 0 ? "" : "d" + sco.maxDebtCost) + (sco.maxPotionCost == 0 ? "" : "p"));
     } else if (cardName.equals(getCardName(Cards.masquerade))) {
       if (sco.pickType == PickType.GIVE) {
         return getString(R.string.masquerade_part);
@@ -1795,7 +1792,7 @@ public class Strings {
       if (sco.actionType == ActionType.DISCARD) {
         return getActionString(sco);
       } else {
-        return Strings.format(R.string.count_part_top_of_deck, getCardName(Cards.count));
+        return format(R.string.count_part_top_of_deck, getCardName(Cards.count));
       }
     } else if (cardName.equals(getCardName(Cards.procession))) {
       if (sco.actionType == ActionType.GAIN) {
@@ -1850,19 +1847,17 @@ public class Strings {
   public static String getCardText(final Map<Object, Integer> counts,
                                     final Map<Card, Integer> totals,
                                     final Card card) {
-    StringBuilder sb = new StringBuilder()
-                               .append('\t')
-                               //.append(card.getName())
-                               .append(getCardName(card))
-                               .append(" x")
-                               .append(counts.get(card))
-                               .append(": ")
-                               .append(totals.get(card))
-                               .append(" ")
-                               .append(Strings.getString(R.string.game_over_vps))
-                               .append('\n');
 
-    return sb.toString();
+    return "\t" +
+           //.append(card.getName())
+           getCardName(card) +
+           " x" +
+           counts.get(card) +
+           ": " +
+           totals.get(card) +
+           " " +
+           getString(R.string.game_over_vps) +
+           '\n';
   }
 
   /**
@@ -1882,18 +1877,18 @@ public class Strings {
           .append(": ")
           .append(totalVPs)
           .append(" ")
-          .append(Strings.getString(R.string.game_over_vps))
+          .append(getString(R.string.game_over_vps))
           .append('\n');
 
-    sb.append(Strings.getCardText(counts, totals, Cards.estate));
-    sb.append(Strings.getCardText(counts, totals, Cards.duchy));
-    sb.append(Strings.getCardText(counts, totals, Cards.province));
+    sb.append(getCardText(counts, totals, Cards.estate));
+    sb.append(getCardText(counts, totals, Cards.duchy));
+    sb.append(getCardText(counts, totals, Cards.province));
 
     if (counts.containsKey(Cards.colony)) {
-      sb.append(Strings.getCardText(counts, totals, Cards.colony));
+      sb.append(getCardText(counts, totals, Cards.colony));
     }
 
-    sb.append(Strings.getCardText(counts, totals, Cards.curse));
+    sb.append(getCardText(counts, totals, Cards.curse));
 
     // display victory cards from sets
     boolean hasCastle = false;
@@ -1902,7 +1897,7 @@ public class Strings {
         if (card.is(Type.Castle)) {
           hasCastle = true;
         } else {
-          sb.append("  " + Strings.getCardText(counts, totals, card));
+          sb.append("  " + getCardText(counts, totals, card));
         }
       }
     }
@@ -1915,7 +1910,7 @@ public class Strings {
       for (Card card : Cards.castleCards) {
         if (totals.containsKey(card)) {
           if (counts.get(card) > 0) {
-            castleDetails.append("\t" + Strings.getCardText(counts, totals, card));
+            castleDetails.append("\t" + getCardText(counts, totals, card));
             castleVpCount += totals.get(card);
             castleTotals += counts.get(card);
           }
@@ -1925,9 +1920,9 @@ public class Strings {
       //Add Castle Total count and VP summary
       Map<Object, Integer> castlecnt = new HashMap<>();
       castlecnt.put(Cards.virtualCastle, castleTotals);
-      Map<Card, Integer> castletot = new HashMap<Card, Integer>();
+      Map<Card, Integer> castletot = new HashMap<>();
       castletot.put(Cards.virtualCastle, castleVpCount);
-      sb.append(Strings.getCardText(castlecnt, castletot, Cards.virtualCastle));
+      sb.append(getCardText(castlecnt, castletot, Cards.virtualCastle));
 
       if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean("game_over_castle_details", true)) {
         sb.append(castleDetails);
@@ -1941,12 +1936,12 @@ public class Strings {
           .append(": ")
           .append(totals.get(card))
           .append(" ")
-          .append(Strings.getString(R.string.game_over_vps))
+          .append(getString(R.string.game_over_vps))
           .append('\n');
       }
     }
 
-    sb.append("\t" + Strings.getString(R.string.victory_tokens) + ": ")
+    sb.append("\t" + getString(R.string.victory_tokens) + ": ")
       .append(totals.get(Cards.victoryTokens))
       .append('\n');
 

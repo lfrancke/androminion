@@ -26,8 +26,8 @@ import com.vdom.comms.Event.EType;
 
 public class Comms {
 
-  final static int TIMEOUT = 15000; // 15 seconds in ms
-  final static boolean DEBUGGING = false;
+  static final int TIMEOUT = 15000; // 15 seconds in ms
+  static final boolean DEBUGGING = false;
 
   String host;
   int port;
@@ -36,7 +36,7 @@ public class Comms {
   private boolean isServer = true;
 
   private Socket pclient = null;
-  private SocketThread networkThread;
+  private final SocketThread networkThread;
 
   /**
    * Initialize this as server.
@@ -221,7 +221,7 @@ public class Comms {
     }
   }
 
-  public class MonitorObject {
+  public static class MonitorObject {
 
   }
 
@@ -238,10 +238,10 @@ public class Comms {
     private ObjectInputStream ois = null;
     private ObjectOutputStream oos = null;
     private volatile boolean done = false; // this is true if and only if the dispatchLoop is working
-    private MonitorObject exceptionMonitorObject = new MonitorObject();
+    private final MonitorObject exceptionMonitorObject = new MonitorObject();
 
     private SendingThread sendingThread = null;
-    private LinkedBlockingQueue<Event> toSendQueue = new LinkedBlockingQueue<>();
+    private final LinkedBlockingQueue<Event> toSendQueue = new LinkedBlockingQueue<>();
 
     public SocketThread() {
 

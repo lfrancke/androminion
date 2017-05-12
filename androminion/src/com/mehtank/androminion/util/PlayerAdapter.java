@@ -17,7 +17,7 @@ public class PlayerAdapter extends ArrayAdapter<PlayerSummary> {
 
   private LinearLayout container = null;
 
-  private ArrayList<View> deckStatusItems = new ArrayList<>();
+  private final ArrayList<View> deckStatusItems = new ArrayList<>();
 
   public PlayerAdapter(Context context) {
     super(context, 0);

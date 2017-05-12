@@ -66,9 +66,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (extra != null) {
       options = new Object[1 + int_options.length];
       options[0] = extra;
-      for (int i = 0; i < int_options.length; i++) {
-        options[i + 1] = int_options[i];
-      }
+      System.arraycopy(int_options, 0, options, 1, int_options.length);
     }
     int choice = selectOption(context, responsible, options);
     if (choice >= 0 && choice < int_options.length) {
@@ -199,9 +197,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     }
     ArrayList<Card> options = new ArrayList<>();
     options.add(null);
-    for (Card c : treasures) {
-      options.add(c);
-    }
+    Collections.addAll(options, treasures);
 
     ArrayList<Card> toGain = new ArrayList<>();
 
@@ -373,9 +369,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     Object[] options = new Object[2 + sentryOptions.length];
     options[0] = card;
     options[1] = cards;
-    for (int i = 0; i < sentryOptions.length; i++) {
-      options[i + 2] = sentryOptions[i];
-    }
+    System.arraycopy(sentryOptions, 0, options, 2, sentryOptions.length);
     return sentryOptions[selectOption(context, Cards.sentry, options)];
   }
 
@@ -584,6 +578,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     return getCardFromHand(context, sco);
   }
 
+  @Override
   public Card replace_cardToObtain(MoveContext context, int maxCost, int maxDebtCost, boolean potion) {
     if (context.isQuickPlay() && shouldAutoPlay_replace_cardToObtain(context, maxCost, maxDebtCost, potion)) {
       return super.replace_cardToObtain(context, maxCost, maxDebtCost, potion);
@@ -780,8 +775,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
         inTrashPile.add(c);
       }
     }
-    ArrayList<Card> options = new ArrayList<Card>();
-    options.addAll(inTrashPile);
+    ArrayList<Card> options = new ArrayList<>(inTrashPile);
     Collections.sort(options, new Util.CardNameComparator());
 
     if (options.isEmpty()) {
@@ -989,9 +983,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     }
     Object[] options = new Object[1 + cards.length];
     options[0] = ActionType.TRASH;
-    for (int i = 0; i < cards.length; i++) {
-      options[i + 1] = cards[i];
-    }
+    System.arraycopy(cards, 0, options, 1, cards.length);
     return cards[selectOption(context, Cards.lookout, options)];
   }
 
@@ -1003,9 +995,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     }
     Object[] options = new Object[1 + cards.length];
     options[0] = ActionType.DISCARD;
-    for (int i = 0; i < cards.length; i++) {
-      options[i + 1] = cards[i];
-    }
+    System.arraycopy(cards, 0, options, 1, cards.length);
     return cards[selectOption(context, Cards.lookout, options)];
   }
 
@@ -1353,9 +1343,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     WatchTowerOption[] watchTower_options = WatchTowerOption.values();
     Object[] options = new Object[1 + watchTower_options.length];
     options[0] = card;
-    for (int i = 0; i < watchTower_options.length; i++) {
-      options[i + 1] = watchTower_options[i];
-    }
+    System.arraycopy(watchTower_options, 0, options, 1, watchTower_options.length);
     return watchTower_options[selectOption(context, Cards.watchTower, options)];
   }
 
@@ -1390,7 +1378,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       if (maxCards == -1) {
         return super.treasureCardsToPlayInOrder(context, maxCards, responsible);
       } else { // storyteller
-        ArrayList<Card> treasures = new ArrayList<Card>();
+        ArrayList<Card> treasures = new ArrayList<>();
         for (Card c : context.getPlayer().getHand()) {
           if (c.is(Type.Treasure, context.getPlayer())) {
             treasures.add(c);
@@ -1401,9 +1389,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     }
 
     ArrayList<Card> treasures = new ArrayList<>();
-    for (Card card : cards) {
-      treasures.add(card);
-    }
+    Collections.addAll(treasures, cards);
     return treasures;
   }
 
@@ -1463,9 +1449,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     Object[] options = new Object[2 + jester_options.length];
     options[0] = targetPlayer.getPlayerName();
     options[1] = card;
-    for (int i = 0; i < jester_options.length; i++) {
-      options[i + 2] = jester_options[i];
-    }
+    System.arraycopy(jester_options, 0, options, 2, jester_options.length);
     return jester_options[selectOption(context, Cards.jester, options)];
   }
 
@@ -1777,9 +1761,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     }
     ArrayList<Card> options = new ArrayList<>();
     options.add(null);
-    for (Card c : cards) {
-      options.add(c);
-    }
+    Collections.addAll(options, cards);
 
     ArrayList<Card> cardsToDiscard = new ArrayList<>();
 
@@ -1788,7 +1770,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       if (o == 0) {
         break;
       }
-      cardsToDiscard.add((Card) options.get(o));
+      cardsToDiscard.add(options.get(o));
       options.remove(o);
     }
 
@@ -1814,9 +1796,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       return super.scheme_actionToPutOnTopOfDeck(context, actions);
     }
     ArrayList<Card> options = new ArrayList<>();
-    for (Card c : actions) {
-      options.add(c);
-    }
+    Collections.addAll(options, actions);
     options.add(null);
     return options.get(selectOption(context, Cards.scheme, options.toArray()));
   }
@@ -1939,9 +1919,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
   @Override
   public Card getAttackReaction(MoveContext context, Card responsible, boolean defended, Card lastCard) {
     ArrayList<Card> reactionCards = new ArrayList<>();
-    for (Card c : getAttackReactionCards(defended)) {
-      reactionCards.add(c);
-    }
+    Collections.addAll(reactionCards, getAttackReactionCards(defended));
     if (!reactionCards.isEmpty()) {
       ArrayList<Card> cards = new ArrayList<>();
       for (Card c : reactionCards) {
@@ -2122,8 +2100,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
         inTrashPile.add(c);
       }
     }
-    ArrayList<Card> options = new ArrayList<Card>();
-    options.addAll(inTrashPile);
+    ArrayList<Card> options = new ArrayList<>(inTrashPile);
     Collections.sort(options, new Util.CardNameComparator());
 
     if (options.isEmpty()) {
@@ -2284,8 +2261,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
         inTrashPile.add(c);
       }
     }
-    ArrayList<Card> options = new ArrayList<Card>();
-    options.addAll(inTrashPile);
+    ArrayList<Card> options = new ArrayList<>(inTrashPile);
     Collections.sort(options, new Util.CardNameComparator());
 
     if (options.isEmpty()) {
@@ -2504,9 +2480,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
   public Card advisor_cardToDiscard(MoveContext context, Card[] cards) {
     Object[] options = new Object[1 + cards.length];
     options[0] = context.getPlayer().getPlayerName();
-    for (int i = 0; i < cards.length; i++) {
-      options[i + 1] = cards[i];
-    }
+    System.arraycopy(cards, 0, options, 1, cards.length);
     return cards[selectOption(context, Cards.advisor, options)];
   }
 
@@ -2571,9 +2545,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     DoctorOverpayOption[] doctor_options = DoctorOverpayOption.values();
     Object[] options = new Object[1 + doctor_options.length];
     options[0] = card;
-    for (int i = 0; i < doctor_options.length; i++) {
-      options[i + 1] = doctor_options[i];
-    }
+    System.arraycopy(doctor_options, 0, options, 1, doctor_options.length);
     return doctor_options[selectOption(context, Cards.doctor, options)];
   }
 
@@ -2649,9 +2621,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
     Object[] options = new Object[1 + possibleCards.length];
     options[0] = OPTION_CALL_WHEN_GAIN;
-    for (int i = 0; i < possibleCards.length; i++) {
-      options[i + 1] = possibleCards[i];
-    }
+    System.arraycopy(possibleCards, 0, options, 1, possibleCards.length);
     return possibleCards[selectOption(context, gainedCard, options)];
   }
 
@@ -2664,9 +2634,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
     Object[] options = new Object[1 + possibleCards.length];
     options[0] = OPTION_CALL_RESOLVE_ACTION;
-    for (int i = 0; i < possibleCards.length; i++) {
-      options[i + 1] = possibleCards[i];
-    }
+    System.arraycopy(possibleCards, 0, options, 1, possibleCards.length);
     return possibleCards[selectOption(context, resolvedAction, options)];
   }
 
@@ -2678,9 +2646,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
     Object[] options = new Object[1 + possibleCards.length];
     options[0] = OPTION_START_TURN_EFFECT;
-    for (int i = 0; i < possibleCards.length; i++) {
-      options[i + 1] = possibleCards[i];
-    }
+    System.arraycopy(possibleCards, 0, options, 1, possibleCards.length);
     return possibleCards[selectOption(context, null, options)];
   }
 
@@ -3017,9 +2983,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     }
     Object[] options = new Object[1 + cards.length];
     options[0] = ActionType.DISCARD;
-    for (int i = 0; i < cards.length; i++) {
-      options[i + 1] = cards[i];
-    }
+    System.arraycopy(cards, 0, options, 1, cards.length);
     return cards[selectOption(context, Cards.scoutingParty, options)];
   }
 
@@ -3111,9 +3075,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
   public Card annex_cardToKeepInDiscard(MoveContext context, Card[] cards, int cardsLeft) {
     List<Object> options = new ArrayList<>();
     options.add(cardsLeft);
-    for (Card c : cards) {
-      options.add(c);
-    }
+    Collections.addAll(options, cards);
     options.add(null);
     return (Card) options.get(selectOption(context, Cards.annex, options.toArray()) + 1);
   }
@@ -3448,9 +3410,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     }
     Object[] options = new Object[1 + cards.length];
     options[0] = context.getPlayer().getPlayerName();
-    for (int i = 0; i < cards.length; i++) {
-      options[i + 1] = cards[i];
-    }
+    System.arraycopy(cards, 0, options, 1, cards.length);
     return cards[selectOption(context, Cards.envoy, options)];
   }
 
@@ -3597,13 +3557,13 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     return getFromTable(context, sco);
   }
 
-  abstract protected boolean selectBoolean(MoveContext context, Card cardResponsible, Object[] extras);
+  protected abstract boolean selectBoolean(MoveContext context, Card cardResponsible, Object[] extras);
 
-  abstract protected int selectOption(MoveContext context, Card card, Object[] options);
+  protected abstract int selectOption(MoveContext context, Card card, Object[] options);
 
-  abstract protected int[] orderCards(MoveContext context, int[] cards);
+  protected abstract int[] orderCards(MoveContext context, int[] cards);
 
-  abstract protected Card[] pickCards(MoveContext context, SelectCardOptions sco, int count, boolean exact);
+  protected abstract Card[] pickCards(MoveContext context, SelectCardOptions sco, int count, boolean exact);
 
   private Card pickACard(MoveContext context, SelectCardOptions sco) {
     Card[] cs = pickCards(context, sco, 1, true);

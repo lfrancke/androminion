@@ -263,15 +263,14 @@ public class GameStatus implements Serializable {
   }
 
   public String toString() {
-    String str = name + "(" + whoseTurn + ")";
-    return str;
+    return name + "(" + whoseTurn + ")";
   }
 
   public enum JourneyTokenState {
     FACE_UP, FACE_DOWN
   }
 
-  public class UpdateCardInfo implements Serializable {
+  public static class UpdateCardInfo implements Serializable {
 
     private static final long serialVersionUID = 2604750358881809284L;
     public int cardId;

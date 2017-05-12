@@ -277,7 +277,7 @@ public class CardImplBase extends CardImpl {
     }
     boolean discard = currentPlayer.controlPlayer.chancellor_shouldDiscardDeck(context);
     if (discard) {
-      GameEvent event = new GameEvent(GameEvent.EventType.DeckPutIntoDiscardPile, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.DeckPutIntoDiscardPile, context);
       game.broadcastEvent(event);
       while (currentPlayer.getDeckSize() > 0) {
         currentPlayer.discard(game.draw(context, Cards.chancellor, 0), getControlCard(), null, false, false);
@@ -345,7 +345,7 @@ public class CardImplBase extends CardImpl {
     // only time a card is "drawn" without being directly drawn to hand
     //  we need to manually remove the minus one card token
     currentPlayer.setMinusOneCardToken(false, context);
-    ArrayList<Card> toDiscard = new ArrayList<Card>();
+    ArrayList<Card> toDiscard = new ArrayList<>();
     while (currentPlayer.hand.size() < 7) {
       Card draw = game.draw(context, Cards.library, -1);
       if (draw == null) {
@@ -549,9 +549,9 @@ public class CardImplBase extends CardImpl {
     }
 
     if (!topOfTheDeck.isEmpty()) {
-      ArrayList<Card> toReplace = new ArrayList<Card>();
-      ArrayList<Card> toDiscard = new ArrayList<Card>();
-      ArrayList<Card> toTrash = new ArrayList<Card>();
+      ArrayList<Card> toReplace = new ArrayList<>();
+      ArrayList<Card> toDiscard = new ArrayList<>();
+      ArrayList<Card> toTrash = new ArrayList<>();
       for (Card c : topOfTheDeck) {
         SentryOption option = currentPlayer.controlPlayer
                                 .sentry_chooseOption(context, c, topOfTheDeck.toArray(new Card[topOfTheDeck.size()]));

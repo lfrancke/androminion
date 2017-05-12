@@ -28,11 +28,11 @@ public class CardGroup extends BaseAdapter {
   int[] pileDebtTokens = null;
   int[] pileTradeRouteTokens = null;
   int[][][] tokens = null;
-  private Context top;
+  private final Context top;
   private boolean onTable = false;
-  private ArrayList<CardState> cards = new ArrayList<>();
+  private final ArrayList<CardState> cards = new ArrayList<>();
   private Comparator<MyCard> cmp = new MyCard.CardCostNameComparator();
-  private boolean sorted = false;
+  private final boolean sorted = false;
   private PlayerAdapter players;
 
   public CardGroup(Context top, boolean onTable) {

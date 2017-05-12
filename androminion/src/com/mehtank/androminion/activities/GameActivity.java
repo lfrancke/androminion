@@ -93,7 +93,7 @@ public class GameActivity extends SherlockActivity implements EventHandler {
   @SuppressWarnings("unused")
   private static final String TAG = "GameActivity";
   private final boolean DEBUGGING = false;
-  private GameActivity top = this;
+  private final GameActivity top = this;
   private FrameLayout topView;
   private GameTable gt;
   private View splash;
@@ -269,6 +269,7 @@ public class GameActivity extends SherlockActivity implements EventHandler {
         case QUIT: // Server quit us
           gotQuit = true;
           disconnect();
+          break;
         case GETNAME:
           break;
         case GETSERVER:
@@ -298,8 +299,6 @@ public class GameActivity extends SherlockActivity implements EventHandler {
     /**
      * Could eventually skip setting the bar titles over and over again for
      * better performance, but works
-     *
-     * @param e
      */
     private void setStatus(Event e) {
       GameStatus gs = e.o.gs;
@@ -318,32 +317,27 @@ public class GameActivity extends SherlockActivity implements EventHandler {
     /**
      * This is just a quick try, duplicate to code in TurnView. Should be
      * fixed sooner or later...
-     *
-     * @param gs
-     * @param s
-     * @param newTurn
-     * @return
      */
     private String buildHintString(GameStatus gs, String s, boolean newTurn) {
 
       String actions;
       if (gs.turnStatus[0] == 1) {
-        actions = top.getString(R.string.action_single, "" + gs.turnStatus[0]);
+        actions = top.getString(R.string.action_single, String.valueOf(gs.turnStatus[0]));
       } else if (gs.turnStatus[0] == 0) {
-        actions = top.getString(R.string.action_zero, "" + gs.turnStatus[0]);
+        actions = top.getString(R.string.action_zero, String.valueOf(gs.turnStatus[0]));
       } else {
-        actions = top.getString(R.string.action_multiple, "" + gs.turnStatus[0]);
+        actions = top.getString(R.string.action_multiple, String.valueOf(gs.turnStatus[0]));
       }
       String buys;
       if (gs.turnStatus[1] == 1) {
-        buys = top.getString(R.string.buy_single, "" + gs.turnStatus[1]);
+        buys = top.getString(R.string.buy_single, String.valueOf(gs.turnStatus[1]));
       } else if (gs.turnStatus[1] == 0) {
-        buys = top.getString(R.string.buy_zero, "" + gs.turnStatus[1]);
+        buys = top.getString(R.string.buy_zero, String.valueOf(gs.turnStatus[1]));
       } else {
-        buys = top.getString(R.string.buy_multiple, "" + gs.turnStatus[1]);
+        buys = top.getString(R.string.buy_multiple, String.valueOf(gs.turnStatus[1]));
       }
 
-      String coinStr = "" + gs.turnStatus[2];
+      String coinStr = String.valueOf(gs.turnStatus[2]);
       if (gs.potions == 1) {
         coinStr += top.getString(R.string.potion_cost_initial); //"p"
       } else if (gs.potions > 1) {
@@ -352,11 +346,11 @@ public class GameActivity extends SherlockActivity implements EventHandler {
 
       String coinsStr;
       if (gs.turnStatus[2] == 0) {
-        coinsStr = top.getString(R.string.coin_zero, "" + coinStr);
+        coinsStr = top.getString(R.string.coin_zero, coinStr);
       } else if (gs.turnStatus[2] == 1) {
-        coinsStr = top.getString(R.string.coin_single, "" + coinStr);
+        coinsStr = top.getString(R.string.coin_single, coinStr);
       } else {
-        coinsStr = top.getString(R.string.coin_multiple, "" + coinStr);
+        coinsStr = top.getString(R.string.coin_multiple, coinStr);
       }
 
       String baseStr = top.getString(R.string.actions_buys_coins, actions, buys, coinsStr);
@@ -401,7 +395,7 @@ public class GameActivity extends SherlockActivity implements EventHandler {
     ActionBar bar = getSupportActionBar();
     if (bar == null) {
       miniactionbar = (TextView) topView.findViewById(R.id.miniactionbar);
-      miniactionbar.setVisibility(TextView.VISIBLE);
+      miniactionbar.setVisibility(View.VISIBLE);
     } else {
       bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
       bar.setDisplayHomeAsUpEnabled(true);
@@ -579,7 +573,7 @@ public class GameActivity extends SherlockActivity implements EventHandler {
           enumIpAddr.hasMoreElements(); ) {
           InetAddress inetAddress = enumIpAddr.nextElement();
           if (!inetAddress.isLoopbackAddress()) {
-            return inetAddress.getHostAddress().toString();
+            return inetAddress.getHostAddress();
           }
         }
       }
@@ -883,11 +877,7 @@ public class GameActivity extends SherlockActivity implements EventHandler {
   }
 
   private boolean start(int p) {
-    if (!connect(p)) {
-      return false;
-    }
-
-    return true;
+    return connect(p);
   }
 
   /**

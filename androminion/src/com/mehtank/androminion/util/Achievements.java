@@ -3,7 +3,6 @@ package com.mehtank.androminion.util;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Map;
 
 import android.content.Context;
@@ -94,7 +93,7 @@ public class Achievements {
     this.context = context;
     prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-    for (int i = 0; i < Achievements.KEYS.length; i++) {
+    for (int i = 0; i < KEYS.length; i++) {
       text[i] = context.getString(ids[i]);
       achievementsDone[i] = hasAchieved(i);
     }
@@ -138,8 +137,8 @@ public class Achievements {
 
   public void resetAchievements() {
     Editor editor = prefs.edit();
-    for (int i = 0; i < Achievements.KEYS.length; i++) {
-      editor.remove(Achievements.KEYS[i]);
+    for (int i = 0; i < KEYS.length; i++) {
+      editor.remove(KEYS[i]);
       achievementsDone[i] = false;
     }
     editor.commit();
@@ -307,7 +306,7 @@ public class Achievements {
 
   public class AchievementsAdapter extends ArrayAdapter<String> {
 
-    private final static int ROWLAYOUT = android.R.layout.simple_list_item_checked;
+    private static final int ROWLAYOUT = android.R.layout.simple_list_item_checked;
 
     public AchievementsAdapter() {
       super(context, ROWLAYOUT, text);

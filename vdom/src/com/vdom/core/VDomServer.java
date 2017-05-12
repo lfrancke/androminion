@@ -185,7 +185,7 @@ public class VDomServer implements EventHandler {
       }
     }
 
-    List<String> randomPlayers = new ArrayList<String>();
+    List<String> randomPlayers = new ArrayList<>();
     for (String player : allPlayers.keySet()) {
       if (player.contains(" (AI)") && !playersInGame.contains(player)) {
         randomPlayers.add(player);
@@ -306,7 +306,7 @@ public class VDomServer implements EventHandler {
     remotePlayers.clear();
 
     gameType = args[0];
-    ArrayList<String> gameArgs = new ArrayList<String>();
+    ArrayList<String> gameArgs = new ArrayList<>();
     gameArgs.add("-type" + args[0]);
     if (debugOutput) {
       gameArgs.add("-debug");
@@ -317,7 +317,7 @@ public class VDomServer implements EventHandler {
         gameArgs.add(args[i]);
       } else {
         if (args[i].equalsIgnoreCase(Player.RANDOM_AI)) {
-          args[i] = this.getRandomAI(args);
+          args[i] = getRandomAI(args);
         }
 
         gamePlayers.add(args[i]);
@@ -345,7 +345,7 @@ public class VDomServer implements EventHandler {
     @SuppressWarnings("unused")
     private static final String TAG = "GameStarter";
 
-    private String[] args;
+    private final String[] args;
 
     public GameStarter(String[] args) {
       this.args = args;

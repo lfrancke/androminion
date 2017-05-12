@@ -26,7 +26,7 @@ public class TalkView extends EditText implements OnEditorActionListener {
   @Override
   public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
     String txt = arg0.getText().toString().trim();
-    if (!txt.equals("")) {
+    if (!txt.isEmpty()) {
       top.handle(new Event(Event.EType.SAY).setString(txt));
     }
 

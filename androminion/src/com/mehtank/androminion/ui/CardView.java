@@ -259,9 +259,8 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       cardDesc.setTextColor(countColor);
       if (c.pile == MyCard.MONEYPILE || c.pile == MyCard.VPPILE) {
         ViewGroup.LayoutParams params = cardDesc.getLayoutParams();
-        int pixels = (int) (0.5f + (viewstyle.equals("viewstyle-condensed") ? 15 : 20) * getContext().getResources()
+        params.height = (int) (0.5f + (viewstyle.equals("viewstyle-condensed") ? 15 : 20) * getContext().getResources()
                                                                                            .getDisplayMetrics().density);
-        params.height = pixels;
         cardDesc.setLayoutParams(params);
       }
     }
@@ -579,7 +578,6 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       linkView.setGravity(Gravity.CENTER);
       ll.addView(linkView);
     }
-    View v = ll;
 
     String title = cardView.getCard().name;
     Log.d(TAG, "card title = " + title);
@@ -599,7 +597,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     AlertDialog ad = new AlertDialog.Builder(view.getContext())
                        //.setTitle(title)
                        .setCustomTitle(titlev)
-                       .setView(v)
+                       .setView(ll)
                        .setPositiveButton(android.R.string.ok, null)
                        .show();
     ad.getButton(AlertDialog.BUTTON_POSITIVE).setGravity(Gravity.CENTER);
@@ -956,7 +954,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
   /**
    * Information about a card type opened, onTable, indicator, order
    */
-  static public class CardState {
+  public static class CardState {
 
     public MyCard c; // card type
     public boolean opened; // was selected

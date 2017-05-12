@@ -68,7 +68,7 @@ public class HostDialog implements DialogInterface.OnClickListener {
     vg.addView(host);
 
     port = new EditText(top);
-    port.setText("" + portNum);
+    port.setText(String.valueOf(portNum));
     port.setKeyListener(new DigitsKeyListener());
     port.setSingleLine();
     // vg.addView(port);

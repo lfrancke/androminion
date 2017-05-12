@@ -23,20 +23,20 @@ public class DeckView extends RelativeLayout implements OnLongClickListener {
   @SuppressWarnings("unused")
   private static final String TAG = "DeckView";
 
-  private TextView name;
-  private TextView pirates;
-  private TextView victoryTokens;
-  private TextView debtTokens;
-  private TextView guildsCoinTokens;
-  private TextView journeyToken;
-  private TextView minusOneCoinToken;
-  private TextView minusOneCardToken;
-  private LinearLayout counts;
-  private TextView countsPrefix;
-  private TextView countsDeck;
-  private TextView countsMiddle;
-  private TextView countsStashesInHand;
-  private TextView countsSuffix;
+  private final TextView name;
+  private final TextView pirates;
+  private final TextView victoryTokens;
+  private final TextView debtTokens;
+  private final TextView guildsCoinTokens;
+  private final TextView journeyToken;
+  private final TextView minusOneCoinToken;
+  private final TextView minusOneCardToken;
+  private final LinearLayout counts;
+  private final TextView countsPrefix;
+  private final TextView countsDeck;
+  private final TextView countsMiddle;
+  private final TextView countsStashesInHand;
+  private final TextView countsSuffix;
 
   private String nameStr;
   private int turns;
@@ -54,8 +54,8 @@ public class DeckView extends RelativeLayout implements OnLongClickListener {
   private JourneyTokenState journeyTokenState;
   private boolean isCurrentTurn;
 
-  private int textColor;
-  private int stashColor;
+  private final int textColor;
+  private final int stashColor;
 
   private boolean showCardCounts = true;
 

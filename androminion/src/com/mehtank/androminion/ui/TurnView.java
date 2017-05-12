@@ -132,19 +132,19 @@ public class TurnView extends LinearLayout {
     } else {
       String actions;
       if (is[0] == 1) {
-        actions = top.getString(R.string.action_single, "" + is[0]);
+        actions = top.getString(R.string.action_single, String.valueOf(is[0]));
       } else {
-        actions = top.getString(R.string.action_multiple, "" + is[0]);
+        actions = top.getString(R.string.action_multiple, String.valueOf(is[0]));
       }
       String buys;
       if (is[1] == 1) {
-        buys = top.getString(R.string.buy_single, "" + is[1]);
+        buys = top.getString(R.string.buy_single, String.valueOf(is[1]));
       } else {
-        buys = top.getString(R.string.buy_multiple, "" + is[1]);
+        buys = top.getString(R.string.buy_multiple, String.valueOf(is[1]));
       }
 
       //            String coinStr = "" + is[2] + ((potions > 0)?"p":"");
-      String coinStr = "" + is[2];
+      String coinStr = String.valueOf(is[2]);
       if (potions == 1) {
         coinStr += "p";
       } else if (potions > 1) {
@@ -154,8 +154,6 @@ public class TurnView extends LinearLayout {
       //                coinStr += "p";
       //            }
       String coinsStr = top.getString(R.string.coin_single, coinStr);
-      String baseStr = top.getString(R.string.actions_buys_coins, actions, buys, coinsStr);
-      String str = baseStr;
       //			String str = ((is[3] <= 0) ? "" :
       //							"" + is[3] + " TR: ");
       //
@@ -164,7 +162,7 @@ public class TurnView extends LinearLayout {
       //			if (cardCostModifier != 0)
       //				str += "\nCost modifier: " + cardCostModifier;
 
-      tv.setText(str);
+      tv.setText(top.getString(R.string.actions_buys_coins, actions, buys, coinsStr));
       tv.setLayoutParams(lp);
 
       addView(tv);

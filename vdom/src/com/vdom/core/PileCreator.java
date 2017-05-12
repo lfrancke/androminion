@@ -16,6 +16,7 @@ public abstract class PileCreator implements Serializable {
 
 class DefaultPileCreator extends PileCreator {
 
+  @Override
   public CardPile create(Card template, int count) {
     List<CardPile.CardMultiplicity> cards = new ArrayList<>();
     cards.add(new CardPile.CardMultiplicity(template, count));
@@ -25,13 +26,14 @@ class DefaultPileCreator extends PileCreator {
 
 class RuinsPileCreator extends PileCreator {
 
+  @Override
   public CardPile create(Card template, int count) {
     Map<Card, Integer> cardShuffle = new HashMap<>();
     for (Card ruin : Cards.ruinsCards) {
       cardShuffle.put(ruin, 0);
     }
 
-    ArrayList<Card> ruins = new ArrayList<>();
+    List<Card> ruins = new ArrayList<>();
     for (int i = 0; i < 10; i++) {
       ruins.add(Cards.abandonedMine);
       ruins.add(Cards.ruinedLibrary);
@@ -48,7 +50,7 @@ class RuinsPileCreator extends PileCreator {
         break;
       }
     }
-    List<CardPile.CardMultiplicity> cards = new ArrayList<CardPile.CardMultiplicity>();
+    List<CardPile.CardMultiplicity> cards = new ArrayList<>();
     for (Map.Entry<Card, Integer> entry : cardShuffle.entrySet()) {
       cards.add(new CardPile.CardMultiplicity(entry.getKey(), entry.getValue()));
     }
@@ -58,6 +60,7 @@ class RuinsPileCreator extends PileCreator {
 
 class KnightsPileCreator extends PileCreator {
 
+  @Override
   public CardPile create(Card template, int count) {
     List<CardPile.CardMultiplicity> cards = new ArrayList<>();
     //Currently count is ignored because there should always be ten knights.
@@ -71,6 +74,7 @@ class KnightsPileCreator extends PileCreator {
 
 class CastlesPileCreator extends PileCreator {
 
+  @Override
   public CardPile create(Card template, int count) {
     if (count != 8 && count != 12) {
       //TODO SPLITPILES What to do now?
@@ -82,7 +86,7 @@ class CastlesPileCreator extends PileCreator {
       }
     }
 
-    List<CardPile.CardMultiplicity> cards = new ArrayList<CardPile.CardMultiplicity>();
+    List<CardPile.CardMultiplicity> cards = new ArrayList<>();
     cards.add(new CardPile.CardMultiplicity(Cards.humbleCastle, count == 8 ? 1 : 2));
     cards.add(new CardPile.CardMultiplicity(Cards.crumblingCastle, 1));
     cards.add(new CardPile.CardMultiplicity(Cards.smallCastle, count == 8 ? 1 : 2));
@@ -98,14 +102,15 @@ class CastlesPileCreator extends PileCreator {
 
 class SplitPileCreator extends PileCreator {
 
-  private Card topCard;
-  private Card bottomCard;
+  private final Card topCard;
+  private final Card bottomCard;
 
   public SplitPileCreator(Card topCard, Card bottomCard) {
     this.topCard = topCard;
     this.bottomCard = bottomCard;
   }
 
+  @Override
   public CardPile create(Card template, int count) {
     List<CardPile.CardMultiplicity> cards = new ArrayList<>();
     cards.add(new CardPile.CardMultiplicity(topCard, count / 2));

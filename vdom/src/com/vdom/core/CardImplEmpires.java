@@ -43,6 +43,7 @@ public class CardImplEmpires extends CardImpl {
   protected CardImplEmpires() {
   }
 
+  @Override
   public void isBuying(MoveContext context) {
     super.isBuying(context);
     switch (getControlCard().getKind()) {
@@ -550,7 +551,7 @@ public class CardImplEmpires extends CardImpl {
           && cardToImpersonate.getDebtCost(context) == 0
           && !cardToImpersonate.costPotion()
           && (context.golemInEffect == 0 || cardToImpersonate != Cards.golem)) {
-        GameEvent event = new GameEvent(GameEvent.EventType.CardNamed, (MoveContext) context);
+        GameEvent event = new GameEvent(GameEvent.EventType.CardNamed, context);
         event.card = cardToImpersonate;
         event.responsible = this;
         game.broadcastEvent(event);

@@ -44,12 +44,12 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   // communication thread handled internally now
   // Thread commThread;
   private int myPort = 0;
-  private HashMap<String, Integer> cardNamesInPlay = new HashMap<>();
-  private ArrayList<Card> cardsInPlay = new ArrayList<>();
-  private ArrayList<Player> allPlayers = new ArrayList<>();
+  private final HashMap<String, Integer> cardNamesInPlay = new HashMap<>();
+  private final ArrayList<Card> cardsInPlay = new ArrayList<>();
+  private final ArrayList<Player> allPlayers = new ArrayList<>();
   private MyCard[] myCardsInPlay;
-  private ArrayList<Card> playedCards = new ArrayList<>();
-  private ArrayList<Boolean> playedCardsNew = new ArrayList<>();
+  private final ArrayList<Card> playedCards = new ArrayList<>();
+  private final ArrayList<Boolean> playedCardsNew = new ArrayList<>();
   private boolean hasJoined = false;
   private Object hasJoinedMonitor;
   private Thread gameThread = null; // vdom-engine-thread
@@ -60,7 +60,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   }
 
   public static void setVdomserver(VDomServer vdomserver) {
-    RemotePlayer.vdomServer = vdomserver;
+    vdomServer = vdomserver;
     maxPause = VDomServer.maxPause;
   }
 
@@ -218,6 +218,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     return hasJoined;
   }
 
+  @Override
   public Card intToCard(int i) {
     return cardsInPlay.get(i);
   }
@@ -232,6 +233,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     }
   }
 
+  @Override
   public int[] cardArrToIntArr(Card[] cards) {
     int[] is = new int[cards.length];
     for (int i = 0; i < cards.length; i++) {
@@ -329,7 +331,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     int[] is = new int[cards.size()];
 
     for (int i = 0; i < cards.size(); ++i) {
-      is[i] = cardToInt((Card) cards.get(i));
+      is[i] = cardToInt(cards.get(i));
     }
 
     return is;
@@ -554,10 +556,8 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
       }
     }
 
-    Event p = new Event(EType.STATUS)
+    return new Event(EType.STATUS)
                 .setObject(new EventObject(gs));
-
-    return p;
   }
 
   public Event sendWithAck(Event tosend, EType resp) throws IOException, NullPointerException {
@@ -607,7 +607,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
       playerName += event.getPlayer().getPlayerName() + ": ";
       playerNameIncluded = true;
     }
-    String playerInt = "" + allPlayers.indexOf(event.getPlayer());
+    String playerInt = String.valueOf(allPlayers.indexOf(event.getPlayer()));
 
     // Because we push all construction of strings to the client that talks to RemotePlayer, we
     // create the "extras" object that gives the client enough information to know what exactly
@@ -714,13 +714,13 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
         playerName = event.getPlayer().getPlayerName();
       }
     } else if (event.getType() == EventType.Status) {
-      String coin = "" + context.getCoinAvailableForBuy();
+      String coin = String.valueOf(context.getCoinAvailableForBuy());
       if (context.potions > 0) {
         coin += "p";
       }
       coin = "(" + coin + ")"; // <" + String.valueOf(event.player.discard.size()) + ">";
-      extras.add("" + context.getActionsLeft());
-      extras.add("" + context.getBuysLeft());
+      extras.add(String.valueOf(context.getActionsLeft()));
+      extras.add(String.valueOf(context.getBuysLeft()));
       extras.add(coin);
     }
 

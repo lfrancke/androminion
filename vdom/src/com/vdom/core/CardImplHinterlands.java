@@ -27,7 +27,7 @@ public class CardImplHinterlands extends CardImpl {
       case Farmland:
         Player player = context.getPlayer();
         if (!player.getHand().isEmpty()) {
-          Card cardToTrash = player.controlPlayer.farmland_cardToTrash((MoveContext) context);
+          Card cardToTrash = player.controlPlayer.farmland_cardToTrash(context);
 
           if (cardToTrash == null) {
             Util.playerError(player, "Farmland did not return a card to trash, trashing random card.");
@@ -45,7 +45,7 @@ public class CardImplHinterlands extends CardImpl {
               potion = playersCard.costPotion();
               playersCard = player.hand.remove(i);
 
-              player.trash(playersCard, this, (MoveContext) context);
+              player.trash(playersCard, this, context);
               break;
             }
           }
@@ -67,13 +67,13 @@ public class CardImplHinterlands extends CardImpl {
             }
 
             if (validCard) {
-              Card card = player.controlPlayer.farmland_cardToObtain((MoveContext) context, cost, debt, potion);
+              Card card = player.controlPlayer.farmland_cardToObtain(context, cost, debt, potion);
               if (card != null) {
                 // check cost
                 if (card.getCost(context) != cost || card.getDebtCost(context) != debt || card.costPotion() != potion) {
                   Util.playerError(player, "Farmland card to obtain returned an invalid card, ignoring.");
                 } else {
-                  if (player.gainNewCard(card, this, (MoveContext) context) == null) {
+                  if (player.gainNewCard(card, this, context) == null) {
                     Util.playerError(player, "Farmland new card is invalid, ignoring.");
                   }
                 }
@@ -534,24 +534,23 @@ public class CardImplHinterlands extends CardImpl {
   }
 
   private void nobleBrigandAttack(MoveContext moveContext, boolean defensible) {
-    MoveContext context = moveContext;
-    Player player = context.getPlayer();
+    Player player = moveContext.getPlayer();
     ArrayList<Card> trashed = new ArrayList<>();
-    boolean[] gainCopper = new boolean[context.game.getPlayersInTurnOrder().length];
+    boolean[] gainCopper = new boolean[moveContext.game.getPlayersInTurnOrder().length];
 
     int i = 0;
-    for (Player targetPlayer : context.game.getPlayersInTurnOrder()) {
+    for (Player targetPlayer : moveContext.game.getPlayersInTurnOrder()) {
       // Hinterlands card details in the rules states that noble brigand is not defensible when triggered from a buy
-      if (targetPlayer != player && (!defensible || !Util.isDefendedFromAttack(context.game, targetPlayer, this))) {
+      if (targetPlayer != player && (!defensible || !Util.isDefendedFromAttack(moveContext.game, targetPlayer, this))) {
         targetPlayer.attacked(getControlCard(), moveContext);
-        MoveContext targetContext = new MoveContext(context.game, targetPlayer);
+        MoveContext targetContext = new MoveContext(moveContext.game, targetPlayer);
         targetContext.attackedPlayer = targetPlayer;
         boolean treasureRevealed = false;
         ArrayList<Card> silverOrGold = new ArrayList<>();
 
         List<Card> cardsToDiscard = new ArrayList<>();
         for (int j = 0; j < 2; j++) {
-          Card card = context.game.draw(targetContext, Cards.nobleBrigand, 2 - j);
+          Card card = moveContext.game.draw(targetContext, Cards.nobleBrigand, 2 - j);
           if (card == null) {
             break;
           }
@@ -604,9 +603,9 @@ public class CardImplHinterlands extends CardImpl {
     }
 
     i = 0;
-    for (Player targetPlayer : context.game.getPlayersInTurnOrder()) {
+    for (Player targetPlayer : moveContext.game.getPlayersInTurnOrder()) {
       if (gainCopper[i]) {
-        MoveContext targetContext = new MoveContext(context.game, targetPlayer);
+        MoveContext targetContext = new MoveContext(moveContext.game, targetPlayer);
         targetPlayer.gainNewCard(Cards.copper, getControlCard(), targetContext);
       }
       i++;
@@ -615,7 +614,7 @@ public class CardImplHinterlands extends CardImpl {
     if (!trashed.isEmpty()) {
       for (Card c : trashed) {
         player.controlPlayer.gainCardAlreadyInPlay(c, getControlCard(), moveContext);
-        context.game.trashPile.remove(c);
+        moveContext.game.trashPile.remove(c);
       }
     }
   }

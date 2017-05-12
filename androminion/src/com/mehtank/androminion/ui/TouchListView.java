@@ -59,7 +59,7 @@ public class TouchListView extends ListView {
   private int mHeight;
   private GestureDetector mGestureDetector;
   private int mRemoveMode = -1;
-  private Rect mTempRect = new Rect();
+  private final Rect mTempRect = new Rect();
   private Bitmap mDragBitmap;
   private int mItemHeightNormal = -1;
   private int mItemHeightExpanded = -1;
@@ -202,15 +202,14 @@ public class TouchListView extends ListView {
           }
           ViewGroup item = (ViewGroup) getChildAt(itemnum - getFirstVisiblePosition());
           mDragPoint = y - item.getTop();
-          mCoordOffset = ((int) ev.getRawY()) - y;
-          View dragger = item; // item.findViewById(grabberId);
+          mCoordOffset = (int) ev.getRawY() - y;
           Rect r = mTempRect;
           //									dragger.getDrawingRect(r);
 
-          r.left = dragger.getLeft();
-          r.right = dragger.getRight();
-          r.top = dragger.getTop();
-          r.bottom = dragger.getBottom();
+          r.left = item.getLeft();
+          r.right = item.getRight();
+          r.top = item.getTop();
+          r.bottom = item.getBottom();
 
           if ((r.left < x) && (x < r.right)) {
             item.setDrawingCacheEnabled(true);

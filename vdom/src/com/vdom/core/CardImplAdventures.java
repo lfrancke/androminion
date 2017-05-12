@@ -1,6 +1,7 @@
 package com.vdom.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ public class CardImplAdventures extends CardImpl {
   protected CardImplAdventures() {
   }
 
+  @Override
   public void callWhenCardGained(MoveContext context, Card cardToGain) {
     if (!callableWhenCardGained) {
       return;
@@ -39,6 +41,7 @@ public class CardImplAdventures extends CardImpl {
     finishCall(context);
   }
 
+  @Override
   public void callWhenActionResolved(MoveContext context, Card resolvedAction) {
     if (!callableWhenActionResolved) {
       return;
@@ -60,6 +63,7 @@ public class CardImplAdventures extends CardImpl {
     finishCall(context);
   }
 
+  @Override
   public void callAtStartOfTurn(MoveContext context) {
     if (!callableWhenTurnStarts) {
       return;
@@ -354,7 +358,7 @@ public class CardImplAdventures extends CardImpl {
       return false;
     }
     currentPlayer.playedCards.add(getControlCard());
-    GameEvent event = new GameEvent(GameEvent.EventType.CallingCard, (MoveContext) context);
+    GameEvent event = new GameEvent(GameEvent.EventType.CallingCard, context);
     event.card = getControlCard();
     event.newCard = true;
     context.game.broadcastEvent(event);
@@ -362,7 +366,7 @@ public class CardImplAdventures extends CardImpl {
   }
 
   private void finishCall(MoveContext context) {
-    GameEvent event = new GameEvent(GameEvent.EventType.CalledCard, (MoveContext) context);
+    GameEvent event = new GameEvent(GameEvent.EventType.CalledCard, context);
     event.card = getControlCard();
     context.game.broadcastEvent(event);
   }
@@ -480,7 +484,7 @@ public class CardImplAdventures extends CardImpl {
           cardSetAside = true;
           currentPlayer.getHand().remove(card);
           gearCards.add(card);
-          GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideGear, (MoveContext) context);
+          GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideGear, context);
           event.card = card;
           event.setPrivate(true);
           context.game.broadcastEvent(event);
@@ -589,7 +593,7 @@ public class CardImplAdventures extends CardImpl {
     }
     boolean discard = currentPlayer.controlPlayer.messenger_shouldDiscardDeck(context);
     if (discard) {
-      GameEvent event = new GameEvent(GameEvent.EventType.DeckPutIntoDiscardPile, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.DeckPutIntoDiscardPile, context);
       game.broadcastEvent(event);
       while (currentPlayer.getDeckSize() > 0) {
         currentPlayer.discard(game.draw(context, Cards.messenger, 0), getControlCard(), null, false, false);
@@ -607,7 +611,7 @@ public class CardImplAdventures extends CardImpl {
         if (card.equals(Cards.copper)) {
           Card thisCard = currentPlayer.hand.remove(i);
           currentPlayer.tavern.add(thisCard);
-          GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideOnTavernMat, (MoveContext) context);
+          GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideOnTavernMat, context);
           event.card = thisCard;
           game.broadcastEvent(event);
           break;
@@ -629,11 +633,11 @@ public class CardImplAdventures extends CardImpl {
       return;
     }
     Card cardToTrash = currentPlayer.getHand().size() == 1 ? currentPlayer.getHand().get(0)
-                         : currentPlayer.controlPlayer.ratcatcher_cardToTrash((MoveContext) context);
+                         : currentPlayer.controlPlayer.ratcatcher_cardToTrash(context);
     if (cardToTrash != null) {
       if (currentPlayer.getHand().contains(cardToTrash)) {
         currentPlayer.hand.remove(cardToTrash);
-        currentPlayer.trash(cardToTrash, this.getControlCard(), context);
+        currentPlayer.trash(cardToTrash, getControlCard(), context);
       } else {
         Util.playerError(currentPlayer, "Ratcatcher error, invalid card to trash, trashing random card.");
         cardToTrash = Util.randomCard(currentPlayer.getHand());
@@ -765,7 +769,7 @@ public class CardImplAdventures extends CardImpl {
     //look to see if we have a free pile
     int numFreePiles = 0;
     Card lastFreePile = null;
-    for (Card c : game.getCardsInGame(GetCardsInGameOptions.TopOfPiles.Placeholders, true, Type.Action)) {
+    for (Card c : game.getCardsInGame(GetCardsInGameOptions.Placeholders, true, Type.Action)) {
       if (game.getPlayerSupplyTokens(c, currentPlayer).isEmpty()) {
         numFreePiles++;
         lastFreePile = c;
@@ -869,11 +873,11 @@ public class CardImplAdventures extends CardImpl {
     // throneroom has here no effect since card is already put on tavern
     // Move to tavern mat
     if (getControlCard().numberTimesAlreadyPlayed == 0) {
-      currentPlayer.playedCards.remove(currentPlayer.playedCards.lastIndexOf((Card) getControlCard()));
+      currentPlayer.playedCards.remove(currentPlayer.playedCards.lastIndexOf(getControlCard()));
       currentPlayer.tavern.add(getControlCard());
       getControlCard().stopImpersonatingCard();
 
-      GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideOnTavernMat, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideOnTavernMat, context);
       event.card = getControlCard();
       game.broadcastEvent(event);
     } else {
@@ -968,9 +972,7 @@ public class CardImplAdventures extends CardImpl {
           Util.playerError(context.player, "Pilgrimage gain error, trying to gain too many cards, ignoring.");
         } else {
           HashSet<Card> differentCards = new HashSet<>();
-          for (Card card : cards) {
-            differentCards.add(card);
-          }
+          Collections.addAll(differentCards, cards);
           for (Card card : differentCards) {
             if (context.player.playedCards.contains(card) ||
                 context.player.nextTurnCards.contains(card)) {

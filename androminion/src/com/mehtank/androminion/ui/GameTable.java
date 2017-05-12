@@ -1,6 +1,7 @@
 package com.mehtank.androminion.ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -97,8 +98,8 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   boolean firstPass = false;
   boolean canClick = true;
   String prompt = "";
-  private PlayerAdapter players = new PlayerAdapter(getContext());
-  private HelpView helpView;
+  private final PlayerAdapter players = new PlayerAdapter(getContext());
+  private final HelpView helpView;
   private int[] lastSupplySizes;
   private int[] lastEmbargos;
   private int[] lastPileVpTokens;
@@ -176,8 +177,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
     }
     TypedValue typedValue = new TypedValue();
     context.getTheme().resolveAttribute(attrId, typedValue, true);
-    int color = typedValue.data;
-    return color;
+    return typedValue.data;
   }
 
   public GameTable(Context context) {
@@ -215,7 +215,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
     gameScroller = (GameScrollerView) findViewById(R.id.gameScroller);
     gameScroller.setGameEvent("Dominion app loaded!", true, 0);
 
-    /**
+    /*
      * findViewById(R.id.actionText) must be in here so that it gets fadet out whenever everything else fades out.
      */
     helpView =
@@ -734,7 +734,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
 
     int maxVP = 0;
     int minTurns = 10000;
-    /**
+    /*
      * The player(s) to show as winner
      */
     ArrayList<Integer> winners = new ArrayList<>();
@@ -760,9 +760,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
       if (!finalStatsReported) {
         finalStatsReported = true;
         ArrayList<String> pl = new ArrayList<>(players.getCount());
-        for (int i = 0; i < players.getCount(); i++) {
-          pl.add(gs.realNames[i]);
-        }
+        pl.addAll(Arrays.asList(gs.realNames).subList(0, players.getCount()));
         achievements.gameOver(pl, winners);
       }
     } catch (Exception e) {
@@ -820,8 +818,6 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    * The RemotePlayer updated us about the setup of the game, and we display the changes to the user.
    *
    * @param gs      GameStatus object contains all this information
-   * @param s       ?? don't know yet ??
-   * @param newTurn ?? don't know yet ??
    */
   public void setStatus(GameStatus gs, Object[] objects, Event event) {
     boolean newTurn = event.b;
@@ -873,7 +869,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
 
     turnStatus.setStatus(gs.turnStatus, gs.potions, myTurn);
     for (int i = 0; i < players.getCount(); i++) {
-      int color = GameTable.getPlayerTextBackgroundColor(getContext(), i);
+      int color = getPlayerTextBackgroundColor(getContext(), i);
       boolean showColor = hasTokens(i, gs.tokens);
       players.getItem(i)
         .set(players.getItem(i).name, gs.turnCounts[i], gs.deckSizes[i], gs.stashOnDeck[i], gs.handSizes[i],
@@ -1179,7 +1175,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   /**
    * Is the given card an acceptable choice given the constrains saved in sco?
    *
-   * @param c      chosen card
+   * @param cs     chosen card
    * @param parent which pile the card was selected from
    */
   boolean isAcceptable(CardState cs, CardGroup parent) {
@@ -1465,7 +1461,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   /**
    * Information about a selected card: group, position in that group, CardState
    */
-  private class CardInfo {
+  private static class CardInfo {
 
     public CardState cs;
     public CardGroup parent;

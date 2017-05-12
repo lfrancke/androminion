@@ -19,9 +19,9 @@ public class CardAnimator {
 
   @SuppressWarnings("unused")
   private static final String TAG = "CardAnimator";
-  private static ArrayList<AnimationSet> runningAnims = new ArrayList<>();
+  private static final ArrayList<AnimationSet> runningAnims = new ArrayList<>();
 
-  private static ArrayList<CardView> cvs = new ArrayList<>();
+  private static final ArrayList<CardView> cvs = new ArrayList<>();
   private ViewGroup rootView;
   private int left;
   private int top;

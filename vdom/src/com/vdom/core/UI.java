@@ -132,6 +132,7 @@ public class UI extends JFrame implements GameEventListener {
     speedFactor = 190;
     final JSlider speedSlider = new JSlider(1, 200, (int) speedFactor);
     speedSlider.addChangeListener(new ChangeListener() {
+      @Override
       public void stateChanged(ChangeEvent e) {
         if (speedSlider.getValue() == 10) {
           speedMax = true;
@@ -275,6 +276,7 @@ public class UI extends JFrame implements GameEventListener {
     turnLabel.setText(TURN_TEXT + game.turnCount);
   }
 
+  @Override
   public void gameEvent(GameEvent event) {
     if (event.getType() == GameEvent.EventType.TurnBegin) {
       updateTurn();

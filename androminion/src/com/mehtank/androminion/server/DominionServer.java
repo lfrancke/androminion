@@ -16,7 +16,7 @@ public class DominionServer extends Service {
 
   @SuppressWarnings("unused")
   private static final String TAG = "DominionServer";
-  private final static String stopped = "Server stopped";
+  private static final String stopped = "Server stopped";
   VDomServer vds;
 
   @Override
@@ -66,7 +66,7 @@ public class DominionServer extends Service {
           enumIpAddr.hasMoreElements(); ) {
           InetAddress inetAddress = enumIpAddr.nextElement();
           if (!inetAddress.isLoopbackAddress()) {
-            return inetAddress.getHostAddress().toString();
+            return inetAddress.getHostAddress();
           }
         }
       }

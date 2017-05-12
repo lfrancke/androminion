@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class FrameworkEvent {
 
-  private Type type;
+  private final Type type;
   private GameType gameType;
   private HashMap<String, Double> gameTypeWins;
 

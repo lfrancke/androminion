@@ -96,7 +96,7 @@ public class CardImplPromo extends CardImpl {
         if (card != null) {
           //see playerBuy()
           if (context.game.isValidBuy(context, card, context.getCoinAvailableForBuy())) {
-            GameEvent statusEvent = new GameEvent(GameEvent.EventType.Status, (MoveContext) context);
+            GameEvent statusEvent = new GameEvent(GameEvent.EventType.Status, context);
             context.game.broadcastEvent(statusEvent);
 
             if (context.game.playBuy(context, card).equals(Cards.silver)) {
@@ -140,9 +140,7 @@ public class CardImplPromo extends CardImpl {
         Util.playerError(currentPlayer, "Black Market order cards error, ignoring.");
         order = cards.toArray(new Card[cards.size()]);
       }
-      for (Card anOrder : order) {
-        context.game.blackMarketPileShuffled.add(anOrder);
-      }
+      Collections.addAll(context.game.blackMarketPileShuffled, order);
     }
 
     context.blackMarketBuyPhase = false;
@@ -274,13 +272,13 @@ public class CardImplPromo extends CardImpl {
 
       if (card != null && card.is(Type.Action, currentPlayer) && card.getCost(context) <= 4 && !card.costPotion()) {
         currentPlayer.prince
-          .add(currentPlayer.playedCards.remove(currentPlayer.playedCards.lastIndexOf((Card) getControlCard())));
+          .add(currentPlayer.playedCards.remove(currentPlayer.playedCards.lastIndexOf(getControlCard())));
         getControlCard().stopImpersonatingCard();
 
         currentPlayer.hand.remove(card);
         currentPlayer.prince.add(card);
 
-        GameEvent event = new GameEvent(GameEvent.EventType.CardSetAside, (MoveContext) context);
+        GameEvent event = new GameEvent(GameEvent.EventType.CardSetAside, context);
         event.card = card;
         game.broadcastEvent(event);
       }

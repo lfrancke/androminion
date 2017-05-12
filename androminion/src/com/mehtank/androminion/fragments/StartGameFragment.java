@@ -1,6 +1,7 @@
 package com.mehtank.androminion.fragments;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -98,7 +99,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
   String[] mCardsPassOnStartup;
   TypeOptions mGameType;
 
-  private OnCheckedChangeListener coreSetsListener = new OnCheckedChangeListener() {
+  private final OnCheckedChangeListener coreSetsListener = new OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
       if (isChecked) {
@@ -223,8 +224,8 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
         break;
     }
 
-    ArrayList<GameTypeItem> randoms = new ArrayList<GameTypeItem>();
-    ArrayList<GameTypeItem> presets = new ArrayList<GameTypeItem>();
+    ArrayList<GameTypeItem> randoms = new ArrayList<>();
+    ArrayList<GameTypeItem> presets = new ArrayList<>();
     GameTypeLoop:
     for (GameType type : GameType.values()) {
       if (type == GameType.Specified) {
@@ -321,7 +322,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     eventsSpinnerList.add(getResources().getString(R.string.random_events_none));
     eventsSpinnerList.add(getResources().getString(R.string.random_events_random));
     for (int i = 0; i < totalEvents; ++i) {
-      eventsSpinnerList.add((i + 1) + "");
+      eventsSpinnerList.add(String.valueOf(i + 1));
     }
     ArrayAdapter<String> numEventsAdapter = createArrayAdapter(eventsSpinnerList);
     mRandomEventsSpinner.setAdapter(numEventsAdapter);
@@ -336,7 +337,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     landmarksSpinnerList.add(getResources().getString(R.string.random_landmarks_none));
     landmarksSpinnerList.add(getResources().getString(R.string.random_landmarks_random));
     for (int i = 0; i < totalLandmarks; ++i) {
-      landmarksSpinnerList.add((i + 1) + "");
+      landmarksSpinnerList.add(String.valueOf(i + 1));
     }
     ArrayAdapter<String> numLandmarksAdapter = createArrayAdapter(landmarksSpinnerList);
     mRandomLandmarksSpinner.setAdapter(numLandmarksAdapter);
@@ -360,9 +361,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
 
     // Fill player spinners
     ArrayList<String> players = new ArrayList<>(PLAYERTYPES.length + 1);
-    for (String s : PLAYERTYPES) {
-      players.add(s);
-    }
+    Collections.addAll(players, PLAYERTYPES);
     if (!mMultiplayer) {
       players.remove("Human Player");
     }
@@ -608,7 +607,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
       if (!(o instanceof GameTypeItem)) {
         return false;
       }
-      return gameType.equals(((GameTypeItem) o).getGameType());
+      return gameType == ((GameTypeItem) o).getGameType();
     }
 
     @Override

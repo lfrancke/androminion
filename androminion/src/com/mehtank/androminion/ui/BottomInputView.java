@@ -25,13 +25,13 @@ public abstract class BottomInputView extends RelativeLayout implements OnClickL
   private static final String TAG = "BottomInputView";
 
   protected GameActivity top;
-  private TextView title;
-  private ImageView arrow;
-  private View content;
+  private final TextView title;
+  private final ImageView arrow;
+  private final View content;
   private boolean hidden = false;
 
   @SuppressWarnings("deprecation")
-  public BottomInputView(GameActivity top, String header) {
+  protected BottomInputView(GameActivity top, String header) {
     super(top);
     this.top = top;
 
@@ -77,5 +77,5 @@ public abstract class BottomInputView extends RelativeLayout implements OnClickL
    *
    * @return content view
    */
-  abstract protected View makeContentView(GameActivity activity);
+  protected abstract View makeContentView(GameActivity activity);
 }

@@ -267,7 +267,7 @@ public class CardImplSeaside extends CardImpl {
     if (card != null) {
       currentPlayer.getHand().remove(card);
       currentPlayer.haven.add(card);
-      GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideHaven, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideHaven, context);
       event.card = card;
       event.setPrivate(true);
       context.game.broadcastEvent(event);
@@ -286,11 +286,11 @@ public class CardImplSeaside extends CardImpl {
 
     // Move to island mat if not already played
     if (getControlCard().numberTimesAlreadyPlayed == 0) {
-      currentPlayer.playedCards.remove(currentPlayer.playedCards.lastIndexOf((Card) getControlCard()));
+      currentPlayer.playedCards.remove(currentPlayer.playedCards.lastIndexOf(getControlCard()));
       currentPlayer.island.add(getControlCard());
       getControlCard().stopImpersonatingCard();
 
-      GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideOnIslandMat, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideOnIslandMat, context);
       event.card = getControlCard();
       game.broadcastEvent(event);
     }
@@ -299,7 +299,7 @@ public class CardImplSeaside extends CardImpl {
       currentPlayer.hand.remove(card);
       currentPlayer.island.add(card);
 
-      GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideOnIslandMat, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.CardSetAsideOnIslandMat, context);
       event.card = card;
       game.broadcastEvent(event);
     }
@@ -580,11 +580,11 @@ public class CardImplSeaside extends CardImpl {
     if (getControlCard().numberTimesAlreadyPlayed == 0) {
       // Only works if at least one card discarded
       if (currentPlayer.hand.isEmpty()) {
-        currentPlayer.nextTurnCards.remove(this.getControlCard());
-        currentPlayer.playedCards.add(this.getControlCard());
+        currentPlayer.nextTurnCards.remove(getControlCard());
+        currentPlayer.playedCards.add(getControlCard());
       } else {
         while (!currentPlayer.hand.isEmpty()) {
-          currentPlayer.discard(currentPlayer.hand.remove(0), this.getControlCard(), context);
+          currentPlayer.discard(currentPlayer.hand.remove(0), getControlCard(), context);
         }
       }
     } else {

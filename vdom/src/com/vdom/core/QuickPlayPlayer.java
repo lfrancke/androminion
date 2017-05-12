@@ -27,6 +27,7 @@ public abstract class QuickPlayPlayer extends BasePlayer {
     return "Quick Play";
   }
 
+  @Override
   public Card[] getTrashCards() {
     return TRASH_CARDS;
   }

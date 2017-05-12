@@ -19,8 +19,8 @@ public class SelectStringView extends BottomInputView implements AdapterView.OnI
   private static final String TAG = "SelectStringView";
 
   ListView lv;
-  private Event.EType returnType;
-  private List<String> options;
+  private final Event.EType returnType;
+  private final List<String> options;
 
   public SelectStringView(GameActivity top,
                            String header,

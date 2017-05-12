@@ -204,7 +204,7 @@ public class Util {
     while (cost < 10) {
       for (Card card : cards) {
         if (card.getCost(context) == cost) {
-          log("" + context.getCardsLeftInPile(card) + ":" + getLongText(card));
+          log(context.getCardsLeftInPile(card) + ":" + getLongText(card));
           log("");
         }
       }
@@ -534,7 +534,7 @@ public class Util {
     if (cards == null) {
       bad = true;
     } else {
-      ArrayList<Card> handCopy = Util.copy(list);
+      ArrayList<Card> handCopy = copy(list);
       for (Card card : cards) {
         if (!handCopy.remove(card)) {
           bad = true;
@@ -589,6 +589,7 @@ public class Util {
     List<Map.Entry<K, V>> list =
       new LinkedList<>(map.entrySet());
     Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
+      @Override
       public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
         return (o1.getValue()).compareTo(o2.getValue());
       }
@@ -626,9 +627,9 @@ public class Util {
    * if equal use second one and repeat.
    * Repeat this pattern until last Comparator tried.
    */
-  static public class MultilevelComparator<T> implements Comparator<T> {
+  public static class MultilevelComparator<T> implements Comparator<T> {
 
-    private List<Comparator<T>> comps;
+    private final List<Comparator<T>> comps;
 
     public MultilevelComparator(List<Comparator<T>> comparators) {
       comps = comparators;
@@ -647,7 +648,7 @@ public class Util {
     }
   }
 
-  static public class CardNameComparator implements Comparator<Card> {
+  public static class CardNameComparator implements Comparator<Card> {
 
     @Override
     public int compare(Card card0, Card card1) {
@@ -655,7 +656,7 @@ public class Util {
     }
   }
 
-  static public class CardCostComparator implements Comparator<Card> {
+  public static class CardCostComparator implements Comparator<Card> {
 
     @Override
     public int compare(Card card0, Card card1) {
@@ -669,7 +670,7 @@ public class Util {
     }
   }
 
-  static public class CardCostComparatorDesc implements Comparator<Card> {
+  public static class CardCostComparatorDesc implements Comparator<Card> {
 
     @Override
     public int compare(Card card0, Card card1) {
@@ -678,7 +679,7 @@ public class Util {
     }
   }
 
-  static public class CardValueComparator implements Comparator<Card> {
+  public static class CardValueComparator implements Comparator<Card> {
 
     @Override
     public int compare(Card card0, Card card1) {
@@ -695,7 +696,7 @@ public class Util {
     }
   }
 
-  static public class CardValueComparatorDesc implements Comparator<Card> {
+  public static class CardValueComparatorDesc implements Comparator<Card> {
 
     @Override
     public int compare(Card card0, Card card1) {
@@ -704,7 +705,7 @@ public class Util {
     }
   }
 
-  static public class CardPotionComparator implements Comparator<Card> {
+  public static class CardPotionComparator implements Comparator<Card> {
 
     @Override
     public int compare(Card card0, Card card1) {
@@ -722,7 +723,7 @@ public class Util {
     }
   }
 
-  static public class CardTypeComparator implements Comparator<Card> {
+  public static class CardTypeComparator implements Comparator<Card> {
 
     @Override
     public int compare(Card card0, Card card1) {
@@ -760,7 +761,7 @@ public class Util {
    * Comparator for sorting cards.
    * Traveller cards first, rest unsortet
    */
-  static public class CardTravellerComparator implements Comparator<Card> {
+  public static class CardTravellerComparator implements Comparator<Card> {
 
     @Override
     public int compare(Card card0, Card card1) {
@@ -800,7 +801,7 @@ public class Util {
    * Comparator for sorting cards by cost and then by name
    * Used for sorting on table
    */
-  static public class CardCostNameComparator extends MultilevelComparator<Card> {
+  public static class CardCostNameComparator extends MultilevelComparator<Card> {
 
     private static final ArrayList<Comparator<Card>> cmps = new ArrayList<>();
 
@@ -818,7 +819,7 @@ public class Util {
    * Comparator for sorting cards in hand.
    * Sort by type then by cost and last by name
    */
-  static public class CardHandComparator extends MultilevelComparator<Card> {
+  public static class CardHandComparator extends MultilevelComparator<Card> {
 
     private static final ArrayList<Comparator<Card>> cmps = new ArrayList<>();
 
@@ -838,7 +839,7 @@ public class Util {
    * Comparator for sorting cards on Tavern mat.
    * Sort by utility of looking at them on Tavern mat, then by cost, last by name;
    */
-  static public class CardTavernComparator extends MultilevelComparator<Card> {
+  public static class CardTavernComparator extends MultilevelComparator<Card> {
 
     private static final ArrayList<Comparator<Card>> cmps = new ArrayList<>();
 

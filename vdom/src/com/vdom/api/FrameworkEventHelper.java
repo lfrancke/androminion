@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class FrameworkEventHelper {
 
-  private static ArrayList<FrameworkEventListener> listeners = new ArrayList<>();
+  private static final ArrayList<FrameworkEventListener> listeners = new ArrayList<>();
 
   public static void addFrameworkListener(FrameworkEventListener listener) {
     if (!listeners.contains(listener)) {

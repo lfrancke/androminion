@@ -6,6 +6,7 @@ import com.vdom.core.Cards;
 
 public class CardCostComparator implements Comparator<Card> {
 
+  @Override
   public int compare(Card cardOne, Card cardTwo) {
     if (cardOne.getCost(null) == cardTwo.getCost(null)) {
       if (cardOne.costPotion() || cardTwo.costPotion()) {

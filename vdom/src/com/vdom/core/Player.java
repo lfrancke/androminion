@@ -62,7 +62,7 @@ public abstract class Player {
   private int debtTokenCount;
   private Card checkLeadCard;
   private int victoryTokens;
-  private Map<Card, Integer> victoryTokensSource = new TreeMap<>();
+  private final Map<Card, Integer> victoryTokensSource = new TreeMap<>();
   private boolean journeyTokenFaceUp;
   private boolean minusOneCoinTokenOn;
   private boolean minusOneCardTokenOn;
@@ -550,8 +550,8 @@ public abstract class Player {
       }
     }
 
-      Map<Object, Integer> allCardCounts = new HashMap<Object, Integer>();
-      HashSet<String> distinctCards = new HashSet<String>();
+      Map<Object, Integer> allCardCounts = new HashMap<>();
+      HashSet<String> distinctCards = new HashSet<>();
       for (Card card : getAllCards()) {
       distinctCards.add(card.getName());
       if (card.is(Type.Victory, this) || card.is(Type.Curse, this)) {
@@ -1018,7 +1018,7 @@ public abstract class Player {
   public Card gainNewCard(Card cardToGain, Card responsible, MoveContext context) {
     Card card = game.takeFromPileCheckTrader(cardToGain, context);
     if (card != null) {
-      GameEvent gainEvent = new GameEvent(GameEvent.EventType.CardObtained, (MoveContext) context);
+      GameEvent gainEvent = new GameEvent(GameEvent.EventType.CardObtained, context);
       gainEvent.card = card;
       gainEvent.responsible = responsible;
       gainEvent.newCard = true;
@@ -1928,7 +1928,7 @@ public abstract class Player {
       game.getGamePile(toReturn).addCard(toReturn);
     }
 
-      ArrayList<Card> putBackCards = new ArrayList<Card>();
+      ArrayList<Card> putBackCards = new ArrayList<>();
       List<PutBackOption> putBackOptions;
       while (!(putBackOptions = controlPlayer.getPutBackOptions(context, actionsPlayed)).isEmpty()) {
       PutBackOption putBackOption = controlPlayer.selectPutBackOption(context, putBackOptions);
@@ -2009,11 +2009,11 @@ public abstract class Player {
           }
 
           Card actionToPutBack =
-            controlPlayer.scheme_actionToPutOnTopOfDeck(((MoveContext) context), actions.toArray(new Card[0]));
+            controlPlayer.scheme_actionToPutOnTopOfDeck(context, actions.toArray(new Card[0]));
           if (actionToPutBack == null) {
             break;
           }
-          int index = playedCards.indexOf((Card) actionToPutBack);
+          int index = playedCards.indexOf(actionToPutBack);
           if (index == -1) {
             Util.playerError(this, "Scheme returned invalid card to put back on top of deck, ignoring");
             break;

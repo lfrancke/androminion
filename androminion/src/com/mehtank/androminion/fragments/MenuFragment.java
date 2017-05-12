@@ -16,8 +16,6 @@ public class MenuFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                             Bundle savedInstanceState) {
-    ScrollView scrollView = (ScrollView) inflater.inflate(
-      R.layout.fragment_menu, container);
 
     // No longer needen since moohtank changed the menu layout back to the old style
     //        // White text on Menu buttons on Light theme and Android 3.0+
@@ -40,6 +38,6 @@ public class MenuFragment extends Fragment {
     //            butAbout.setTextColor(getResources().getColor(
     //                    android.R.color.primary_text_dark));
     //        }
-    return scrollView;
+    return inflater.inflate(R.layout.fragment_menu, container);
   }
 }

@@ -393,7 +393,7 @@ public class CardImplCornucopia extends CardImpl {
               break;
             }
           }
-          GameEvent event = new GameEvent(GameEvent.EventType.DeckPutIntoDiscardPile, (MoveContext) context);
+          GameEvent event = new GameEvent(GameEvent.EventType.DeckPutIntoDiscardPile, context);
           game.broadcastEvent(event);
 
           while (currentPlayer.getDeckSize() > 0) {

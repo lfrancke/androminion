@@ -7,6 +7,7 @@ import com.vdom.core.Game;
 
 public class VDomPlayerDrew extends VDomPlayerSarah {
 
+  @Override
   public boolean isAi() {
     return true;
   }
@@ -21,6 +22,7 @@ public class VDomPlayerDrew extends VDomPlayerSarah {
     return maskName ? "Player " + (playerNumber + 1) : "Drew";
   }
 
+  @Override
   public void setupGameVariables(GameType gameType, Card[] cardsInPlay) {
     //trash in this order!
     trashCards = new Card[] {Cards.curse, Cards.rats, Cards.overgrownEstate, Cards.ruinedVillage, Cards.ruinedMarket,

@@ -13,8 +13,8 @@ import java.net.UnknownHostException;
 
 public class CommsOld implements Runnable {
 
-  final static int TIMEOUT = 15000; // 15 seconds in ms
-  final static boolean DEBUGGING = false;
+  static final int TIMEOUT = 15000; // 15 seconds in ms
+  static final boolean DEBUGGING = false;
 
   String host;
   int port;
@@ -295,7 +295,7 @@ public class CommsOld implements Runnable {
     return false;
   }
 
-  public class MonitorObject {
+  public static class MonitorObject {
 
   }
 

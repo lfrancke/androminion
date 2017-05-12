@@ -73,9 +73,8 @@ public class VDomPlayerChuck extends BasePlayer {
 
     for (final Card card : getHand()) {
       if (context.canPlay(card)) {
-        Card action = card;
-        if (action.getAddActions() > 0 && !isInCardArray(card, princeCards)) {
-          return action;
+        if (card.getAddActions() > 0 && !isInCardArray(card, princeCards)) {
+          return card;
         }
       }
     }

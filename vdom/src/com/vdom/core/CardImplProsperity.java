@@ -144,7 +144,7 @@ public class CardImplProsperity extends CardImpl {
 
     if (cantBuyCard != null && !context.cantBuy.contains(cantBuyCard)) {
       context.cantBuy.add(cantBuyCard);
-      GameEvent e = new GameEvent(GameEvent.EventType.CantBuy, (MoveContext) context);
+      GameEvent e = new GameEvent(GameEvent.EventType.CantBuy, context);
       game.broadcastEvent(e);
     }
   }

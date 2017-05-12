@@ -483,9 +483,8 @@ public class VDomPlayerSarah extends BasePlayer {
     // play Action Cards that add more actions
     for (final Card card : actionCards) {
       if (context.canPlay(card)) {
-        Card action = card;
-        if (action.getAddActions() > 0 && !isInCardArray(card, princeCards)) {
-          return action;
+        if (card.getAddActions() > 0 && !isInCardArray(card, princeCards)) {
+          return card;
         }
       }
     }
@@ -687,6 +686,7 @@ public class VDomPlayerSarah extends BasePlayer {
     return null;
   }
 
+  @Override
   public Card[] chapel_cardsToTrash(MoveContext context) {
     ArrayList<Card> cards = new ArrayList<>();
 

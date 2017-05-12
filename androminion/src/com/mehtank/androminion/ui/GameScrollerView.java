@@ -28,13 +28,13 @@ public class GameScrollerView extends HorizontalScrollView {
 
   private static final String TAG = "GameScrollerView";
 
-  private Context top;
-  private LinearLayout gameEventsRow;
+  private final Context top;
+  private final LinearLayout gameEventsRow;
   private ScrollView latestTurnSV;
   private TextView latestTurn;
   private boolean onlyShowOneTurn = false;
   private int numPlayers;
-  private ArrayList<View> views = new ArrayList<>();
+  private final ArrayList<View> views = new ArrayList<>();
   private File logfile;
 
   public GameScrollerView(Context context) {

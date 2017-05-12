@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 public class CardValueComparator implements Comparator<Card> {
 
+  @Override
   public int compare(Card cardOne, Card cardTwo) {
     if (cardOne.getAddGold() == cardTwo.getAddGold()) {
       return 0;

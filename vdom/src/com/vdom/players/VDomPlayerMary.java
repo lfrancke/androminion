@@ -1,6 +1,7 @@
 package com.vdom.players;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.vdom.api.Card;
 import com.vdom.api.GameType;
@@ -9,6 +10,7 @@ import com.vdom.core.Game;
 
 public class VDomPlayerMary extends VDomPlayerSarah {
 
+  @Override
   public boolean isAi() {
     return true;
   }
@@ -23,6 +25,7 @@ public class VDomPlayerMary extends VDomPlayerSarah {
     return maskName ? "Player " + (playerNumber + 1) : "Mary";
   }
 
+  @Override
   public void setupGameVariables(GameType gameType, Card[] cardsInPlay) {
     super.setupGameVariables(gameType, cardsInPlay);
 
@@ -37,9 +40,7 @@ public class VDomPlayerMary extends VDomPlayerSarah {
     //        for(Card c : valuedCards) {
     //            cards.add(c);
     //        }
-    for (Card c : earlyCardBuys) {
-      cards.add(c);
-    }
+    Collections.addAll(cards, earlyCardBuys);
     valuedCards = cards.toArray(new Card[0]);
 
     favorSilverGoldPlat = false;

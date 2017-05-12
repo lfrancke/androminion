@@ -15,7 +15,6 @@ public class WinlossFragment extends SherlockFragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    ScrollView scrollView = (ScrollView) inflater.inflate(R.layout.fragment_winloss, container, false);
-    return scrollView;
+    return inflater.inflate(R.layout.fragment_winloss, container, false);
   }
 }
