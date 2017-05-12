@@ -444,7 +444,7 @@ public class CardSet {
     return useShelters;
   }
 
-  public static enum UseOptionalCards {
+  public enum UseOptionalCards {
     Random,
     Use,
     DontUse

@@ -28,23 +28,23 @@ public enum Expansion {
   private final List<Card> landmarkCards;
   private final boolean isAggregate;
 
-  private Expansion(List<Card> kingdomCards) {
+  Expansion(List<Card> kingdomCards) {
     this(kingdomCards, new ArrayList<Card>(0));
   }
 
-  private Expansion(List<Card> kingdomCards, boolean isAggregate) {
+  Expansion(List<Card> kingdomCards, boolean isAggregate) {
     this(kingdomCards, new ArrayList<Card>(0), new ArrayList<Card>(0), isAggregate);
   }
 
-  private Expansion(List<Card> kingdomCards, List<Card> eventCards) {
+  Expansion(List<Card> kingdomCards, List<Card> eventCards) {
     this(kingdomCards, eventCards, new ArrayList<Card>(0), false);
   }
 
-  private Expansion(List<Card> kingdomCards, List<Card> eventCards, List<Card> landmarkCards) {
+  Expansion(List<Card> kingdomCards, List<Card> eventCards, List<Card> landmarkCards) {
     this(kingdomCards, eventCards, landmarkCards, false);
   }
 
-  private Expansion(List<Card> kingdomCards, List<Card> eventCards, List<Card> landmarkCards, boolean isAggregate) {
+  Expansion(List<Card> kingdomCards, List<Card> eventCards, List<Card> landmarkCards, boolean isAggregate) {
     this.kingdomCards = kingdomCards;
     this.eventCards = eventCards;
     this.landmarkCards = landmarkCards;

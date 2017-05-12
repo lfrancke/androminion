@@ -2274,81 +2274,81 @@ public abstract class Player {
     return exchange;
   }
 
-  public static enum SentryOption {
+  public enum SentryOption {
     Trash,
     Discard,
     PutBack
   }
 
-  public static enum CourtierOption {
+  public enum CourtierOption {
     AddAction,
     AddBuy,
     AddCoins,
     GainGold
   }
 
-  public static enum LurkerOption {
+  public enum LurkerOption {
     TrashActionFromSupply,
     GainFromTrash
   }
 
-  public static enum NoblesOption {
+  public enum NoblesOption {
     AddCards,
     AddActions
   }
 
-  public static enum TorturerOption {
+  public enum TorturerOption {
     TakeCurse,
     DiscardTwoCards
   }
 
-  public static enum MinionOption {
+  public enum MinionOption {
     AddGold,
     RolloverCards
   }
 
-  public static enum PawnOption {
+  public enum PawnOption {
     AddCard,
     AddAction,
     AddBuy,
     AddGold
   }
 
-  public static enum StewardOption {
+  public enum StewardOption {
     AddCards,
     AddGold,
     TrashCards
   }
 
-  public static enum WatchTowerOption {
+  public enum WatchTowerOption {
     TopOfDeck,
     Trash,
     Normal
   }
 
-  public static enum JesterOption {
+  public enum JesterOption {
     GainCopy,
     GiveCopy
   }
 
-  public static enum TournamentOption {
+  public enum TournamentOption {
     GainPrize,
     GainDuchy
   }
 
-  public static enum TrustySteedOption {
+  public enum TrustySteedOption {
     AddCards,
     AddActions,
     AddGold,
     GainSilvers
   }
 
-  public static enum SpiceMerchantOption {
+  public enum SpiceMerchantOption {
     AddCardsAndAction,
     AddGoldAndBuy
   }
 
-  public static enum PutBackOption {
+  public enum PutBackOption {
     All,
     Treasury,
     Alchemist,
@@ -2358,7 +2358,7 @@ public abstract class Player {
     None
   }
 
-  public static enum SquireOption {
+  public enum SquireOption {
     AddActions,
     AddBuys,
     GainSilver
@@ -2397,35 +2397,35 @@ public abstract class Player {
     PutItBack
   }
 
-  public static enum AmuletOption {
+  public enum AmuletOption {
     AddGold,
     TrashCard,
     GainSilver
   }
 
-  public static enum ExtraTurnOption {
+  public enum ExtraTurnOption {
     OutpostFirst,
     MissionFirst,
     PossessionFirst
   }
 
-  public static enum QuestOption {
+  public enum QuestOption {
     DiscardAttack,
     DiscardTwoCurses,
     DiscardSixCards
   }
 
-  public static enum CharmOption {
+  public enum CharmOption {
     OneBuyTwoCoins,
     NextBuyGainDifferentWithSameCost
   }
 
-  public static enum EncampmentOption {
+  public enum EncampmentOption {
     RevealGold,
     RevealPlunder
   }
 
-  public static enum WildHuntOption {
+  public enum WildHuntOption {
     Draw3AndPlaceToken,
     GainEstateAndTokens
   }

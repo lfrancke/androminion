@@ -14,7 +14,7 @@ public enum PlayerSupplyToken {
     return null;
   }
 
-  private PlayerSupplyToken(int id) {
+  PlayerSupplyToken(int id) {
     this.id = id;
   }
 

@@ -98,7 +98,7 @@ public class CardAnimator {
     runningAnims.add(anims);
   }
 
-  public static enum ShowCardType {OBTAINED, TRASHED, REVEALED}
+  public enum ShowCardType {OBTAINED, TRASHED, REVEALED}
 
   private class CVAnimListener implements AnimationListener {
 

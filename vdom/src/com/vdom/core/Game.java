@@ -4359,7 +4359,7 @@ public class Game {
     return cardsObtainedLastTurn[PlayerNumber];
   }
 
-  public static enum BlackMarketSplitPileOptions {
+  public enum BlackMarketSplitPileOptions {
     NONE, ONE, ANY, ALL
   }
 
