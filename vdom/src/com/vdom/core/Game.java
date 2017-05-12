@@ -749,7 +749,7 @@ public class Game {
       return false;
     }
     if (context.blackMarketBuyPhase) {
-      if (thePile.isBlackMarket() == false) {
+      if (!thePile.isBlackMarket()) {
         return false;
       }
       if (Cards.isSupplyCard(card)) {
@@ -758,7 +758,7 @@ public class Game {
     } else if (card.is(Type.Event, null) && context.phase != TurnPhase.Buy) {
       return false;
     } else if (!card.is(Type.Event, null)) {
-      if (thePile.isSupply() == false) {
+      if (!thePile.isSupply()) {
         return false;
       }
       if (!Cards.isSupplyCard(card)) {
@@ -3058,7 +3058,7 @@ public class Game {
                   || r.equals(Cards.bureaucrat)
                   || r.equals(Cards.develop)
                   || r.equals(Cards.foolsGold)
-                  || r.equals(Cards.graverobber) && context.graverobberGainedCardOnTop == true
+                  || r.equals(Cards.graverobber) && context.graverobberGainedCardOnTop
                   || r.equals(Cards.seaHag)
                   || r.equals(Cards.taxman)
                   || r.equals(Cards.tournament)
