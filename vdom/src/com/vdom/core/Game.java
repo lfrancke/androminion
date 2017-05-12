@@ -1502,7 +1502,7 @@ public class Game {
 
       int highestBid = 0;
       Player highestBidder = null;
-      final int MAX_BID = 40;
+      int MAX_BID = 40;
       int playersLeftToBid = numPlayers;
       for (Player biddingPlayer : getPlayersInTurnOrder((firstProvinceGainedBy + 1) % numPlayers)) {
         MoveContext bidContext = new MoveContext(this, biddingPlayer);

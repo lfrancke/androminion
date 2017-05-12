@@ -177,8 +177,8 @@ public class VDomServer implements EventHandler {
   }
 
   public String getRandomAI(final String[] args) {
-    final List<String> playersInGame = new ArrayList<String>();
-    final List<String> randomPlayers = new ArrayList<String>();
+    List<String> playersInGame = new ArrayList<String>();
+    List<String> randomPlayers = new ArrayList<String>();
 
     for (String arg : args) {
       if (arg.contains(" (AI)")) {
@@ -192,7 +192,7 @@ public class VDomServer implements EventHandler {
       }
     }
 
-    final Random rand = new Random(System.currentTimeMillis());
+    Random rand = new Random(System.currentTimeMillis());
 
     return randomPlayers.get(rand.nextInt(randomPlayers.size()));
   }

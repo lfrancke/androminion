@@ -511,7 +511,7 @@ public class VDomPlayerSarah extends BasePlayer {
 
     //TODO: simple action play order list instead of just picking the most expensive card
     int cost = COST_MAX;
-    final ArrayList<Card> randList = new ArrayList<Card>();
+    ArrayList<Card> randList = new ArrayList<Card>();
     while (cost >= 0) {
       for (final Card card : actionCards) {
         if (!context.canPlay(card)
@@ -539,10 +539,10 @@ public class VDomPlayerSarah extends BasePlayer {
 
   @Override
   public Card doBuy(MoveContext context) {
-    final int coinAvailableForBuy = context.getCoinAvailableForBuy();
+    int coinAvailableForBuy = context.getCoinAvailableForBuy();
 
     if (earlyCardBuyCount < earlyCardBuyMax) {
-      final ArrayList<Card> randList = new ArrayList<Card>();
+      ArrayList<Card> randList = new ArrayList<Card>();
       for (final Card card : earlyCardBuys) {
         if (context.canBuy(card)) { // && (coinAvailableForBuy == card.getCost()) {
           randList.add(card);
@@ -613,7 +613,7 @@ public class VDomPlayerSarah extends BasePlayer {
     //try cards with potion before silver
     if (context.getPotions() > 0) {
       //buy in this order
-      final Card[] POTION_CARDS =
+      Card[] POTION_CARDS =
         {Cards.possession, Cards.golem, Cards.familiar, Cards.alchemist, Cards.philosophersStone,
           Cards.scryingPool, Cards.apothecary, Cards.university};
       for (Card card : POTION_CARDS) {
@@ -637,7 +637,7 @@ public class VDomPlayerSarah extends BasePlayer {
       }
     }
 
-    final double silverLine = .5d;
+    double silverLine = .5d;
 
     if (favorSilverGoldPlat) {
       if (context.canBuy(Cards.silver) && game.pileSize(Cards.silver) > 0 && coinAvailableForBuy >= 3
@@ -715,7 +715,7 @@ public class VDomPlayerSarah extends BasePlayer {
   @Override
   public ArrayList<Card> treasureCardsToPlayInOrder(MoveContext context, int maxCards, Card responsible) {
     if (context.cardInGame(Cards.grandMarket)) {
-      final ArrayList<Card> cards = new ArrayList<Card>();
+      ArrayList<Card> cards = new ArrayList<Card>();
       int coinWithoutCopper = 0;
       for (final Card c : context.getPlayer().getHand()) {
         if (c.is(Type.Treasure, this) && !c.equals(Cards.copper)) {
@@ -736,7 +736,7 @@ public class VDomPlayerSarah extends BasePlayer {
     // Try to buy valued cards...
     int cost = coinAvailableForBuy;
     while (cost >= 0) {
-      final ArrayList<Card> randList = new ArrayList<Card>();
+      ArrayList<Card> randList = new ArrayList<Card>();
       for (final Card card : cards) {
         if (card.getCost(context) != cost) {
           continue;
@@ -746,7 +746,7 @@ public class VDomPlayerSarah extends BasePlayer {
           continue;
         }
 
-        final int currentCount = getMyCardCount(card);
+        int currentCount = getMyCardCount(card);
         if (isOnlyTreasure(card, context.getPlayer()) || card.is(Type.Victory) || currentCount == 0
             || rand.nextInt(MAX_OF_ONE_ACTION_CARD) < currentCount) {
           randList.add(card);

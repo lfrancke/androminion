@@ -1849,7 +1849,7 @@ public class Strings {
   public static String getCardText(final Map<Object, Integer> counts,
                                     final Map<Card, Integer> totals,
                                     final Card card) {
-    final StringBuilder sb = new StringBuilder()
+    StringBuilder sb = new StringBuilder()
                                .append('\t')
                                //.append(card.getName())
                                .append(getCardName(card))
@@ -1875,7 +1875,7 @@ public class Strings {
     for (Integer total : totals.values()) {
       totalVPs += total;
     }
-    final StringBuilder sb
+    StringBuilder sb
       = new StringBuilder()
           .append(playerName)
           .append(": ")

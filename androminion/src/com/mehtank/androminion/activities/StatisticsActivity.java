@@ -118,7 +118,7 @@ public class StatisticsActivity extends SherlockFragmentActivity {
 
       @Override
       public void onClick(DialogInterface dialog, int i) {
-        final Achievements achievements = new Achievements(context);
+        Achievements achievements = new Achievements(context);
         if (resetStats) {
           achievements.resetStats();
         }
@@ -131,7 +131,7 @@ public class StatisticsActivity extends SherlockFragmentActivity {
         mDialog = dialog;
       }
     }
-    final choiceListenerClass choiceListener = new choiceListenerClass();
+    choiceListenerClass choiceListener = new choiceListenerClass();
     AlertDialog.Builder builder = new AlertDialog.Builder(context)
                                     .setTitle(R.string.reset)
                                     .setNegativeButton(android.R.string.cancel, null)

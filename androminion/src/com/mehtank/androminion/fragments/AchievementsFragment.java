@@ -18,7 +18,7 @@ public class AchievementsFragment extends SherlockFragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     ListView listView = (ListView) inflater.inflate(R.layout.fragment_achievements, container, false);
 
-    final Achievements achievements = new Achievements(getActivity());
+    Achievements achievements = new Achievements(getActivity());
     listView.setAdapter(achievements.getNewAchievementsAdapter());
 
     return listView;

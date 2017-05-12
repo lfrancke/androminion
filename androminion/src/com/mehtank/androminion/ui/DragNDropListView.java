@@ -47,9 +47,9 @@ public class DragNDropListView extends ListView {
 
   @Override
   public boolean onTouchEvent(MotionEvent ev) {
-    final int action = ev.getAction();
-    final int x = (int) ev.getX();
-    final int y = (int) ev.getY();
+    int action = ev.getAction();
+    int x = (int) ev.getX();
+    int y = (int) ev.getY();
 
     if (action == MotionEvent.ACTION_DOWN ||
         action == MotionEvent.ACTION_MOVE) {

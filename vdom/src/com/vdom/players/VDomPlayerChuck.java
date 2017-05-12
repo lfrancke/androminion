@@ -102,11 +102,11 @@ public class VDomPlayerChuck extends BasePlayer {
 
     int cost = COST_MAX;
     while (cost >= 0) {
-      final ArrayList<Card> randList = new ArrayList<Card>();
+      ArrayList<Card> randList = new ArrayList<Card>();
       Card[] arrayOfCard2;
-      final int actions = (arrayOfCard2 = getHand().toArray()).length;
+      int actions = (arrayOfCard2 = getHand().toArray()).length;
       for (int localActionCard1 = 0; localActionCard1 < actions; localActionCard1++) {
-        final Card card = arrayOfCard2[localActionCard1];
+        Card card = arrayOfCard2[localActionCard1];
         if (!context.canPlay(card)
             || card.equals(Cards.treasureMap)
             || card.equals(Cards.tactician) && context.countCardsInPlay(Cards.tactician) > 0
@@ -131,7 +131,7 @@ public class VDomPlayerChuck extends BasePlayer {
 
   @Override
   public Card doBuy(MoveContext context) {
-    final int coinAvailableForBuy = context.getCoinAvailableForBuy();
+    int coinAvailableForBuy = context.getCoinAvailableForBuy();
 
     if (coinAvailableForBuy == 0) {
       return null;
@@ -176,7 +176,7 @@ public class VDomPlayerChuck extends BasePlayer {
     }
     if (context.getPotions() > 0) {
       //buy in this order
-      final Card[] POTION_CARDS =
+      Card[] POTION_CARDS =
         {Cards.possession, Cards.golem, Cards.familiar, Cards.alchemist, Cards.philosophersStone,
           Cards.scryingPool, Cards.apothecary, Cards.university};
       for (Card card : POTION_CARDS) {
@@ -212,7 +212,7 @@ public class VDomPlayerChuck extends BasePlayer {
 
     int cost = coinAvailableForBuy;
     int highestCost = 0;
-    final ArrayList<Card> randList = new ArrayList<Card>();
+    ArrayList<Card> randList = new ArrayList<Card>();
 
     while (cost >= 0) {
       for (final Card card : context.getCardsInGame(GetCardsInGameOptions.Buyables)) {

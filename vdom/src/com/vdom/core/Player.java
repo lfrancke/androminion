@@ -539,9 +539,9 @@ public abstract class Player {
   }
 
   public Map<Object, Integer> getVictoryCardCounts() {
-    final HashSet<String> distinctCards = new HashSet<String>();
-    final Map<Object, Integer> allCardCounts = new HashMap<Object, Integer>();
-    final Map<Object, Integer> cardCounts = new HashMap<Object, Integer>();
+    HashSet<String> distinctCards = new HashSet<String>();
+    Map<Object, Integer> allCardCounts = new HashMap<Object, Integer>();
+    Map<Object, Integer> cardCounts = new HashMap<Object, Integer>();
 
     // seed counts with all victory cards in play
     for (CardPile pile : this.game.piles.values()) {
@@ -611,8 +611,8 @@ public abstract class Player {
   }
 
   public Map<Object, Integer> getAllCardCounts() {
-    final HashSet<String> distinctCards = new HashSet<String>();
-    final Map<Object, Integer> cardCounts = new HashMap<Object, Integer>();
+    HashSet<String> distinctCards = new HashSet<String>();
+    Map<Object, Integer> cardCounts = new HashMap<Object, Integer>();
 
     for (Card card : this.getAllCards()) {
       distinctCards.add(card.getName());
@@ -628,7 +628,7 @@ public abstract class Player {
   }
 
   public Map<Card, Integer> getTreasureCardCounts() {
-    final Map<Card, Integer> cardCounts = new HashMap<Card, Integer>();
+    Map<Card, Integer> cardCounts = new HashMap<Card, Integer>();
     for (CardPile pile : this.game.placeholderPiles.values()) {
       for (Card card : pile.getTemplateCards()) {
         if (card.is(Type.Treasure, this)) {
@@ -693,7 +693,7 @@ public abstract class Player {
     }
     //        int cardCount = 0;
 
-    final HashSet<String> distinctCards = new HashSet<String>();
+    HashSet<String> distinctCards = new HashSet<String>();
     for (Card card : cards) {
       distinctCards.add(card.getName());
     }

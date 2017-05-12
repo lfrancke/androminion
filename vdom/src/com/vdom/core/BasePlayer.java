@@ -763,7 +763,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       return Cards.baron;
     }
     if (!latest) {
-      final Card[] VICTORY_CARDS =
+      Card[] VICTORY_CARDS =
         {Cards.estate, Cards.silkRoad, Cards.feodum, Cards.duke, Cards.duchy, Cards.farmland,
           Cards.fairgrounds};
       for (Card card : VICTORY_CARDS) {
@@ -772,7 +772,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         }
       }
     }
-    final Card[] BAD_CARDS =
+    Card[] BAD_CARDS =
       {Cards.curse, Cards.virtualRuins, Cards.pearlDiver, Cards.vagrant, Cards.university, Cards.masterpiece,
         Cards.loan, Cards.wishingWell, Cards.woodcutter, Cards.chancellor, Cards.develop, Cards.sage, Cards.rats,
         Cards.potion, Cards.scout, Cards.talisman, Cards.borderVillage, Cards.peddler, Cards.prince};
@@ -783,7 +783,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     }
     //mean cards
     ArrayList<Card> keyList = new ArrayList<Card>();
-    final Card[] KEY_CARDS =
+    Card[] KEY_CARDS =
       {Cards.scryingPool, Cards.swindler, Cards.ambassador, Cards.familiar, Cards.militia, Cards.witch,
         Cards.mountebank, Cards.torturer, Cards.minion, Cards.illGottenGains, Cards.saboteur, Cards.ghostShip,
         Cards.wharf, Cards.goons};
@@ -1273,7 +1273,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     }
 
     ArrayList<Card> keyList = new ArrayList<Card>();
-    final Card[] KEY_CARDS =
+    Card[] KEY_CARDS =
       {Cards.scryingPool, Cards.masquerade, Cards.swindler, Cards.familiar, Cards.militia, Cards.seaHag,
         Cards.tournament, Cards.youngWitch, Cards.golem, Cards.cultist, Cards.mountebank, Cards.torturer, Cards.minion,
         Cards.governor, Cards.illGottenGains, Cards.saboteur, Cards.ghostShip, Cards.wharf, Cards.witch, Cards.goons,

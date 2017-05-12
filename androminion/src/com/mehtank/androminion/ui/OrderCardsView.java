@@ -87,7 +87,7 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
     	 * DragNDropListView showing /orig/
     	 */
     touch = new DragNDropListView(top);
-    final float scale = getResources().getDisplayMetrics().density;
+    float scale = getResources().getDisplayMetrics().density;
     System.out.println(scale);
     touch.setLayoutParams(new LinearLayout.LayoutParams((int) (getResources().getDimension(R.dimen.cardWidth)),
                                                          ViewGroup.LayoutParams.WRAP_CONTENT));

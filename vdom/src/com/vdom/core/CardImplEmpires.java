@@ -813,7 +813,7 @@ public class CardImplEmpires extends CardImpl {
     Player player = context.getPlayer();
     ArrayList<Card> toKeepInDiscard = new ArrayList<Card>();
     Card card = null;
-    final int MAX_CARDS_TO_KEEP = 5;
+    int MAX_CARDS_TO_KEEP = 5;
     do {
       if (player.discard.isEmpty()) {
         break;
