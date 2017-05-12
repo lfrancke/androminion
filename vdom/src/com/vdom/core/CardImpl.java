@@ -689,6 +689,7 @@ public class CardImpl implements Card, Comparable<Card> {
     } else {
       switch (expansion) {
         case Base:
+        case Base2E:
           c = new CardImplBase();
           break;
         case Intrigue:
@@ -1335,6 +1336,7 @@ public class CardImpl implements Card, Comparable<Card> {
       }
       switch (expansion) {
         case Base:
+        case Base2E:
           return new CardImplBase(this);
         case Intrigue:
           return new CardImplIntrigue(this);
