@@ -24,7 +24,7 @@ public class GameEvent {
   public GameEvent(EventType type, MoveContext context) {
     this.type = type;
     this.context = context;
-    this.player = context == null ? null : context.getPlayer();
+    player = context == null ? null : context.getPlayer();
   }
 
   // //////////////////////////////////////////////

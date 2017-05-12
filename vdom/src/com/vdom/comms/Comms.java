@@ -51,7 +51,7 @@ public class Comms {
    */
   public Comms(EventHandler parent, int port) throws IOException {
     this.parent = parent;
-    this.isServer = true;
+    isServer = true;
     this.port = port;
     parent.debug("Creating server");
     networkThread = new SocketThread();
@@ -85,7 +85,7 @@ public class Comms {
   public Comms(EventHandler parent, String host, int port)
     throws StreamCorruptedException, IOException, UnknownHostException {
     this.parent = parent;
-    this.isServer = false;
+    isServer = false;
     this.host = host;
     this.port = port;
     parent.debug("Creating client");

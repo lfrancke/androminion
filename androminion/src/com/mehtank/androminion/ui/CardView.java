@@ -176,7 +176,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
   }
 
   public void setCard(MyCard c) {
-    this.state.c = c;
+    state.c = c;
 
     if (cardDesc != null) {
       cardDesc.setText(c.desc);
@@ -555,9 +555,9 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
 
     Configuration configuration = new Configuration(getContext().getResources().getConfiguration());
     configuration.setLocale(new Locale("en"));
-    String englishName = this.getContext().createConfigurationContext(configuration).getResources().getString(
-      this.getContext().createConfigurationContext(configuration).getResources()
-        .getIdentifier(cardView.getCard().originalSafeName + "_name", "string", this.getContext().getPackageName()));
+    String englishName = getContext().createConfigurationContext(configuration).getResources().getString(
+      getContext().createConfigurationContext(configuration).getResources()
+        .getIdentifier(cardView.getCard().originalSafeName + "_name", "string", getContext().getPackageName()));
 
     if (wikilink) {
       TextView linkView = new TextView(view.getContext());
@@ -735,7 +735,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
 
   private void init(Context context, CardGroup parent, MyCard c) {
     this.parent = parent;
-    this.top = context;
+    top = context;
 
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
     viewstyle = prefs.getString("viewstyle", context.getString(R.string.pref_viewstyle_default));

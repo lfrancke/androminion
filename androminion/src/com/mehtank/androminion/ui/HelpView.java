@@ -33,17 +33,17 @@ public class HelpView extends FrameLayout {
     this.showViews = showViews;
     this.parentViews = parentViews;
 
-    callout = new FrameLayout(this.ctx);
-    helpText = new TextView(this.ctx);
+    callout = new FrameLayout(ctx);
+    helpText = new TextView(ctx);
     // helpText.setTextSize(helpText.getTextSize()*1.2f);
     helpText.setTextColor(Color.BLACK);
     callout.addView(helpText);
 
-    helpNext = new Button(this.ctx);
+    helpNext = new Button(ctx);
     helpNext.setText(R.string.help_next);
     helpNext.setTextColor(getResources().getColor(android.R.color.black));
 
-    Button helpQuit = new Button(this.ctx);
+    Button helpQuit = new Button(ctx);
     helpQuit.setText(R.string.help_quit);
     helpQuit.setTextColor(getResources().getColor(android.R.color.black));
     helpQuit.setOnClickListener(new OnClickListener() {

@@ -19,11 +19,11 @@ public class CardPile {
   protected boolean tradeRouteToken = false;
 
   public CardPile(Card placeholder, List<CardMultiplicity> cardList, boolean ordered, boolean allCardsVisible) {
-    this.cards = new ArrayList<Card>();
-    this.templateCards = new ArrayList<Card>();
+    cards = new ArrayList<Card>();
+    templateCards = new ArrayList<Card>();
 
-    this.placeholderCard = placeholder.instantiate();
-    this.placeholderCard.setPlaceholderCard();
+    placeholderCard = placeholder.instantiate();
+    placeholderCard.setPlaceholderCard();
 
     this.allCardsVisible = allCardsVisible;
 
@@ -78,7 +78,7 @@ public class CardPile {
   }
 
   public boolean areAllCardsVisible() {
-    return this.allCardsVisible;
+    return allCardsVisible;
   }
 
   public boolean cardAllowedOnPile(Card card) {
@@ -86,7 +86,7 @@ public class CardPile {
       return false; //No template card allowed on the pile
     }
 
-    for (Card template : this.templateCards) {
+    for (Card template : templateCards) {
       if (template.equals(card)) {
         return true;
       }
@@ -95,21 +95,21 @@ public class CardPile {
   }
 
   public CardPile notInSupply() {
-    this.isSupply = false;
+    isSupply = false;
     return this;
   }
 
   public CardPile inBlackMarket() {
-    this.isBlackMarket = true;
+    isBlackMarket = true;
     return this;
   }
 
   public boolean isSupply() {
-    return this.isSupply;
+    return isSupply;
   }
 
   public boolean isBlackMarket() {
-    return this.isBlackMarket;
+    return isBlackMarket;
   }
 
   public void setTradeRouteToken() {

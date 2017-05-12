@@ -108,14 +108,14 @@ public class DeckView extends RelativeLayout implements OnLongClickListener {
     this.handSize = handSize;
     this.stashesInHand = stashesInHand;
     this.numCards = numCards;
-    this.hasMinusOneCardToken = minusOneCardTokenOn;
-    this.hasMinusOneCoinToken = minusOneCoinTokenOn;
+    hasMinusOneCardToken = minusOneCardTokenOn;
+    hasMinusOneCoinToken = minusOneCoinTokenOn;
     this.journeyTokenState = journeyTokenState;
-    this.numPirateTokens = pt;
-    this.numVictoryTokens = vt;
-    this.numDebtTokens = dt;
-    this.numCoinTokens = gct;
-    this.isCurrentTurn = highlight;
+    numPirateTokens = pt;
+    numVictoryTokens = vt;
+    numDebtTokens = dt;
+    numCoinTokens = gct;
+    isCurrentTurn = highlight;
     String txt = nameStr + getContext().getString(R.string.turn_header) + turns;
     name.setText(txt);
     if (highlight) {
@@ -222,7 +222,7 @@ public class DeckView extends RelativeLayout implements OnLongClickListener {
     sb.append("\n\n");
     if (showCardCounts) {
       sb.append(String.format(c.getString(R.string.status_deck_size), deckSize,
-        (this.stashOnDeck ? c.getString(R.string.status_stash_on_deck) : "")) + "\n");
+        (stashOnDeck ? c.getString(R.string.status_stash_on_deck) : "")) + "\n");
       sb.append(String.format(c.getString(R.string.status_hand_size), handSize) + "\n");
       if (stashesInHand > 0) {
         sb.append(String.format(c.getString(R.string.status_hand_stashes), stashesInHand) + "\n");

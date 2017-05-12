@@ -42,7 +42,7 @@ public class CardGroup extends BaseAdapter {
   public CardGroup(Context top, boolean onTable, Comparator<MyCard> comparator) {
     this.top = top;
     this.onTable = onTable;
-    this.cmp = comparator;
+    cmp = comparator;
   }
 
   public void updateCounts(int[] supplySizes, int[] embargos, int[] pileVpTokens, int[] pileDebtTokens,

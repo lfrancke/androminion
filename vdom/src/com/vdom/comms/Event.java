@@ -43,7 +43,7 @@ public class Event implements Serializable {
   }
 
   public Event setType(EType r) {
-    this.t = r;
+    t = r;
     return this;
   }
 
@@ -379,27 +379,27 @@ public class Event implements Serializable {
     // some setters
 
     public EventObject(GameStatus o) {
-      this.gs = o;
+      gs = o;
     }
 
     public EventObject(String[] o) {
-      this.ss = o;
+      ss = o;
     }
 
     public EventObject(Card[] o) {
-      this.cs = o;
+      cs = o;
     }
 
     public EventObject(int[] o) {
-      this.is = o;
+      is = o;
     }
 
     public EventObject(NewGame o) {
-      this.ng = o;
+      ng = o;
     }
 
     public EventObject(SelectCardOptions o) {
-      this.sco = o;
+      sco = o;
     }
 
     // A little ugly, but this is so we can put an enum in here without having to
@@ -407,7 +407,7 @@ public class Event implements Serializable {
     // option enums into a single class, so we can accept that as a parameter instead
     // of Object?
     public EventObject(Object[] o) {
-      this.os = o;
+      os = o;
     }
   }
 }

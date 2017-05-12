@@ -394,9 +394,9 @@ public class CardSet {
   private CardSet(final List<Card> cards, final Card baneCard) {
     this.cards = cards;
     this.baneCard = baneCard;
-    this.isRandom = false;
-    this.usePlatColony = UseOptionalCards.Random;
-    this.useShelters = UseOptionalCards.Random;
+    isRandom = false;
+    usePlatColony = UseOptionalCards.Random;
+    useShelters = UseOptionalCards.Random;
   }
 
   private CardSet(final Card[] cardsArray) {
@@ -409,19 +409,19 @@ public class CardSet {
 
   private CardSet(final Card[] cardsArray, final Card baneCard, UseOptionalCards usePlatColony,
                    UseOptionalCards useShelters) {
-    this.cards = Arrays.asList(cardsArray);
+    cards = Arrays.asList(cardsArray);
     this.baneCard = baneCard;
-    this.isRandom = false;
+    isRandom = false;
     this.usePlatColony = usePlatColony;
     this.useShelters = useShelters;
   }
 
   private CardSet(final List<Card> cards, final boolean isRandom) {
     this.cards = cards;
-    this.baneCard = null;
+    baneCard = null;
     this.isRandom = isRandom;
-    this.usePlatColony = UseOptionalCards.Random;
-    this.useShelters = UseOptionalCards.Random;
+    usePlatColony = UseOptionalCards.Random;
+    useShelters = UseOptionalCards.Random;
   }
 
   public Card getBaneCard() {

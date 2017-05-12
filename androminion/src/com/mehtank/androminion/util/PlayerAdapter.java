@@ -44,7 +44,7 @@ public class PlayerAdapter extends ArrayAdapter<PlayerSummary> {
     if (container == null) {
       return;
     }
-    int numItems = this.getCount();
+    int numItems = getCount();
     int realChildCount = container.getChildCount();
     for (int i = 0; i < numItems; i++) {
       View child = null;

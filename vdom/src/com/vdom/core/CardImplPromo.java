@@ -20,7 +20,7 @@ public class CardImplPromo extends CardImpl {
   @Override
   public void isBuying(MoveContext context) {
     super.isBuying(context);
-    switch (this.getControlCard().getKind()) {
+    switch (getControlCard().getKind()) {
       case Summon:
         summon(context);
         break;
@@ -77,11 +77,11 @@ public class CardImplPromo extends CardImpl {
       cards.add(c);
       context.game.blackMarketPile.remove(c);
       context.game.blackMarketPile.add(i, c);
-      currentPlayer.reveal(c, this.getControlCard(), context);
+      currentPlayer.reveal(c, getControlCard(), context);
     }
 
     // play treasures
-    context.game.playTreasures(currentPlayer, context, -1, this.getControlCard());
+    context.game.playTreasures(currentPlayer, context, -1, getControlCard());
 
     if (currentPlayer.getDebtTokenCount() == 0) {
       // get one buy from BlackMarkt pile
@@ -155,7 +155,7 @@ public class CardImplPromo extends CardImpl {
       Card card = game.draw(context, Cards.envoy, 5 - i);
       if (card != null) {
         cards.add(card);
-        currentPlayer.reveal(card, this.getControlCard(), context);
+        currentPlayer.reveal(card, getControlCard(), context);
       }
     }
 
@@ -175,7 +175,7 @@ public class CardImplPromo extends CardImpl {
       toDiscard = cards.get(0);
     }
 
-    currentPlayer.discard(toDiscard, this.getControlCard(), context);
+    currentPlayer.discard(toDiscard, getControlCard(), context);
 
     cards.remove(toDiscard);
 
@@ -202,10 +202,10 @@ public class CardImplPromo extends CardImpl {
           }
         }
       } else if (option == Player.GovernorOption.GainTreasure) {
-        currentPlayer.gainNewCard(Cards.gold, this.getControlCard(), context);
+        currentPlayer.gainNewCard(Cards.gold, getControlCard(), context);
         for (Player player : game.getPlayersInTurnOrder()) {
           if (player != context.getPlayer()) {
-            player.gainNewCard(Cards.silver, this.getControlCard(), new MoveContext(game, player));
+            player.gainNewCard(Cards.silver, getControlCard(), new MoveContext(game, player));
           }
         }
       } else if (option == Player.GovernorOption.Upgrade) {
@@ -217,14 +217,14 @@ public class CardImplPromo extends CardImpl {
             int debt = card.getDebtCost(context);
             boolean potion = card.costPotion();
             currentPlayer.hand.remove(card);
-            currentPlayer.trash(card, this.getControlCard(), context);
+            currentPlayer.trash(card, getControlCard(), context);
 
             card = currentPlayer.controlPlayer.governor_cardToObtain(context, value, debt, potion);
             if (card != null) {
               if (card.getCost(context) != value || card.getDebtCost(context) != debt || card.costPotion() != potion) {
                 Util.playerError(currentPlayer, "Governor error, new card does not cost value of the old card +2.");
               } else {
-                if (currentPlayer.gainNewCard(card, this.getControlCard(), context) == null) {
+                if (currentPlayer.gainNewCard(card, getControlCard(), context) == null) {
                   Util.playerError(currentPlayer, "Governor error, pile is empty or card is not in the game.");
                 }
               }
@@ -242,7 +242,7 @@ public class CardImplPromo extends CardImpl {
                 int debt = card.getDebtCost(playerContext);
                 boolean potion = card.costPotion();
                 player.hand.remove(card);
-                player.trash(card, this.getControlCard(), playerContext);
+                player.trash(card, getControlCard(), playerContext);
 
                 card = player.controlPlayer.governor_cardToObtain(playerContext, value, debt, potion);
                 if (card != null) {
@@ -250,7 +250,7 @@ public class CardImplPromo extends CardImpl {
                       || card.costPotion() != potion) {
                     Util.playerError(player, "Governor error, new card does not cost value of the old card +1.");
                   } else {
-                    if (player.gainNewCard(card, this.getControlCard(), playerContext) == null) {
+                    if (player.gainNewCard(card, getControlCard(), playerContext) == null) {
                       Util.playerError(player, "Governor error, pile is empty or card is not in the game.");
                     }
                   }
@@ -265,7 +265,7 @@ public class CardImplPromo extends CardImpl {
 
   private void prince(Game game, MoveContext context, Player currentPlayer) {
     // throneroom has no effect since prince is already set aside
-    if (this.getControlCard().numberTimesAlreadyPlayed == 0) {
+    if (getControlCard().numberTimesAlreadyPlayed == 0) {
       Card card = currentPlayer.controlPlayer.prince_cardToSetAside(context);
       if (card != null && !currentPlayer.hand.contains(card)) {
         Util.playerError(currentPlayer, "Prince set aside card error, setting aside nothing.");
@@ -274,8 +274,8 @@ public class CardImplPromo extends CardImpl {
 
       if (card != null && card.is(Type.Action, currentPlayer) && card.getCost(context) <= 4 && !card.costPotion()) {
         currentPlayer.prince
-          .add(currentPlayer.playedCards.remove(currentPlayer.playedCards.lastIndexOf((Card) this.getControlCard())));
-        this.getControlCard().stopImpersonatingCard();
+          .add(currentPlayer.playedCards.remove(currentPlayer.playedCards.lastIndexOf((Card) getControlCard())));
+        getControlCard().stopImpersonatingCard();
 
         currentPlayer.hand.remove(card);
         currentPlayer.prince.add(card);
@@ -286,7 +286,7 @@ public class CardImplPromo extends CardImpl {
       }
     } else {
       // reset clone count
-      this.getControlCard().cloneCount = 1;
+      getControlCard().cloneCount = 1;
     }
   }
 
@@ -308,7 +308,7 @@ public class CardImplPromo extends CardImpl {
     if (card != null && card.is(Type.Action, null)) {
       if (card.getCost(context) <= 4 && card.getDebtCost(context) == 0 && !card.costPotion() && !context.game
                                                                                                    .isPileEmpty(card)) {
-        context.player.gainNewCard(card, this.getControlCard(), context);
+        context.player.gainNewCard(card, getControlCard(), context);
       }
     }
   }

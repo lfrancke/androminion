@@ -59,7 +59,7 @@ public class VDomPlayerDrew extends VDomPlayerSarah {
     if (gameType == GameType.FirstGame) {
       midGame = 12;
 
-      this.valuedCards = new Card[] {Cards.cellar, Cards.militia, Cards.platinum, Cards.gold, Cards.silver};
+      valuedCards = new Card[] {Cards.cellar, Cards.militia, Cards.platinum, Cards.gold, Cards.silver};
     } else if (gameType == GameType.BigMoney) {
       midGame = 20;
       earlyCardBuyMax = 2;
@@ -68,17 +68,17 @@ public class VDomPlayerDrew extends VDomPlayerSarah {
       earlyCardBuyMax = 2;
     } else if (gameType == GameType.SizeDistortion) {
       midGame = 14;
-      this.valuedCards =
+      valuedCards =
         new Card[] {Cards.feast, Cards.chapel, Cards.laboratory, Cards.platinum, Cards.gold, Cards.silver};
     } else if (gameType == GameType.VillageSquare) {
       midGame = 12;
       actionCardMax = 7;
-      this.valuedCards = new Card[] {Cards.smithy, Cards.festival, Cards.platinum, Cards.gold, Cards.silver};
+      valuedCards = new Card[] {Cards.smithy, Cards.festival, Cards.platinum, Cards.gold, Cards.silver};
     } else if (gameType == GameType.Repetition) {
       earlyCardBuyMax = 2;
     } else if (gameType == GameType.GiveAndTake) {
       actionCardMax = 10;
-      this.valuedCards = new Card[] {Cards.fishingVillage, Cards.library, Cards.platinum, Cards.gold, Cards.silver};
+      valuedCards = new Card[] {Cards.fishingVillage, Cards.library, Cards.platinum, Cards.gold, Cards.silver};
 
       if (gameType == GameType.BigMoney || gameType == GameType.SizeDistortion || gameType == GameType.VictoryDance
           || gameType == GameType.SecretSchemes
@@ -209,7 +209,7 @@ public class VDomPlayerDrew extends VDomPlayerSarah {
       earlyCardBuyMax = 1;
       midGame = 14;
       actionCardMax = 5;
-      this.valuedCards =
+      valuedCards =
         new Card[] {Cards.festival, Cards.moneyLender, Cards.menagerie, Cards.harvest, Cards.platinum, Cards.gold,
           Cards.silver};
     } else if (gameType == GameType.BadOmens) {
@@ -225,7 +225,7 @@ public class VDomPlayerDrew extends VDomPlayerSarah {
       // addPile(Cards.throneRoom);
       midGame = 15;
       actionCardMax = 7;
-      this.valuedCards =
+      valuedCards =
         new Card[] {Cards.jester, Cards.throneRoom, Cards.fortuneTeller, Cards.laboratory, Cards.platinum, Cards.gold,
           Cards.silver};
     } else if (gameType == GameType.TheJestersWorkshop) {
@@ -245,7 +245,7 @@ public class VDomPlayerDrew extends VDomPlayerSarah {
       earlyCardBuyMax = 1;
       midGame = 14;
       actionCardMax = 5;
-      this.valuedCards =
+      valuedCards =
         new Card[] {Cards.jester, Cards.chancellor, Cards.farmingVillage, Cards.market, Cards.platinum, Cards.gold,
           Cards.silver};
     } else if (gameType == GameType.LastLaughs) {
@@ -277,7 +277,7 @@ public class VDomPlayerDrew extends VDomPlayerSarah {
       earlyCardBuyMax = 1;
       midGame = 15;
       actionCardMax = 5;
-      this.valuedCards =
+      valuedCards =
         new Card[] {Cards.jester, Cards.wishingWell, Cards.courtyard, Cards.miningVillage, Cards.platinum, Cards.gold,
           Cards.silver};
     } else if (gameType == GameType.SmallVictories) {
@@ -293,7 +293,7 @@ public class VDomPlayerDrew extends VDomPlayerSarah {
       // addPile(Cards.pawn);
       midGame = 15;
       actionCardMax = 10;
-      this.valuedCards =
+      valuedCards =
         new Card[] {Cards.fortuneTeller, Cards.greatHall, Cards.harem, Cards.duke, Cards.pawn, Cards.platinum,
           Cards.gold, Cards.silver};
     } else {

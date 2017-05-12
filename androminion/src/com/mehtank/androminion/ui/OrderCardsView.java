@@ -221,7 +221,7 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
    * 'accept' pressed: return cards in order and close view
    */
   private void go() {
-    ((FrameLayout) this.getParent()).removeView(this);
+    ((FrameLayout) getParent()).removeView(this);
     //		top.handle(new Event(Event.EType.CARDORDER).setObject(orderedCards.toArray(new Integer[0])));
     int[] is = new int[origCards.size()];
     for (int i = 0; i < origCards.size(); i++) {

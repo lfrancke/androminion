@@ -43,7 +43,7 @@ public class GameScrollerView extends HorizontalScrollView {
 
   public GameScrollerView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    this.top = context;
+    top = context;
 
     gameEventsRow = new LinearLayout(top);
     gameEventsRow.setOrientation(LinearLayout.HORIZONTAL);

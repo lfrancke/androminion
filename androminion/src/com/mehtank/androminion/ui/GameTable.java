@@ -191,7 +191,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   public GameTable(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs); //TODO remove this workaround
     //super(context, attrs, defStyle); // fails with exception...
-    this.top = (GameActivity) context;
+    top = (GameActivity) context;
 
     setOrientation(VERTICAL);
 
@@ -219,7 +219,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
      * findViewById(R.id.actionText) must be in here so that it gets fadet out whenever everything else fades out.
      */
     helpView =
-      new HelpView(this.top, new View[] {supply, turnView, myCardView, gameScroller, findViewById(R.id.actionText)},
+      new HelpView(top, new View[] {supply, turnView, myCardView, gameScroller, findViewById(R.id.actionText)},
                     new View[] {tr, supply, supply, tr});
   }
 
@@ -591,7 +591,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
 
     this.maxOpened = maxOpened;
     this.exactOpened = exactOpened;
-    this.minOpened = sco.minCount;
+    minOpened = sco.minCount;
 
     if (sco.isBuyPhase) {
       s = Strings.getString(R.string.part_buy);
@@ -847,8 +847,8 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
       for (GameStatus.UpdateCardInfo uci : gs.cardUpdates) {
         supplyPile.updateCardInfo(uci);
       }
-      setSupplySizes(this.lastSupplySizes, this.lastEmbargos, this.lastPileVpTokens, this.lastPileDebtTokens,
-        this.lastPileTradeRouteTokens, this.lastTokens);
+      setSupplySizes(lastSupplySizes, lastEmbargos, lastPileVpTokens, lastPileDebtTokens,
+        lastPileTradeRouteTokens, lastTokens);
       pauseGameTimer();
       HapticFeedback.vibrate(getContext(), AlertType.FINAL);
       finalStatus(gs);
@@ -951,12 +951,12 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
       trashColumn.setVisibility(GONE);
     }
 
-    this.lastSupplySizes = gs.supplySizes;
-    this.lastEmbargos = gs.embargos;
-    this.lastPileVpTokens = gs.pileVpTokens;
-    this.lastPileDebtTokens = gs.pileDebtTokens;
-    this.lastPileTradeRouteTokens = gs.pileTradeRouteTokens;
-    this.lastTokens = gs.tokens;
+    lastSupplySizes = gs.supplySizes;
+    lastEmbargos = gs.embargos;
+    lastPileVpTokens = gs.pileVpTokens;
+    lastPileDebtTokens = gs.pileDebtTokens;
+    lastPileTradeRouteTokens = gs.pileTradeRouteTokens;
+    lastTokens = gs.tokens;
     costs = gs.costs;
 
     for (GameStatus.UpdateCardInfo uci : gs.cardUpdates) {
@@ -1254,8 +1254,8 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
     for (ToggleButton t : showCardsButtons) {
       t.setChecked(false);
     }
-    setSupplySizes(this.lastSupplySizes, this.lastEmbargos, this.lastPileVpTokens, this.lastPileDebtTokens,
-      this.lastPileTradeRouteTokens, this.lastTokens);
+    setSupplySizes(lastSupplySizes, lastEmbargos, lastPileVpTokens, lastPileDebtTokens,
+      lastPileTradeRouteTokens, lastTokens);
   }
 
   /**

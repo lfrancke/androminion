@@ -984,7 +984,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
       if (provinces >= 10 && (Game.players.length == 3 || Game.players.length == 4)) {
         achievement(context, "3or4players10provinces");
       }
-      int vp = this.getVPs();
+      int vp = getVPs();
       if (vp >= 100) {
         achievement(context, "score100");
 

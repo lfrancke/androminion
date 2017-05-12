@@ -1150,7 +1150,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     if (getCoinEstimate(context) >= 8) {
       return false;
     }
-    return this.rand.nextFloat() < getPirateShipTreasure() / 5f;
+    return rand.nextFloat() < getPirateShipTreasure() / 5f;
   }
 
   @Override
@@ -2392,7 +2392,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     if (card.equals(Cards.copper) || card.equals(Cards.masterpiece)) {
       return true;
     }
-    return this.shouldDiscard(card, context);
+    return shouldDiscard(card, context);
   }
 
   @Override
@@ -2516,7 +2516,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         cards.add(c);
       }
     }
-    return (cards.isEmpty()) ? null : this.getBestVictoryCard(context, cards.toArray(new Card[0]));
+    return (cards.isEmpty()) ? null : getBestVictoryCard(context, cards.toArray(new Card[0]));
   }
 
   @Override
@@ -2557,7 +2557,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card rogue_cardToTrash(MoveContext context, ArrayList<Card> canTrash) {
-    return this.lowestCards(context, canTrash, 1, false)[0];
+    return lowestCards(context, canTrash, 1, false)[0];
   }
 
   @Override
@@ -4042,7 +4042,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       return cl.get(Cards.prince);
     } else if (cl.contains(Cards.possession)) {
       return cl.get(Cards.possession);
-    } else if (game.pileSize(Cards.curse) > 0 && !this.hand.contains(Cards.moat) && !this.hand
+    } else if (game.pileSize(Cards.curse) > 0 && !hand.contains(Cards.moat) && !hand
                                                                                        .contains(Cards.watchTower)
                && (cl.contains(Cards.witch) || cl.contains(Cards.seaHag) || cl.contains(Cards.torturer))) {
       if (cl.contains(Cards.witch)) {
@@ -4062,7 +4062,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    if (!this.hand.contains(Cards.moat)) {
+    if (!hand.contains(Cards.moat)) {
       for (Card card : cl) {
         if (card.is(Type.Attack, context.player)) {
           return card;
@@ -4158,7 +4158,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card knight_cardToTrash(MoveContext context, ArrayList<Card> canTrash) {
-    return this.lowestCards(context, canTrash, 1, false)[0];
+    return lowestCards(context, canTrash, 1, false)[0];
   }
 
   @Override
@@ -4403,7 +4403,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         break;
       }
     }
-    return list.get(this.rand.nextInt(i));
+    return list.get(rand.nextInt(i));
   }
 
   private Card[] discardAttackCardsToKeep(MoveContext context, int numToKeep) {

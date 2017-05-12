@@ -31,18 +31,18 @@ public class CommsOld implements Runnable {
 
   public CommsOld(EventHandler parent, int port) throws IOException {
     this.parent = parent;
-    this.isServer = true;
+    isServer = true;
     this.port = port;
 
     debug("Opening server socket...");
     pserver = new ServerSocket(this.port);
-    this.host = pserver.getInetAddress().getHostAddress();
+    host = pserver.getInetAddress().getHostAddress();
     debug("Opened: " + host + " / " + port);
   }
 
   public CommsOld(EventHandler parent, String host, int port) {
     this.parent = parent;
-    this.isServer = false;
+    isServer = false;
     this.host = host;
     this.port = port;
   }

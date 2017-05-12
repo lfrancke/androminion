@@ -72,7 +72,7 @@ public class CardList implements Iterable<Card> {
 
   public Card removeCard(Card card, boolean showUI) {
     int idx = indexOf(card.getId());
-    this.remove(idx, showUI);
+    remove(idx, showUI);
     return card;
   }
 
@@ -175,7 +175,7 @@ public class CardList implements Iterable<Card> {
   }
 
   public Card[] sort(Comparator<Card> comp) {
-    Card[] sorted = this.toArray();
+    Card[] sorted = toArray();
     Arrays.sort(sorted, comp);
     return sorted;
   }

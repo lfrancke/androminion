@@ -74,9 +74,9 @@ public class MoveContext {
   }
 
   public MoveContext(MoveContext context, Game game, Player player) {
-    this.actions = context.actions;
-    this.buys = context.buys;
-    this.coins = context.coins;
+    actions = context.actions;
+    buys = context.buys;
+    coins = context.coins;
     this.game = game;
     this.player = player;
     if (player.getInheritance() != null) {

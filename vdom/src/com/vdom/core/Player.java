@@ -68,7 +68,7 @@ public abstract class Player {
   private boolean minusOneCardTokenOn;
 
   public boolean isPossessed() {
-    return !controlled && !this.equals(controlPlayer);
+    return !controlled && !equals(controlPlayer);
   }
 
   public boolean isControlled() {
@@ -388,7 +388,7 @@ public abstract class Player {
   }
 
   public int getMiserTreasure() {
-    return Util.getCardCount(this.tavern, Cards.copper);
+    return Util.getCardCount(tavern, Cards.copper);
   }
 
   public boolean getMinusOneCoinToken() {
@@ -475,7 +475,7 @@ public abstract class Player {
   }
 
   public int getAllCardCount() {
-    return this.getAllCards().size();
+    return getAllCards().size();
   }
 
   public ArrayList<Card> getAllCards() {
@@ -542,7 +542,7 @@ public abstract class Player {
       Map<Object, Integer> cardCounts = new HashMap<Object, Integer>();
 
     // seed counts with all victory cards in play
-    for (CardPile pile : this.game.piles.values()) {
+    for (CardPile pile : game.piles.values()) {
       for (Card card : pile.getTemplateCards()) {
         if (card.is(Type.Victory, this) || card.is(Type.Curse, this)) {
           cardCounts.put(card, 0);
@@ -552,7 +552,7 @@ public abstract class Player {
 
       Map<Object, Integer> allCardCounts = new HashMap<Object, Integer>();
       HashSet<String> distinctCards = new HashSet<String>();
-      for (Card card : this.getAllCards()) {
+      for (Card card : getAllCards()) {
       distinctCards.add(card.getName());
       if (card.is(Type.Victory, this) || card.is(Type.Curse, this)) {
         if (cardCounts.containsKey(card)) {
@@ -596,7 +596,7 @@ public abstract class Player {
           secondHighestActionCardCount = actionCount;
         }
       }
-      if ((!c.is(Type.Victory, this)) && Cards.isSupplyCard(c) && this.game.isPileEmpty(c)) {
+      if ((!c.is(Type.Victory, this)) && Cards.isSupplyCard(c) && game.isPileEmpty(c)) {
         nonVictoryEmptySupplyPileCards += allCardCounts.get(c);
       }
     }
@@ -614,7 +614,7 @@ public abstract class Player {
     HashSet<String> distinctCards = new HashSet<String>();
     Map<Object, Integer> cardCounts = new HashMap<Object, Integer>();
 
-    for (Card card : this.getAllCards()) {
+    for (Card card : getAllCards()) {
       distinctCards.add(card.getName());
       if (cardCounts.containsKey(card)) {
         cardCounts.put(card, cardCounts.get(card) + 1);
@@ -629,7 +629,7 @@ public abstract class Player {
 
   public Map<Card, Integer> getTreasureCardCounts() {
     Map<Card, Integer> cardCounts = new HashMap<Card, Integer>();
-    for (CardPile pile : this.game.placeholderPiles.values()) {
+    for (CardPile pile : game.placeholderPiles.values()) {
       for (Card card : pile.getTemplateCards()) {
         if (card.is(Type.Treasure, this)) {
           cardCounts.put(card, 0);
@@ -637,7 +637,7 @@ public abstract class Player {
       }
     }
 
-    for (Card card : this.getAllCards()) {
+    for (Card card : getAllCards()) {
       if (card.is(Type.Treasure, this)) {
         if (cardCounts.containsKey(card)) {
           cardCounts.put(card, cardCounts.get(card) + 1);
@@ -650,7 +650,7 @@ public abstract class Player {
   }
 
   public int getCardCount(final Type cardType) {
-    return this.getCardCount(cardType, getAllCards());
+    return getCardCount(cardType, getAllCards());
   }
 
   public int getCardCount(final Type cardType, ArrayList<Card> cards) {
@@ -680,7 +680,7 @@ public abstract class Player {
   }
 
   public int getVictoryCardCount() {
-    return this.getCardCount(Type.Victory);
+    return getCardCount(Type.Victory);
   }
 
   public int getDistinctCardCount() {
@@ -689,7 +689,7 @@ public abstract class Player {
 
   public int getDistinctCardCount(ArrayList<Card> cards) {
     if (cards == null) {
-      cards = this.getAllCards();
+      cards = getAllCards();
     }
     //        int cardCount = 0;
 
@@ -728,7 +728,7 @@ public abstract class Player {
 
   public int getVPs(Map<Card, Integer> totals) {
     if (totals == null) {
-      totals = this.getVictoryPointTotals();
+      totals = getVictoryPointTotals();
     }
     int vp = 0;
     for (Integer total : totals.values()) {
@@ -743,7 +743,7 @@ public abstract class Player {
 
   public Map<Card, Integer> getVictoryPointTotals(Map<Object, Integer> counts) {
     if (counts == null) {
-      counts = this.getVictoryCardCounts();
+      counts = getVictoryCardCounts();
     }
     Map<Card, Integer> totals = new TreeMap<Card, Integer>();
 
@@ -757,7 +757,7 @@ public abstract class Player {
       }
     }
 
-    ArrayList<Card> allCards = this.getAllCards();
+    ArrayList<Card> allCards = getAllCards();
 
     if (counts.containsKey(Cards.gardens)) {
       totals.put(Cards.gardens, counts.get(Cards.gardens) * (allCards.size() / 10));
@@ -769,61 +769,61 @@ public abstract class Player {
       totals.put(Cards.fairgrounds, counts.get(Cards.fairgrounds) * ((counts.get(DISTINCT_CARDS) / 5) * 2));
     }
     if (counts.containsKey(Cards.vineyard)) {
-      totals.put(Cards.vineyard, counts.get(Cards.vineyard) * (this.getActionCardCount(this) / 3));
+      totals.put(Cards.vineyard, counts.get(Cards.vineyard) * (getActionCardCount(this) / 3));
     }
     if (counts.containsKey(Cards.silkRoad)) {
-      totals.put(Cards.silkRoad, counts.get(Cards.silkRoad) * (this.getVictoryCardCount() / 4));
+      totals.put(Cards.silkRoad, counts.get(Cards.silkRoad) * (getVictoryCardCount() / 4));
     }
     if (counts.containsKey(Cards.feodum)) {
       totals.put(Cards.feodum, counts.get(Cards.feodum) * (Util.getCardCount(allCards, Cards.silver) / 3));
     }
     if (counts.containsKey(Cards.distantLands)) {
       // counts only if on tavern
-      counts.put(Cards.distantLands, Util.getCardCount(this.tavern, Cards.distantLands));
+      counts.put(Cards.distantLands, Util.getCardCount(tavern, Cards.distantLands));
       totals.put(Cards.distantLands, counts.get(Cards.distantLands) * 4);
     }
     if (counts.containsKey(Cards.humbleCastle)) {
-      totals.put(Cards.humbleCastle, counts.get(Cards.humbleCastle) * this.getCastleCardCount(this));
+      totals.put(Cards.humbleCastle, counts.get(Cards.humbleCastle) * getCastleCardCount(this));
     }
     if (counts.containsKey(Cards.kingsCastle)) {
-      totals.put(Cards.kingsCastle, counts.get(Cards.kingsCastle) * this.getCastleCardCount(this) * 2);
+      totals.put(Cards.kingsCastle, counts.get(Cards.kingsCastle) * getCastleCardCount(this) * 2);
     }
 
     // landmarks
-    if (this.game.cardInGame(Cards.banditFort)) {
+    if (game.cardInGame(Cards.banditFort)) {
       totals.put(Cards.banditFort,
         (Util.getCardCount(allCards, Cards.silver) + Util.getCardCount(allCards, Cards.gold)) * -2);
     }
-    if (this.game.cardInGame(Cards.fountain)) {
+    if (game.cardInGame(Cards.fountain)) {
       totals.put(Cards.fountain, (Util.getCardCount(allCards, Cards.copper) >= 10) ? 15 : 0);
     }
-    if (this.game.cardInGame(Cards.museum)) {
+    if (game.cardInGame(Cards.museum)) {
       totals.put(Cards.museum, counts.get(DISTINCT_CARDS) * 2);
     }
-    if (this.game.cardInGame(Cards.obelisk)) {
+    if (game.cardInGame(Cards.obelisk)) {
       totals.put(Cards.obelisk,
         game.obeliskCard != null ? Util.countCardsOfSamePile(game, allCards, game.obeliskCard) * 2 : 0);
     }
-    if (this.game.cardInGame(Cards.orchard)) {
+    if (game.cardInGame(Cards.orchard)) {
       totals.put(Cards.orchard, counts.get(THREE_PLUS_COPY_ACTION_CARDS) * 4);
     }
-    if (this.game.cardInGame(Cards.palace)) {
+    if (game.cardInGame(Cards.palace)) {
       totals.put(Cards.palace, (Math.min(Util.getCardCount(allCards, Cards.copper),
         Math.min(Util.getCardCount(allCards, Cards.silver), Util.getCardCount(allCards, Cards.gold)))) * 3);
     }
-    if (this.game.cardInGame(Cards.tower)) {
+    if (game.cardInGame(Cards.tower)) {
       totals.put(Cards.tower, counts.get(NON_VICTORY_EMPTY_SUPPLY_PILE_CARDS));
     }
-    if (this.game.cardInGame(Cards.triumphalArch)) {
+    if (game.cardInGame(Cards.triumphalArch)) {
       totals.put(Cards.triumphalArch, counts.get(SECOND_MOST_COMMON_ACTION_CARDS) * 3);
     }
-    if (this.game.cardInGame(Cards.wall)) {
+    if (game.cardInGame(Cards.wall)) {
       totals.put(Cards.wall, allCards.size() > 15 ? 15 - allCards.size() : 0);
     }
-    if (this.game.cardInGame(Cards.wolfDen)) {
+    if (game.cardInGame(Cards.wolfDen)) {
       totals.put(Cards.wolfDen, counts.get(ONE_COPY_CARDS) * -3);
     }
-    if (this.game.cardInGame(Cards.keep)) {
+    if (game.cardInGame(Cards.keep)) {
       Map<Card, Integer> myWinningTreasures = getTreasureCardCounts();
       for (Iterator<Map.Entry<Card, Integer>> it = myWinningTreasures.entrySet().iterator(); it.hasNext(); ) {
         if (it.next().getValue() == 0) {
@@ -847,7 +847,7 @@ public abstract class Player {
     }
 
     // victory tokens
-    totals.put(Cards.victoryTokens, this.getVictoryTokens());
+    totals.put(Cards.victoryTokens, getVictoryTokens());
 
     return totals;
   }
@@ -2182,7 +2182,7 @@ public abstract class Player {
         if (afterCardsToDraw < 1) {
           afterCardsToDraw = source.size() - numStashes;
         }
-        positionAll = this.controlPlayer
+        positionAll = controlPlayer
                         .stash_chooseDeckPosition(context, responsible, source.size() - numStashes, numStashes,
                           afterCardsToDraw);
         // -1 -> Pass (shuffle normally)

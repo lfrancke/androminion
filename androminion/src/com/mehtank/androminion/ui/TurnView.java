@@ -28,7 +28,7 @@ public class TurnView extends LinearLayout {
   public TurnView(Context context) {
     super(context);
 
-    this.top = context;
+    top = context;
 
     String BASEDIR = Environment.getExternalStorageDirectory().getAbsolutePath();
     String str = BASEDIR + "/Dominion/images/icons/throneroom.png";

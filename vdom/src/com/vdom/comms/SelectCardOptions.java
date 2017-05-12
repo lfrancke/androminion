@@ -85,7 +85,7 @@ public class SelectCardOptions implements Serializable {
   }
 
   public SelectCardOptions setCardResponsible(Card card) {
-    this.cardResponsible = card;
+    cardResponsible = card;
     return this;
   }
 
@@ -116,7 +116,7 @@ public class SelectCardOptions implements Serializable {
 
   public SelectCardOptions ordered() {
     ordered = true;
-    this.pickType = PickType.SELECT_IN_ORDER;
+    pickType = PickType.SELECT_IN_ORDER;
     return this;
   }
 
@@ -145,7 +145,7 @@ public class SelectCardOptions implements Serializable {
 
   public SelectCardOptions isBuy() {
     isBuyPhase = true;
-    this.pickType = PickType.BUY;
+    pickType = PickType.BUY;
     return this;
   }
 

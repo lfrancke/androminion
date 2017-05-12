@@ -60,12 +60,12 @@ public class CardImpl implements Card, Comparable<Card> {
 
   protected CardImpl(Cards.Kind kind, int cost) {
     this.kind = kind;
-    this.name = kind.toString();
+    name = kind.toString();
     if (maxNameLen < name.length()) {
       maxNameLen = name.length();
     }
     this.cost = cost;
-    this.types = new Type[0];
+    types = new Type[0];
   }
 
   public CardImpl(Builder builder) {
@@ -122,7 +122,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
   @Override
   public boolean is(Type t, Player player) {
-    if (player == null || player.getInheritance() == null || !this.equals(Cards.estate)) {
+    if (player == null || player.getInheritance() == null || !equals(Cards.estate)) {
       if (!behaveAsCard().equals(this)) {
         return behaveAsCard().is(t, player);
       }
@@ -151,7 +151,7 @@ public class CardImpl implements Card, Comparable<Card> {
   }
 
   public int getNumberOfTypes(Player player) {
-    if (player == null || player.getInheritance() == null || !this.equals(Cards.estate)) {
+    if (player == null || player.getInheritance() == null || !equals(Cards.estate)) {
       return types.length;
     }
     Set<Type> typeSet = new HashSet<Type>();
@@ -279,12 +279,12 @@ public class CardImpl implements Card, Comparable<Card> {
   }
 
   public int getCost(MoveContext context, boolean buyPhase) {
-    if (this.is(Type.Event, null)) {
+    if (is(Type.Event, null)) {
       return cost; //Costs of Events are not affected by cards like Bridge Troll.
     }
 
     //If it's a variable card pile, and it's not empty, return the cost of the top card
-    if (this.isPlaceholderCard()) {
+    if (isPlaceholderCard()) {
       CardPile pile = context.game.getPile(this);
       if (!pile.isEmpty()) {
         return context.game.getPile(this).topCard().getCost(context, buyPhase);
@@ -303,14 +303,14 @@ public class CardImpl implements Card, Comparable<Card> {
 
     int costModifier = 0;
     //TODO: BUG this isAction call for Quarry should be player-specific sometimes
-    costModifier -= this.is(Type.Action, null) ? (2 * context.countCardsInPlay(Cards.quarry)) : 0;
+    costModifier -= is(Type.Action, null) ? (2 * context.countCardsInPlay(Cards.quarry)) : 0;
     costModifier -= context.countCardsInPlay(Cards.highway);
     costModifier -= currentPlayerContext.countCardsInPlay(Cards.bridgeTroll);
     costModifier -= 2 * context.countCardsInPlay(Cards.princess);
     //TODO: BUG if an inherited peddler is yours, its cost should lower during your buy phase
-    costModifier -= (buyPhase && this.equals(Cards.peddler)) ? (2 * context.countActionCardsInPlay()) : 0;
+    costModifier -= (buyPhase && equals(Cards.peddler)) ? (2 * context.countActionCardsInPlay()) : 0;
     costModifier -=
-      (context.game.isPlayerSupplyTokenOnPile(this.getControlCard().equals(Cards.estate) ? this.getControlCard() : this,
+      (context.game.isPlayerSupplyTokenOnPile(getControlCard().equals(Cards.estate) ? getControlCard() : this,
         context.game.getCurrentPlayer(), PlayerSupplyToken.MinusTwoCost)) ? 2 : 0;
 
     return Math.max(0, cost + costModifier + context.cardCostModifier/*bridge*/);
@@ -331,7 +331,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
   @Override
   public boolean isOverpay(Player player) {
-    if (player == null || player.getInheritance() == null || !this.equals(Cards.estate)) {
+    if (player == null || player.getInheritance() == null || !equals(Cards.estate)) {
       return isOverpay;
     }
     return ((CardImpl) player.getInheritance()).isOverpay;
@@ -452,9 +452,9 @@ public class CardImpl implements Card, Comparable<Card> {
   @Override
   public void play(Game game, MoveContext context, boolean fromHand, boolean treasurePlay) {
     Player currentPlayer = context.getPlayer();
-    Card actualCard = (this.getControlCard() != null ? this.getControlCard() : this);
-    boolean isInheritedAbility = actualCard.equals(Cards.estate) && !this.equals(actualCard);
-    Card inheritedCard = this.equals(Cards.estate) ? context.player.getInheritance() : null;
+    Card actualCard = (getControlCard() != null ? getControlCard() : this);
+    boolean isInheritedAbility = actualCard.equals(Cards.estate) && !equals(actualCard);
+    Card inheritedCard = equals(Cards.estate) ? context.player.getInheritance() : null;
     Card playedCard = isInheritedAbility ? actualCard : this;
     boolean isAction = playedCard.is(Type.Action, currentPlayer);
     boolean enchantressEffect =
@@ -472,15 +472,15 @@ public class CardImpl implements Card, Comparable<Card> {
     }
 
     boolean newCard = false;
-    if (this.numberTimesAlreadyPlayed == 0 && this == actualCard) {
+    if (numberTimesAlreadyPlayed == 0 && this == actualCard) {
       newCard = true;
-      this.movedToNextTurnPile = false;
+      movedToNextTurnPile = false;
       if (fromHand) {
         currentPlayer.hand.remove(this);
       }
       if (!enchantressEffect && trashOnUse) {
         currentPlayer.trash(this, null, context);
-      } else if (!enchantressEffect && this.is(Type.Duration, currentPlayer)) {
+      } else if (!enchantressEffect && is(Type.Duration, currentPlayer)) {
         currentPlayer.nextTurnCards.add(this);
       } else {
         currentPlayer.playedCards.add(this);
@@ -536,7 +536,7 @@ public class CardImpl implements Card, Comparable<Card> {
     } else {
       context.actions += addActions;
       context.buys += addBuys;
-      if (this.equals(Cards.copper)) {
+      if (equals(Cards.copper)) {
         context.addCoins(addGold + context.coppersmithsPlayed);
       } else {
         context.addCoins(addGold);
@@ -554,7 +554,7 @@ public class CardImpl implements Card, Comparable<Card> {
         additionalCardActions(game, context, currentPlayer);
       } else {
         // Play the inheritance virtual card
-        CardImpl cardToPlay = (CardImpl) this.behaveAsCard();
+        CardImpl cardToPlay = (CardImpl) behaveAsCard();
         context.freeActionInEffect++;
         cardToPlay.play(game, context, false);
         context.freeActionInEffect--;
@@ -623,7 +623,7 @@ public class CardImpl implements Card, Comparable<Card> {
       context.buys += addBuys;
       context.getPlayer().addVictoryTokens(context, addVictoryTokens, this);
     }
-    if (this.equals(Cards.estate)) {
+    if (equals(Cards.estate)) {
       Card inheritance = context.getPlayer().getInheritance();
       if (inheritance != null) {
         inheritance.isBuying(context);
@@ -638,8 +638,8 @@ public class CardImpl implements Card, Comparable<Card> {
   @Override
   public void isTrashed(MoveContext context) {
     // card left play - stop any impersonations
-    this.getControlCard().stopImpersonatingCard();
-    this.getControlCard().stopInheritingCardAbilities();
+    getControlCard().stopImpersonatingCard();
+    getControlCard().stopInheritingCardAbilities();
   }
 
   public boolean isImpersonatingAnotherCard() {
@@ -737,7 +737,7 @@ public class CardImpl implements Card, Comparable<Card> {
     if (pileCreator == null) {
       return new DefaultPileCreator();
     } else {
-      return this.pileCreator;
+      return pileCreator;
     }
   }
 
@@ -889,8 +889,8 @@ public class CardImpl implements Card, Comparable<Card> {
     for (Player targetPlayer : context.game.getPlayersInTurnOrder()) {
       if (targetPlayer != currentPlayer) {
         if (!Util.isDefendedFromAttack(game, targetPlayer, this)) {
-          targetPlayer.attacked(this.getControlCard(), context);
-          currentPlayer.addDurationEffectOnOtherPlayer(targetPlayer, this.kind);
+          targetPlayer.attacked(getControlCard(), context);
+          currentPlayer.addDurationEffectOnOtherPlayer(targetPlayer, kind);
         }
       }
     }
@@ -899,10 +899,10 @@ public class CardImpl implements Card, Comparable<Card> {
   protected void witchFamiliar(Game game, MoveContext context, Player currentPlayer) {
     for (Player player : game.getPlayersInTurnOrder()) {
       if (player != currentPlayer && !Util.isDefendedFromAttack(game, player, this)) {
-        player.attacked(this.getControlCard(), context);
+        player.attacked(getControlCard(), context);
         MoveContext targetContext = new MoveContext(game, player);
         targetContext.attackedPlayer = player;
-        player.gainNewCard(Cards.curse, this.getControlCard(), targetContext);
+        player.gainNewCard(Cards.curse, getControlCard(), targetContext);
       }
     }
   }
@@ -917,7 +917,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
     CardImpl cardToPlay = null;
     if (!actionCards.isEmpty()) {
-      switch (this.kind) {
+      switch (kind) {
         case ThroneRoom:
           cardToPlay = (CardImpl) currentPlayer.controlPlayer.throneRoom_cardToPlay(context);
           break;
@@ -981,9 +981,9 @@ public class CardImpl implements Card, Comparable<Card> {
           Util.playerError(currentPlayer, this.getControlCard().name + " card selection error, ignoring");
         }
 
-        if (this.kind == Cards.Kind.Procession) {
+        if (kind == Cards.Kind.Procession) {
           if (!cardToPlay.trashOnUse) {
-            currentPlayer.trash(cardToPlay, this.getControlCard(), context);
+            currentPlayer.trash(cardToPlay, getControlCard(), context);
             if (currentPlayer.playedCards.getLastCard() == cardToPlay) {
               currentPlayer.playedCards.remove(cardToPlay);
             }
@@ -997,7 +997,7 @@ public class CardImpl implements Card, Comparable<Card> {
           if ((cardToGain != null) && (cardToPlay.getCost(context) + 1) == cardToGain.getCost(context) &&
               cardToPlay.getDebtCost(context) == cardToGain.getDebtCost(context) &&
               cardToPlay.costPotion() == cardToGain.costPotion()) {
-            currentPlayer.gainNewCard(cardToGain, this.getControlCard(), context);
+            currentPlayer.gainNewCard(cardToGain, getControlCard(), context);
           }
         }
       }
@@ -1008,7 +1008,7 @@ public class CardImpl implements Card, Comparable<Card> {
   protected void multiPlayTreasure(MoveContext context, Game game, Player currentPlayer) {
     Card treasure = null;
 
-    switch (this.kind) {
+    switch (kind) {
       case Counterfeit:
         treasure = currentPlayer.controlPlayer.counterfeit_cardToPlay(context);
         break;
@@ -1030,7 +1030,7 @@ public class CardImpl implements Card, Comparable<Card> {
       cardToPlay.cloneCount = 0;
       cardToPlay.numberTimesAlreadyPlayed = 0;
 
-      if (this.kind == Cards.Kind.Counterfeit && currentPlayer.inPlay(treasure)) {
+      if (kind == Cards.Kind.Counterfeit && currentPlayer.inPlay(treasure)) {
         if (currentPlayer.playedCards.getLastCard().equals(treasure)) {
           currentPlayer.playedCards.remove(treasure);
           currentPlayer.trash(treasure, this, context);
@@ -1066,7 +1066,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
     for (Card card : cardsToDiscard) {
       currentPlayer.hand.remove(card);
-      currentPlayer.discard(card, this.getControlCard(), context);
+      currentPlayer.discard(card, getControlCard(), context);
     }
   }
 
@@ -1077,7 +1077,7 @@ public class CardImpl implements Card, Comparable<Card> {
       // allow that
       if (player == currentPlayer || (!Util.isDefendedFromAttack(game, player, this))) {
         if (player != currentPlayer) {
-          player.attacked(this.getControlCard(), context);
+          player.attacked(getControlCard(), context);
         }
 
         MoveContext playerContext = new MoveContext(game, player);
@@ -1085,7 +1085,7 @@ public class CardImpl implements Card, Comparable<Card> {
         Card card = game.draw(playerContext, this, 1);
 
         if (card != null) {
-          player.reveal(card, this.getControlCard(), playerContext);
+          player.reveal(card, getControlCard(), playerContext);
 
           boolean discard = false;
 
@@ -1096,7 +1096,7 @@ public class CardImpl implements Card, Comparable<Card> {
           }
 
           if (discard) {
-            player.discard(card, this.getControlCard(), playerContext);
+            player.discard(card, getControlCard(), playerContext);
           } else {
             // put it back
             player.putOnTopOfDeck(card, playerContext, true);
@@ -1110,7 +1110,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
       Card draw = null;
       while ((draw = game.draw(context, Cards.scryingPool, -1)) != null) {
-        currentPlayer.reveal(draw, this.getControlCard(), new MoveContext(context, game, currentPlayer));
+        currentPlayer.reveal(draw, getControlCard(), new MoveContext(context, game, currentPlayer));
         cardsToPutInHand.add(draw);
         if (!(draw.is(Type.Action, currentPlayer))) {
           break;
@@ -1125,7 +1125,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
   void startInheritingCardAbilities(CardImpl inheritingCard) {
     inheritingCard.setControlCard(this);
-    this.inheritingAbilitiesCard = inheritingCard;
+    inheritingAbilitiesCard = inheritingCard;
   }
 
   void startImpersonatingCard(CardImpl impersonatingCard) {
@@ -1134,17 +1134,17 @@ public class CardImpl implements Card, Comparable<Card> {
   }
 
   void stopImpersonatingCard() {
-    if (this.inheritingAbilitiesCard != null) {
-      this.inheritingAbilitiesCard.stopImpersonatingCard();
+    if (inheritingAbilitiesCard != null) {
+      inheritingAbilitiesCard.stopImpersonatingCard();
     }
-    if (this.impersonatingCard != null) {
-      this.impersonatingCard.stopImpersonatingCard();
+    if (impersonatingCard != null) {
+      impersonatingCard.stopImpersonatingCard();
     }
-    this.impersonatingCard = null;
+    impersonatingCard = null;
   }
 
   void stopInheritingCardAbilities() {
-    this.inheritingAbilitiesCard = null;
+    inheritingAbilitiesCard = null;
   }
 
   public static class Builder {
@@ -1188,22 +1188,22 @@ public class CardImpl implements Card, Comparable<Card> {
 
     public Builder(Cards.Kind kind, int cost) {
       this.kind = kind;
-      this.name = kind.toString();
+      name = kind.toString();
       this.cost = cost;
     }
 
     public Builder(Cards.Kind kind, Type... type) {
       this.kind = kind;
-      this.name = kind.toString();
-      this.cost = 0;
-      this.types = type;
+      name = kind.toString();
+      cost = 0;
+      types = type;
     }
 
     public Builder(Cards.Kind kind, int cost, Type... type) {
       this.kind = kind;
-      this.name = kind.toString();
+      name = kind.toString();
       this.cost = cost;
-      this.types = type;
+      types = type;
     }
 
     public Builder description(String val) {

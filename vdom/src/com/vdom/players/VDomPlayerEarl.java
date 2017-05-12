@@ -55,30 +55,30 @@ public class VDomPlayerEarl extends BasePlayer {
         // this.turnCount += 1;
         HAND = getHand().toArray();
         for (Card card : HAND) {
-          this.historyItems.add(new HistoryItem(this.turnCount, card, 0, HistoryItem.Action.IN_HAND));
+          historyItems.add(new HistoryItem(turnCount, card, 0, HistoryItem.Action.IN_HAND));
         }
       } else if ((event.getType() == GameEvent.EventType.BuyingCard) || (event.getType()
                                                                          == GameEvent.EventType.CardObtained)) {
         Card card = event.getCard();
-        this.historyItems.add(new HistoryItem(this.turnCount, card, 0, HistoryItem.Action.BOUGHT));
+        historyItems.add(new HistoryItem(turnCount, card, 0, HistoryItem.Action.BOUGHT));
 
         if (card.is(Type.Victory)) {
           for (Card thisCard : HAND) {
-            this.historyItems.add(
-              new HistoryItem(this.turnCount, thisCard, card.getVictoryPoints(), HistoryItem.Action.VICTORY_HELPER));
+            historyItems.add(
+              new HistoryItem(turnCount, thisCard, card.getVictoryPoints(), HistoryItem.Action.VICTORY_HELPER));
           }
         } else if (card.is(Type.Curse, event.context.getPlayer())) {
           for (Card thisCard : HAND) {
-            this.historyItems.add(
-              new HistoryItem(this.turnCount, thisCard, card.getVictoryPoints(), HistoryItem.Action.VICTORY_HELPER));
+            historyItems.add(
+              new HistoryItem(turnCount, thisCard, card.getVictoryPoints(), HistoryItem.Action.VICTORY_HELPER));
           }
         }
       } else if (event.getType() == GameEvent.EventType.PlayingCard) {
-        this.historyItems.add(new HistoryItem(this.turnCount, event.getCard(), 0, HistoryItem.Action.PLAYED));
+        historyItems.add(new HistoryItem(turnCount, event.getCard(), 0, HistoryItem.Action.PLAYED));
       } else if (event.getType() == GameEvent.EventType.GameOver) {
         Player player = event.getContext().getPlayer();
         if (!(player.getWin())) {
-          calculateStats(this.historyItems);
+          calculateStats(historyItems);
         }
       }
     }
@@ -90,7 +90,7 @@ public class VDomPlayerEarl extends BasePlayer {
 
   public Card doAction(MoveContext context) {
     Card card =
-      fromHand(calculateAction(this.turnCount, getHand().toArray(), context.countThroneRoomsInEffect(), context));
+      fromHand(calculateAction(turnCount, getHand().toArray(), context.countThroneRoomsInEffect(), context));
     debug("myAction: " + Arrays.toString(getHand().toArray()) + " -> " + card);
 
     return card;
@@ -283,7 +283,7 @@ public class VDomPlayerEarl extends BasePlayer {
     }
 
     if (!randList.isEmpty()) {
-      return randList.get(this.rand.nextInt(randList.size()));
+      return randList.get(rand.nextInt(randList.size()));
     }
 
     return null;
@@ -477,7 +477,7 @@ public class VDomPlayerEarl extends BasePlayer {
     }
     debug(allMyCards.toString());
     debug("total cards: " + total);
-    debug("total turns: " + this.turnCount);
+    debug("total turns: " + turnCount);
     debug(getStat(historyItems, HistoryItem.Action.BOUGHT).toString());
     HashMap<Integer, Integer> played = getStat(historyItems, HistoryItem.Action.PLAYED);
     HashMap<Integer, Integer> inHand = getStat(historyItems, HistoryItem.Action.IN_HAND);
@@ -731,7 +731,7 @@ public class VDomPlayerEarl extends BasePlayer {
       return cardToBuy;
     }
 
-    if ((this.turnCount > 15 || game.pileSize(Cards.province) < 4) && (context.canBuy(Cards.duchy))) {
+    if ((turnCount > 15 || game.pileSize(Cards.province) < 4) && (context.canBuy(Cards.duchy))) {
       return Cards.duchy;
     }
 
@@ -756,7 +756,7 @@ public class VDomPlayerEarl extends BasePlayer {
       return cardToBuy;
     }
 
-    if ((this.turnCount > 15) && (context.canBuy(Cards.duchy))) {
+    if ((turnCount > 15) && (context.canBuy(Cards.duchy))) {
       return Cards.duchy;
     }
 
@@ -766,7 +766,7 @@ public class VDomPlayerEarl extends BasePlayer {
       return thisCard;
     }
 
-    if ((this.turnCount < 5) && (context.canBuy(Cards.mine)) && (getMyCardCount(Cards.mine) < 2)) {
+    if ((turnCount < 5) && (context.canBuy(Cards.mine)) && (getMyCardCount(Cards.mine) < 2)) {
       return Cards.mine;
     }
 
@@ -836,7 +836,7 @@ public class VDomPlayerEarl extends BasePlayer {
       return cardToBuy;
     }
 
-    if ((this.turnCount < 5) && (!(isChapelGame(context))) && (context.canBuy(Cards.moneyLender)) && (getMyCardCount(
+    if ((turnCount < 5) && (!(isChapelGame(context))) && (context.canBuy(Cards.moneyLender)) && (getMyCardCount(
       Cards.moneyLender) < 1)) {
       return Cards.moneyLender;
     }
@@ -849,7 +849,7 @@ public class VDomPlayerEarl extends BasePlayer {
       return Cards.bureaucrat;
     }
 
-    if (this.turnCount > this.silverTurnCount) {
+    if (turnCount > silverTurnCount) {
       return Cards.silver;
     }
 
@@ -872,7 +872,7 @@ public class VDomPlayerEarl extends BasePlayer {
       return Cards.chapel;
     }
 
-    if (this.turnCount > this.silverTurnCount) {
+    if (turnCount > silverTurnCount) {
       return Cards.silver;
     }
     ArrayList<Card> cards = new ArrayList<Card>();
@@ -917,7 +917,7 @@ public class VDomPlayerEarl extends BasePlayer {
       return Cards.courtyard;
     }
 
-    if (this.turnCount > 20) {
+    if (turnCount > 20) {
       return Cards.estate;
     }
     if ((context.canBuy(Cards.cellar)) && (getMyCardCount(Cards.cellar) < 2)) {
@@ -980,7 +980,7 @@ public class VDomPlayerEarl extends BasePlayer {
 
   private boolean shouldBuyChapel(MoveContext context) {
     int goldAvailable = getCoinEstimate(context);
-    return ((isChapelGame(context)) && (this.turnCount < 3) && (((goldAvailable == 2) || (goldAvailable == 3)))
+    return ((isChapelGame(context)) && (turnCount < 3) && (((goldAvailable == 2) || (goldAvailable == 3)))
             && (getMyCardCount(Cards.chapel) < 1));
   }
 
@@ -997,8 +997,8 @@ public class VDomPlayerEarl extends BasePlayer {
 
     if ((((goldAvailable == 4) || (goldAvailable == 5))) && (cardInPlay(context, Cards.treasureMap)) && (getMyCardCount(
       Cards.treasureMap) < 2) &&
-        (this.treasureMapsBought < 2)) {
-      this.treasureMapsBought += 1;
+        (treasureMapsBought < 2)) {
+      treasureMapsBought += 1;
       return Cards.treasureMap;
     }
     Card cardToBuy = null;
@@ -1029,7 +1029,7 @@ public class VDomPlayerEarl extends BasePlayer {
     }
 
     if (goldAvailable <= 2) {
-      if (this.turnCount < 15) {
+      if (turnCount < 15) {
         return Cards.copper;
       }
       return null;
@@ -1038,7 +1038,7 @@ public class VDomPlayerEarl extends BasePlayer {
     int tries = 40;
 
     while (tries-- > 0) {
-      Card card = cards[this.rand.nextInt(cards.length)];
+      Card card = cards[rand.nextInt(cards.length)];
       if (context.canBuy(card)) {
         return card;
       }
@@ -1096,23 +1096,23 @@ public class VDomPlayerEarl extends BasePlayer {
     }
 
     public int getTurn() {
-      return this.turn;
+      return turn;
     }
 
     public Card getCard() {
-      return this.card;
+      return card;
     }
 
     public int getVictoryPoints() {
-      return this.victoryPoints;
+      return victoryPoints;
     }
 
     public Action getAction() {
-      return this.action;
+      return action;
     }
 
     public String toString() {
-      return this.turn + " - " + this.card + " - " + this.action;
+      return turn + " - " + card + " - " + action;
     }
 
     enum Action {

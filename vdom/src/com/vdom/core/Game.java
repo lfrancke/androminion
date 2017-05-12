@@ -2476,13 +2476,13 @@ public class Game {
       }
 
       for (Card card : cardSet.getCards()) {
-        this.addPile(card);
+        addPile(card);
       }
 
       if (cardSet.getBaneCard() != null) {
-        this.baneCard = cardSet.getBaneCard();
+        baneCard = cardSet.getBaneCard();
         //Adding the bane card could probably be done in the CardSet class, but it seems better to call it out explicitly.
-        this.addPile(this.baneCard);
+        addPile(baneCard);
       }
     }
 
@@ -2575,10 +2575,10 @@ public class Game {
         blackMarketPile.add(card.instantiate());
       }
 
-      if (this.baneCard == null && blackMarketPile.contains(Cards.youngWitch)) {
-        this.baneCard = CardSet.getBaneCard(remainingCards);
-        if (this.baneCard != null) {
-          this.addPile(this.baneCard);
+      if (baneCard == null && blackMarketPile.contains(Cards.youngWitch)) {
+        baneCard = CardSet.getBaneCard(remainingCards);
+        if (baneCard != null) {
+          addPile(baneCard);
         }
       }
       // sort
@@ -2683,7 +2683,7 @@ public class Game {
       }
     }
     if (looter) {
-      CardPile rp = (CardPile) this.addPile(Cards.virtualRuins, Math.max(10, (numPlayers * 10) - 10));
+      CardPile rp = (CardPile) addPile(Cards.virtualRuins, Math.max(10, (numPlayers * 10) - 10));
     }
 
     if (piles.containsKey(Cards.tournament.getName()) && !piles.containsKey(Cards.bagOfGold.getName())) {

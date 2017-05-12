@@ -35,7 +35,7 @@ public class SelectStringView extends BottomInputView implements AdapterView.OnI
   @Override
   public void onItemClick(AdapterView<?> parent, View v, int pos, long id) {
     if (v instanceof TextView) {
-      ((FrameLayout) this.getParent()).removeView(this);
+      ((FrameLayout) getParent()).removeView(this);
       String s = (((TextView) v).getText().toString());
       if (returnType == Event.EType.OPTION) {
         top.handle(new Event(Event.EType.OPTION).setInteger(options.indexOf(s)));

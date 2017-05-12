@@ -841,7 +841,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       return super.pirateShip_takeTreasure(context);
     }
     Object[] extras = new Object[1];
-    extras[0] = this.getPirateShipTreasure();
+    extras[0] = getPirateShipTreasure();
     return selectBoolean(context, Cards.pirateShip, extras);
   }
 
@@ -2760,7 +2760,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       return super.miser_shouldTakeTreasure(context);
     }
     Object[] extras = new Object[1];
-    extras[0] = this.getMiserTreasure();
+    extras[0] = getMiserTreasure();
     return selectBoolean(context, Cards.miser, extras);
   }
 

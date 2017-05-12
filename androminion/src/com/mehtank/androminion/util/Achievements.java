@@ -92,7 +92,7 @@ public class Achievements {
 
   public Achievements(Context context) {
     this.context = context;
-    this.prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
     for (int i = 0; i < Achievements.KEYS.length; i++) {
       text[i] = context.getString(ids[i]);
