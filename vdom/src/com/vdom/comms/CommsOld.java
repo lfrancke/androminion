@@ -112,7 +112,7 @@ public class CommsOld implements Runnable {
     try {
       // debug("Trying to get...");
       p = (Event) ois.readObject();
-      debug("Got: " + p.toString());
+      debug("Got: " + p);
     } catch (OptionalDataException e) {
       debug("OptionalDataException in Comms.get() -- ignoring.");
     } catch (ClassNotFoundException e) {
@@ -125,7 +125,7 @@ public class CommsOld implements Runnable {
   }
 
   public void put(Event p) throws IOException {
-    debug("Put: " + p.toString());
+    debug("Put: " + p);
     oos.writeObject(p);
   }
 

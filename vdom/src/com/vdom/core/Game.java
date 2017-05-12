@@ -2840,7 +2840,7 @@ public class Game {
 
     for (Entry<String, CardPile> cEntry : piles.entrySet()) {
       if (cEntry.getKey().equals(cEntry.getValue().placeholderCard().getName())) {
-        Util.debug(cEntry.getKey() + ": " + cEntry.getValue().cards.toString());
+        Util.debug(cEntry.getKey() + ": " + cEntry.getValue().cards);
       } else {
 
       }

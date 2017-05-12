@@ -84,7 +84,7 @@ public class Event implements Serializable {
     str += ", str =  " + s;
     str += ", bool = " + b;
     if (o != null) {
-      str += ", obj = " + o.toString();
+      str += ", obj = " + o;
     }
 
     return str;

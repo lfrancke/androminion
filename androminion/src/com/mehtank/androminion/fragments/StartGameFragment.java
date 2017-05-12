@@ -827,7 +827,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     try {
       ((OnStartGameListener) getActivity()).onStartGameClick(strs);
     } catch (ClassCastException e) {
-      throw new ClassCastException(getActivity().toString() + " must implement OnStartGameListener");
+      throw new ClassCastException(getActivity() + " must implement OnStartGameListener");
     }
   }
 

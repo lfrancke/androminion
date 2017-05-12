@@ -941,7 +941,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
       if (cardToPlay != null) {
         if (!actionCards.contains(cardToPlay)) {
-          Util.playerError(currentPlayer, this.getControlCard().name.toString() + " card selection error, ignoring");
+          Util.playerError(currentPlayer, this.getControlCard().name + " card selection error, ignoring");
         } else {
           context.freeActionInEffect++;
 

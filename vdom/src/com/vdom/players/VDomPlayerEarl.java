@@ -487,7 +487,7 @@ public class VDomPlayerEarl extends BasePlayer {
     for (HistoryItem historyItem : historyItems) {
       if ((historyItem.getAction() == HistoryItem.Action.BOUGHT) && (historyItem.getCard().is(Type.Action, this))) {
         debug(
-          historyItem.toString() + ", was in hand " + inHand.get(historyItem.getCard().getId()) + " times, played " +
+          historyItem + ", was in hand " + inHand.get(historyItem.getCard().getId()) + " times, played " +
           played.get(historyItem.getCard().getId()) + " times, and saw " + victoryHelpers
                                                                              .get(historyItem.getCard().getId())
           + " vps");
@@ -1113,7 +1113,7 @@ public class VDomPlayerEarl extends BasePlayer {
     }
 
     public String toString() {
-      return this.turn + " - " + this.card.toString() + " - " + this.action.toString();
+      return this.turn + " - " + this.card + " - " + this.action;
     }
 
     enum Action {

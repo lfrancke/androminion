@@ -110,7 +110,7 @@ public class UI extends JFrame implements GameEventListener {
     JPanel gameStatsPanel = new JPanel(new GridLayout(3, 1));
     gameStatsPanel.setBorder(new EmptyBorder(0, 10, 0, 10));
     gameTypeLabel = new JLabel();
-    gameTypeLabel.setText(GAME_TYPE_TEXT + Game.gameType.toString());
+    gameTypeLabel.setText(GAME_TYPE_TEXT + Game.gameType);
 
     turnLabel = new JLabel();
     turnLabel.setText(TURN_TEXT + "1");

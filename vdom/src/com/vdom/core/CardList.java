@@ -182,6 +182,6 @@ public class CardList implements Iterable<Card> {
 
   @Override
   public String toString() {
-    return name + "(" + player.getPlayerName() + "): " + a.toString();
+    return name + "(" + player.getPlayerName() + "): " + a;
   }
 }

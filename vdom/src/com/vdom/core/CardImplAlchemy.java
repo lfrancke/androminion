@@ -139,7 +139,7 @@ public class CardImplAlchemy extends CardImpl {
           for (int i = 0; i < toOrder.size(); i++) {
             Card candidate = playOrder[i];
             if (!toOrder.contains(candidate)) {
-              Util.playerError(currentPlayer, candidate + " wasn't in your toOrder list (" + toOrder.toString() + ")");
+              Util.playerError(currentPlayer, candidate + " wasn't in your toOrder list (" + toOrder + ")");
               bad = true;
             }
           }

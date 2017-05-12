@@ -267,7 +267,7 @@ public class Comms {
     }
 
     public void put(Event p) {
-      debug("Put: " + p.toString());
+      debug("Put: " + p);
       if (!toSendQueue.offer(p)) {
         debug("Send Queue is full. Since the capacity of the queue is MAX_VALUE, you will not see this.");
         System.exit(1); // TODO: let the user know in some nicer way that something is seriously broken
@@ -345,7 +345,7 @@ public class Comms {
       try {
         // debug("Trying to get...");
         p = (Event) ois.readObject();
-        debug("Got: " + p.toString());
+        debug("Got: " + p);
       } catch (OptionalDataException e) {
         debug("OptionalDataException in Comms.get() -- ignoring.");
       } catch (ClassNotFoundException e) {
@@ -583,7 +583,7 @@ public class Comms {
           } catch (InterruptedException e) {
             continue;
           }
-          debug("sending event " + toSend.toString());
+          debug("sending event " + toSend);
           if (toSend.t == EType.KILLSENDER) {
             break;
           }

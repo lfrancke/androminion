@@ -123,7 +123,7 @@ public class GameActivity extends SherlockActivity implements EventHandler {
         return;
       }
       Event e = (Event) msg.obj;
-      debug("Handling message: " + e.toString());
+      debug("Handling message: " + e);
       boolean ack = false;
 
       switch (e.t) {
