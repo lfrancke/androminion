@@ -13,114 +13,114 @@ import com.vdom.core.Type;
 
 public interface Card extends Serializable {
 
-  public Kind getKind();
+  Kind getKind();
 
-  public String getName();
+  String getName();
 
-  public String getSafeName();
+  String getSafeName();
 
-  public Expansion getExpansion();
+  Expansion getExpansion();
 
-  public boolean is(Type t, Player player);
+  boolean is(Type t, Player player);
 
-  public boolean is(Type t);
+  boolean is(Type t);
 
-  public int getNumberOfTypes(Player player);
+  int getNumberOfTypes(Player player);
 
-  public String getStats();
+  String getStats();
 
-  public String getDescription();
+  String getDescription();
 
-  public int getCost(MoveContext context);
+  int getCost(MoveContext context);
 
-  public int getCost(MoveContext context, boolean buyPhase);
+  int getCost(MoveContext context, boolean buyPhase);
 
-  public boolean costPotion();
+  boolean costPotion();
 
-  public int getDebtCost(MoveContext context);
+  int getDebtCost(MoveContext context);
 
-  public int getVictoryPoints();
+  int getVictoryPoints();
 
-  public boolean isOverpay(Player player);
+  boolean isOverpay(Player player);
 
-  public int getAddCards();
+  int getAddCards();
 
-  public int getAddActions();
+  int getAddActions();
 
-  public int getAddGold();
+  int getAddGold();
 
-  public boolean providePotion();
+  boolean providePotion();
 
-  public int getAddBuys();
+  int getAddBuys();
 
-  public int getAddVictoryTokens();
+  int getAddVictoryTokens();
 
-  public int getAddCardsNextTurn();
+  int getAddCardsNextTurn();
 
-  public int getAddActionsNextTurn();
+  int getAddActionsNextTurn();
 
-  public int getAddGoldNextTurn();
+  int getAddGoldNextTurn();
 
-  public int getAddBuysNextTurn();
+  int getAddBuysNextTurn();
 
-  public boolean takeAnotherTurn();
+  boolean takeAnotherTurn();
 
-  public int takeAnotherTurnCardCount();
+  int takeAnotherTurnCardCount();
 
   /**
    * Does this card force you to trash a card when played? (Used for AI)
    *
    * @return Whether this card forces you to trash a card when played
    */
-  public boolean trashForced();
+  boolean trashForced();
 
-  public boolean isCallableWhenCardGained();
+  boolean isCallableWhenCardGained();
 
-  public int getCallableWhenGainedMaxCost();
+  int getCallableWhenGainedMaxCost();
 
-  public boolean isCallableWhenActionResolved();
+  boolean isCallableWhenActionResolved();
 
-  public boolean doesActionStillNeedToBeInPlayToCall();
+  boolean doesActionStillNeedToBeInPlayToCall();
 
-  public boolean isCallableWhenTurnStarts();
+  boolean isCallableWhenTurnStarts();
 
-  public void callWhenCardGained(MoveContext context, Card cardToGain);
+  void callWhenCardGained(MoveContext context, Card cardToGain);
 
-  public void callWhenActionResolved(MoveContext context, Card resolvedAction);
+  void callWhenActionResolved(MoveContext context, Card resolvedAction);
 
-  public void callAtStartOfTurn(MoveContext context);
+  void callAtStartOfTurn(MoveContext context);
 
-  public void play(Game game, MoveContext context);
+  void play(Game game, MoveContext context);
 
-  public void play(Game game, MoveContext context, boolean fromHand);
+  void play(Game game, MoveContext context, boolean fromHand);
 
-  public void play(Game game, MoveContext context, boolean fromHand, boolean treasurePlay);
+  void play(Game game, MoveContext context, boolean fromHand, boolean treasurePlay);
 
-  public Integer getId();
+  Integer getId();
 
-  public void isBuying(MoveContext context);
+  void isBuying(MoveContext context);
 
-  public void isBought(MoveContext context);
+  void isBought(MoveContext context);
 
-  public void isTrashed(MoveContext context);
+  void isTrashed(MoveContext context);
 
-  public boolean isImpersonatingAnotherCard();
+  boolean isImpersonatingAnotherCard();
 
-  public Card behaveAsCard();
+  Card behaveAsCard();
 
-  public CardImpl getControlCard();
+  CardImpl getControlCard();
 
-  public boolean isTemplateCard();
+  boolean isTemplateCard();
 
-  public CardImpl getTemplateCard();
+  CardImpl getTemplateCard();
 
-  public boolean isPlaceholderCard();
+  boolean isPlaceholderCard();
 
-  public void setPlaceholderCard();
+  void setPlaceholderCard();
 
-  public CardImpl instantiate();
+  CardImpl instantiate();
 
-  public PileCreator getPileCreator();
+  PileCreator getPileCreator();
 
   //public void isGained(MoveContext context);
 }

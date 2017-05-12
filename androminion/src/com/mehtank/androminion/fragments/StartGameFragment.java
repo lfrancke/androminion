@@ -582,7 +582,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
   // Container Activity must implement this interface
   public interface OnStartGameListener {
 
-    public void onStartGameClick(ArrayList<String> values);
+    void onStartGameClick(ArrayList<String> values);
   }
 
   private static class GameTypeItem {
