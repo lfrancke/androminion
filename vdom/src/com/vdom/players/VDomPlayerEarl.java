@@ -424,14 +424,14 @@ public class VDomPlayerEarl extends BasePlayer {
       if (stat.containsKey(id)) {
         count = stat.get(id);
       } else {
-        count = Integer.valueOf(0);
+        count = 0;
       }
       if (card.is(Type.Victory)) {
-        stat.put(id, Integer.valueOf(count.intValue() + card.getVictoryPoints()));
+        stat.put(id, count.intValue() + card.getVictoryPoints());
       } else if (card.is(Type.Curse, null)) {
-        stat.put(id, Integer.valueOf(count.intValue() + card.getVictoryPoints()));
+        stat.put(id, count.intValue() + card.getVictoryPoints());
       } else {
-        stat.put(id, count = Integer.valueOf(count.intValue() + 1));
+        stat.put(id, count = count.intValue() + 1);
       }
     }
 
@@ -447,14 +447,14 @@ public class VDomPlayerEarl extends BasePlayer {
       if (stat.containsKey(id)) {
         count = stat.get(id);
       } else {
-        count = Integer.valueOf(0);
+        count = 0;
       }
       if (card.is(Type.Victory)) {
-        stat.put(id, Integer.valueOf(count.intValue() + card.getVictoryPoints()));
+        stat.put(id, count.intValue() + card.getVictoryPoints());
       } else if (card.is(Type.Curse, null)) {
-        stat.put(id, Integer.valueOf(count.intValue() + card.getVictoryPoints()));
+        stat.put(id, count.intValue() + card.getVictoryPoints());
       } else {
-        stat.put(id, count = Integer.valueOf(count.intValue() + 1));
+        stat.put(id, count = count.intValue() + 1);
       }
     }
 
@@ -468,12 +468,12 @@ public class VDomPlayerEarl extends BasePlayer {
       String name = card.getName();
       int count;
       if (allMyCards.containsKey(name)) {
-        count = allMyCards.get(name).intValue();
+        count = allMyCards.get(name);
       } else {
         count = 0;
       }
 
-      allMyCards.put(name, Integer.valueOf(++count));
+      allMyCards.put(name, ++count);
       ++total;
     }
     debug(allMyCards.toString());
@@ -762,7 +762,7 @@ public class VDomPlayerEarl extends BasePlayer {
     }
 
     Card[] cards = {Cards.market, Cards.baker, Cards.mine/*, Cards.saboteur */};
-    Card thisCard = pickBalancedBuyable(context, cards, Integer.valueOf(3));
+    Card thisCard = pickBalancedBuyable(context, cards, 3);
     if (thisCard != null) {
       return thisCard;
     }
@@ -772,7 +772,7 @@ public class VDomPlayerEarl extends BasePlayer {
     }
 
     Card[] cards2 = {Cards.festival, Cards.market, Cards.baker};
-    thisCard = pickBalancedBuyable(context, cards2, Integer.valueOf(4));
+    thisCard = pickBalancedBuyable(context, cards2, 4);
     if (thisCard != null) {
       return thisCard;
     }
@@ -812,11 +812,11 @@ public class VDomPlayerEarl extends BasePlayer {
     for (Card card : available) {
       int thisCount = getMyCardCount(card);
       if (low == null) {
-        low = Integer.valueOf(thisCount);
+        low = thisCount;
       }
 
-      if (thisCount < low.intValue()) {
-        low = Integer.valueOf(thisCount);
+      if (thisCount < low) {
+        low = thisCount;
       }
     }
 
@@ -825,7 +825,7 @@ public class VDomPlayerEarl extends BasePlayer {
     }
 
     for (Card thisCard : available) {
-      if (getMyCardCount(thisCard) <= low.intValue()) {
+      if (getMyCardCount(thisCard) <= low) {
         return thisCard;
       }
     }
@@ -856,7 +856,7 @@ public class VDomPlayerEarl extends BasePlayer {
 
     Card[] cards =
       {Cards.militia, Cards.bureaucrat, Cards.throneRoom, Cards.seaHag, Cards.cutpurse, Cards.miningVillage};
-    Card thisCard = pickBalancedBuyable(context, cards, Integer.valueOf(2));
+    Card thisCard = pickBalancedBuyable(context, cards, 2);
     if (thisCard != null) {
       return thisCard;
     }
@@ -885,7 +885,7 @@ public class VDomPlayerEarl extends BasePlayer {
     if ((context.canBuy(Cards.swindler)) && (getMyCardCount(Cards.swindler) < 2)) {
       cards.add(Cards.swindler);
     }
-    Card thisCard = pickBalancedBuyable(context, cards.toArray(new Card[0]), Integer.valueOf(5));
+    Card thisCard = pickBalancedBuyable(context, cards.toArray(new Card[0]), 5);
 
     if (thisCard != null) {
       return thisCard;
@@ -1058,7 +1058,7 @@ public class VDomPlayerEarl extends BasePlayer {
     HashMap<String, Integer> cardCounts = context.getCardCounts();
     for (Card card : cards) {
       if (cardCounts.containsKey(card.getName())) {
-        int count = ((Integer) cardCounts.get(card.getName())).intValue();
+        int count = (Integer) cardCounts.get(card.getName());
         if (count > 0) {
           available.add(card);
         }

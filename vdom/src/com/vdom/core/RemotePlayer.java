@@ -481,7 +481,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     int[] playedArray = new int[playedCards.size()];
     for (int i = 0; i < playedCards.size(); i++) {
       Card c = playedCards.get(i);
-      boolean newcard = playedCardsNew.get(i).booleanValue();
+      boolean newcard = playedCardsNew.get(i);
       playedArray[i] = (cardToInt(c) * (newcard ? 1 : -1));
     }
 

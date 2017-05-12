@@ -294,7 +294,7 @@ public class SelectCardOptions implements Serializable {
     if (allowedCards.isEmpty()) {
       return true;
     }
-    return allowedCards.contains(new Integer(card));
+    return allowedCards.contains(card);
   }
 
   // Return the number of cards that have matched the filter
@@ -303,7 +303,7 @@ public class SelectCardOptions implements Serializable {
   }
 
   public void addValidCard(int card) {
-    allowedCards.add(new Integer(card));
+    allowedCards.add(card);
 
   }
 
