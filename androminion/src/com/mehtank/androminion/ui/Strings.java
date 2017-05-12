@@ -682,28 +682,29 @@ public class Strings {
 
     if (options[0] instanceof String) {
       String optionString = (String) options[0];
-      if (optionString.equals(IndirectPlayer.OPTION_REACTION)) {
-        return 1;
-      } else if (optionString.equals(IndirectPlayer.OPTION_PUTBACK)) {
-        return 1;
-      } else if (optionString.equals(IndirectPlayer.OPTION_SPEND_GUILD_COINS)) {
-        return 1;
-      } else if (optionString.equals(IndirectPlayer.OPTION_OVERPAY)) {
-        return 1;
-      } else if (optionString.equals(IndirectPlayer.OPTION_OVERPAY_POTION)) {
-        return 1;
-      } else if (optionString.equals(IndirectPlayer.OPTION_PAY_DEBT)) {
-        return 1;
-      } else if (optionString.equals(IndirectPlayer.OPTION_CALL_WHEN_GAIN)) {
-        return 1;
-      } else if (optionString.equals(IndirectPlayer.OPTION_CALL_RESOLVE_ACTION)) {
-        return 1;
-      } else if (optionString.equals(IndirectPlayer.OPTION_START_TURN_EFFECT)) {
-        return 1;
-      } else if (optionString.equals(IndirectPlayer.OPTION_STASH)) {
-        return 5;
-      } else if (optionString.equals(IndirectPlayer.OPTION_STASH_POSITION)) {
-        return 4;
+      switch (optionString) {
+        case IndirectPlayer.OPTION_REACTION:
+          return 1;
+        case IndirectPlayer.OPTION_PUTBACK:
+          return 1;
+        case IndirectPlayer.OPTION_SPEND_GUILD_COINS:
+          return 1;
+        case IndirectPlayer.OPTION_OVERPAY:
+          return 1;
+        case IndirectPlayer.OPTION_OVERPAY_POTION:
+          return 1;
+        case IndirectPlayer.OPTION_PAY_DEBT:
+          return 1;
+        case IndirectPlayer.OPTION_CALL_WHEN_GAIN:
+          return 1;
+        case IndirectPlayer.OPTION_CALL_RESOLVE_ACTION:
+          return 1;
+        case IndirectPlayer.OPTION_START_TURN_EFFECT:
+          return 1;
+        case IndirectPlayer.OPTION_STASH:
+          return 5;
+        case IndirectPlayer.OPTION_STASH_POSITION:
+          return 4;
       }
     }
     if (card == null) {

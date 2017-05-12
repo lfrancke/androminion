@@ -743,14 +743,21 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     showimages = prefs.getString("showimages", context.getString(R.string.showimages_pref_default));
     wikilink = prefs.getBoolean("wikilink", false);
 
-    if (viewstyle.equals("viewstyle-classic")) {
-      LayoutInflater.from(context).inflate(R.layout.view_card_classic, this, true);
-    } else if (viewstyle.equals("viewstyle-descriptive")) {
-      LayoutInflater.from(context).inflate(R.layout.view_card_descriptive, this, true);
-    } else if (viewstyle.equals("viewstyle-condensed")) {
-      LayoutInflater.from(context).inflate(R.layout.view_card_condensed, this, true);
-    } else /*if (viewstyle.equals("viewstyle-simple"))*/ {
-      LayoutInflater.from(context).inflate(R.layout.view_card, this, true);
+    switch (viewstyle) {
+      case "viewstyle-classic":
+        LayoutInflater.from(context).inflate(R.layout.view_card_classic, this, true);
+        break;
+      case "viewstyle-descriptive":
+        LayoutInflater.from(context).inflate(R.layout.view_card_descriptive, this, true);
+        break;
+      case "viewstyle-condensed":
+        LayoutInflater.from(context).inflate(R.layout.view_card_condensed, this, true);
+        break;
+      default:
+/*if (viewstyle.equals("viewstyle-simple"))*/
+
+        LayoutInflater.from(context).inflate(R.layout.view_card, this, true);
+        break;
     }
 
     name = (TextView) findViewById(R.id.name);
