@@ -5,7 +5,6 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
@@ -25,54 +24,55 @@ import com.mehtank.androminion.util.ThemeSetter;
  * https://github.com/commonsguy/cw-omnibus/tree/master/Prefs/FragmentsBC
  */
 public class SettingsActivity extends SherlockPreferenceActivity implements OnSharedPreferenceChangeListener {
-    @SuppressWarnings("unused")
-    private static final String TAG = "SettingsActivity";
-    private SharedPreferences prefs;
 
-    @SuppressWarnings("deprecation")
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        ThemeSetter.setTheme(this, true);
-        ThemeSetter.setLanguage(this);
-        super.onCreate(savedInstanceState);
+  @SuppressWarnings("unused")
+  private static final String TAG = "SettingsActivity";
+  private SharedPreferences prefs;
 
-        ActionBar bar = getSupportActionBar();
-        bar.setDisplayHomeAsUpEnabled(true);
-        bar.setTitle(R.string.settingsactivity_title);
+  @Override
+  public void onResume() {
+    super.onResume();
+    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setLanguage(this);
+    prefs = PreferenceManager.getDefaultSharedPreferences(this);
+    prefs.registerOnSharedPreferenceChangeListener(this);
+  }
 
-        addPreferencesFromResource(R.xml.preferences);
+  @Override
+  public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+    if (key.equals("userlang")) {
+      com.mehtank.androminion.ui.Strings.initContext(getApplicationContext());
     }
+  }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+  @SuppressWarnings("deprecation")
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setLanguage(this);
+    super.onCreate(savedInstanceState);
+
+    ActionBar bar = getSupportActionBar();
+    bar.setDisplayHomeAsUpEnabled(true);
+    bar.setTitle(R.string.settingsactivity_title);
+
+    addPreferencesFromResource(R.xml.preferences);
+  }
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    prefs.unregisterOnSharedPreferenceChangeListener(this);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        NavUtils.navigateUpFromSameTask(this);
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        ThemeSetter.setTheme(this, true);
-        ThemeSetter.setLanguage(this);
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        prefs.registerOnSharedPreferenceChangeListener(this);
-    }
-
-	@Override
-	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-		if (key.equals("userlang")) {
-			com.mehtank.androminion.ui.Strings.initContext(getApplicationContext());
-        }
-	}
-	
-	@Override
-	protected void onPause() {
-		super.onPause();
-		prefs.unregisterOnSharedPreferenceChangeListener(this);
-	}
+  }
 }

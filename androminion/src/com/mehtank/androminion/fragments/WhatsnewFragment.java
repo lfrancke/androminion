@@ -8,23 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.actionbarsherlock.app.SherlockFragment;
 import com.mehtank.androminion.R;
 
 public class WhatsnewFragment extends SherlockFragment {
-	@SuppressWarnings("unused")
-	private static final String TAG = "WhatsnewFragment";
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		ScrollView scrollView = (ScrollView) inflater.inflate(R.layout.fragment_whatsnew, container, false);
+  @SuppressWarnings("unused")
+  private static final String TAG = "WhatsnewFragment";
 
-		// inflate doesn't renter HTML, so do this now:
-		TextView tv = (TextView) scrollView.findViewById(R.id.whatsnew);
-		tv.setText(Html.fromHtml(getString(R.string.whatsnew)));
-		tv.setMovementMethod(LinkMovementMethod.getInstance());
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    ScrollView scrollView = (ScrollView) inflater.inflate(R.layout.fragment_whatsnew, container, false);
 
-		return scrollView;
-	}
+    // inflate doesn't renter HTML, so do this now:
+    TextView tv = (TextView) scrollView.findViewById(R.id.whatsnew);
+    tv.setText(Html.fromHtml(getString(R.string.whatsnew)));
+    tv.setMovementMethod(LinkMovementMethod.getInstance());
+
+    return scrollView;
+  }
 }

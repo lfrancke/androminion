@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
@@ -22,62 +21,63 @@ import com.mehtank.androminion.util.ThemeSetter;
  * Rewrite to support actionbar (backwards compatible to API7).
  */
 public class StartGameActivity extends SherlockFragmentActivity implements
-OnStartGameListener {
-    @SuppressWarnings("unused")
-    private static final String TAG = "StartGameActivity";
+  OnStartGameListener {
 
-    private Fragment mStartGameFragment;
+  @SuppressWarnings("unused")
+  private static final String TAG = "StartGameActivity";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        ThemeSetter.setTheme(this, true);
-        ThemeSetter.setLanguage(this);
-        super.onCreate(savedInstanceState);
+  private Fragment mStartGameFragment;
 
-        ActionBar bar = getSupportActionBar();
-        bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-        bar.setDisplayHomeAsUpEnabled(true);
-        bar.setDisplayShowTitleEnabled(true);
-        bar.setTitle(R.string.startgameactivity_title);
+  @Override
+  public void onStartGameClick(ArrayList<String> values) {
+    Intent data = new Intent();
+    data.putStringArrayListExtra("command", values);
+    setResult(RESULT_OK, data);
+    finish();
+  }
 
-        if (savedInstanceState == null) {
-            mStartGameFragment = new StartGameFragment();
-
-            if (getIntent().hasExtra("cards")) {
-                mStartGameFragment.setArguments(getIntent().getExtras());
-            }
-
-            getSupportFragmentManager().beginTransaction()
-                    .add(android.R.id.content, mStartGameFragment).commit();
-        } else {
-            mStartGameFragment = getSupportFragmentManager().findFragmentById(
-                    android.R.id.content);
-        }
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        NavUtils.navigateUpFromSameTask(this);
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
     }
+  }
 
-    @Override
-    public void onStartGameClick(ArrayList<String> values) {
-        Intent data = new Intent();
-        data.putStringArrayListExtra("command", values);
-        setResult(RESULT_OK, data);
-        finish();
-    }
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setLanguage(this);
+    super.onCreate(savedInstanceState);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+    ActionBar bar = getSupportActionBar();
+    bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
+    bar.setDisplayHomeAsUpEnabled(true);
+    bar.setDisplayShowTitleEnabled(true);
+    bar.setTitle(R.string.startgameactivity_title);
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        ThemeSetter.setTheme(this, true);
-        ThemeSetter.setLanguage(this);
+    if (savedInstanceState == null) {
+      mStartGameFragment = new StartGameFragment();
+
+      if (getIntent().hasExtra("cards")) {
+        mStartGameFragment.setArguments(getIntent().getExtras());
+      }
+
+      getSupportFragmentManager().beginTransaction()
+        .add(android.R.id.content, mStartGameFragment).commit();
+    } else {
+      mStartGameFragment = getSupportFragmentManager().findFragmentById(
+        android.R.id.content);
     }
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setLanguage(this);
+  }
 }
