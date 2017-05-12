@@ -522,7 +522,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
       }
     }
     if (allequal) {
-      int[] is = new int[] {0};
+      int[] is = {0};
       top.handle(new Event(Event.EType.OPTION).setObject(new EventObject(is)));
     } else {
       selectString(Strings.getSelectOptionHeader(e.c, e.o.os), options, Event.EType.OPTION);

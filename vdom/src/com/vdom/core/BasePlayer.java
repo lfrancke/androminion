@@ -19,17 +19,17 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   //trash in this order!
   protected static final Card[] EARLY_TRASH_CARDS =
-    new Card[] {Cards.curse, Cards.rats, Cards.overgrownEstate, Cards.ruinedVillage, Cards.ruinedMarket, Cards.hovel,
+    {Cards.curse, Cards.rats, Cards.overgrownEstate, Cards.ruinedVillage, Cards.ruinedMarket, Cards.hovel,
       Cards.survivors, Cards.ruinedLibrary, Cards.abandonedMine, Cards.virtualRuins, Cards.estate};
   protected static final Card[] LATE_TRASH_CARDS =
-    new Card[] {Cards.curse, Cards.rats, Cards.overgrownEstate, Cards.ruinedVillage, Cards.ruinedMarket,
+    {Cards.curse, Cards.rats, Cards.overgrownEstate, Cards.ruinedVillage, Cards.ruinedMarket,
       Cards.survivors, Cards.ruinedLibrary, Cards.abandonedMine, Cards.virtualRuins, Cards.estate, Cards.copper,
       Cards.masterpiece};
   protected static final Card[] EASY_WHEN_TRASH_CARDS =
-    new Card[] {Cards.cultist, Cards.rats, Cards.catacombs, Cards.fortress, Cards.huntingGrounds, Cards.sirVander,
+    {Cards.cultist, Cards.rats, Cards.catacombs, Cards.fortress, Cards.huntingGrounds, Cards.sirVander,
       Cards.overgrownEstate};
   protected static final Card[] CATAPULT_AMMO_CARDS =
-    new Card[] {Cards.rocks, Cards.masterpiece, Cards.illGottenGains, Cards.silver, Cards.loan, Cards.rats,
+    {Cards.rocks, Cards.masterpiece, Cards.illGottenGains, Cards.silver, Cards.loan, Cards.rats,
       Cards.fortress, Cards.curse, Cards.estate, Cards.copper, Cards.overgrownEstate, Cards.ruinedVillage,
       Cards.ruinedMarket, Cards.hovel, Cards.survivors, Cards.ruinedLibrary, Cards.abandonedMine, Cards.virtualRuins};
   protected static final int COST_MAX = 14;
@@ -765,7 +765,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     }
     if (!latest) {
       final Card[] VICTORY_CARDS =
-        new Card[] {Cards.estate, Cards.silkRoad, Cards.feodum, Cards.duke, Cards.duchy, Cards.farmland,
+        {Cards.estate, Cards.silkRoad, Cards.feodum, Cards.duke, Cards.duchy, Cards.farmland,
           Cards.fairgrounds};
       for (Card card : VICTORY_CARDS) {
         if (changeList.contains(card)) {
@@ -774,7 +774,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
     final Card[] BAD_CARDS =
-      new Card[] {Cards.curse, Cards.virtualRuins, Cards.pearlDiver, Cards.vagrant, Cards.university, Cards.masterpiece,
+      {Cards.curse, Cards.virtualRuins, Cards.pearlDiver, Cards.vagrant, Cards.university, Cards.masterpiece,
         Cards.loan, Cards.wishingWell, Cards.woodcutter, Cards.chancellor, Cards.develop, Cards.sage, Cards.rats,
         Cards.potion, Cards.scout, Cards.talisman, Cards.borderVillage, Cards.peddler, Cards.prince};
     for (Card card : BAD_CARDS) {
@@ -785,7 +785,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     //mean cards
     ArrayList<Card> keyList = new ArrayList<Card>();
     final Card[] KEY_CARDS =
-      new Card[] {Cards.scryingPool, Cards.swindler, Cards.ambassador, Cards.familiar, Cards.militia, Cards.witch,
+      {Cards.scryingPool, Cards.swindler, Cards.ambassador, Cards.familiar, Cards.militia, Cards.witch,
         Cards.mountebank, Cards.torturer, Cards.minion, Cards.illGottenGains, Cards.saboteur, Cards.ghostShip,
         Cards.wharf, Cards.goons};
     for (Card card : KEY_CARDS) {
@@ -1275,7 +1275,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
     ArrayList<Card> keyList = new ArrayList<Card>();
     final Card[] KEY_CARDS =
-      new Card[] {Cards.scryingPool, Cards.masquerade, Cards.swindler, Cards.familiar, Cards.militia, Cards.seaHag,
+      {Cards.scryingPool, Cards.masquerade, Cards.swindler, Cards.familiar, Cards.militia, Cards.seaHag,
         Cards.tournament, Cards.youngWitch, Cards.golem, Cards.cultist, Cards.mountebank, Cards.torturer, Cards.minion,
         Cards.governor, Cards.illGottenGains, Cards.saboteur, Cards.ghostShip, Cards.wharf, Cards.witch, Cards.goons,
         Cards.grandMarket};
@@ -3507,7 +3507,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public QuestOption quest_chooseOption(MoveContext context) {
-    Card[] curses = new Card[] {Cards.curse, Cards.curse};
+    Card[] curses = {Cards.curse, Cards.curse};
     if (Util.areCardsInHand(curses, context)) {
       return QuestOption.DiscardTwoCurses;
     }

@@ -2815,7 +2815,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_teacher_tokenTypeToMove(context)) {
       return super.teacher_tokenTypeToMove(context);
     }
-    PlayerSupplyToken[] options = new PlayerSupplyToken[] {
+    PlayerSupplyToken[] options = {
       PlayerSupplyToken.PlusOneCard,
       PlayerSupplyToken.PlusOneAction,
       PlayerSupplyToken.PlusOneBuy,

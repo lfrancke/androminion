@@ -33,7 +33,7 @@ public class UI extends JFrame implements GameEventListener {
   // if no image, use text
 
   public static final String[] downloadSiteDirs =
-    new String[] {"common", "promo", "base", "intrigue", "seaside", "alchemy", "prosperity",};
+    {"common", "promo", "base", "intrigue", "seaside", "alchemy", "prosperity",};
   static final String VP_TEXT = "VP: ";
   static final String GAME_TYPE_TEXT = "Game: ";
   static final String TURN_TEXT = "Turn:   ";

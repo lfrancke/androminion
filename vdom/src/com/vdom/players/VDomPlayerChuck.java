@@ -177,7 +177,7 @@ public class VDomPlayerChuck extends BasePlayer {
     if (context.getPotions() > 0) {
       //buy in this order
       final Card[] POTION_CARDS =
-        new Card[] {Cards.possession, Cards.golem, Cards.familiar, Cards.alchemist, Cards.philosophersStone,
+        {Cards.possession, Cards.golem, Cards.familiar, Cards.alchemist, Cards.philosophersStone,
           Cards.scryingPool, Cards.apothecary, Cards.university};
       for (Card card : POTION_CARDS) {
         if (context.canBuy(card)) {

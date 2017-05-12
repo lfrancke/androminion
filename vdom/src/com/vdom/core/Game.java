@@ -1448,7 +1448,7 @@ public class Game {
         // player not possessed because we are between turns
 
         //TODO: dominionator - integrate this with Possession turn logic
-        ExtraTurnOption[] options = new ExtraTurnOption[] {ExtraTurnOption.OutpostFirst, ExtraTurnOption.MissionFirst};
+        ExtraTurnOption[] options = {ExtraTurnOption.OutpostFirst, ExtraTurnOption.MissionFirst};
         switch (player.extraTurn_chooseOption(context, options)) {
           case MissionFirst:
             result.get(0).canBuyCards = false;

@@ -1154,7 +1154,7 @@ public class VDomPlayerPatrick extends BasePlayer {
       trashit += (knownTrashingCards.contains(c) ? 1 : 0);
     }
     Card[] cardsToMatch =
-      new Card[] {Cards.curse, Cards.rats, Cards.overgrownEstate, Cards.ruinedVillage, Cards.ruinedMarket, Cards.hovel,
+      {Cards.curse, Cards.rats, Cards.overgrownEstate, Cards.ruinedVillage, Cards.ruinedMarket, Cards.hovel,
         Cards.survivors, Cards.ruinedLibrary, Cards.abandonedMine, Cards.virtualRuins};
     for (Card match : cardsToMatch) {
       if (list.contains(match)) {
