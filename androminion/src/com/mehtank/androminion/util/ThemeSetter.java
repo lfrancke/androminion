@@ -18,7 +18,7 @@ public class ThemeSetter {
   @SuppressWarnings("unused")
   private static final String TAG = "ThemeSetter";
 
-  private static final Locale DefaultLocale = java.util.Locale.getDefault();
+  private static final Locale DefaultLocale = Locale.getDefault();
 
   private static final HashMap<String, Integer> THEMES_BAR = new HashMap<String, Integer>() {
     private static final long serialVersionUID = 1L;

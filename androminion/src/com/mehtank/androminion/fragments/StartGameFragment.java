@@ -111,7 +111,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    com.mehtank.androminion.ui.Strings.initContext(getActivity().getApplicationContext());
+    Strings.initContext(getActivity().getApplicationContext());
 
     mView = inflater.inflate(R.layout.fragment_startgame, null);
 
@@ -230,7 +230,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
       if (type == GameType.Specified) {
         continue;
       }
-      String typeName = com.mehtank.androminion.ui.Strings.getGameTypeName(type);
+      String typeName = Strings.getGameTypeName(type);
       if (type.name().startsWith("Random")) {
         randoms.add(new GameTypeItem(type, typeName));
       } else {
@@ -245,7 +245,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
           String separator = "";
           for (Expansion expansion : type.getExpansions()) {
             suffix += separator;
-            suffix += com.mehtank.androminion.ui.Strings.getExpansionName(expansion);
+            suffix += Strings.getExpansionName(expansion);
             separator = ", ";
           }
           suffix += ")";

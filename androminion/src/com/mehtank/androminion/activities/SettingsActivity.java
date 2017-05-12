@@ -9,6 +9,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.mehtank.androminion.R;
+import com.mehtank.androminion.ui.Strings;
 import com.mehtank.androminion.util.ThemeSetter;
 
 /**
@@ -41,7 +42,7 @@ public class SettingsActivity extends SherlockPreferenceActivity implements OnSh
   @Override
   public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
     if (key.equals("userlang")) {
-      com.mehtank.androminion.ui.Strings.initContext(getApplicationContext());
+      Strings.initContext(getApplicationContext());
     }
   }
 

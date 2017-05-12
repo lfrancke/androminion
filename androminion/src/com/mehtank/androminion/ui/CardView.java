@@ -17,6 +17,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -567,7 +568,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
         R.string.card_more_info) + "</a>";
       linkView.setClickable(true);
       linkView.setMovementMethod(LinkMovementMethod.getInstance());
-      linkView.setText(android.text.Html.fromHtml(text));
+      linkView.setText(Html.fromHtml(text));
       linkView.setGravity(Gravity.CENTER);
       ll.addView(linkView);
     }

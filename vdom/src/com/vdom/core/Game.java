@@ -47,7 +47,7 @@ public class Game {
   /**
    * The card set to use for the game.
    *
-   * @see com.vdom.api.GameType
+   * @see GameType
    */
   public static GameType gameType = GameType.Random;
   public static List<Expansion> randomExpansions = null;

@@ -259,7 +259,7 @@ public class UI extends JFrame implements GameEventListener {
         Image img = icon.getImage();
         Image newimg =
           img.getScaledInstance((int) (icon.getIconWidth() * imageScale), (int) (icon.getIconHeight() * imageScale),
-            java.awt.Image.SCALE_SMOOTH);
+            Image.SCALE_SMOOTH);
         icon = new ImageIcon(newimg);
         return icon;
       } else {

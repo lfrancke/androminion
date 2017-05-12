@@ -89,7 +89,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     if (c.equals(Cards.virtualRuins)) {
       card.isRuins = true;
     } else {
-      card.isRuins = c.is(com.vdom.core.Type.Ruins, null);
+      card.isRuins = c.is(Type.Ruins, null);
     }
 
     if (uniqueCardPile) {
