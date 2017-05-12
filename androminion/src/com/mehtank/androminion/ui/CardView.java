@@ -447,19 +447,28 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     String str = cardView.getCard().originalSafeName;
     str = str.toLowerCase(Locale.US);
     StringTokenizer st = new StringTokenizer(str, " ", false);
-    String filename = "";
     String titlename = cardView.getCard().name.replace(" ", "_").replace("'", "");
+    StringBuilder filenameBuilder = new StringBuilder();
     while (st.hasMoreElements()) {
-      filename += st.nextElement();
+      filenameBuilder.append(st.nextElement());
     }
+    String filename = filenameBuilder.toString();
 
     str = cardView.getCard().originalExpansion;
     str = str.toLowerCase(Locale.US);
     st = new StringTokenizer(str, " ", false);
-    String exp = "";
+    StringBuilder expBuilder = new StringBuilder();
     while (st.hasMoreElements()) {
-      exp += st.nextElement();
-    }
+      // This is currently needed as the download location differs for 2e cards
+      // TODO: This should probably be a property of the expansion instead of being hardcoded here
+      String nextToken = st.nextToken();
+         if (nextToken.equals("base2e")) {
+           expBuilder.append("2nd");
+         } else {
+           expBuilder.append(nextToken);
+         }    }
+    String exp = expBuilder.toString();
+
 		/*if (exp.length() == 0)
 			exp = "common";
 		if (filename.equals("potion"))
