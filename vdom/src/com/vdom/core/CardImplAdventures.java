@@ -306,7 +306,7 @@ public class CardImplAdventures extends CardImpl {
   }
 
   protected void relic(MoveContext context, Player player, Game game) {
-    ArrayList<Player> playersToAttack = new ArrayList<Player>();
+    ArrayList<Player> playersToAttack = new ArrayList<>();
     for (Player targetPlayer : game.getPlayersInTurnOrder()) {
       if (targetPlayer != player && !Util.isDefendedFromAttack(game, targetPlayer, this)) {
         playersToAttack.add(targetPlayer);
@@ -474,7 +474,7 @@ public class CardImplAdventures extends CardImpl {
     }
     boolean cardSetAside = false;
     if (cards != null) {
-      ArrayList<Card> gearCards = new ArrayList<Card>();
+      ArrayList<Card> gearCards = new ArrayList<>();
       for (Card card : cards) {
         if (card != null) {
           cardSetAside = true;
@@ -497,7 +497,7 @@ public class CardImplAdventures extends CardImpl {
   }
 
   private void giant(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Player> playersToAttack = new ArrayList<Player>();
+    ArrayList<Player> playersToAttack = new ArrayList<>();
     for (Player targetPlayer : game.getPlayersInTurnOrder()) {
       if (targetPlayer != currentPlayer && !Util.isDefendedFromAttack(game, targetPlayer, this)) {
         playersToAttack.add(targetPlayer);
@@ -668,7 +668,7 @@ public class CardImplAdventures extends CardImpl {
         currentPlayer.hand.add(c);
       }
     } else {
-      ArrayList<Card> lookAtCards = new ArrayList<Card>(trashCost);
+      ArrayList<Card> lookAtCards = new ArrayList<>(trashCost);
       for (int i = 0; i < trashCost; ++i) {
         Card c = game.draw(context, Cards.raze, trashCost - i);
         if (c == null) {
@@ -836,7 +836,7 @@ public class CardImplAdventures extends CardImpl {
   }
 
   private void warrior(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Player> attackedPlayers = new ArrayList<Player>();
+    ArrayList<Player> attackedPlayers = new ArrayList<>();
     for (Player player : context.game.getPlayersInTurnOrder()) {
       if (player != currentPlayer && !Util.isDefendedFromAttack(context.game, player, this)) {
         attackedPlayers.add(player);
@@ -967,7 +967,7 @@ public class CardImplAdventures extends CardImpl {
         if (cards.length > 3) {
           Util.playerError(context.player, "Pilgrimage gain error, trying to gain too many cards, ignoring.");
         } else {
-          HashSet<Card> differentCards = new HashSet<Card>();
+          HashSet<Card> differentCards = new HashSet<>();
           for (Card card : cards) {
             differentCards.add(card);
           }
@@ -1003,7 +1003,7 @@ public class CardImplAdventures extends CardImpl {
       return;
     }
     if (option == QuestOption.DiscardAttack) {
-      Set<Card> attackSet = new HashSet<Card>();
+      Set<Card> attackSet = new HashSet<>();
       for (Card card : hand) {
         if (card.behaveAsCard().is(Type.Attack, player)) {
           attackSet.add(card);
@@ -1088,7 +1088,7 @@ public class CardImplAdventures extends CardImpl {
   }
 
   private void scoutingParty(MoveContext context) {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     for (int i = 0; i < 5; i++) {
       Card card = context.game.draw(context, Cards.scoutingParty, 5 - i);
       if (card != null) {
@@ -1129,7 +1129,7 @@ public class CardImplAdventures extends CardImpl {
       if (order == null) {
         bad = true;
       } else {
-        ArrayList<Card> copy = new ArrayList<Card>();
+        ArrayList<Card> copy = new ArrayList<>();
         for (Card card : cards) {
           copy.add(card);
         }

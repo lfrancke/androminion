@@ -73,14 +73,14 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   SelectStringView sv;
   Achievements achievements;
   CardAnimator animator;
-  ArrayList<ToggleButton> showCardsButtons = new ArrayList<ToggleButton>();
+  ArrayList<ToggleButton> showCardsButtons = new ArrayList<>();
   long gameTime = 0;
   long lastTimeClockStarted = 0;
   boolean gameTimePaused = true;
   /**
    * List of cards that were selected
    */
-  ArrayList<CardInfo> openedCards = new ArrayList<CardInfo>();
+  ArrayList<CardInfo> openedCards = new ArrayList<>();
   int maxOpened = 0;
   boolean exactOpened = true;
   int minOpened = 0;
@@ -737,7 +737,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
     /**
      * The player(s) to show as winner
      */
-    ArrayList<Integer> winners = new ArrayList<Integer>();
+    ArrayList<Integer> winners = new ArrayList<>();
 
     for (int i = 0; i < players.getCount(); i++) { //winners are calculated in this loop
       if (gs.handSizes[i] > maxVP) {
@@ -759,7 +759,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
     try {
       if (!finalStatsReported) {
         finalStatsReported = true;
-        ArrayList<String> pl = new ArrayList<String>(players.getCount());
+        ArrayList<String> pl = new ArrayList<>(players.getCount());
         for (int i = 0; i < players.getCount(); i++) {
           pl.add(gs.realNames[i]);
         }

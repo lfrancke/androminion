@@ -265,7 +265,7 @@ public class CardImplIntrigue extends CardImpl {
   }
 
   private void masquerade(Game game, MoveContext context, Player currentPlayer) {
-    List<Player> passingPlayers = new ArrayList<Player>(Game.players.length);
+    List<Player> passingPlayers = new ArrayList<>(Game.players.length);
     for (int i = 0; i < Game.players.length; ++i) {
       if (Game.errataMasqueradeAlwaysAffects || !Game.players[i].getHand().isEmpty()) {
         passingPlayers.add(Game.players[i]);
@@ -368,7 +368,7 @@ public class CardImplIntrigue extends CardImpl {
   }
 
   private void minion(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Player> playersToAttack = new ArrayList<Player>();
+    ArrayList<Player> playersToAttack = new ArrayList<>();
     for (Player player : game.getPlayersInTurnOrder()) {
       if (player == currentPlayer || !Util.isDefendedFromAttack(game, player, this)) {
         playersToAttack.add(player);
@@ -440,7 +440,7 @@ public class CardImplIntrigue extends CardImpl {
   }
 
   private void replace(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Player> playersToAttack = new ArrayList<Player>();
+    ArrayList<Player> playersToAttack = new ArrayList<>();
     for (Player player : game.getPlayersInTurnOrder()) {
       if (player != currentPlayer && !Util.isDefendedFromAttack(game, player, this)) {
         playersToAttack.add(player);
@@ -521,7 +521,7 @@ public class CardImplIntrigue extends CardImpl {
         playerContext.attackedPlayer = player;
         playerContext.cardCostModifier = context.cardCostModifier;
 
-        ArrayList<Card> toDiscard = new ArrayList<Card>();
+        ArrayList<Card> toDiscard = new ArrayList<>();
         Card draw;
 
         while ((draw = game.draw(playerContext, Cards.saboteur, -1)) != null) {
@@ -564,7 +564,7 @@ public class CardImplIntrigue extends CardImpl {
   }
 
   private void scoutPatrol(Game game, MoveContext context, Player currentPlayer, boolean cursesToHand) {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     for (int i = 0; i < 4; i++) {
       Card card = game.draw(context, this, 4 - i);
       if (card == null) {
@@ -590,7 +590,7 @@ public class CardImplIntrigue extends CardImpl {
     if (order == null || order.length != cards.size()) {
       bad = true;
     } else {
-      ArrayList<Card> orderArray = new ArrayList<Card>();
+      ArrayList<Card> orderArray = new ArrayList<>();
       for (Card card : order) {
         orderArray.add(card);
         if (!cards.contains(card)) {
@@ -766,7 +766,7 @@ public class CardImplIntrigue extends CardImpl {
           if (bad) {
             Util.playerError(currentPlayer, "Swindler swap card error, picking a random card.");
 
-            ArrayList<Card> possible = new ArrayList<Card>();
+            ArrayList<Card> possible = new ArrayList<>();
             for (Card thisCard : context.getCardsInGame(GetCardsInGameOptions.TopOfPiles, true)) {
               if (!game.isPileEmpty(thisCard) && thisCard.getCost(context) == draw.getCost(context)
                   && thisCard.getDebtCost(context) == draw.getDebtCost(context) && thisCard.costPotion() == draw
@@ -962,7 +962,7 @@ public class CardImplIntrigue extends CardImpl {
 
       // Create a list of possible cards to guess, using the player's hand, discard pile, and deck
       // (even though the player could technically name a card he doesn't have)
-      ArrayList<Card> options = new ArrayList<Card>(currentPlayer.getDistinctCards());
+      ArrayList<Card> options = new ArrayList<>(currentPlayer.getDistinctCards());
       Collections.sort(options, new Util.CardNameComparator());
 
       if (!options.isEmpty()) {

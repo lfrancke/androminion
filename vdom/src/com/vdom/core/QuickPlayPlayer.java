@@ -584,7 +584,7 @@ public abstract class QuickPlayPlayer extends BasePlayer {
   public boolean shouldAutoPlay_mine_treasureToObtain(MoveContext context, int maxCost, int maxDebtCost,
                                                        boolean potion) {
     Card[] cards = context.getCardsInGame(GetCardsInGameOptions.TopOfPiles, true, Type.Treasure);
-    List<Card> obtainableCards = new ArrayList<Card>();
+    List<Card> obtainableCards = new ArrayList<>();
     for (Card c : cards) {
       if ((!c.costPotion() || potion) && (maxCost >= c.getCost(context)) && maxDebtCost >= c.getDebtCost(context)) {
         obtainableCards.add(c);

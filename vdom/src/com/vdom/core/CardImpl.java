@@ -154,7 +154,7 @@ public class CardImpl implements Card, Comparable<Card> {
     if (player == null || player.getInheritance() == null || !equals(Cards.estate)) {
       return types.length;
     }
-    Set<Type> typeSet = new HashSet<Type>();
+    Set<Type> typeSet = new HashSet<>();
     typeSet.addAll(Arrays.asList(((CardImpl) player.getInheritance()).types));
     typeSet.addAll(Arrays.asList(types));
     return typeSet.size();
@@ -577,7 +577,7 @@ public class CardImpl implements Card, Comparable<Card> {
     // check for cards to call after resolving action
     if (is(Type.Action)) {
       boolean isActionInPlay = isInPlay(currentPlayer);
-      ArrayList<Card> callableCards = new ArrayList<Card>();
+      ArrayList<Card> callableCards = new ArrayList<>();
       for (Card c : currentPlayer.tavern) {
         if (c.behaveAsCard().isCallableWhenActionResolved()) {
           if (c.behaveAsCard().doesActionStillNeedToBeInPlayToCall() && !isActionInPlay) {
@@ -908,7 +908,7 @@ public class CardImpl implements Card, Comparable<Card> {
   }
 
   protected Card throneRoomKingsCourt(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> actionCards = new ArrayList<Card>();
+    ArrayList<Card> actionCards = new ArrayList<>();
     for (Card card : currentPlayer.hand) {
       if (card.is(Type.Action, currentPlayer)) {
         actionCards.add(card);
@@ -1106,7 +1106,7 @@ public class CardImpl implements Card, Comparable<Card> {
     }
 
     if (equals(Cards.scryingPool)) {
-      ArrayList<Card> cardsToPutInHand = new ArrayList<Card>();
+      ArrayList<Card> cardsToPutInHand = new ArrayList<>();
 
       Card draw = null;
       while ((draw = game.draw(context, Cards.scryingPool, -1)) != null) {

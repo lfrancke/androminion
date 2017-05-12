@@ -62,7 +62,7 @@ public class VDomPlayerChuck extends BasePlayer {
     // play prince if action card candidate available
     Card[] princeCards;
     if (getHand().contains(Cards.prince)) {
-      ArrayList<Card> cardList = new ArrayList<Card>();
+      ArrayList<Card> cardList = new ArrayList<>();
       for (Card c : getHand()) {
         cardList.add(c);
       }
@@ -101,7 +101,7 @@ public class VDomPlayerChuck extends BasePlayer {
 
     int cost = COST_MAX;
     while (cost >= 0) {
-      ArrayList<Card> randList = new ArrayList<Card>();
+      ArrayList<Card> randList = new ArrayList<>();
       Card[] arrayOfCard2;
       int actions = (arrayOfCard2 = getHand().toArray()).length;
       for (int localActionCard1 = 0; localActionCard1 < actions; localActionCard1++) {
@@ -146,7 +146,7 @@ public class VDomPlayerChuck extends BasePlayer {
 
     if (context.canBuy(Cards.prince) && turnCount < midGame && context.cardInGame(Cards.colony)
         && getMyCardCount(Cards.prince) < 2) {
-      ArrayList<Card> allCards = new ArrayList<Card>(getAllCards());
+      ArrayList<Card> allCards = new ArrayList<>(getAllCards());
       if (prince_cardCandidates(context, allCards, false).length >= 2 + 2 * getMyCardCount(Cards.prince)) {
         return Cards.prince;
       }
@@ -211,7 +211,7 @@ public class VDomPlayerChuck extends BasePlayer {
 
     int cost = coinAvailableForBuy;
     int highestCost = 0;
-    ArrayList<Card> randList = new ArrayList<Card>();
+    ArrayList<Card> randList = new ArrayList<>();
 
     while (cost >= 0) {
       for (final Card card : context.getCardsInGame(GetCardsInGameOptions.Buyables)) {

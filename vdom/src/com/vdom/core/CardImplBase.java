@@ -100,7 +100,7 @@ public class CardImplBase extends CardImpl {
   }
 
   private void adventurer(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> toDiscard = new ArrayList<Card>();
+    ArrayList<Card> toDiscard = new ArrayList<>();
     int treasureCardsRevealed = 0;
 
     while (treasureCardsRevealed < 2) {
@@ -152,7 +152,7 @@ public class CardImplBase extends CardImpl {
   }
 
   private void bandit(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Player> attackedPlayers = new ArrayList<Player>();
+    ArrayList<Player> attackedPlayers = new ArrayList<>();
     for (Player targetPlayer : game.getPlayersInTurnOrder()) {
       if (targetPlayer != currentPlayer && !Util.isDefendedFromAttack(game, targetPlayer, this)) {
         attackedPlayers.add(targetPlayer);
@@ -163,8 +163,8 @@ public class CardImplBase extends CardImpl {
       targetPlayer.attacked(getControlCard(), context);
       MoveContext targetContext = new MoveContext(game, targetPlayer);
       targetContext.attackedPlayer = targetPlayer;
-      ArrayList<Card> treasures = new ArrayList<Card>();
-      List<Card> cardsToDiscard = new ArrayList<Card>();
+      ArrayList<Card> treasures = new ArrayList<>();
+      List<Card> cardsToDiscard = new ArrayList<>();
       for (int i = 0; i < 2; i++) {
         Card card = game.draw(targetContext, Cards.bandit, 2 - i);
         if (card != null) {
@@ -208,7 +208,7 @@ public class CardImplBase extends CardImpl {
         MoveContext playerContext = new MoveContext(game, player);
         playerContext.attackedPlayer = player;
 
-        ArrayList<Card> victoryCards = new ArrayList<Card>();
+        ArrayList<Card> victoryCards = new ArrayList<>();
 
         for (Card card : player.hand) {
           if (card.is(Type.Victory, player)) {
@@ -540,7 +540,7 @@ public class CardImplBase extends CardImpl {
   }
 
   private void sentry(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> topOfTheDeck = new ArrayList<Card>();
+    ArrayList<Card> topOfTheDeck = new ArrayList<>();
     for (int i = 0; i < 2; i++) {
       Card card = game.draw(context, Cards.sentry, 2 - i);
       if (card != null) {
@@ -601,16 +601,16 @@ public class CardImplBase extends CardImpl {
   }
 
   private void thief(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> trashed = new ArrayList<Card>();
+    ArrayList<Card> trashed = new ArrayList<>();
 
     for (Player targetPlayer : game.getPlayersInTurnOrder()) {
       if (targetPlayer != currentPlayer && !Util.isDefendedFromAttack(game, targetPlayer, this)) {
         targetPlayer.attacked(getControlCard(), context);
         MoveContext targetContext = new MoveContext(game, targetPlayer);
         targetContext.attackedPlayer = targetPlayer;
-        ArrayList<Card> treasures = new ArrayList<Card>();
+        ArrayList<Card> treasures = new ArrayList<>();
 
-        List<Card> cardsToDiscard = new ArrayList<Card>();
+        List<Card> cardsToDiscard = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
           Card card = game.draw(targetContext, Cards.thief, 2 - i);
 

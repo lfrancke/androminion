@@ -10,7 +10,7 @@ public class DumpCardResources {
     Game game = new Game();
     game.initGameBoard();
 
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     cards.add(Cards.copper);
     cards.add(Cards.silver);
     cards.add(Cards.gold);

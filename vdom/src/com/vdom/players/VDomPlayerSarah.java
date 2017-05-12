@@ -461,7 +461,7 @@ public class VDomPlayerSarah extends BasePlayer {
     // play prince if action card candidate available
     Card[] princeCards;
     if (actionCards.contains(Cards.prince)) {
-      ArrayList<Card> cardList = new ArrayList<Card>();
+      ArrayList<Card> cardList = new ArrayList<>();
       for (Card c : actionCards) {
         cardList.add(c);
       }
@@ -511,7 +511,7 @@ public class VDomPlayerSarah extends BasePlayer {
 
     //TODO: simple action play order list instead of just picking the most expensive card
     int cost = COST_MAX;
-    ArrayList<Card> randList = new ArrayList<Card>();
+    ArrayList<Card> randList = new ArrayList<>();
     while (cost >= 0) {
       for (final Card card : actionCards) {
         if (!context.canPlay(card)
@@ -542,7 +542,7 @@ public class VDomPlayerSarah extends BasePlayer {
     int coinAvailableForBuy = context.getCoinAvailableForBuy();
 
     if (earlyCardBuyCount < earlyCardBuyMax) {
-      ArrayList<Card> randList = new ArrayList<Card>();
+      ArrayList<Card> randList = new ArrayList<>();
       for (final Card card : earlyCardBuys) {
         if (context.canBuy(card)) { // && (coinAvailableForBuy == card.getCost()) {
           randList.add(card);
@@ -569,7 +569,7 @@ public class VDomPlayerSarah extends BasePlayer {
 
     if (context.canBuy(Cards.prince) && turnCount < midGame && context.cardInGame(Cards.colony)
         && getMyCardCount(Cards.prince) < 2) {
-      ArrayList<Card> allCards = new ArrayList<Card>(getAllCards());
+      ArrayList<Card> allCards = new ArrayList<>(getAllCards());
       if (prince_cardCandidates(context, allCards, false).length >= 2 + 2 * getMyCardCount(Cards.prince)) {
         return Cards.prince;
       }
@@ -688,7 +688,7 @@ public class VDomPlayerSarah extends BasePlayer {
   }
 
   public Card[] chapel_cardsToTrash(MoveContext context) {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
 
     for (Card card : context.player.getHand()) {
       if (card.equals(Cards.estate) || card.equals(Cards.curse)) {
@@ -714,7 +714,7 @@ public class VDomPlayerSarah extends BasePlayer {
   @Override
   public ArrayList<Card> treasureCardsToPlayInOrder(MoveContext context, int maxCards, Card responsible) {
     if (context.cardInGame(Cards.grandMarket)) {
-      ArrayList<Card> cards = new ArrayList<Card>();
+      ArrayList<Card> cards = new ArrayList<>();
       int coinWithoutCopper = 0;
       for (final Card c : context.getPlayer().getHand()) {
         if (c.is(Type.Treasure, this) && !c.equals(Cards.copper)) {
@@ -735,7 +735,7 @@ public class VDomPlayerSarah extends BasePlayer {
     // Try to buy valued cards...
     int cost = coinAvailableForBuy;
     while (cost >= 0) {
-      ArrayList<Card> randList = new ArrayList<Card>();
+      ArrayList<Card> randList = new ArrayList<>();
       for (final Card card : cards) {
         if (card.getCost(context) != cost) {
           continue;

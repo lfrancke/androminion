@@ -10,7 +10,7 @@ import com.vdom.api.GameEvent;
 
 public class CardList implements Iterable<Card> {
 
-  ArrayList<Card> a = new ArrayList<Card>();
+  ArrayList<Card> a = new ArrayList<>();
   Player player;
   String name;
 

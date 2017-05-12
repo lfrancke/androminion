@@ -30,7 +30,7 @@ public class CardGroup extends BaseAdapter {
   int[][][] tokens = null;
   private Context top;
   private boolean onTable = false;
-  private ArrayList<CardState> cards = new ArrayList<CardState>();
+  private ArrayList<CardState> cards = new ArrayList<>();
   private Comparator<MyCard> cmp = new MyCard.CardCostNameComparator();
   private boolean sorted = false;
   private PlayerAdapter players;

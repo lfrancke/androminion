@@ -52,7 +52,7 @@ public class CardImplAlchemy extends CardImpl {
   }
 
   private void apothecary(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> residue = new ArrayList<Card>();
+    ArrayList<Card> residue = new ArrayList<>();
     for (int i = 1; i <= 4; i++) {
       Card card = game.draw(context, Cards.apothecary, 4 - i);
       if (card != null) {
@@ -95,8 +95,8 @@ public class CardImplAlchemy extends CardImpl {
   }
 
   private void golem(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> toDiscard = new ArrayList<Card>();
-    ArrayList<Card> toOrder = new ArrayList<Card>();
+    ArrayList<Card> toDiscard = new ArrayList<>();
+    ArrayList<Card> toOrder = new ArrayList<>();
 
     while (toOrder.size() < 2) {
       Card draw = game.draw(context, Cards.golem, -1);

@@ -33,7 +33,7 @@ public class VDomPlayerMary extends VDomPlayerSarah {
         Cards.fortuneTeller, Cards.jester};
     earlyCardBuyMax = 3;
 
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     //        for(Card c : valuedCards) {
     //            cards.add(c);
     //        }

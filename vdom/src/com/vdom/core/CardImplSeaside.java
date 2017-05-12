@@ -306,7 +306,7 @@ public class CardImplSeaside extends CardImpl {
   }
 
   private void lookout(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     for (int i = 0; i < 3; i++) {
       Card card = game.draw(context, Cards.lookout, 3 - i);
       if (card != null) {
@@ -374,7 +374,7 @@ public class CardImplSeaside extends CardImpl {
   }
 
   private void navigator(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> topOfTheDeck = new ArrayList<Card>();
+    ArrayList<Card> topOfTheDeck = new ArrayList<>();
     for (int i = 0; i < 5; i++) {
       Card card = game.draw(context, Cards.navigator, 5 - i);
       if (card != null) {
@@ -398,7 +398,7 @@ public class CardImplSeaside extends CardImpl {
         if (order == null) {
           bad = true;
         } else {
-          ArrayList<Card> copy = new ArrayList<Card>();
+          ArrayList<Card> copy = new ArrayList<>();
           for (Card card : topOfTheDeck) {
             copy.add(card);
           }
@@ -443,7 +443,7 @@ public class CardImplSeaside extends CardImpl {
   }
 
   private void pirateShip(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Player> playersToAttack = new ArrayList<Player>();
+    ArrayList<Player> playersToAttack = new ArrayList<>();
     for (Player targetPlayer : game.getPlayersInTurnOrder()) {
       if (targetPlayer != currentPlayer && !Util.isDefendedFromAttack(game, targetPlayer, this)) {
         playersToAttack.add(targetPlayer);
@@ -458,8 +458,8 @@ public class CardImplSeaside extends CardImpl {
       for (Player targetPlayer : playersToAttack) {
         MoveContext targetContext = new MoveContext(game, targetPlayer);
         targetContext.attackedPlayer = targetPlayer;
-        ArrayList<Card> treasures = new ArrayList<Card>();
-        List<Card> cardToDiscard = new ArrayList<Card>();
+        ArrayList<Card> treasures = new ArrayList<>();
+        List<Card> cardToDiscard = new ArrayList<>();
 
         for (int i = 0; i < 2; i++) {
           Card card = game.draw(targetContext, Cards.pirateShip, 2 - i);

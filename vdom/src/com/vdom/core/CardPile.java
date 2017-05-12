@@ -19,8 +19,8 @@ public class CardPile {
   protected boolean tradeRouteToken = false;
 
   public CardPile(Card placeholder, List<CardMultiplicity> cardList, boolean ordered, boolean allCardsVisible) {
-    cards = new ArrayList<Card>();
-    templateCards = new ArrayList<Card>();
+    cards = new ArrayList<>();
+    templateCards = new ArrayList<>();
 
     placeholderCard = placeholder.instantiate();
     placeholderCard.setPlaceholderCard();

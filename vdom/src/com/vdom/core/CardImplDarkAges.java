@@ -278,7 +278,7 @@ public class CardImplDarkAges extends CardImpl {
   }
 
   public void catacombs(Game game, Player currentPlayer, MoveContext context) {
-    ArrayList<Card> topOfTheDeck = new ArrayList<Card>();
+    ArrayList<Card> topOfTheDeck = new ArrayList<>();
     for (int i = 0; i < 3; i++) {
       Card card = game.draw(context, Cards.catacombs, 3 - i);
       if (card != null) {
@@ -562,7 +562,7 @@ public class CardImplDarkAges extends CardImpl {
       currentPlayer.trash(card, getControlCard(), context);
     }
 
-    HashSet<String> cardNames = new HashSet<String>();
+    HashSet<String> cardNames = new HashSet<>();
     for (Card card : game.trashPile) {
       if (card == null) {
         break;
@@ -626,7 +626,7 @@ public class CardImplDarkAges extends CardImpl {
 
   private void hermit(MoveContext context, Game game, Player currentPlayer) {
 
-    Set<Card> inDiscard = new HashSet<Card>();
+    Set<Card> inDiscard = new HashSet<>();
     for (Card c : currentPlayer.discard) {
       if (!(c.is(Type.Treasure, currentPlayer))) {
         inDiscard.add(c);
@@ -636,13 +636,13 @@ public class CardImplDarkAges extends CardImpl {
     options.addAll(inDiscard);
     Collections.sort(options, new Util.CardNameComparator());
 
-    Set<Card> inHand = new HashSet<Card>();
+    Set<Card> inHand = new HashSet<>();
     for (Card c : currentPlayer.hand) {
       if (!(c.is(Type.Treasure, currentPlayer))) {
         inHand.add(c);
       }
     }
-    List<Card> handList = new ArrayList<Card>(inHand);
+    List<Card> handList = new ArrayList<>(inHand);
     Collections.sort(handList, new Util.CardNameComparator());
     options.addAll(handList);
 
@@ -797,7 +797,7 @@ public class CardImplDarkAges extends CardImpl {
 
       // Create a list of all possible cards to guess, using the player's hand, discard pile, and deck
       // (even though the player could technically name a card he doesn't have)
-      ArrayList<Card> options = new ArrayList<Card>(currentPlayer.getDistinctCards());
+      ArrayList<Card> options = new ArrayList<>(currentPlayer.getDistinctCards());
       Collections.sort(options, new Util.CardNameComparator());
 
       if (!options.isEmpty()) {
@@ -828,7 +828,7 @@ public class CardImplDarkAges extends CardImpl {
         targetPlayer.attacked(getControlCard(), context);
         MoveContext targetContext = new MoveContext(context, game, targetPlayer);
         targetContext.attackedPlayer = targetPlayer;
-        ArrayList<Card> cardsInHand = new ArrayList<Card>();
+        ArrayList<Card> cardsInHand = new ArrayList<>();
 
         for (Card card : targetPlayer.getHand()) {
           cardsInHand.add(card);
@@ -897,8 +897,8 @@ public class CardImplDarkAges extends CardImpl {
   }
 
   private void rebuild(Player currentPlayer, MoveContext context) {
-    ArrayList<Card> allCards = new ArrayList<Card>(currentPlayer.getDistinctCards());
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> allCards = new ArrayList<>(currentPlayer.getDistinctCards());
+    ArrayList<Card> options = new ArrayList<>();
     for (Card c : allCards) {
       if (c.is(Type.Victory, currentPlayer)) {
         options.add(c);
@@ -908,7 +908,7 @@ public class CardImplDarkAges extends CardImpl {
 
     Card named = currentPlayer.controlPlayer.rebuild_cardToPick(context, options);
     currentPlayer.controlPlayer.namedCard(named, getControlCard(), context);
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     Card last = null;
 
     // search for first Victory card that was not named
@@ -941,7 +941,7 @@ public class CardImplDarkAges extends CardImpl {
   }
 
   private void rogue(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
     for (Card c : game.trashPile) {
       if (!c.costPotion() && c.getCost(context) >= 3 && c.getCost(context) <= 6) {
         options.add(c);
@@ -1013,7 +1013,7 @@ public class CardImplDarkAges extends CardImpl {
   }
 
   private void sage(Game game, MoveContext context, Player currentPlayer) {
-    HashSet<String> cardNames = new HashSet<String>();
+    HashSet<String> cardNames = new HashSet<>();
 
     for (int i = 0; i < currentPlayer.hand.size(); i++) {
       Card card = currentPlayer.hand.get(i);
@@ -1021,7 +1021,7 @@ public class CardImplDarkAges extends CardImpl {
       //currentPlayer.reveal(card, this.getControlCard(), context);
     }
 
-    ArrayList<Card> toDiscard = new ArrayList<Card>();
+    ArrayList<Card> toDiscard = new ArrayList<>();
 
     Card draw = null;
     while ((draw = game.draw(context, Cards.sage, -1)) != null && draw.getCost(context) < 3) {
@@ -1159,7 +1159,7 @@ public class CardImplDarkAges extends CardImpl {
   }
 
   private void survivors(MoveContext context, Game game, Player currentPlayer) {
-    ArrayList<Card> topOfTheDeck = new ArrayList<Card>();
+    ArrayList<Card> topOfTheDeck = new ArrayList<>();
     for (int i = 0; i < 2; i++) {
       Card card = game.draw(context, Cards.survivors, 2 - i);
       if (card != null) {
@@ -1183,7 +1183,7 @@ public class CardImplDarkAges extends CardImpl {
         if (order == null) {
           bad = true;
         } else {
-          ArrayList<Card> copy = new ArrayList<Card>();
+          ArrayList<Card> copy = new ArrayList<>();
           for (Card card : topOfTheDeck) {
             copy.add(card);
           }
@@ -1243,7 +1243,7 @@ public class CardImplDarkAges extends CardImpl {
   }
 
   private void wanderingMinstrel(Player currentPlayer, MoveContext context) {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     for (int i = 0; i < 3; i++) {
       Card card = context.game.draw(context, Cards.wanderingMinstrel, 3 - i);
       if (card == null) {
@@ -1275,9 +1275,9 @@ public class CardImplDarkAges extends CardImpl {
         targetPlayer.attacked(getControlCard(), context);
         MoveContext targetContext = new MoveContext(context.game, targetPlayer);
         targetContext.attackedPlayer = targetPlayer;
-        ArrayList<Card> canTrash = new ArrayList<Card>();
+        ArrayList<Card> canTrash = new ArrayList<>();
 
-        List<Card> cardsToDiscard = new ArrayList<Card>();
+        List<Card> cardsToDiscard = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
           Card card = context.game.draw(targetContext, this, 2 - i);
 

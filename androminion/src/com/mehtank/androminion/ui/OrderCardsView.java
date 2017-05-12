@@ -58,8 +58,8 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
 
   int[] cards; // cards is an array of card-IDs in the original order.
 
-  ArrayList<Integer> orderedCards = new ArrayList<Integer>(); // this is an array of indices into cards[]
-  ArrayList<Integer> origCards = new ArrayList<Integer>(); // this is an array of indices into cards[]
+  ArrayList<Integer> orderedCards = new ArrayList<>(); // this is an array of indices into cards[]
+  ArrayList<Integer> origCards = new ArrayList<>(); // this is an array of indices into cards[]
 
   public OrderCardsView(GameActivity top, String header, int[] cards) {
     super(top, header); // initializes ll by calling makeContentView

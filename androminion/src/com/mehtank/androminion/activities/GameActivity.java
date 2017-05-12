@@ -713,7 +713,7 @@ public class GameActivity extends SherlockActivity implements EventHandler {
   }
 
   ArrayList<String> getUserPrefs() {
-    ArrayList<String> strs = new ArrayList<String>();
+    ArrayList<String> strs = new ArrayList<>();
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(top);
 
     strs.add("-blackmarketcount" + prefs.getString("black_market_count", "25"));

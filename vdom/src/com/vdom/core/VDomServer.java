@@ -23,7 +23,7 @@ public class VDomServer implements EventHandler {
   /**
    * List of all players name => classname
    */
-  static final HashMap<String, String> allPlayers = new HashMap<String, String>();
+  static final HashMap<String, String> allPlayers = new HashMap<>();
   @SuppressWarnings("unused")
   private static final String TAG = "VDomServer";
   public static VDomServer me;  // will be the only instance of this class
@@ -32,8 +32,8 @@ public class VDomServer implements EventHandler {
   private final boolean DEBUGGING = true;
 
   String gameType;
-  ArrayList<String> gamePlayers = new ArrayList<String>();
-  ArrayList<RemotePlayer> remotePlayers = new ArrayList<RemotePlayer>();
+  ArrayList<String> gamePlayers = new ArrayList<>();
+  ArrayList<RemotePlayer> remotePlayers = new ArrayList<>();
   Thread gt;
   boolean isStarted = false;
   boolean isRunning = false;
@@ -177,7 +177,7 @@ public class VDomServer implements EventHandler {
   }
 
   public String getRandomAI(final String[] args) {
-    List<String> playersInGame = new ArrayList<String>();
+    List<String> playersInGame = new ArrayList<>();
 
     for (String arg : args) {
       if (arg.contains(" (AI)")) {
@@ -246,7 +246,7 @@ public class VDomServer implements EventHandler {
         }
       }
       int currentHuman = 0;
-      ArrayList<String> runningStrings = new ArrayList<String>();
+      ArrayList<String> runningStrings = new ArrayList<>();
 
       for (String s : gamePlayers) {  // We infer gamePlayers from the Game.java-command line arguments we received via the STARTGAME event.
         if (s.equals(remotePlayerString)) {   // the player is human

@@ -18,7 +18,7 @@ public class TabsAdapter extends FragmentPagerAdapter implements ActionBar.TabLi
   private final Context mContext;
   private final ActionBar mActionBar;
   private final ViewPager mViewPager;
-  private final ArrayList<TabInfo> mTabs = new ArrayList<TabInfo>();
+  private final ArrayList<TabInfo> mTabs = new ArrayList<>();
 
   public TabsAdapter(SherlockFragmentActivity activity, ViewPager pager) {
     super(activity.getSupportFragmentManager());

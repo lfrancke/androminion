@@ -34,16 +34,16 @@ public class Game {
   public static final String BANE = "bane+";
   public static final String OBELISK = "obelisk+";
   public static final String BLACKMARKET = "blackMarket+";
-  public static final HashSet<GameEvent.EventType> showEvents = new HashSet<GameEvent.EventType>();
-  public static final HashSet<String> showPlayers = new HashSet<String>();
+  public static final HashSet<GameEvent.EventType> showEvents = new HashSet<>();
+  public static final HashSet<String> showPlayers = new HashSet<>();
   private static final int kingdomCardPileSize = 10;
   public static boolean junit = false;
   public static boolean debug = false;
   public static Integer cardSequence = 1;
-  public static HashMap<String, Double> GAME_TYPE_WINS = new HashMap<String, Double>();
-  public static HashMap<String, Integer> winStats = new HashMap<String, Integer>();
+  public static HashMap<String, Double> GAME_TYPE_WINS = new HashMap<>();
+  public static HashMap<String, Integer> winStats = new HashMap<>();
   public static String[] cardsSpecifiedAtLaunch;
-  public static ArrayList<String> unfoundCards = new ArrayList<String>();
+  public static ArrayList<String> unfoundCards = new ArrayList<>();
   /**
    * The card set to use for the game.
    *
@@ -88,8 +88,8 @@ public class Game {
   public static boolean maskPlayerNames = false;
   public static Random rand = new Random(System.currentTimeMillis());
   public static int victoryCardPileSize = 12;
-  public static HashMap<String, Player> cachedPlayers = new HashMap<String, Player>();
-  public static HashMap<String, Class<?>> cachedPlayerClasses = new HashMap<String, Class<?>>();
+  public static HashMap<String, Player> cachedPlayers = new HashMap<>();
+  public static HashMap<String, Class<?>> cachedPlayerClasses = new HashMap<>();
   public static Player[] players;
   public static int numPlayers;
   /**
@@ -97,30 +97,30 @@ public class Game {
    * is in index [0] of the array and the jar is in index [1]. Index [1] is null (but still there) if the
    * default class loader should be used.
    */
-  static ArrayList<String[]> playerClassesAndJars = new ArrayList<String[]>();
+  static ArrayList<String[]> playerClassesAndJars = new ArrayList<>();
   static boolean test = false;
   static boolean ignoreAllPlayerErrors = false;
   static boolean ignoreSomePlayerErrors = false;
-  static HashSet<String> ignoreList = new HashSet<String>();
-  static ArrayList<GameStats> gameTypeStats = new ArrayList<GameStats>();
+  static HashSet<String> ignoreList = new HashSet<>();
+  static ArrayList<GameStats> gameTypeStats = new ArrayList<>();
   static int numGames = -1;
   static int gameCounter = 0;
   static boolean forceDownload = false;
-  static HashMap<String, Double> overallWins = new HashMap<String, Double>();
+  static HashMap<String, Double> overallWins = new HashMap<>();
   static int playersTurn;
-  private static HashMap<String, Player> playerCache = new HashMap<String, Player>();
-  public ArrayList<GameEventListener> listeners = new ArrayList<GameEventListener>();
+  private static HashMap<String, Player> playerCache = new HashMap<>();
+  public ArrayList<GameEventListener> listeners = new ArrayList<>();
   public GameEventListener gameListener;
-  public HashMap<String, CardPile> piles = new HashMap<String, CardPile>();
-  public HashMap<String, CardPile> placeholderPiles = new HashMap<String, CardPile>();
-  public HashMap<String, Integer> embargos = new HashMap<String, Integer>();
-  public HashMap<String, Integer> pileVpTokens = new HashMap<String, Integer>();
-  public HashMap<String, Integer> pileDebtTokens = new HashMap<String, Integer>();
-  public ArrayList<Card> trashPile = new ArrayList<Card>();
-  public ArrayList<Card> possessedTrashPile = new ArrayList<Card>();
-  public ArrayList<Card> possessedBoughtPile = new ArrayList<Card>();
-  public ArrayList<Card> blackMarketPile = new ArrayList<Card>();
-  public ArrayList<Card> blackMarketPileShuffled = new ArrayList<Card>();
+  public HashMap<String, CardPile> piles = new HashMap<>();
+  public HashMap<String, CardPile> placeholderPiles = new HashMap<>();
+  public HashMap<String, Integer> embargos = new HashMap<>();
+  public HashMap<String, Integer> pileVpTokens = new HashMap<>();
+  public HashMap<String, Integer> pileDebtTokens = new HashMap<>();
+  public ArrayList<Card> trashPile = new ArrayList<>();
+  public ArrayList<Card> possessedTrashPile = new ArrayList<>();
+  public ArrayList<Card> possessedBoughtPile = new ArrayList<>();
+  public ArrayList<Card> blackMarketPile = new ArrayList<>();
+  public ArrayList<Card> blackMarketPileShuffled = new ArrayList<>();
   public int tradeRouteValue = 0;
   public Card baneCard = null;
   public Card obeliskCard = null;
@@ -144,7 +144,7 @@ public class Game {
   int consecutiveTurnCounter = 0;
   boolean gameOver = false;
   private HashMap<String, HashMap<Player, List<PlayerSupplyToken>>> playerSupplyTokens =
-    new HashMap<String, HashMap<Player, List<PlayerSupplyToken>>>();
+    new HashMap<>();
 
   public static void main(String[] args) {
     try {
@@ -454,7 +454,7 @@ public class Game {
             String[] parts = gameTypeStr.split("-");
             if (parts.length > 0) {
               gameTypeStr = parts[0];
-              randomExpansions = new ArrayList<Expansion>();
+              randomExpansions = new ArrayList<>();
               for (int i = 1; i < parts.length; ++i) {
                 randomExpansions.add(Expansion.valueOf(parts[i]));
               }
@@ -469,7 +469,7 @@ public class Game {
             String exclusions = arg.substring(randomExcludesArg.length());
             String[] parts = exclusions.split("-");
             if (parts.length > 0) {
-              randomExcludedExpansions = new ArrayList<Expansion>();
+              randomExcludedExpansions = new ArrayList<>();
               for (int i = 1; i < parts.length; ++i) {
                 randomExcludedExpansions.add(Expansion.valueOf(parts[i]));
               }
@@ -850,7 +850,7 @@ public class Game {
   public List<PlayerSupplyToken> getPlayerSupplyTokens(Card card, Player player) {
     card = card.getTemplateCard();
     if (player == null || !playerSupplyTokens.containsKey(card.getName())) {
-      return new ArrayList<PlayerSupplyToken>();
+      return new ArrayList<>();
     }
 
     if (!playerSupplyTokens.get(card.getName()).containsKey(player)) {
@@ -902,7 +902,7 @@ public class Game {
 
   public int emptyPiles() {
     int emptyPiles = 0;
-    ArrayList<CardPile> alreadyCounted = new ArrayList<CardPile>();
+    ArrayList<CardPile> alreadyCounted = new ArrayList<>();
     for (CardPile pile : piles.values()) {
       if (pile.getCount() <= 0 && pile.isSupply() && !alreadyCounted.contains(pile)) {
         emptyPiles++;
@@ -921,7 +921,7 @@ public class Game {
   }
 
   public Card[] getCardsInGame(GetCardsInGameOptions opt, boolean supplyOnly, Type type) {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     for (CardPile pile : piles.values()) {
 
       if (supplyOnly && !pile.isSupply) {
@@ -1126,7 +1126,7 @@ public class Game {
 
   public void trashHovelsInHandOption(Player player, MoveContext context, Card responsible) {
     // If player has a Hovel (or multiple Hovels), offer the option to trash...
-    ArrayList<Card> hovelsToTrash = new ArrayList<Card>();
+    ArrayList<Card> hovelsToTrash = new ArrayList<>();
 
     for (Card c : player.hand) {
       if (c.getKind() == Cards.Kind.Hovel && player.controlPlayer.hovel_shouldTrash(context)) {
@@ -1321,7 +1321,7 @@ public class Game {
       StringBuilder msg = new StringBuilder();
       msg.append(" " + allCards.size() + " Cards: ");
 
-      final HashMap<String, Integer> cardCounts = new HashMap<String, Integer>();
+      final HashMap<String, Integer> cardCounts = new HashMap<>();
       for (Card card : allCards) {
         String key = card.getName() + " -> " + card.getDescription();
         Integer count = cardCounts.get(key);
@@ -1332,7 +1332,7 @@ public class Game {
         }
       }
 
-      ArrayList<Card> removeDuplicates = new ArrayList<Card>();
+      ArrayList<Card> removeDuplicates = new ArrayList<>();
       for (Card card : allCards) {
         if (!removeDuplicates.contains(card)) {
           removeDuplicates.add(card);
@@ -1367,7 +1367,7 @@ public class Game {
   protected List<ExtraTurnInfo> playerEndTurn(Player player, MoveContext context) {
     int handCount = 5;
 
-    List<ExtraTurnInfo> result = new ArrayList<Game.ExtraTurnInfo>();
+    List<ExtraTurnInfo> result = new ArrayList<>();
     // Can only have at most two consecutive turns
     for (Card card : player.nextTurnCards) {
       Card behaveAsCard = card.behaveAsCard();
@@ -1553,13 +1553,13 @@ public class Game {
       if (!actionChains || player.controlPlayer.isAi()) {
         action = player.controlPlayer.doAction(context);
         if (action != null) {
-          actionCards = new ArrayList<Card>();
+          actionCards = new ArrayList<>();
           actionCards.add(action);
         }
       } else {
         Card[] cs = player.controlPlayer.actionCardsToPlayInOrder(context);
         if (cs != null && cs.length != 0) {
-          actionCards = new ArrayList<Card>();
+          actionCards = new ArrayList<>();
           for (Card c : cs) {
             actionCards.add(c);
           }
@@ -1725,8 +1725,8 @@ public class Game {
          * other Durations like Wharf - (Curse)
          */
     boolean allDurationAreSimple = true;
-    ArrayList<Object> durationEffects = new ArrayList<Object>();
-    ArrayList<Boolean> durationEffectsAreCards = new ArrayList<Boolean>();
+    ArrayList<Object> durationEffects = new ArrayList<>();
+    ArrayList<Boolean> durationEffectsAreCards = new ArrayList<>();
     int archiveNum = 0;
     for (Card card : player.nextTurnCards) {
       Card thisCard = card.behaveAsCard();
@@ -1821,7 +1821,7 @@ public class Game {
       durationEffectsAreCards.add(false);
       durationEffectsAreCards.add(false);
     }
-    ArrayList<Card> callableCards = new ArrayList<Card>();
+    ArrayList<Card> callableCards = new ArrayList<>();
     for (Card c : player.tavern) {
       if (c.behaveAsCard().isCallableWhenTurnStarts()) {
         callableCards.add((Card) c);
@@ -2032,7 +2032,7 @@ public class Game {
 
     //TODO: integrate this into the main action selection UI if possible to make it more seamless
     //check for start-of-turn callable cards
-    callableCards = new ArrayList<Card>();
+    callableCards = new ArrayList<>();
     for (Card c : player.tavern) {
       if (c.behaveAsCard().isCallableWhenTurnStarts()) {
         callableCards.add(c);
@@ -2071,10 +2071,10 @@ public class Game {
     players = new Player[numPlayers];
     cardsObtainedLastTurn = new ArrayList[numPlayers];
     for (int i = 0; i < numPlayers; i++) {
-      cardsObtainedLastTurn[i] = new ArrayList<Card>();
+      cardsObtainedLastTurn[i] = new ArrayList<>();
     }
 
-    ArrayList<String[]> randomize = new ArrayList<String[]>();
+    ArrayList<String[]> randomize = new ArrayList<>();
     while (!playerClassesAndJars.isEmpty()) {
       if (isRandom) {
         randomize.add(playerClassesAndJars.remove(rand.nextInt(playerClassesAndJars.size())));
@@ -2441,7 +2441,7 @@ public class Game {
         int replacementCost = -1;
 
         if (replacementCost != -1) {
-          ArrayList<Card> cardsWithSameCost = new ArrayList<Card>();
+          ArrayList<Card> cardsWithSameCost = new ArrayList<>();
           for (Card card : Cards.actionCards) {
             if (card.getCost(null) == replacementCost && !cardInGame(card)) {
               cardsWithSameCost.add(card);
@@ -2494,7 +2494,7 @@ public class Game {
       // get 10 cards more then needed. Extract the cards in supply
       int count = Math.max(blackMarketCount - blackMarketPile.size(), 0);
       if (blackMarketOnlyCardsFromUsedExpansions) {
-        List<Expansion> expansions = new ArrayList<Expansion>();
+        List<Expansion> expansions = new ArrayList<>();
         if (randomExpansions != null && !randomExpansions.isEmpty()) {
           expansions.addAll(randomExpansions);
         } else {
@@ -2516,7 +2516,7 @@ public class Game {
         allCards = CardSet.getCardSet(GameType.Random, count + 10).getCards();
       }
 
-      List<Card> remainingCards = new ArrayList<Card>();
+      List<Card> remainingCards = new ArrayList<>();
       for (Card allCard : allCards) {
         if (!piles.containsKey(allCard.getName())) {
           CardPile tempPile = allCard.getPileCreator()
@@ -2542,7 +2542,7 @@ public class Game {
 
       //Force remaining split pile cards into black market deck if one from a split pile is in
       if (blackMarketSplitPileOptions == BlackMarketSplitPileOptions.ALL) {
-        ArrayList<Card> extraCards = new ArrayList<Card>();
+        ArrayList<Card> extraCards = new ArrayList<>();
         for (int i = 0; i < cards.size(); ++i) {
           Card c = cards.get(i);
           ArrayList<Card> templates = c.getPileCreator().create(allCards.get(i), 12)
@@ -2760,7 +2760,7 @@ public class Game {
     // Setup for Obelisk
     if (piles.containsKey(Cards.obelisk.getName())) {
       if (obeliskCard == null) {
-        ArrayList<Card> validObeliskCards = new ArrayList<Card>();
+        ArrayList<Card> validObeliskCards = new ArrayList<>();
         for (String p : placeholderPiles.keySet()) {
           CardPile pile = placeholderPiles.get(p);
           Card placeholder = pile.placeholderCard();
@@ -2802,9 +2802,9 @@ public class Game {
     Util.debug("---------------", true);
     cardListText += "Cards in play\n---------------\n";
 
-    ArrayList<Card> cards = new ArrayList<Card>();
-    ArrayList<Card> events = new ArrayList<Card>();
-    ArrayList<Card> landmarks = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
+    ArrayList<Card> events = new ArrayList<>();
+    ArrayList<Card> landmarks = new ArrayList<>();
     for (CardPile pile : placeholderPiles.values()) {
       Card c = pile.placeholderCard();
       if (Cards.isKingdomCard(c)) {
@@ -3098,7 +3098,7 @@ public class Game {
           // NOTE: Technically this should be done in a loop, as you can call multiple cards for one when-gain.
           //   However, since the only card here, Duplicate, will trigger another on-gain anyway
           //   we don't need to.
-          ArrayList<Card> callableCards = new ArrayList<Card>();
+          ArrayList<Card> callableCards = new ArrayList<>();
           for (Card c : player.tavern) {
             if (c.behaveAsCard().isCallableWhenCardGained()) {
               int callCost = c.behaveAsCard().getCallableWhenGainedMaxCost();
@@ -3202,7 +3202,7 @@ public class Game {
               player.gainNewCard(Cards.copper, event.card, context);
             }
           } else if (gainedCardAbility.equals(Cards.inn)) {
-            ArrayList<Card> cards = new ArrayList<Card>();
+            ArrayList<Card> cards = new ArrayList<>();
             int actionCardsFound = 0;
             for (int i = player.discard.size() - 1; i >= 0; i--) {
               Card c = player.discard.get(i);
@@ -3247,7 +3247,7 @@ public class Game {
           } else if (gainedCardAbility.equals(Cards.mandarin)) {
             CardList playedCards = context.getPlayedCards();
             CardList nextTurnCards = context.player.nextTurnCards;
-            ArrayList<Card> treasureCardsInPlay = new ArrayList<Card>();
+            ArrayList<Card> treasureCardsInPlay = new ArrayList<>();
 
             for (Card c : playedCards) {
               if (c.is(Type.Treasure, player)) {
@@ -3536,7 +3536,7 @@ public class Game {
 
     piles.put(card.getName(), pile);
     placeholderPiles.put(card.getName(), pile);
-    HashMap<Player, List<PlayerSupplyToken>> tokenMap = new HashMap<Player, List<PlayerSupplyToken>>();
+    HashMap<Player, List<PlayerSupplyToken>> tokenMap = new HashMap<>();
     playerSupplyTokens.put(card.getName(), tokenMap);
 
     //Add the to the list for each templateCard used (this replaces addLinkedPile)
@@ -3555,7 +3555,7 @@ public class Game {
   }
 
   void start() throws ExitException {
-    HashMap<String, Double> gameTypeSpecificWins = new HashMap<String, Double>();
+    HashMap<String, Double> gameTypeSpecificWins = new HashMap<>();
 
     for (String[] className : playerClassesAndJars) {
       gameTypeSpecificWins.put(className[0], 0.0);
@@ -3591,7 +3591,7 @@ public class Game {
       turnCount = 1;
       Util.debug("Turn " + turnCount);
 
-      Queue<ExtraTurnInfo> extraTurnsInfo = new LinkedList<ExtraTurnInfo>();
+      Queue<ExtraTurnInfo> extraTurnsInfo = new LinkedList<>();
 
       while (!gameOver) {
         Player player = players[playersTurn];
@@ -3693,7 +3693,7 @@ public class Game {
 
     if (test) {
       // System.out.println();
-      ArrayList<Card> gameCards = new ArrayList<Card>();
+      ArrayList<Card> gameCards = new ArrayList<>();
       for (CardPile pile : piles.values()) {
         Card card = pile.placeholderCard();
         if (!card.equals(Cards.copper) && !card.equals(Cards.silver) && !card.equals(Cards.gold) && !card.equals(
@@ -3911,7 +3911,7 @@ public class Game {
       }
     } else {
       if (cardsLeftToDraw > 0 && context.player.deck.size() < cardsLeftToDraw) {
-        ArrayList<Card> cardsToDraw = new ArrayList<Card>();
+        ArrayList<Card> cardsToDraw = new ArrayList<>();
         for (Card c : context.player.deck) {
           cardsToDraw.add(c);
         }
@@ -3938,7 +3938,7 @@ public class Game {
   }
 
   int totalCardCount() {
-    HashMap<String, Integer> cardCounts = new HashMap<String, Integer>();
+    HashMap<String, Integer> cardCounts = new HashMap<>();
     for (String cardName : piles.keySet()) {
       cardCounts.put(cardName, piles.get(cardName).getCount());
     }
@@ -4165,7 +4165,7 @@ public class Game {
     int debt = cardBought.getDebtCost(context);
     boolean potion = cardBought.costPotion();
     int potionCost = potion ? 1 : 0;
-    List<Card> validCards = new ArrayList<Card>();
+    List<Card> validCards = new ArrayList<>();
 
     for (int i = 0; i < hagglers; i++) {
       validCards.clear();

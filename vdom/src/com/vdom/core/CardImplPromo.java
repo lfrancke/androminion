@@ -70,7 +70,7 @@ public class CardImplPromo extends CardImpl {
     context.blackMarketBuyPhase = true;
 
     // reveal 3 cards from BlackMarket pile
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     int count = Math.min(context.game.blackMarketPileShuffled.size(), 3);
     for (int i = 0; i < count; i++) {
       Card c = context.game.blackMarketPileShuffled.remove(0);
@@ -85,7 +85,7 @@ public class CardImplPromo extends CardImpl {
 
     if (currentPlayer.getDebtTokenCount() == 0) {
       // get one buy from BlackMarkt pile
-      ArrayList<Card> canBuy = new ArrayList<Card>();
+      ArrayList<Card> canBuy = new ArrayList<>();
       for (Card card1 : cards) {
         if (context.game.isValidBuy(context, card1, context.getCoinAvailableForBuy())) {
           canBuy.add(card1);
@@ -122,7 +122,7 @@ public class CardImplPromo extends CardImpl {
       if (order == null || order.length != cards.size()) {
         bad = true;
       } else {
-        ArrayList<Card> orderArray = new ArrayList<Card>();
+        ArrayList<Card> orderArray = new ArrayList<>();
         for (Card c : order) {
           orderArray.add(c);
           if (!cards.contains(c)) {
@@ -149,7 +149,7 @@ public class CardImplPromo extends CardImpl {
   }
 
   private void envoy(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     Player nextPlayer = game.getNextPlayer();
     for (int i = 0; i < 5; i++) {
       Card card = game.draw(context, Cards.envoy, 5 - i);

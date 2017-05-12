@@ -133,7 +133,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     //Init prefs
     mPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-    completeSets = new HashMap<Expansion, ToggleButton>();
+    completeSets = new HashMap<>();
     completeSets.put(getBaseEdition(), mRandomBase = (ToggleButton) mView.findViewById(R.id.toggleButtonBaseSet));
     completeSets
       .put(getIntrigueEdition(), mRandomIntrigue = (ToggleButton) mView.findViewById(R.id.toggleButtonIntrigue));
@@ -167,7 +167,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     getLastCards();
 
     // Fill cardset spinner with values
-    ArrayList<String> cardspinnerlist = new ArrayList<String>();
+    ArrayList<String> cardspinnerlist = new ArrayList<>();
     cardspinnerlist.add(getResources().getString(R.string.game_type_random));
     cardspinnerlist.add(getResources().getString(R.string.game_type_preset));
     if (mLastCards != null) {
@@ -201,7 +201,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     }
 
     //Fill card set spinners
-    ArrayList<Expansion> blackListedExpansions = new ArrayList<Expansion>();
+    ArrayList<Expansion> blackListedExpansions = new ArrayList<>();
     switch (getBaseEdition()) {
       case Base:
         blackListedExpansions.add(Expansion.Base2E);
@@ -286,7 +286,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
 
     // Fill platinum/colony & shelters spinners
     int platColonyChance = mPrefs.getInt(PLAT_COLONY_PREF, -1);
-    ArrayList<String> platColonySpinnerList = new ArrayList<String>();
+    ArrayList<String> platColonySpinnerList = new ArrayList<>();
     platColonySpinnerList.add(getResources().getString(R.string.include_cards_random));
     platColonySpinnerList.add(getResources().getString(R.string.include_cards_yes));
     platColonySpinnerList.add(getResources().getString(R.string.include_cards_no));
@@ -298,7 +298,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     mPlatColonySpinner.setSelection(chanceToPos(platColonyChance));
 
     int sheltersChance = mPrefs.getInt(SHELTERS_PREF, -1);
-    ArrayList<String> sheltersSpinnerList = new ArrayList<String>();
+    ArrayList<String> sheltersSpinnerList = new ArrayList<>();
     sheltersSpinnerList.add(getResources().getString(R.string.include_cards_random));
     sheltersSpinnerList.add(getResources().getString(R.string.include_cards_yes));
     sheltersSpinnerList.add(getResources().getString(R.string.include_cards_no));
@@ -317,7 +317,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     numEvents = Math.min(totalEvents, numEvents);
     numEvents = Math.max(numEvents, -1);
 
-    ArrayList<String> eventsSpinnerList = new ArrayList<String>();
+    ArrayList<String> eventsSpinnerList = new ArrayList<>();
     eventsSpinnerList.add(getResources().getString(R.string.random_events_none));
     eventsSpinnerList.add(getResources().getString(R.string.random_events_random));
     for (int i = 0; i < totalEvents; ++i) {
@@ -332,7 +332,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     numLandmarks = Math.min(totalLandmarks, numLandmarks);
     numLandmarks = Math.max(numLandmarks, -1);
 
-    ArrayList<String> landmarksSpinnerList = new ArrayList<String>();
+    ArrayList<String> landmarksSpinnerList = new ArrayList<>();
     landmarksSpinnerList.add(getResources().getString(R.string.random_landmarks_none));
     landmarksSpinnerList.add(getResources().getString(R.string.random_landmarks_random));
     for (int i = 0; i < totalLandmarks; ++i) {
@@ -359,7 +359,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     initListeners();
 
     // Fill player spinners
-    ArrayList<String> players = new ArrayList<String>(PLAYERTYPES.length + 1);
+    ArrayList<String> players = new ArrayList<>(PLAYERTYPES.length + 1);
     for (String s : PLAYERTYPES) {
       players.add(s);
     }
@@ -372,7 +372,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     ((TextView) mView.findViewById(R.id.txtPlayer1))
       .setText(player + "1:  ");
 
-    players = new ArrayList<String>(players);
+    players = new ArrayList<>(players);
     players.add(getString(R.string.none_game_start));
     adapter = createArrayAdapter(players);
 
@@ -569,7 +569,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
   }
 
   private <T> ArrayAdapter<T> createArrayAdapter(ArrayList<T> list) {
-    ArrayAdapter<T> adapter = new ArrayAdapter<T>
+    ArrayAdapter<T> adapter = new ArrayAdapter<>
                                 (getActivity(), android.R.layout.simple_spinner_item, list);
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     return adapter;
@@ -622,7 +622,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     SharedPreferences.Editor edit = mPrefs.edit();
 
     String[] cardsSpecified = null;
-    ArrayList<String> strs = new ArrayList<String>();
+    ArrayList<String> strs = new ArrayList<>();
     GameType g;
 
     switch (mGameType) {

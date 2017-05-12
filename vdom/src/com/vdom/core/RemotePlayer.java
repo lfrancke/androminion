@@ -44,12 +44,12 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   // communication thread handled internally now
   // Thread commThread;
   private int myPort = 0;
-  private HashMap<String, Integer> cardNamesInPlay = new HashMap<String, Integer>();
-  private ArrayList<Card> cardsInPlay = new ArrayList<Card>();
-  private ArrayList<Player> allPlayers = new ArrayList<Player>();
+  private HashMap<String, Integer> cardNamesInPlay = new HashMap<>();
+  private ArrayList<Card> cardsInPlay = new ArrayList<>();
+  private ArrayList<Player> allPlayers = new ArrayList<>();
   private MyCard[] myCardsInPlay;
-  private ArrayList<Card> playedCards = new ArrayList<Card>();
-  private ArrayList<Boolean> playedCardsNew = new ArrayList<Boolean>();
+  private ArrayList<Card> playedCards = new ArrayList<>();
+  private ArrayList<Boolean> playedCardsNew = new ArrayList<>();
   private boolean hasJoined = false;
   private Object hasJoinedMonitor;
   private Thread gameThread = null; // vdom-engine-thread
@@ -336,7 +336,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   }
 
   public void setupCardsInPlay(MoveContext context) {
-    ArrayList<MyCard> myCardsInPlayList = new ArrayList<MyCard>();
+    ArrayList<MyCard> myCardsInPlayList = new ArrayList<>();
 
     int index = 0;
 
@@ -612,7 +612,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     // Because we push all construction of strings to the client that talks to RemotePlayer, we
     // create the "extras" object that gives the client enough information to know what exactly
     // the event is.  This part of the "extras" object applies to all event types.
-    List<Object> extras = new ArrayList<Object>();
+    List<Object> extras = new ArrayList<>();
     if (event.getPlayer().isPossessed() || event.getPlayer().isControlled()) {
       extras.add(event.getPlayer().controlPlayer.getPlayerName());
     } else {
@@ -868,7 +868,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     if (context.startOfTurn) {
       return;
     }
-    Map<Card, Integer> inPlayCounts = new HashMap<Card, Integer>();
+    Map<Card, Integer> inPlayCounts = new HashMap<>();
     for (Card c : context.player.playedCards) {
       if (inPlayCounts.containsKey(c)) {
         inPlayCounts.put(c, inPlayCounts.get(c) + 1);
@@ -886,7 +886,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
         inPlayCounts.put(c, 1);
       }
     }
-    Map<Card, Integer> playedCounts = new HashMap<Card, Integer>();
+    Map<Card, Integer> playedCounts = new HashMap<>();
     for (int i = 0; i < played.size(); ++i) {
       if (!playedReal.get(i)) {
         continue;
@@ -914,7 +914,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   }
 
   private int[] getArchiveColumnCardInts(ArrayList<ArrayList<Card>> archives) {
-    ArrayList<Integer> cardInts = new ArrayList<Integer>();
+    ArrayList<Integer> cardInts = new ArrayList<>();
     for (ArrayList<Card> archive : archives) {
       cardInts.add(-cardToInt(Cards.archive));
       for (Card c : archive) {

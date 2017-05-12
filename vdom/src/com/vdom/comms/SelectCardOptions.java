@@ -61,7 +61,7 @@ public class SelectCardOptions implements Serializable {
   public boolean applyOptionsToPile = false;
   public PlayerSupplyToken token = null;
   public String header = null;
-  public ArrayList<Integer> allowedCards = new ArrayList<Integer>();
+  public ArrayList<Integer> allowedCards = new ArrayList<>();
 
   //public SelectCardOptions setType(SelectType s) {selectType = s; return this;}
   public SelectCardOptions setHeader(String s) {

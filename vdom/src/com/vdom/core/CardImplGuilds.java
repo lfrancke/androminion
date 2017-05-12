@@ -89,7 +89,7 @@ public class CardImplGuilds extends CardImpl {
   }
 
   private void advisor(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     Player nextPlayer = game.getNextPlayer();
 
     for (int i = 0; i < 3; ++i) {
@@ -190,12 +190,12 @@ public class CardImplGuilds extends CardImpl {
 
   private void doctor(Game game, MoveContext context, Player currentPlayer) {
 
-    List<Card> options = new ArrayList<Card>(currentPlayer.getDistinctCards());
+    List<Card> options = new ArrayList<>(currentPlayer.getDistinctCards());
     Collections.sort(options, new Util.CardNameComparator());
     Card named = currentPlayer.controlPlayer.doctor_cardToPick(context, options);
     currentPlayer.controlPlayer.namedCard(named, getControlCard(), context);
 
-    ArrayList<Card> revealedCards = new ArrayList<Card>();
+    ArrayList<Card> revealedCards = new ArrayList<>();
 
     for (int i = 0; i < 3; ++i) {
       Card card = game.draw(context, Cards.doctor, 3 - i);
@@ -282,13 +282,13 @@ public class CardImplGuilds extends CardImpl {
   }
 
   private void journeyman(Game game, MoveContext context, Player currentPlayer) {
-    List<Card> options = new ArrayList<Card>(currentPlayer.getDistinctCards());
+    List<Card> options = new ArrayList<>(currentPlayer.getDistinctCards());
     Collections.sort(options, new Util.CardNameComparator());
     Card named = currentPlayer.controlPlayer.journeyman_cardToPick(context, options);
     currentPlayer.controlPlayer.namedCard(named, getControlCard(), context);
 
-    ArrayList<Card> cardsToKeep = new ArrayList<Card>();
-    ArrayList<Card> cardsToDiscard = new ArrayList<Card>();
+    ArrayList<Card> cardsToKeep = new ArrayList<>();
+    ArrayList<Card> cardsToDiscard = new ArrayList<>();
     Card last = null;
     int diffCardsFound = 0;
 

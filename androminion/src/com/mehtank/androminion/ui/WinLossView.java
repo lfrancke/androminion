@@ -40,7 +40,7 @@ public class WinLossView extends FrameLayout {
     Achievements achievements = new Achievements(top);
 
     // Put human players to the top of the list
-    ArrayList<String> players = new ArrayList<String>();
+    ArrayList<String> players = new ArrayList<>();
     int nrOfHumans = 0;
     for (String s : achievements.getAllPlayers()) {
       if (Achievements.isHumanPlayer(s)) {

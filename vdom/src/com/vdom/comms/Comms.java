@@ -32,7 +32,7 @@ public class Comms {
   String host;
   int port;
   EventHandler parent;
-  LinkedBlockingQueue<Event> latestEvents = new LinkedBlockingQueue<Event>();
+  LinkedBlockingQueue<Event> latestEvents = new LinkedBlockingQueue<>();
   private boolean isServer = true;
 
   private Socket pclient = null;
@@ -241,7 +241,7 @@ public class Comms {
     private MonitorObject exceptionMonitorObject = new MonitorObject();
 
     private SendingThread sendingThread = null;
-    private LinkedBlockingQueue<Event> toSendQueue = new LinkedBlockingQueue<Event>();
+    private LinkedBlockingQueue<Event> toSendQueue = new LinkedBlockingQueue<>();
 
     public SocketThread() {
 

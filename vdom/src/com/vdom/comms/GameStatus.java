@@ -50,7 +50,7 @@ public class GameStatus implements Serializable {
   public int swampHagAttacks;
   public int cardCostModifier;
   public int potions;
-  public ArrayList<UpdateCardInfo> cardUpdates = new ArrayList<UpdateCardInfo>();
+  public ArrayList<UpdateCardInfo> cardUpdates = new ArrayList<>();
 
   public GameStatus setFinal(boolean b) {
     isFinal = b;

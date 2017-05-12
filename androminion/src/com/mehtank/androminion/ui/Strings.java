@@ -61,20 +61,20 @@ public class Strings {
   @SuppressWarnings("unused")
   private static final String TAG = "Androminion.Strings";
 
-  static HashMap<Card, String> nameCache = new HashMap<Card, String>();
-  static HashMap<Card, String> descriptionCache = new HashMap<Card, String>();
-  static HashMap<Expansion, String> expansionCache = new HashMap<Expansion, String>();
-  static HashMap<GameType, String> gametypeCache = new HashMap<GameType, String>();
+  static HashMap<Card, String> nameCache = new HashMap<>();
+  static HashMap<Card, String> descriptionCache = new HashMap<>();
+  static HashMap<Expansion, String> expansionCache = new HashMap<>();
+  static HashMap<GameType, String> gametypeCache = new HashMap<>();
   private static Map<String, String> actionStringMap;
   private static Set<String> simpleActionStrings;
   private static Context context;
 
   public static void initContext(Context c) {
     context = c;
-    nameCache = new HashMap<Card, String>();
-    descriptionCache = new HashMap<Card, String>();
-    expansionCache = new HashMap<Expansion, String>();
-    gametypeCache = new HashMap<GameType, String>();
+    nameCache = new HashMap<>();
+    descriptionCache = new HashMap<>();
+    expansionCache = new HashMap<>();
+    gametypeCache = new HashMap<>();
     initActionStrings();
   }
 
@@ -1570,7 +1570,7 @@ public class Strings {
     if (simpleActionStrings != null) {
       return;
     }
-    simpleActionStrings = new HashSet<String>(Arrays.asList(
+    simpleActionStrings = new HashSet<>(Arrays.asList(
       getCardName(Cards.altar),
       getCardName(Cards.ambassador),
       getCardName(Cards.apprentice),
@@ -1674,7 +1674,7 @@ public class Strings {
       getCardName(Cards.summon)
 
     ));
-    actionStringMap = new HashMap<String, String>();
+    actionStringMap = new HashMap<>();
     actionStringMap.put(getCardName(Cards.bureaucrat), getString(R.string.bureaucrat_part));
     actionStringMap.put(getCardName(Cards.bandOfMisfits), getString(R.string.part_play));
     actionStringMap.put(getCardName(Cards.ferry), getString(R.string.part_move_token_minus_2_cost));
@@ -1922,7 +1922,7 @@ public class Strings {
       }
 
       //Add Castle Total count and VP summary
-      Map<Object, Integer> castlecnt = new HashMap<Object, Integer>();
+      Map<Object, Integer> castlecnt = new HashMap<>();
       castlecnt.put(Cards.virtualCastle, castleTotals);
       Map<Card, Integer> castletot = new HashMap<Card, Integer>();
       castletot.put(Cards.virtualCastle, castleVpCount);
@@ -1984,9 +1984,9 @@ public class Strings {
   }
 
   public static String getCardSetDescription(CardSet cardSet) {
-    ArrayList<String> events = new ArrayList<String>();
-    ArrayList<String> landmarks = new ArrayList<String>();
-    ArrayList<String> kingdomCards = new ArrayList<String>();
+    ArrayList<String> events = new ArrayList<>();
+    ArrayList<String> landmarks = new ArrayList<>();
+    ArrayList<String> kingdomCards = new ArrayList<>();
     boolean hasDarkAges = false;
     boolean hasProsperity = false;
     for (Card c : cardSet.getCards()) {
@@ -2008,7 +2008,7 @@ public class Strings {
     Collections.sort(landmarks);
     Collections.sort(kingdomCards);
 
-    ArrayList<String> cardSetParts = new ArrayList<String>();
+    ArrayList<String> cardSetParts = new ArrayList<>();
     cardSetParts.add(joinList(kingdomCards, ", "));
     if (cardSet.getBaneCard() != null) {
       cardSetParts.add(format(R.string.card_set_bane, getCardName(cardSet.getBaneCard())));

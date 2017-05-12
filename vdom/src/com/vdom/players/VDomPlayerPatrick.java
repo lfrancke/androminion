@@ -22,36 +22,36 @@ import com.vdom.core.Util;
  */
 public class VDomPlayerPatrick extends BasePlayer {
 
-  private static ArrayList<Card> specialCards = new ArrayList<Card>();
-  private static ArrayList<Card> specialTreasureCards = new ArrayList<Card>();
-  private static ArrayList<Card> specialVictoryCards = new ArrayList<Card>();
-  private static ArrayList<Card> specialActionCards = new ArrayList<Card>();
-  private static ArrayList<Card> knownCards = new ArrayList<Card>();
-  private static ArrayList<Card> knownActionCards = new ArrayList<Card>();
-  private static ArrayList<Card> knownSingleActionCards = new ArrayList<Card>();
+  private static ArrayList<Card> specialCards = new ArrayList<>();
+  private static ArrayList<Card> specialTreasureCards = new ArrayList<>();
+  private static ArrayList<Card> specialVictoryCards = new ArrayList<>();
+  private static ArrayList<Card> specialActionCards = new ArrayList<>();
+  private static ArrayList<Card> knownCards = new ArrayList<>();
+  private static ArrayList<Card> knownActionCards = new ArrayList<>();
+  private static ArrayList<Card> knownSingleActionCards = new ArrayList<>();
   // just one in deck is enough (trashing, etc.)
-  private static ArrayList<Card> knownDoubleActionCards = new ArrayList<Card>();
+  private static ArrayList<Card> knownDoubleActionCards = new ArrayList<>();
   // two in deck is ok (mostly attacks and other good terminals)
-  private static ArrayList<Card> knownMultiActionCards = new ArrayList<Card>();
+  private static ArrayList<Card> knownMultiActionCards = new ArrayList<>();
   // cantrips of which we can have any number without terminal collision
-  private static ArrayList<Card> knownComboActionCards = new ArrayList<Card>();
+  private static ArrayList<Card> knownComboActionCards = new ArrayList<>();
   // cantrips and other cards which don't work on their own but need other cards
-  private static ArrayList<Card> knownDefenseCards = new ArrayList<Card>();
+  private static ArrayList<Card> knownDefenseCards = new ArrayList<>();
   // can be bought as reaction to aggressive opponent, normally no
-  private static ArrayList<Card> knownCursingCards = new ArrayList<Card>(); // cards that add curses to opponent's deck
-  private static ArrayList<Card> knownTrashingCards = new ArrayList<Card>();
+  private static ArrayList<Card> knownCursingCards = new ArrayList<>(); // cards that add curses to opponent's deck
+  private static ArrayList<Card> knownTrashingCards = new ArrayList<>();
   // cards that allow trashing of Curse by playing them from hand
-  private static ArrayList<Card> knownTier3Cards = new ArrayList<Card>();
+  private static ArrayList<Card> knownTier3Cards = new ArrayList<>();
   // cards that can be played without any additional implementation, but are not so good
-  private static ArrayList<Card> knownPrizeCards = new ArrayList<Card>(); // prize cards that we know how to play
-  private static ArrayList<Card> knownGood52Cards = new ArrayList<Card>(); // cards that play well with 5/2 start
+  private static ArrayList<Card> knownPrizeCards = new ArrayList<>(); // prize cards that we know how to play
+  private static ArrayList<Card> knownGood52Cards = new ArrayList<>(); // cards that play well with 5/2 start
   Random rand = new Random(System.currentTimeMillis());
   private OpponentList opponents = new OpponentList();
   private boolean redefineStrategy = false;
   private boolean debug = Game.debug;
   private StrategyOption strategy = StrategyOption.Nothing;
   private Card strategyCard = null;
-  private ArrayList<Card> strategyPossibleCards = new ArrayList<Card>();
+  private ArrayList<Card> strategyPossibleCards = new ArrayList<>();
   private Card strategyMultiCardTerminal = null;
 
   public boolean isAi() {
@@ -79,7 +79,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   }
 
   public boolean shouldTrash(Card card) {
-    ArrayList<Card> c = new ArrayList<Card>();
+    ArrayList<Card> c = new ArrayList<>();
     c.add(card);
     return (getCardToTrash(c, DiscardOption.NonDestructive) != null);
   }
@@ -142,7 +142,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   //private ComboCards combo;
 
   public boolean shouldDiscard(Card card, MoveContext context) {
-    ArrayList<Card> c = new ArrayList<Card>();
+    ArrayList<Card> c = new ArrayList<>();
     c.add(card);
     return (getCardToDiscard(c, DiscardOption.NonDestructive, context) != null);
   }
@@ -236,7 +236,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     strategy = StrategyOption.Nothing;
     strategyCard = null;
     strategyMultiCardTerminal = null;
-    strategyPossibleCards = new ArrayList<Card>();
+    strategyPossibleCards = new ArrayList<>();
 
     //opponentActionCards = new ArrayList<Card>();
     //opponentVP = -1000;
@@ -276,7 +276,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   @Override
   public Card[] chapel_cardsToTrash(MoveContext context) {
-    ArrayList<Card> ret = new ArrayList<Card>();
+    ArrayList<Card> ret = new ArrayList<>();
     ArrayList<Card> temphand = hand.toArrayListClone();
 
     for (int i = 0; i < 4; i++) {
@@ -328,7 +328,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     //			return Player.TorturerOption.DiscardTwoCards;
     //		}
 
-    ArrayList<Card> preffered = new ArrayList<Card>();
+    ArrayList<Card> preffered = new ArrayList<>();
     if (game.isPlatInGame()) {
       preffered.add(Cards.colony);
       preffered.add(Cards.platinum);
@@ -391,13 +391,13 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   public Card courtyard_cardToPutBackOnDeck(MoveContext context) {
     HashMap<Card, Card> options =
-      new HashMap<Card, Card>(); // this list will contain card to discard as key and best card to obtain with the rest as value
+      new HashMap<>(); // this list will contain card to discard as key and best card to obtain with the rest as value
     ArrayList<Card> list = hand.toArrayListClone();
     Card ret = hand.get(0);
 
     // let's see what we can buy with each of the cards in hand removed
     for (Card c : list) {
-      ArrayList<Card> temp = new ArrayList<Card>(list);
+      ArrayList<Card> temp = new ArrayList<>(list);
       temp.remove(c);
       Card a =
         advisorGeneral(context, getCurrencyTotal(temp) + context.getCoinAvailableForBuy(), false, false);
@@ -519,7 +519,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   @Override
   public Card[] ghostShip_attack_cardsToPutBackOnDeck(MoveContext context) {
     //TODO rewrite
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     for (int i = 0; i < context.getPlayer().getHand().size() - 3; i++) {
       cards.add(context.getPlayer().getHand().get(i));
     }
@@ -549,7 +549,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   //	}
 
   public Card lookout_cardToTrash(MoveContext context, Card[] cards) {
-    ArrayList<Card> temp = new ArrayList<Card>();
+    ArrayList<Card> temp = new ArrayList<>();
 
     for (Card c : cards) {
       temp.add(c);
@@ -560,7 +560,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   }
 
   public Card lookout_cardToDiscard(MoveContext context, Card[] cards) {
-    ArrayList<Card> temp = new ArrayList<Card>();
+    ArrayList<Card> temp = new ArrayList<>();
 
     for (Card c : cards) {
       temp.add(c);
@@ -603,7 +603,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   @Override
   public boolean scryingPool_shouldDiscard(MoveContext context, Player targetPlayer, Card card) {
-    ArrayList<Card> c = new ArrayList<Card>();
+    ArrayList<Card> c = new ArrayList<>();
     c.add(card);
     boolean discard =
       (getCardToDiscard(c, DiscardOption.SemiDestructive, new MoveContext(context.game, targetPlayer)) != null);
@@ -668,7 +668,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   public Card[] vault_cardsToDiscardForGold(MoveContext context) {
     //TODO test
     ArrayList<Card> temphand = hand.toArrayListClone();
-    ArrayList<Card> ret = new ArrayList<Card>();
+    ArrayList<Card> ret = new ArrayList<>();
     Card card = null;
 
     while (ret.size() < 2) {
@@ -812,7 +812,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   @Override
   public boolean jackOfAllTrades_shouldDiscardCardFromTopOfDeck(MoveContext context, Card card) {
-    ArrayList<Card> a = new ArrayList<Card>();
+    ArrayList<Card> a = new ArrayList<>();
     a.add(card);
     if (card.equals(getCardToDiscard(a, DiscardOption.NonDestructive, context))
         && (jackOfAllTrades_nonTreasureToTrash(context) != null || (card.is(Type.Treasure, this)))) {
@@ -844,7 +844,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   @Override
   public boolean trader_shouldGainSilverInstead(MoveContext context, Card card) {
-    ArrayList<Card> temp = new ArrayList<Card>();
+    ArrayList<Card> temp = new ArrayList<>();
     temp.add(card);
     if (card == getCardToTrash(temp, DiscardOption.SemiDestructive)) {
       return true;
@@ -1298,7 +1298,7 @@ public class VDomPlayerPatrick extends BasePlayer {
    */
   private ArrayList<Card> getCardsToDiscard(ArrayList<Card> list, int number, DiscardOption destructive,
                                              MoveContext context) {
-    ArrayList<Card> ret = new ArrayList<Card>();
+    ArrayList<Card> ret = new ArrayList<>();
     int discarded = 0;
     Card dcard = null;
 
@@ -1318,7 +1318,7 @@ public class VDomPlayerPatrick extends BasePlayer {
       return ret;
     }
 
-    return new ArrayList<Card>();
+    return new ArrayList<>();
   }
 
   private Card getCardToTrash(ArrayList<Card> list, DiscardOption destructive) {
@@ -1533,7 +1533,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
           if ((card.is(Type.Treasure, this)) && (!specialCards.contains(card))) {
             Card tc = card;
-            ArrayList<Card> tempdeck = new ArrayList<Card>(deck);
+            ArrayList<Card> tempdeck = new ArrayList<>(deck);
             tempdeck.add(tc);
 
             if (card.equals(Cards.cache)) {
@@ -1599,7 +1599,7 @@ public class VDomPlayerPatrick extends BasePlayer {
                   log("action: evaluating another " + card);
                   if ((!VDomPlayerPatrick.knownComboActionCards.contains(card)) || (rand.nextBoolean()) || (card
                                                                                                                    .costPotion())) {
-                    ArrayList<Card> temp = new ArrayList<Card>(getAllCards());
+                    ArrayList<Card> temp = new ArrayList<>(getAllCards());
                     temp.retainAll(knownComboActionCards);
                     //this.log(card + (isCantrip(ac) ? " is " : " isn't ") + "cantrip");
                     if (temp.size() * 2 <= getStrategyCardsInDeck(context, false).size() + (isCantrip(ac) ? 1
@@ -1960,7 +1960,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     log("advisorAction: considering " + cards.size() + " action cards out of " + knownActionCards.size()
         + " total known cards");
 
-    ArrayList<Card> tier1 = new ArrayList<Card>(cards);
+    ArrayList<Card> tier1 = new ArrayList<>(cards);
     tier1.retainAll(VDomPlayerPatrick.knownDoubleActionCards);
     if (!tier1.isEmpty()) {
       log("advisorAction: found Tier1 cards " + tier1);
@@ -2035,7 +2035,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   }
 
   private int getCardNameCount(ArrayList<Card> deck) {
-    ArrayList<String> names = new ArrayList<String>();
+    ArrayList<String> names = new ArrayList<>();
 
     for (Card card : deck) {
       if (!names.contains(card.toString())) {
@@ -2129,7 +2129,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   private ArrayList<Card> getStrategyCardsInDeck(MoveContext context, boolean onlyTerminals) {
 
-    ArrayList<Card> ret = new ArrayList<Card>();
+    ArrayList<Card> ret = new ArrayList<>();
 
     for (Card card : getAllCards()) {
       if (strategyPossibleCards.contains(card)) {
@@ -2143,7 +2143,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   }
 
   private ArrayList<Card> getTerminalsInDeck(MoveContext context) {
-    ArrayList<Card> ret = new ArrayList<Card>();
+    ArrayList<Card> ret = new ArrayList<>();
 
     for (Card card : getAllCards()) {
       if (card.is(Type.Action, context.player)) {
@@ -2170,13 +2170,13 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   private Card advisorPlayAction(ArrayList<Card> hand, Player player) {
     log("advisorPlayAction: " + hand);
-    ArrayList<Card> ac = new ArrayList<Card>();
+    ArrayList<Card> ac = new ArrayList<>();
     for (Card card : hand) {
       if (card.is(Type.Action, player)) {
         ac.add(card);
       }
     }
-    ArrayList<Card> temphand = new ArrayList<Card>(hand);
+    ArrayList<Card> temphand = new ArrayList<>(hand);
 
     if (!ac.isEmpty()) {
       if (ac.contains(Cards.kingsCourt)) {
@@ -2213,7 +2213,7 @@ public class VDomPlayerPatrick extends BasePlayer {
       // don't play candidates if prince is on hand
       Card[] princeCards;
       if (ac.contains(Cards.prince)) {
-        ArrayList<Card> cardList = new ArrayList<Card>();
+        ArrayList<Card> cardList = new ArrayList<>();
         for (Card c : ac) {
           cardList.add(c);
         }
@@ -2293,7 +2293,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     private int playerID;
 
     public Opponent(int id) {
-      actionCards = new ArrayList<Card>();
+      actionCards = new ArrayList<>();
       VP = -1000;
       isAttacking = false;
       playerID = id;
@@ -2340,7 +2340,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     private HashMap<Integer, Opponent> opponents;
 
     public OpponentList() {
-      opponents = new HashMap<Integer, Opponent>();
+      opponents = new HashMap<>();
     }
 
     public int maxVP() {
@@ -2358,7 +2358,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     }
 
     public ArrayList<Card> getActionCards() {
-      ArrayList<Card> ret = new ArrayList<Card>();
+      ArrayList<Card> ret = new ArrayList<>();
       for (Opponent o : opponents.values()) {
         for (Card c : o.getActionCards()) {
           ret.add(c);

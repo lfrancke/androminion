@@ -159,7 +159,7 @@ public class CardImplHinterlands extends CardImpl {
   }
 
   private void cartographer(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> topOfTheDeck = new ArrayList<Card>();
+    ArrayList<Card> topOfTheDeck = new ArrayList<>();
     for (int i = 0; i < 4; i++) {
       Card card = game.draw(context, Cards.cartographer, 4 - i);
       if (card != null) {
@@ -193,7 +193,7 @@ public class CardImplHinterlands extends CardImpl {
           if (order == null) {
             bad = true;
           } else {
-            ArrayList<Card> copy = new ArrayList<Card>();
+            ArrayList<Card> copy = new ArrayList<>();
             for (Card card : topOfTheDeck) {
               copy.add(card);
             }
@@ -283,7 +283,7 @@ public class CardImplHinterlands extends CardImpl {
         }
       }
 
-      ArrayList<Card> cards = new ArrayList<Card>();
+      ArrayList<Card> cards = new ArrayList<>();
 
       if (lowCardToGain != null) {
         cards.add(lowCardToGain);
@@ -536,7 +536,7 @@ public class CardImplHinterlands extends CardImpl {
   private void nobleBrigandAttack(MoveContext moveContext, boolean defensible) {
     MoveContext context = moveContext;
     Player player = context.getPlayer();
-    ArrayList<Card> trashed = new ArrayList<Card>();
+    ArrayList<Card> trashed = new ArrayList<>();
     boolean[] gainCopper = new boolean[context.game.getPlayersInTurnOrder().length];
 
     int i = 0;
@@ -547,9 +547,9 @@ public class CardImplHinterlands extends CardImpl {
         MoveContext targetContext = new MoveContext(context.game, targetPlayer);
         targetContext.attackedPlayer = targetPlayer;
         boolean treasureRevealed = false;
-        ArrayList<Card> silverOrGold = new ArrayList<Card>();
+        ArrayList<Card> silverOrGold = new ArrayList<>();
 
-        List<Card> cardsToDiscard = new ArrayList<Card>();
+        List<Card> cardsToDiscard = new ArrayList<>();
         for (int j = 0; j < 2; j++) {
           Card card = context.game.draw(targetContext, Cards.nobleBrigand, 2 - j);
           if (card == null) {
@@ -640,7 +640,7 @@ public class CardImplHinterlands extends CardImpl {
         targetPlayer.attacked(getControlCard(), context);
         MoveContext targetContext = new MoveContext(game, targetPlayer);
         targetContext.attackedPlayer = targetPlayer;
-        ArrayList<Card> cards = new ArrayList<Card>();
+        ArrayList<Card> cards = new ArrayList<>();
         for (int i = 0; i < 2; i++) {
           Card c = game.draw(targetContext, Cards.oracle, 2 - i);
           if (c == null) {
@@ -662,7 +662,7 @@ public class CardImplHinterlands extends CardImpl {
             if (order == null || order.length != cards.size()) {
               bad = true;
             } else {
-              ArrayList<Card> orderArray = new ArrayList<Card>();
+              ArrayList<Card> orderArray = new ArrayList<>();
               for (Card card : order) {
                 orderArray.add(card);
                 if (!cards.contains(card)) {

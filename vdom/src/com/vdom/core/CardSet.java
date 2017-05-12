@@ -26,7 +26,7 @@ import com.vdom.api.GameType;
 public class CardSet {
 
   public static final GameType defaultGameType = GameType.Random;
-  private static final Map<GameType, CardSet> CardSetMap = new HashMap<GameType, CardSet>();
+  private static final Map<GameType, CardSet> CardSetMap = new HashMap<>();
   public static Random rand = new Random(System.currentTimeMillis());
   private static int MIN_RECOMMENDED_ALCHEMY = 3;
   private static int MAX_RECOMMENDED_ALCHEMY = 5;
@@ -55,17 +55,17 @@ public class CardSet {
     if (set.isRandom) {
       List<Card> cards;
       if (randomExpansions != null && !randomExpansions.isEmpty()) {
-        Set<Card> cardSet = new HashSet<Card>();
+        Set<Card> cardSet = new HashSet<>();
         for (Expansion expansion : randomExpansions) {
           if (randomExcludedExpansions != null && randomExcludedExpansions.contains(expansion)) {
             continue;
           }
           cardSet.addAll(expansion.getKingdomCards());
         }
-        cards = new ArrayList<Card>();
+        cards = new ArrayList<>();
         cards.addAll(cardSet);
       } else {
-        List<Expansion> expansions = new ArrayList<Expansion>();
+        List<Expansion> expansions = new ArrayList<>();
         for (Expansion expansion : Expansion.values()) {
           if (expansion.isAggregate() ||
               (randomExcludedExpansions != null && randomExcludedExpansions.contains(expansion))) {
@@ -73,11 +73,11 @@ public class CardSet {
           }
           expansions.add(expansion);
         }
-        Set<Card> cardSet = new HashSet<Card>();
+        Set<Card> cardSet = new HashSet<>();
         for (Expansion expansion : expansions) {
           cardSet.addAll(expansion.getKingdomCards());
         }
-        cards = new ArrayList<Card>();
+        cards = new ArrayList<>();
         cards.addAll(cardSet);
       }
       if (randomIncludeEvents) {
@@ -121,7 +121,7 @@ public class CardSet {
   public static CardSet getRandomCardSet(List<Card> possibleCards, int count, int eventCount, int landmarkCount,
                                           boolean linkMaxEventsAndLandmarks, boolean adjustForAlchemy) {
 
-    possibleCards = new ArrayList<Card>(possibleCards);
+    possibleCards = new ArrayList<>(possibleCards);
     shuffle(possibleCards);
 
     boolean findBandIfNeeded = false;
@@ -177,8 +177,8 @@ public class CardSet {
 
     // if needed, partition events/landmarks into a separate list and pick them separately
     if ((!drawEvents && eventCount > 0) || (!drawLandmarks && landmarkCount > 0)) {
-      List<Card> events = new ArrayList<Card>();
-      List<Card> landmarks = new ArrayList<Card>();
+      List<Card> events = new ArrayList<>();
+      List<Card> landmarks = new ArrayList<>();
       for (Card c : possibleCards) {
         if (c.is(Type.Event, null)) {
           events.add(c);
@@ -237,7 +237,7 @@ public class CardSet {
       return;
     }
 
-    Set<Card> alchemyCardsUsed = new HashSet<Card>();
+    Set<Card> alchemyCardsUsed = new HashSet<>();
     for (Card c : cardSetList) {
       if (c.getExpansion() == Expansion.Alchemy) {
         alchemyCardsUsed.add(c);
@@ -276,7 +276,7 @@ public class CardSet {
         return;
       }
       // replace any alchemy cards with others
-      LinkedList<Card> cardsToPickFrom = new LinkedList<Card>();
+      LinkedList<Card> cardsToPickFrom = new LinkedList<>();
       for (Card c : possibleCards) {
         if (!Cards.isKingdomCard(c)
             || cardSetList.contains(c)
@@ -299,7 +299,7 @@ public class CardSet {
       rand.nextInt(MAX_RECOMMENDED_ALCHEMY - MIN_RECOMMENDED_ALCHEMY + 1) + MIN_RECOMMENDED_ALCHEMY;
     numAlchemyCardsToUse = Math.min(numAlchemyCardsToUse, Expansion.Alchemy.getKingdomCards().size() - numAlchemyCards);
 
-    LinkedList<Card> cardsToPickFrom = new LinkedList<Card>();
+    LinkedList<Card> cardsToPickFrom = new LinkedList<>();
     for (Card c : Expansion.Alchemy.getKingdomCards()) {
       if (!alchemyCardsUsed.contains(c)) {
         cardsToPickFrom.add(c);

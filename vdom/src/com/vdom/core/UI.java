@@ -48,7 +48,7 @@ public class UI extends JFrame implements GameEventListener {
   public static int CARD_ADDED_TO_HAND_SLEEP = 1;
   public static int CARD_REMOVED_FROM_HAND_SLEEP = 1;
   static String downloadSite;
-  public ConcurrentHashMap<String, ImageIcon> cardImages = new ConcurrentHashMap<String, ImageIcon>();
+  public ConcurrentHashMap<String, ImageIcon> cardImages = new ConcurrentHashMap<>();
   public File imagesDir;
   public ImageIcon defaultImage;
   public String defaultImageName = "blackmarket";

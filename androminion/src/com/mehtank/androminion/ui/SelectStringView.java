@@ -29,7 +29,7 @@ public class SelectStringView extends BottomInputView implements AdapterView.OnI
     super(top, header);
     this.returnType = returnType;
     this.options = Arrays.asList(options);
-    lv.setAdapter(new ArrayAdapter<String>(top, R.layout.view_selectstring, options));
+    lv.setAdapter(new ArrayAdapter<>(top, R.layout.view_selectstring, options));
   }
 
   @Override

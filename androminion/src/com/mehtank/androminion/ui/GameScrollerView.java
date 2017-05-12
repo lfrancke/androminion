@@ -34,7 +34,7 @@ public class GameScrollerView extends HorizontalScrollView {
   private TextView latestTurn;
   private boolean onlyShowOneTurn = false;
   private int numPlayers;
-  private ArrayList<View> views = new ArrayList<View>();
+  private ArrayList<View> views = new ArrayList<>();
   private File logfile;
 
   public GameScrollerView(Context context) {

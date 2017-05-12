@@ -17,7 +17,7 @@ public abstract class PileCreator implements Serializable {
 class DefaultPileCreator extends PileCreator {
 
   public CardPile create(Card template, int count) {
-    List<CardPile.CardMultiplicity> cards = new ArrayList<CardPile.CardMultiplicity>();
+    List<CardPile.CardMultiplicity> cards = new ArrayList<>();
     cards.add(new CardPile.CardMultiplicity(template, count));
     return new CardPile(template, cards, true, true);
   }
@@ -26,12 +26,12 @@ class DefaultPileCreator extends PileCreator {
 class RuinsPileCreator extends PileCreator {
 
   public CardPile create(Card template, int count) {
-    Map<Card, Integer> cardShuffle = new HashMap<Card, Integer>();
+    Map<Card, Integer> cardShuffle = new HashMap<>();
     for (Card ruin : Cards.ruinsCards) {
       cardShuffle.put(ruin, 0);
     }
 
-    ArrayList<Card> ruins = new ArrayList<Card>();
+    ArrayList<Card> ruins = new ArrayList<>();
     for (int i = 0; i < 10; i++) {
       ruins.add(Cards.abandonedMine);
       ruins.add(Cards.ruinedLibrary);
@@ -59,7 +59,7 @@ class RuinsPileCreator extends PileCreator {
 class KnightsPileCreator extends PileCreator {
 
   public CardPile create(Card template, int count) {
-    List<CardPile.CardMultiplicity> cards = new ArrayList<CardPile.CardMultiplicity>();
+    List<CardPile.CardMultiplicity> cards = new ArrayList<>();
     //Currently count is ignored because there should always be ten knights.
     for (Card c : Cards.knightsCards) {
       cards.add(new CardPile.CardMultiplicity(c, 1));
@@ -107,7 +107,7 @@ class SplitPileCreator extends PileCreator {
   }
 
   public CardPile create(Card template, int count) {
-    List<CardPile.CardMultiplicity> cards = new ArrayList<CardPile.CardMultiplicity>();
+    List<CardPile.CardMultiplicity> cards = new ArrayList<>();
     cards.add(new CardPile.CardMultiplicity(topCard, count / 2));
     cards.add(new CardPile.CardMultiplicity(bottomCard, count / 2 + (count % 2 == 1 ? 1
                                                                        : 0))); //If count is not even put the extra card on bottom

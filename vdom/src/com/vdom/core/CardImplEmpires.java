@@ -201,7 +201,7 @@ public class CardImplEmpires extends CardImpl {
   }
 
   private void archive(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> topOfTheDeck = new ArrayList<Card>();
+    ArrayList<Card> topOfTheDeck = new ArrayList<>();
     boolean setAsideCards = false;
     for (int i = 0; i < 3; i++) {
       Card card = game.draw(context, Cards.archive, 3 - i);
@@ -260,7 +260,7 @@ public class CardImplEmpires extends CardImpl {
   }
 
   private void catapult(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Player> attackedPlayers = new ArrayList<Player>();
+    ArrayList<Player> attackedPlayers = new ArrayList<>();
     for (Player player : context.game.getPlayersInTurnOrder()) {
       if (player != currentPlayer && !Util.isDefendedFromAttack(context.game, player, this)) {
         attackedPlayers.add(player);
@@ -370,7 +370,7 @@ public class CardImplEmpires extends CardImpl {
 
   private void encampment(Game game, MoveContext context, Player currentPlayer) {
     CardList hand = currentPlayer.getHand();
-    ArrayList<EncampmentOption> options = new ArrayList<Player.EncampmentOption>();
+    ArrayList<EncampmentOption> options = new ArrayList<>();
     if (hand.contains(Cards.gold)) {
       options.add(EncampmentOption.RevealGold);
     }
@@ -483,7 +483,7 @@ public class CardImplEmpires extends CardImpl {
   }
 
   private void legionary(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Player> attackedPlayers = new ArrayList<Player>();
+    ArrayList<Player> attackedPlayers = new ArrayList<>();
     for (Player player : context.game.getPlayersInTurnOrder()) {
       if (player != currentPlayer && !Util.isDefendedFromAttack(context.game, player, this)) {
         attackedPlayers.add(player);
@@ -732,7 +732,7 @@ public class CardImplEmpires extends CardImpl {
         Util.playerError(currentPlayer, "Temple trash error, trashing too many cards, trashing first.");
         cards = new Card[] {currentPlayer.getHand().get(0)};
       }
-      Set<Card> differentCards = new HashSet<Card>();
+      Set<Card> differentCards = new HashSet<>();
       for (Card c : cards) {
         if (differentCards.contains(c)) {
           Util.playerError(currentPlayer, "Temple trash error, trashing duplicate cards, trashing one.");
@@ -811,7 +811,7 @@ public class CardImplEmpires extends CardImpl {
 
   private void annex(MoveContext context) {
     Player player = context.getPlayer();
-    ArrayList<Card> toKeepInDiscard = new ArrayList<Card>();
+    ArrayList<Card> toKeepInDiscard = new ArrayList<>();
     Card card = null;
     int MAX_CARDS_TO_KEEP = 5;
     do {

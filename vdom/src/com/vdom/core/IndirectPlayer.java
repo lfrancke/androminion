@@ -122,7 +122,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_topOfDeck_orderCards(context, cards)) {
       return super.topOfDeck_orderCards(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -197,13 +197,13 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_thief_treasuresToGain(context, treasures)) {
       return super.thief_treasuresToGain(context, treasures);
     }
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
     options.add(null);
     for (Card c : treasures) {
       options.add(c);
     }
 
-    ArrayList<Card> toGain = new ArrayList<Card>();
+    ArrayList<Card> toGain = new ArrayList<>();
 
     while (options.size() > 1) {
       int o = selectOption(context, Cards.thief, options.toArray());
@@ -345,8 +345,8 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (localDiscard.isEmpty()) {
       return null;
     }
-    Set<Card> uniqueCards = new HashSet<Card>(localDiscard.toArrayList());
-    List<Card> options = new ArrayList<Card>(uniqueCards);
+    Set<Card> uniqueCards = new HashSet<>(localDiscard.toArrayList());
+    List<Card> options = new ArrayList<>(uniqueCards);
     Collections.sort(options, new Util.CardCostNameComparator());
     options.add(null);
 
@@ -384,7 +384,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_sentry_cardOrder(context, cards)) {
       return super.sentry_cardOrder(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -566,7 +566,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_scoutPatrol_orderCards(context, cards)) {
       return super.scoutPatrol_orderCards(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -622,7 +622,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_mandarin_orderCards(context, cards)) {
       return super.mandarin_orderCards(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -656,7 +656,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_wishingWell_cardGuess(context)) {
       return super.wishingWell_cardGuess(context, cardList);
     }
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
     options.add(null);
     for (Card c : cardList) {
       options.add(c);
@@ -728,7 +728,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     }
 
     CourtierOption[] ret = new CourtierOption[numOptions];
-    List<CourtierOption> optionList = new ArrayList<CourtierOption>(Arrays.asList(CourtierOption.values()));
+    List<CourtierOption> optionList = new ArrayList<>(Arrays.asList(CourtierOption.values()));
 
     for (int i = 0; i < numOptions; i++) {
       int choice = selectOption(context, Cards.courtier, optionList.toArray());
@@ -774,7 +774,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       return super.lurker_cardToGainFromTrash(context);
     }
 
-    Set<Card> inTrashPile = new HashSet<Card>();
+    Set<Card> inTrashPile = new HashSet<>();
     for (Card c : game.trashPile) {
       if (c.is(Type.Action)) {
         inTrashPile.add(c);
@@ -866,7 +866,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_smugglers_cardToObtain(context)) {
       return super.smugglers_cardToObtain(context);
     }
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
     Card[] cards = context.getCardsObtainedByLastPlayer().toArray(new Card[0]);
     for (Card c : cards) {
       if (!c.costPotion() && c.getCost(context) <= 6 && !(c.getDebtCost(context) > 0) && !c.is(Type.Prize, null)
@@ -920,7 +920,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       return super.blackMarket_chooseCard(context, cardList);
     }
 
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
     options.add(null);
     for (Card c : cardList) {
       options.add(c);
@@ -933,7 +933,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_blackMarket_orderCards(context, cards)) {
       return super.blackMarket_orderCards(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -963,7 +963,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_navigator_cardOrder(context, cards)) {
       return super.navigator_cardOrder(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -1070,7 +1070,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       return super.apothecary_cardsForDeck(context, cards);
     }
 
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards.toArray(new Card[0])));
     for (int i : order) {
       orderedCards.add(cards.get(i));
@@ -1294,7 +1294,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_rabble_attack_cardOrder(context, cards)) {
       return super.rabble_attack_cardOrder(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -1400,7 +1400,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       }
     }
 
-    ArrayList<Card> treasures = new ArrayList<Card>();
+    ArrayList<Card> treasures = new ArrayList<>();
     for (Card card : cards) {
       treasures.add(card);
     }
@@ -1664,7 +1664,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_develop_orderCards(context, cards)) {
       return super.develop_orderCards(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -1775,13 +1775,13 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (cards == null || cards.length == 0) {
       return cards;
     }
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
     options.add(null);
     for (Card c : cards) {
       options.add(c);
     }
 
-    ArrayList<Card> cardsToDiscard = new ArrayList<Card>();
+    ArrayList<Card> cardsToDiscard = new ArrayList<>();
 
     while (options.size() > 1) {
       int o = selectOption(context, Cards.cartographer, options.toArray());
@@ -1800,7 +1800,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_cartographer_cardOrder(context, cards)) {
       return super.cartographer_cardOrder(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -1813,7 +1813,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_scheme_actionToPutOnTopOfDeck(context, actions)) {
       return super.scheme_actionToPutOnTopOfDeck(context, actions);
     }
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
     for (Card c : actions) {
       options.add(c);
     }
@@ -1867,7 +1867,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_oracle_orderCards(context, cards)) {
       return super.oracle_orderCards(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -1938,12 +1938,12 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public Card getAttackReaction(MoveContext context, Card responsible, boolean defended, Card lastCard) {
-    ArrayList<Card> reactionCards = new ArrayList<Card>();
+    ArrayList<Card> reactionCards = new ArrayList<>();
     for (Card c : getAttackReactionCards(defended)) {
       reactionCards.add(c);
     }
     if (!reactionCards.isEmpty()) {
-      ArrayList<Card> cards = new ArrayList<Card>();
+      ArrayList<Card> cards = new ArrayList<>();
       for (Card c : reactionCards) {
         Card a = c;
         if (c.equals(Cards.estate)) {
@@ -2116,7 +2116,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public Card graverobber_cardToGainFromTrash(MoveContext context) {
-    Set<Card> inTrashPile = new HashSet<Card>();
+    Set<Card> inTrashPile = new HashSet<>();
     for (Card c : game.trashPile) {
       if (!c.costPotion() && c.getCost(context) >= 3 && c.getCost(context) <= 6) {
         inTrashPile.add(c);
@@ -2180,7 +2180,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_wishingWell_cardGuess(context)) {
       return super.mystic_cardGuess(context, cardList);
     }
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
     options.add(null);
     for (Card c : cardList) {
       options.add(c);
@@ -2202,8 +2202,8 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (localDiscard.isEmpty()) {
       return null;
     }
-    Set<Card> uniqueCards = new HashSet<Card>(localDiscard.toArrayList());
-    List<Card> options = new ArrayList<Card>(uniqueCards);
+    Set<Card> uniqueCards = new HashSet<>(localDiscard.toArrayList());
+    List<Card> options = new ArrayList<>(uniqueCards);
     Collections.sort(options, new Util.CardNameComparator());
 
     return options.get(selectOption(context, Cards.scavenger, options.toArray()));
@@ -2257,7 +2257,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_feast_cardToObtain(context)) {
       return super.rebuild_cardToPick(context, cardList);
     }
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
     options.add(null);
     for (Card c : cardList) {
       options.add(c);
@@ -2278,7 +2278,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public Card rogue_cardToGain(MoveContext context) {
-    Set<Card> inTrashPile = new HashSet<Card>();
+    Set<Card> inTrashPile = new HashSet<>();
     for (Card c : game.trashPile) {
       if (!c.costPotion() && c.getCost(context) >= 3 && c.getCost(context) <= 6) {
         inTrashPile.add(c);
@@ -2512,7 +2512,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public Card journeyman_cardToPick(MoveContext context, List<Card> cardList) {
-    List<Card> options = new ArrayList<Card>();
+    List<Card> options = new ArrayList<>();
     options.add(null);
     for (Card c : cardList) {
       options.add(c);
@@ -2545,7 +2545,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public Card doctor_cardToPick(MoveContext context, List<Card> cardList) {
-    List<Card> options = new ArrayList<Card>();
+    List<Card> options = new ArrayList<>();
     options.add(null);
     for (Card c : cardList) {
       options.add(c);
@@ -2555,7 +2555,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public ArrayList<Card> doctor_cardsForDeck(MoveContext context, ArrayList<Card> cards) {
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
 
     int[] order = orderCards(context, cardArrToIntArr(cards.toArray(new Card[0])));
 
@@ -2579,7 +2579,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public Card herald_cardTopDeck(MoveContext context, Card[] cardList) {
-    ArrayList<Card> options = new ArrayList<Card>();
+    ArrayList<Card> options = new ArrayList<>();
 
     // Remove first Herald from this list (representing the most recent one bought)
     boolean heraldRemoved = false;
@@ -3109,7 +3109,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public Card annex_cardToKeepInDiscard(MoveContext context, Card[] cards, int cardsLeft) {
-    List<Object> options = new ArrayList<Object>();
+    List<Object> options = new ArrayList<>();
     options.add(cardsLeft);
     for (Card c : cards) {
       options.add(c);
@@ -3544,7 +3544,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     if (context.isQuickPlay() && shouldAutoPlay_navigator_cardOrder(context, cards)) {
       return super.survivors_cardOrder(context, cards);
     }
-    ArrayList<Card> orderedCards = new ArrayList<Card>();
+    ArrayList<Card> orderedCards = new ArrayList<>();
     int[] order = orderCards(context, cardArrToIntArr(cards));
     for (int i : order) {
       orderedCards.add(cards[i]);
@@ -3641,8 +3641,8 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     int totalKindsOfCards = 0;
     Card[] differentCards = new Card[0];
     if (sco.isDifferent()) {
-      Set<String> cardNames = new HashSet<String>();
-      Set<Card> cards = new HashSet<Card>();
+      Set<String> cardNames = new HashSet<>();
+      Set<Card> cards = new HashSet<>();
       for (Card c : localHand) {
         cardNames.add(c.getName());
         cards.add(c);
@@ -3665,7 +3665,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       sco.setCount(localHand.size());
     }
 
-    ArrayList<Card> handList = new ArrayList<Card>();
+    ArrayList<Card> handList = new ArrayList<>();
 
     for (Card card : localHand) {
       if (sco.checkValid(card, card.getCost(context), card.is(Type.Victory), context)) {

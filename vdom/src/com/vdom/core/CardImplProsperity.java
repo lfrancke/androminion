@@ -259,7 +259,7 @@ public class CardImplProsperity extends CardImpl {
   }
 
   private void loanVenture(MoveContext context, Player player, Game game) {
-    ArrayList<Card> toDiscard = new ArrayList<Card>();
+    ArrayList<Card> toDiscard = new ArrayList<>();
     Card treasureCardFound = null;
     GameEvent event = null;
 
@@ -342,8 +342,8 @@ public class CardImplProsperity extends CardImpl {
         player.attacked(getControlCard(), context);
         MoveContext playerContext = new MoveContext(game, player);
         playerContext.attackedPlayer = player;
-        ArrayList<Card> topOfTheDeck = new ArrayList<Card>();
-        List<Card> cardToDiscard = new ArrayList<Card>();
+        ArrayList<Card> topOfTheDeck = new ArrayList<>();
+        List<Card> cardToDiscard = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
           Card card = game.draw(playerContext, Cards.rabble, 3 - i);
@@ -371,7 +371,7 @@ public class CardImplProsperity extends CardImpl {
           if (order == null) {
             bad = true;
           } else {
-            ArrayList<Card> copy = new ArrayList<Card>();
+            ArrayList<Card> copy = new ArrayList<>();
             for (Card card : topOfTheDeck) {
               copy.add(card);
             }

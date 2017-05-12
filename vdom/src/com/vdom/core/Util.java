@@ -472,7 +472,7 @@ public class Util {
       return null;
     }
 
-    ArrayList<Card> copy = new ArrayList<Card>();
+    ArrayList<Card> copy = new ArrayList<>();
     for (Card card : cards) {
       copy.add(card);
     }
@@ -485,7 +485,7 @@ public class Util {
       return null;
     }
 
-    ArrayList<Card> copy = new ArrayList<Card>();
+    ArrayList<Card> copy = new ArrayList<>();
     for (Card card : cards) {
       copy.add(card);
     }
@@ -587,14 +587,14 @@ public class Util {
   public static <K, V extends Comparable<? super V>> Map<K, V>
   sortByValue(Map<K, V> map) {
     List<Map.Entry<K, V>> list =
-      new LinkedList<Map.Entry<K, V>>(map.entrySet());
+      new LinkedList<>(map.entrySet());
     Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
       public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
         return (o1.getValue()).compareTo(o2.getValue());
       }
     });
 
-    Map<K, V> result = new LinkedHashMap<K, V>();
+    Map<K, V> result = new LinkedHashMap<>();
     for (Map.Entry<K, V> entry : list) {
       result.put(entry.getKey(), entry.getValue());
     }
@@ -802,7 +802,7 @@ public class Util {
    */
   static public class CardCostNameComparator extends MultilevelComparator<Card> {
 
-    private static final ArrayList<Comparator<Card>> cmps = new ArrayList<Comparator<Card>>();
+    private static final ArrayList<Comparator<Card>> cmps = new ArrayList<>();
 
     public CardCostNameComparator() {
       super(cmps);
@@ -820,7 +820,7 @@ public class Util {
    */
   static public class CardHandComparator extends MultilevelComparator<Card> {
 
-    private static final ArrayList<Comparator<Card>> cmps = new ArrayList<Comparator<Card>>();
+    private static final ArrayList<Comparator<Card>> cmps = new ArrayList<>();
 
     public CardHandComparator() {
       super(cmps);
@@ -840,7 +840,7 @@ public class Util {
    */
   static public class CardTavernComparator extends MultilevelComparator<Card> {
 
-    private static final ArrayList<Comparator<Card>> cmps = new ArrayList<Comparator<Card>>();
+    private static final ArrayList<Comparator<Card>> cmps = new ArrayList<>();
 
     public CardTavernComparator() {
       super(cmps);

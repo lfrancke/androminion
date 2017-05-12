@@ -37,7 +37,7 @@ public class MoveContext {
   public boolean blackMarketBuyPhase = false;
   // this is not a really buyPhase (peddler costs 8, you can't spend Guilds coin tokens)
   public boolean returnToActionPhase = false;
-  public ArrayList<Card> cantBuy = new ArrayList<Card>();
+  public ArrayList<Card> cantBuy = new ArrayList<>();
   public int beggarSilverIsOnTop = 0;
   public boolean graverobberGainedCardOnTop = false;
   public boolean travellingFairBought = false;
@@ -175,7 +175,7 @@ public class MoveContext {
   }
 
   public int countUniqueCardsInPlay() {
-    HashSet<String> distinctCardsInPlay = new HashSet<String>();
+    HashSet<String> distinctCardsInPlay = new HashSet<>();
 
     for (Card cardInPlay : player.playedCards) {
       if (cardInPlay.getControlCard().equals(Cards.estate)) {
@@ -266,7 +266,7 @@ public class MoveContext {
   }
 
   public HashMap<String, Integer> getCardCounts() {
-    HashMap<String, Integer> cardCounts = new HashMap<String, Integer>();
+    HashMap<String, Integer> cardCounts = new HashMap<>();
     for (String cardName : game.piles.keySet()) {
       int count = game.piles.get(cardName).getCount();
       if (count > 0) {
@@ -277,7 +277,7 @@ public class MoveContext {
   }
 
   public Card[] getBuyableCards() {
-    ArrayList<Card> buyableCards = new ArrayList<Card>();
+    ArrayList<Card> buyableCards = new ArrayList<>();
     for (Card card : getCardsInGame(GetCardsInGameOptions.TopOfPiles, true)) {
       if (canBuy(card)) {
         buyableCards.add(card);
@@ -450,7 +450,7 @@ public class MoveContext {
   }
 
   protected Card[] getAvailableCards(int cost, boolean potion) {
-    ArrayList<Card> cards = new ArrayList<Card>();
+    ArrayList<Card> cards = new ArrayList<>();
     for (Card c : getCardsInGame(GetCardsInGameOptions.TopOfPiles, true, null)) {
       if (Cards.isSupplyCard(c) && c.getCost(this) == cost && c.costPotion() == potion && isCardOnTop(c)) {
         cards.add(c);

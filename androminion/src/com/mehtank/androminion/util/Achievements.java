@@ -101,7 +101,7 @@ public class Achievements {
   }
 
   public void resetStats() {
-    ArrayList<String> prefsToClear = new ArrayList<String>();
+    ArrayList<String> prefsToClear = new ArrayList<>();
 
     Map<String, ?> all = prefs.getAll();
     for (String key : all.keySet()) {
@@ -242,7 +242,7 @@ public class Achievements {
   }
 
   public ArrayList<String> getAllPlayers() {
-    ArrayList<String> players = new ArrayList<String>();
+    ArrayList<String> players = new ArrayList<>();
 
     Map<String, ?> all = prefs.getAll();
     for (String key : all.keySet()) {

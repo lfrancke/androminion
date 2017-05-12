@@ -279,7 +279,7 @@ public class MyCard implements Serializable {
    */
   static public class CardCostNameComparator extends MultilevelComparator<MyCard> {
 
-    private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<Comparator<MyCard>>();
+    private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<>();
 
     public CardCostNameComparator() {
       super(cmps);
@@ -299,7 +299,7 @@ public class MyCard implements Serializable {
    */
   static public class CardHandComparator extends MultilevelComparator<MyCard> {
 
-    private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<Comparator<MyCard>>();
+    private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<>();
 
     public CardHandComparator() {
       super(cmps);
@@ -318,7 +318,7 @@ public class MyCard implements Serializable {
    */
   static public class CardNonSupplyComparator extends MultilevelComparator<MyCard> {
 
-    private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<Comparator<MyCard>>();
+    private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<>();
 
     public CardNonSupplyComparator() {
       super(cmps);
@@ -337,7 +337,7 @@ public class MyCard implements Serializable {
    */
   static public class CardEventLandmarkComparator extends MultilevelComparator<MyCard> {
 
-    private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<Comparator<MyCard>>();
+    private static final ArrayList<Comparator<MyCard>> cmps = new ArrayList<>();
 
     public CardEventLandmarkComparator() {
       super(cmps);

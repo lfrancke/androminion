@@ -82,7 +82,7 @@ public class CardImplCornucopia extends CardImpl {
   private void farmingVillage(Game game, MoveContext context, Player currentPlayer) {
     Card draw = null;
 
-    ArrayList<Card> toDiscard = new ArrayList<Card>();
+    ArrayList<Card> toDiscard = new ArrayList<>();
 
     while ((draw = game.draw(context, Cards.farmingVillage, -1)) != null && !(draw.is(Type.Action, currentPlayer))
            && !(draw.is(Type.Treasure, currentPlayer))) {
@@ -126,7 +126,7 @@ public class CardImplCornucopia extends CardImpl {
         player.attacked(getControlCard(), context);
         MoveContext playerContext = new MoveContext(game, player);
         playerContext.attackedPlayer = player;
-        ArrayList<Card> cardsToDiscard = new ArrayList<Card>();
+        ArrayList<Card> cardsToDiscard = new ArrayList<>();
 
         Card draw = null;
         while ((draw = game.draw(playerContext, Cards.fortuneTeller, -1)) != null && !(draw.is(Type.Victory, player))
@@ -164,8 +164,8 @@ public class CardImplCornucopia extends CardImpl {
   }
 
   private void harvest(Game game, MoveContext context, Player currentPlayer) {
-    HashSet<String> cardNames = new HashSet<String>();
-    List<Card> cardToDiscard = new ArrayList<Card>();
+    HashSet<String> cardNames = new HashSet<>();
+    List<Card> cardToDiscard = new ArrayList<>();
     for (int i = 0; i < 4; i++) {
       Card draw = game.draw(context, Cards.harvest, 4 - i);
       if (draw == null) {
@@ -210,7 +210,7 @@ public class CardImplCornucopia extends CardImpl {
   }
 
   private void huntingParty(Game game, MoveContext context, Player currentPlayer) {
-    HashSet<String> cardNames = new HashSet<String>();
+    HashSet<String> cardNames = new HashSet<>();
 
     for (int i = 0; i < currentPlayer.hand.size(); i++) {
       Card card = currentPlayer.hand.get(i);
@@ -218,7 +218,7 @@ public class CardImplCornucopia extends CardImpl {
       currentPlayer.revealFromHand(card, getControlCard(), context);
     }
 
-    ArrayList<Card> toDiscard = new ArrayList<Card>();
+    ArrayList<Card> toDiscard = new ArrayList<>();
 
     Card draw = null;
     while ((draw = game.draw(context, Cards.huntingParty, -1)) != null && cardNames.contains(draw.getName())) {
@@ -270,7 +270,7 @@ public class CardImplCornucopia extends CardImpl {
   }
 
   private void menagerie(Game game, MoveContext context, Player currentPlayer) {
-    HashSet<String> cardNames = new HashSet<String>();
+    HashSet<String> cardNames = new HashSet<>();
     boolean distinct = true;
 
     for (int i = 0; i < currentPlayer.hand.size(); i++) {

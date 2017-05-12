@@ -20,7 +20,7 @@ public class GameTableViews {
   private static final String TAG = "GameTableViews";
 
   static double textScale = 0.8;
-  static ArrayList<MyCard> cardsInPlay = new ArrayList<MyCard>();
+  static ArrayList<MyCard> cardsInPlay = new ArrayList<>();
 
   static void clearCards() {
     cardsInPlay.clear();
