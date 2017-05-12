@@ -265,7 +265,7 @@ public class CardImplCornucopia extends CardImpl {
               (draw.equals(pile.topCard()))) {
             JesterOption option =
               currentPlayer.controlPlayer.controlPlayer.jester_chooseOption(context, targetPlayer, draw);
-            toGainContext = JesterOption.GainCopy.equals(option) ? context : targetContext;
+            toGainContext = JesterOption.GainCopy == option ? context : targetContext;
             toGainContext.getPlayer().gainNewCard(draw, this.getControlCard(), toGainContext);
           }
         }

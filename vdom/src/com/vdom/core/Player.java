@@ -2141,9 +2141,9 @@ public abstract class Player {
          * (Alchemist, Treasury or WalledVillage) */
     boolean allSimple = true;
     for (PutBackOption o : options) {
-      if (o.equals(PutBackOption.Alchemist)
-          || o.equals(PutBackOption.Treasury)
-          || o.equals(PutBackOption.WalledVillage)) {
+      if (o == PutBackOption.Alchemist
+          || o == PutBackOption.Treasury
+          || o == PutBackOption.WalledVillage) {
         continue;
       }
       allSimple = false;

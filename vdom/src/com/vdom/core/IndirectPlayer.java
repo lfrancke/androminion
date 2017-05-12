@@ -3735,10 +3735,10 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
             && (!(sco.noTokens && hasTokens))
             && ((!context.cantBuy.contains(card) && (context.getPlayer().getDebtTokenCount() == 0
                                                      && (context.canBuyCards || card.is(Type.Event, null))))
-                || !sco.pickType.equals(PickType.BUY))
+                || sco.pickType != PickType.BUY)
             && !(!Cards.isSupplyCard(card)
                  && sco.actionType != null
-                 && sco.actionType.equals(ActionType.GAIN))) {
+                 && sco.actionType == ActionType.GAIN)) {
           //TODO SPLITPILES When the variablecardpile syncing to the UI is refactored this should not be necessary anymore.
           //Swap cards for the placeholdercards because on UI side piles always have the id of the placeholder, not the actual top card
           if (!card.isPlaceholderCard()) {

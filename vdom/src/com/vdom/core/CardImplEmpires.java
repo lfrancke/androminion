@@ -383,12 +383,12 @@ public class CardImplEmpires extends CardImpl {
       EncampmentOption option =
         currentPlayer.controlPlayer.encampment_chooseOption(context, options.toArray(new EncampmentOption[0]));
       if (option != null) {
-        if (options.contains(EncampmentOption.RevealGold) && option.equals(EncampmentOption.RevealGold)) {
+        if (options.contains(EncampmentOption.RevealGold) && option == EncampmentOption.RevealGold) {
           Card c = hand.get(Cards.gold);
           currentPlayer.reveal(c, this.getControlCard(), context);
           revealedCard = true;
         }
-        if (options.contains(EncampmentOption.RevealPlunder) && option.equals(EncampmentOption.RevealPlunder)) {
+        if (options.contains(EncampmentOption.RevealPlunder) && option == EncampmentOption.RevealPlunder) {
           Card c = hand.get(Cards.plunder);
           currentPlayer.reveal(c, this.getControlCard(), context);
           revealedCard = true;
