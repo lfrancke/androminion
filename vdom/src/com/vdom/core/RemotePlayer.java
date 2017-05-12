@@ -393,10 +393,10 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     int knightSize = 0;
 
     for (int i = 0; i < cardsInPlay.size(); i++) {
-      if (!isFinal) {
-        supplySizes[i] = context.getCardsLeftInPile(intToCard(i));
-      } else {
+      if (isFinal) {
         supplySizes[i] = player.getMyCardCount(cardsInPlay.get(i));
+      } else {
+        supplySizes[i] = context.getCardsLeftInPile(intToCard(i));
       }
       embargos[i] = context.getEmbargos(intToCard(i));
       pileVpTokens[i] = context.getPileVpTokens(intToCard(i));
@@ -436,10 +436,10 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
 
     for (int i = 0; i < numPlayers; i++) {
       Player p = allPlayers.get(i);
-      if (!isFinal) {
-        handSizes[i] = p.getHand().size();
-      } else {
+      if (isFinal) {
         handSizes[i] = p.getVPs();
+      } else {
+        handSizes[i] = p.getHand().size();
       }
       stashesInHand[i] = p.getStashesInHand();
       turnCounts[i] = p.getTurnCount();
@@ -687,10 +687,10 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
       extras.add(curPlayer.getVictoryTokensTotals());
       long duration = System.currentTimeMillis() - whenStarted;
       extras.add(duration);
-      if (!event.getContext().cardsSpecifiedOnStartup()) {
-        extras.add(event.getContext().getGameType());
-      } else {
+      if (event.getContext().cardsSpecifiedOnStartup()) {
         extras.add(null);
+      } else {
+        extras.add(event.getContext().getGameType());
       }
     } else if (event.getType() == EventType.CantBuy) {
       cards = context.getCantBuy().toArray(new Card[0]);
@@ -871,20 +871,20 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     }
     Map<Card, Integer> inPlayCounts = new HashMap<Card, Integer>();
     for (Card c : context.player.playedCards) {
-      if (!inPlayCounts.containsKey(c)) {
-        inPlayCounts.put(c, 1);
-      } else {
+      if (inPlayCounts.containsKey(c)) {
         inPlayCounts.put(c, inPlayCounts.get(c) + 1);
+      } else {
+        inPlayCounts.put(c, 1);
       }
     }
     for (Card c : context.player.nextTurnCards) {
       if (((CardImpl) c).trashAfterPlay) {
         continue;
       }
-      if (!inPlayCounts.containsKey(c)) {
-        inPlayCounts.put(c, 1);
-      } else {
+      if (inPlayCounts.containsKey(c)) {
         inPlayCounts.put(c, inPlayCounts.get(c) + 1);
+      } else {
+        inPlayCounts.put(c, 1);
       }
     }
     Map<Card, Integer> playedCounts = new HashMap<Card, Integer>();
@@ -893,10 +893,10 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
         continue;
       }
       Card c = played.get(i);
-      if (!playedCounts.containsKey(c)) {
-        playedCounts.put(c, 1);
-      } else {
+      if (playedCounts.containsKey(c)) {
         playedCounts.put(c, playedCounts.get(c) + 1);
+      } else {
+        playedCounts.put(c, 1);
       }
     }
 

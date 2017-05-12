@@ -479,10 +479,10 @@ public class GameActivity extends SherlockActivity implements EventHandler {
       prefs.getBoolean("show_action_bar", "true".equals(getString(R.string.pref_showactionbar_default))));
     ThemeSetter.setLanguage(this);
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    if (!prefs.getBoolean("show_statusbar", true)) {
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    } else {
+    if (prefs.getBoolean("show_statusbar", true)) {
       getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    } else {
+      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
     if (gameRunning) {
       Game.processUserPrefArgs(getUserPrefs().toArray(new String[0]));

@@ -875,11 +875,11 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       }
     }
 
-    if (!options.isEmpty()) {
+    if (options.isEmpty()) {
+      return null;
+    } else {
       int o = selectOption(context, Cards.smugglers, options.toArray());
       return options.get(o);
-    } else {
-      return null;
     }
   }
 
@@ -1387,7 +1387,9 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
     // Hack that tells us that "All" was selected
     if (cards.length == 0) {
-      if (maxCards != -1) { // storyteller
+      if (maxCards == -1) {
+        return super.treasureCardsToPlayInOrder(context, maxCards, responsible);
+      } else { // storyteller
         ArrayList<Card> treasures = new ArrayList<Card>();
         for (Card c : context.getPlayer().getHand()) {
           if (c.is(Type.Treasure, context.getPlayer())) {
@@ -1395,8 +1397,6 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
           }
         }
         return treasures;
-      } else {
-        return super.treasureCardsToPlayInOrder(context, maxCards, responsible);
       }
     }
 

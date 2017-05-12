@@ -1334,13 +1334,13 @@ public class VDomPlayerPatrick extends BasePlayer {
                                boolean ambassador) {
     // Curse, Overgrown Estate and Hovel should be trashed at any time
     Card[] cardsToMatch;
-    if (!ambassador) {
+    if (ambassador) { // without shelters
+      cardsToMatch = new Card[] {Cards.curse, Cards.rats, Cards.ruinedVillage, Cards.ruinedMarket, Cards.survivors,
+        Cards.ruinedLibrary, Cards.abandonedMine, Cards.virtualRuins};
+    } else {
       cardsToMatch =
         new Card[] {Cards.curse, Cards.rats, Cards.overgrownEstate, Cards.ruinedVillage, Cards.ruinedMarket,
           Cards.hovel, Cards.survivors, Cards.ruinedLibrary, Cards.abandonedMine, Cards.virtualRuins};
-    } else { // without shelters
-      cardsToMatch = new Card[] {Cards.curse, Cards.rats, Cards.ruinedVillage, Cards.ruinedMarket, Cards.survivors,
-        Cards.ruinedLibrary, Cards.abandonedMine, Cards.virtualRuins};
     }
     for (Card match : cardsToMatch) {
       if (list.contains(match)) {
@@ -1949,10 +1949,10 @@ public class VDomPlayerPatrick extends BasePlayer {
     for (CardPile pile : game.piles.values()) {
       if ((knownActionCards.contains(pile.topCard())) && (pile.getCount() > 2)) {
         if ((knownCursingCards.contains(pile.topCard())) || (!shouldReCurse)) {
-          if (!game.embargos.containsKey(pile.topCard().getName())) {
-            cards.add(pile.topCard());
-          } else {
+          if (game.embargos.containsKey(pile.topCard().getName())) {
             this.log("advisorAction: skipped " + pile.topCard() + " due to embargo");
+          } else {
+            cards.add(pile.topCard());
           }
         }
       }
@@ -1973,7 +1973,10 @@ public class VDomPlayerPatrick extends BasePlayer {
       }
     }
 
-    if (!cards.isEmpty()) {
+    if (cards.isEmpty()) {
+      this.strategy = StrategyOption.NoAction;
+      this.log("advisorAction: pure big money");
+    } else {
       // pick random card to base strategy on
       this.strategyCard = null;
       while ((!cards.isEmpty()) && (this.strategyCard == null)) {
@@ -2013,9 +2016,6 @@ public class VDomPlayerPatrick extends BasePlayer {
         this.strategy = StrategyOption.SingleAction;
         this.log("advisorAction: single " + this.strategyCard);
       }
-    } else {
-      this.strategy = StrategyOption.NoAction;
-      this.log("advisorAction: pure big money");
     }
 
   }

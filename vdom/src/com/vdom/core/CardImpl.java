@@ -857,12 +857,12 @@ public class CardImpl implements Card, Comparable<Card> {
       if (!player.getHand().isEmpty()) {
         Card cardToTrash = player.controlPlayer.sauna_cardToTrash(context);
         if (cardToTrash != null) {
-          if (!player.getHand().contains(cardToTrash)) {
-            Util.playerError(player, "Sauna error, invalid card to trash, ignoring.");
-          } else {
+          if (player.getHand().contains(cardToTrash)) {
             cardToTrash = player.hand.get(cardToTrash);
             player.hand.remove(cardToTrash);
             player.trash(cardToTrash, Cards.sauna, context);
+          } else {
+            Util.playerError(player, "Sauna error, invalid card to trash, ignoring.");
           }
         } else {
           break;
@@ -940,9 +940,7 @@ public class CardImpl implements Card, Comparable<Card> {
       }
 
       if (cardToPlay != null) {
-        if (!actionCards.contains(cardToPlay)) {
-          Util.playerError(currentPlayer, this.getControlCard().name + " card selection error, ignoring");
-        } else {
+        if (actionCards.contains(cardToPlay)) {
           context.freeActionInEffect++;
 
           cardToPlay.cloneCount = (equals(Cards.kingsCourt) ? 3 : 2);
@@ -981,6 +979,8 @@ public class CardImpl implements Card, Comparable<Card> {
               }
             }
           }
+        } else {
+          Util.playerError(currentPlayer, this.getControlCard().name + " card selection error, ignoring");
         }
 
         if (this.kind == Cards.Kind.Procession) {

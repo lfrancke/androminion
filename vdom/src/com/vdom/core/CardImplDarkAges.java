@@ -873,12 +873,7 @@ public class CardImplDarkAges extends CardImpl {
           break;
         }
       }
-      if (!hasother) {
-        for (int i = 0; i < currentPlayer.hand.size(); i++) {
-          Card card = currentPlayer.hand.get(i);
-          currentPlayer.reveal(card, this.getControlCard(), context);
-        }
-      } else {
+      if (hasother) {
         Card card = currentPlayer.controlPlayer.rats_cardToTrash(context);
         if (card == null || card.equals(Cards.rats) || !currentPlayer.hand.contains(card)) {
           Util.playerError(currentPlayer, "Rats card to trash invalid, picking one");
@@ -892,6 +887,11 @@ public class CardImplDarkAges extends CardImpl {
 
         currentPlayer.hand.remove(card);
         currentPlayer.trash(card, this.getControlCard(), context);
+      } else {
+        for (int i = 0; i < currentPlayer.hand.size(); i++) {
+          Card card = currentPlayer.hand.get(i);
+          currentPlayer.reveal(card, this.getControlCard(), context);
+        }
       }
     }
   }
@@ -948,16 +948,7 @@ public class CardImplDarkAges extends CardImpl {
       }
     }
 
-    if (!options.isEmpty()) { // gain a card
-      Card toGain = currentPlayer.controlPlayer.rogue_cardToGain(context);
-      if (toGain == null) {
-        Util.playerError(currentPlayer, "Rogue error, no card to gain selected, picking random");
-        toGain = Util.randomCard(options);
-      }
-
-      game.trashPile.remove(toGain);
-      currentPlayer.gainCardAlreadyInPlay(toGain, this.getControlCard(), context);
-    } else { // Other players trash a card
+    if (options.isEmpty()) { // Other players trash a card
       for (Player targetPlayer : game.getPlayersInTurnOrder()) {
         if (targetPlayer != currentPlayer && !Util.isDefendedFromAttack(game, targetPlayer, this)) {
           targetPlayer.attacked(this.getControlCard(), context);
@@ -1009,6 +1000,15 @@ public class CardImplDarkAges extends CardImpl {
           }
         }
       }
+    } else { // gain a card
+      Card toGain = currentPlayer.controlPlayer.rogue_cardToGain(context);
+      if (toGain == null) {
+        Util.playerError(currentPlayer, "Rogue error, no card to gain selected, picking random");
+        toGain = Util.randomCard(options);
+      }
+
+      game.trashPile.remove(toGain);
+      currentPlayer.gainCardAlreadyInPlay(toGain, this.getControlCard(), context);
     }
   }
 
@@ -1249,11 +1249,11 @@ public class CardImplDarkAges extends CardImpl {
       if (card == null) {
         break;
       }
-      if (!(card.is(Type.Action, currentPlayer))) {
-        currentPlayer.discard(card, this.getControlCard(), context);
-      } else {
+      if (card.is(Type.Action, currentPlayer)) {
         currentPlayer.reveal(card, this.getControlCard(), context);
         cards.add(card);
+      } else {
+        currentPlayer.discard(card, this.getControlCard(), context);
       }
     }
 

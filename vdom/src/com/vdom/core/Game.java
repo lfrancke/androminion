@@ -1440,7 +1440,9 @@ public class Game {
     }
 
     if (context.missionBought && consecutiveTurnCounter <= 1) {
-      if (!result.isEmpty()) {
+      if (result.isEmpty()) {
+        result.add(new ExtraTurnInfo(false));
+      } else {
         //ask player if they want to do mission turn with three cards or do outpost turn first then mission turn
         // player not possessed because we are between turns
 
@@ -1459,8 +1461,6 @@ public class Game {
           default:
             break;
         }
-      } else {
-        result.add(new ExtraTurnInfo(false));
       }
     }
 
@@ -2008,11 +2008,11 @@ public class Game {
         CardImpl behaveAsCard = (CardImpl) card.behaveAsCard();
         behaveAsCard.cloneCount = 1;
         ((CardImpl) card).cloneCount = 1;
-        if (!(behaveAsCard.trashAfterPlay || ((CardImpl) card).trashAfterPlay)) {
-          player.playedCards.add(card);
-        } else {
+        if (behaveAsCard.trashAfterPlay || ((CardImpl) card).trashAfterPlay) {
           behaveAsCard.trashAfterPlay = false;
           ((CardImpl) card).trashAfterPlay = false;
+        } else {
+          player.playedCards.add(card);
         }
       }
     }
@@ -3798,11 +3798,11 @@ public class Game {
       if (!player.getHand().isEmpty() && isPlayerSupplyTokenOnPile(buy, player, PlayerSupplyToken.Trashing)) {
         Card cardToTrash = player.controlPlayer.trashingToken_cardToTrash((MoveContext) context);
         if (cardToTrash != null) {
-          if (!player.getHand().contains(cardToTrash)) {
-            Util.playerError(player, "Trashing token error, invalid card to trash, ignoring.");
-          } else {
+          if (player.getHand().contains(cardToTrash)) {
             player.hand.remove(cardToTrash);
             player.trash(cardToTrash, null, context);
+          } else {
+            Util.playerError(player, "Trashing token error, invalid card to trash, ignoring.");
           }
         }
       }
@@ -4185,10 +4185,10 @@ public class Game {
       if (!validCards.isEmpty()) {
         Card toGain = context.getPlayer().controlPlayer.haggler_cardToObtain(context, cost, debt, potion);
         if (toGain != null) {
-          if (!validCards.contains(toGain)) {
-            Util.playerError(context.getPlayer(), "Invalid card returned from Haggler, ignoring.");
-          } else {
+          if (validCards.contains(toGain)) {
             context.getPlayer().gainNewCard(toGain, Cards.haggler, context);
+          } else {
+            Util.playerError(context.getPlayer(), "Invalid card returned from Haggler, ignoring.");
           }
         }
       }
@@ -4205,10 +4205,10 @@ public class Game {
         if (validCard) {
           Card toGain = player.controlPlayer.charm_cardToObtain(context, buy);
           if (toGain != null) {
-            if (!isValidCharmCard(context, buy, toGain)) {
-              Util.playerError(player, "Charm card to gain invalid, ignoring");
-            } else {
+            if (isValidCharmCard(context, buy, toGain)) {
               player.gainNewCard(toGain, Cards.charm, context);
+            } else {
+              Util.playerError(player, "Charm card to gain invalid, ignoring");
             }
           }
           validCard = validCharmCardLeft(context, buy);

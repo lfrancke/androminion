@@ -155,17 +155,17 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     int i = origGV.getPositionForView(view);
-    if (i != AdapterView.INVALID_POSITION) {
-      int c = origCards.get(i);
-      origCards.remove(i);
-      orderedCards.add(0, c);
-    } else {
+    if (i == AdapterView.INVALID_POSITION) {
       i = orderedGV.getPositionForView(view);
       if (i != AdapterView.INVALID_POSITION) {
         int c = orderedCards.get(i);
         orderedCards.remove(i);
         origCards.add(0, c);
       }
+    } else {
+      int c = origCards.get(i);
+      origCards.remove(i);
+      orderedCards.add(0, c);
     }
     orderCardGroups();
   }

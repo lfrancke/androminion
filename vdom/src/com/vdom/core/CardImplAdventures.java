@@ -631,12 +631,12 @@ public class CardImplAdventures extends CardImpl {
     Card cardToTrash = currentPlayer.getHand().size() == 1 ? currentPlayer.getHand().get(0)
                          : currentPlayer.controlPlayer.ratcatcher_cardToTrash((MoveContext) context);
     if (cardToTrash != null) {
-      if (!currentPlayer.getHand().contains(cardToTrash)) {
-        Util.playerError(currentPlayer, "Ratcatcher error, invalid card to trash, trashing random card.");
-        cardToTrash = Util.randomCard(currentPlayer.getHand());
-      } else {
+      if (currentPlayer.getHand().contains(cardToTrash)) {
         currentPlayer.hand.remove(cardToTrash);
         currentPlayer.trash(cardToTrash, this.getControlCard(), context);
+      } else {
+        Util.playerError(currentPlayer, "Ratcatcher error, invalid card to trash, trashing random card.");
+        cardToTrash = Util.randomCard(currentPlayer.getHand());
       }
     }
   }
@@ -803,12 +803,12 @@ public class CardImplAdventures extends CardImpl {
     }
     Card cardToTrash = currentPlayer.controlPlayer.transmogrify_cardToTrash(context);
     if (cardToTrash != null) {
-      if (!currentPlayer.getHand().contains(cardToTrash)) {
-        Util.playerError(currentPlayer, "Transmogrify error, invalid card to trash, trashing random card.");
-        cardToTrash = Util.randomCard(currentPlayer.getHand());
-      } else {
+      if (currentPlayer.getHand().contains(cardToTrash)) {
         currentPlayer.hand.remove(cardToTrash);
         currentPlayer.trash(cardToTrash, null, context);
+      } else {
+        Util.playerError(currentPlayer, "Transmogrify error, invalid card to trash, trashing random card.");
+        cardToTrash = Util.randomCard(currentPlayer.getHand());
       }
     }
     int value = cardToTrash.getCost(context) + 1;

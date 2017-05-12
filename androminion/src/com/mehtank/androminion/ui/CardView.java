@@ -335,31 +335,31 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
 
   public void setEmbargos(int s) {
     numEmbargos = s;
-    if (s != 0) {
+    if (s == 0) {
+      embargos.setVisibility(GONE);
+    } else {
       embargos.setText(" " + s + " ");
       embargos.setVisibility(VISIBLE);
-    } else {
-      embargos.setVisibility(GONE);
     }
   }
 
   public void setPileVpTokens(int val) {
     numPileVpTokens = val;
-    if (val != 0) {
+    if (val == 0) {
+      pileVpTokens.setVisibility(GONE);
+    } else {
       pileVpTokens.setText(" " + val + " ");
       pileVpTokens.setVisibility(VISIBLE);
-    } else {
-      pileVpTokens.setVisibility(GONE);
     }
   }
 
   public void setPileDebtTokens(int val) {
     numPileDebtTokens = val;
-    if (val != 0) {
+    if (val == 0) {
+      pileDebtTokens.setVisibility(GONE);
+    } else {
       pileDebtTokens.setText(" " + val + " ");
       pileDebtTokens.setVisibility(VISIBLE);
-    } else {
-      pileDebtTokens.setVisibility(GONE);
     }
   }  @Override
   public void toggle() {
@@ -368,11 +368,11 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
 
   public void setPileTradeRouteTokens(int val) {
     numPileTradeRouteTokens = val;
-    if (val != 0) {
+    if (val == 0) {
+      pileTradeRouteTokens.setVisibility(GONE);
+    } else {
       pileTradeRouteTokens.setText("     ");
       pileTradeRouteTokens.setVisibility(VISIBLE);
-    } else {
-      pileTradeRouteTokens.setVisibility(GONE);
     }
   }
 

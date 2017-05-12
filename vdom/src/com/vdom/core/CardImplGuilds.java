@@ -294,11 +294,11 @@ public class CardImplGuilds extends CardImpl {
 
     // search for the first 3 cards that were not named
     while (diffCardsFound < 3 && (last = context.game.draw(context, Cards.journeyman, -1)) != null) {
-      if (!last.equals(named)) {
+      if (last.equals(named)) {
+        cardsToDiscard.add(last);
+      } else {
         ++diffCardsFound;
         cardsToKeep.add(last);
-      } else {
-        cardsToDiscard.add(last);
       }
 
       currentPlayer.reveal(last, this.getControlCard(), context);

@@ -2281,10 +2281,10 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   public Card squire_cardToObtain(MoveContext context) {
     ArrayList<Card> options = getAttackCardsLeft();
 
-    if (!options.isEmpty()) {
-      return Util.randomCard(options);
-    } else {
+    if (options.isEmpty()) {
       return null;
+    } else {
+      return Util.randomCard(options);
     }
   }
 
@@ -2623,10 +2623,10 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
     // Just add in the non-victory cards...
     for (Card card : context.attackedPlayer.getHand()) {
-      if (!shouldDiscard(card, new MoveContext(context.game, context.attackedPlayer))) {
-        keepers.add(card);
-      } else {
+      if (shouldDiscard(card, new MoveContext(context.game, context.attackedPlayer))) {
         discards.add(card);
+      } else {
+        keepers.add(card);
       }
     }
 
@@ -4412,10 +4412,10 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
     // Just add in the non-victory cards...
     for (Card card : context.attackedPlayer.getHand()) {
-      if (!shouldDiscard(card, new MoveContext(context.game, context.attackedPlayer))) {
-        keepers.add(card);
-      } else {
+      if (shouldDiscard(card, new MoveContext(context.game, context.attackedPlayer))) {
         discards.add(card);
+      } else {
+        keepers.add(card);
       }
     }
 

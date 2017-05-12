@@ -1898,10 +1898,10 @@ public class Strings {
     boolean hasCastle = false;
     for (Card card : totals.keySet()) {
       if (Cards.isKingdomCard(card)) {
-        if (!card.is(Type.Castle)) {
-          sb.append("  " + Strings.getCardText(counts, totals, card));
-        } else {
+        if (card.is(Type.Castle)) {
           hasCastle = true;
+        } else {
+          sb.append("  " + Strings.getCardText(counts, totals, card));
         }
       }
     }

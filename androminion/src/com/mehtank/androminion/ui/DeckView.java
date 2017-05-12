@@ -133,36 +133,36 @@ public class DeckView extends RelativeLayout implements OnLongClickListener {
       name.setBackgroundColor(Color.TRANSPARENT);
     }
 
-    if (pt != 0) {
-      pirates.setText(" " + pt + " ");
-      pirates.setVisibility(VISIBLE);
-    } else {
+    if (pt == 0) {
       pirates.setText("");
       pirates.setVisibility(GONE);
+    } else {
+      pirates.setText(" " + pt + " ");
+      pirates.setVisibility(VISIBLE);
     }
 
-    if (vt != 0) {
-      victoryTokens.setText(" " + vt + " ");
-      victoryTokens.setVisibility(VISIBLE);
-    } else {
+    if (vt == 0) {
       victoryTokens.setText("");
       victoryTokens.setVisibility(GONE);
+    } else {
+      victoryTokens.setText(" " + vt + " ");
+      victoryTokens.setVisibility(VISIBLE);
     }
 
-    if (dt != 0) {
-      debtTokens.setText(" " + dt + " ");
-      debtTokens.setVisibility(VISIBLE);
-    } else {
+    if (dt == 0) {
       debtTokens.setText("");
       debtTokens.setVisibility(GONE);
+    } else {
+      debtTokens.setText(" " + dt + " ");
+      debtTokens.setVisibility(VISIBLE);
     }
 
-    if (gct != 0) {
-      guildsCoinTokens.setText(" " + gct + " ");
-      guildsCoinTokens.setVisibility(VISIBLE);
-    } else {
+    if (gct == 0) {
       guildsCoinTokens.setText("");
       guildsCoinTokens.setVisibility(GONE);
+    } else {
+      guildsCoinTokens.setText(" " + gct + " ");
+      guildsCoinTokens.setVisibility(VISIBLE);
     }
 
     journeyToken.setTextColor(journeyTokenState == JourneyTokenState.FACE_UP ? Color.BLACK : Color.TRANSPARENT);

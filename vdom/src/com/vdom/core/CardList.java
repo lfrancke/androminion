@@ -114,10 +114,10 @@ public class CardList implements Iterable<Card> {
 
   public void add(Card card, boolean showUI, int index) {
     if (checkValid(card)) {
-      if (index != -1) {
-        a.add(index, card);
-      } else {
+      if (index == -1) {
         a.add(card);
+      } else {
+        a.add(index, card);
       }
 
       if (showUI && name.equals("Hand")) {

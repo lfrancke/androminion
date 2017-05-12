@@ -107,10 +107,7 @@ public class CardImplSeaside extends CardImpl {
     //Util.log("Ambassador revealed card:" + origCard.getName());
 
     int returnCount = -1;
-    if (!pile.isSupply()) {
-      // Wiki: If you reveal a card which is not in the Supply, such as Spoils, Madman Mercenary, or Shelters, Ambassador does nothing
-      Util.playerError(currentPlayer, "Ambassador revealed card not in supply, returning 0.");
-    } else {
+    if (pile.isSupply()) {
       returnCount = currentPlayer.controlPlayer.ambassador_returnToSupplyFromHand(context, card);
       if (returnCount > 2) {
         Util.playerError(currentPlayer, "Ambassador return to supply error (more than 2 cards), returning 2.");
@@ -123,6 +120,9 @@ public class CardImplSeaside extends CardImpl {
           returnCount = inHandCount;
         }
       }
+    } else {
+      // Wiki: If you reveal a card which is not in the Supply, such as Spoils, Madman Mercenary, or Shelters, Ambassador does nothing
+      Util.playerError(currentPlayer, "Ambassador revealed card not in supply, returning 0.");
     }
 
     for (int i = 0; i < returnCount; i++) {
@@ -579,13 +579,13 @@ public class CardImplSeaside extends CardImpl {
     // throneroom has no effect since hand is already empty
     if (this.getControlCard().numberTimesAlreadyPlayed == 0) {
       // Only works if at least one card discarded
-      if (!currentPlayer.hand.isEmpty()) {
+      if (currentPlayer.hand.isEmpty()) {
+        currentPlayer.nextTurnCards.remove(this.getControlCard());
+        currentPlayer.playedCards.add(this.getControlCard());
+      } else {
         while (!currentPlayer.hand.isEmpty()) {
           currentPlayer.discard(currentPlayer.hand.remove(0), this.getControlCard(), context);
         }
-      } else {
-        currentPlayer.nextTurnCards.remove(this.getControlCard());
-        currentPlayer.playedCards.add(this.getControlCard());
       }
     } else {
       // reset clone count

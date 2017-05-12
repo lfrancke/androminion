@@ -314,7 +314,9 @@ public class VDomServer implements EventHandler {
     }
 
     for (int i = 1; i < args.length; i++) {
-      if (!args[i].startsWith("-")) {
+      if (args[i].startsWith("-")) {
+        gameArgs.add(args[i]);
+      } else {
         if (args[i].equalsIgnoreCase(Player.RANDOM_AI)) {
           args[i] = this.getRandomAI(args);
         }
@@ -322,8 +324,6 @@ public class VDomServer implements EventHandler {
         gamePlayers.add(args[i]);
 
         gameArgs.add(allPlayers.get(args[i]));
-      } else {
-        gameArgs.add(args[i]);
       }
     }
     waitingPlayers = new CountDownLatch(1); // TODO: how many humans are there?

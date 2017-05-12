@@ -251,10 +251,10 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    * Turn log view on or off
    */
   public void logToggle() {
-    if (gameScroller.getVisibility() != VISIBLE) {
-      gameScroller.setVisibility(VISIBLE);
-    } else {
+    if (gameScroller.getVisibility() == VISIBLE) {
       gameScroller.setVisibility(GONE);
+    } else {
+      gameScroller.setVisibility(VISIBLE);
     }
   }
 
@@ -346,10 +346,10 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
       moneyPileGV.setNumColumns(4);
     }
 
-    if (!colonyInPlay) {
-      vpPileGV.setNumColumns(4);
-    } else {
+    if (colonyInPlay) {
       vpPileGV.setNumColumns(5);
+    } else {
+      vpPileGV.setNumColumns(4);
     }
 
     if (numEventsLandmarks <= 3 || numEventsLandmarks == 6) {
