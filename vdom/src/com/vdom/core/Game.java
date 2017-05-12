@@ -480,13 +480,13 @@ public class Game {
           }
         }
       } else {
-        String options = "";
         String name = null;
         int starIndex = arg.indexOf("*");
         if (starIndex != -1) {
           name = arg.substring(starIndex + 1);
           arg = arg.substring(0, starIndex);
         }
+        String options = "";
         if (arg.endsWith(QUICK_PLAY)) {
           arg = arg.substring(0, arg.length() - QUICK_PLAY.length());
           options += "q";
@@ -634,9 +634,9 @@ public class Game {
 
   static boolean checkForInteractive() throws ExitException {
     for (int i = 0; i < numPlayers; i++) {
-      Player player;
       try {
         String[] classAndJar = playerClassesAndJars.get(i);
+        Player player;
         if (classAndJar[1] == null) {
           player = (Player) Class.forName(classAndJar[0]).newInstance();
         } else {
@@ -1206,9 +1206,9 @@ public class Game {
     if (maxCards != -1) {
       selectingCoins = true;// storyteller
     }
-    ArrayList<Card> treasures = null;
-    treasures = (selectingCoins) ? player.controlPlayer.treasureCardsToPlayInOrder(context, maxCards, responsible)
-                  : player.getTreasuresInHand();
+    ArrayList<Card> treasures =
+      (selectingCoins) ? player.controlPlayer.treasureCardsToPlayInOrder(context, maxCards, responsible)
+        : player.getTreasuresInHand();
 
     while (treasures != null && !treasures.isEmpty() && maxCards != 0) {
       while (!treasures.isEmpty() && maxCards != 0) {
@@ -1546,10 +1546,10 @@ public class Game {
     Card action = null;
     do {
       action = null;
-      ArrayList<Card> actionCards = null;
       if (disableAi && player.isAi()) {
         continue;
       }
+      ArrayList<Card> actionCards = null;
       if (!actionChains || player.controlPlayer.isAi()) {
         action = player.controlPlayer.doAction(context);
         if (action != null) {
@@ -1821,7 +1821,6 @@ public class Game {
       durationEffectsAreCards.add(false);
       durationEffectsAreCards.add(false);
     }
-    int numOptionalItems = 0;
     ArrayList<Card> callableCards = new ArrayList<Card>();
     for (Card c : player.tavern) {
       if (c.behaveAsCard().isCallableWhenTurnStarts()) {
@@ -1838,6 +1837,7 @@ public class Game {
         }
       }
     }
+    int numOptionalItems = 0;
     if (!allDurationAreSimple) {
       // Add cards callable at start of turn
       for (Card c : callableCards) {
@@ -1970,8 +1970,8 @@ public class Game {
       }
     }
 
-    ArrayList<Card> staysInPlayCards = new ArrayList<Card>();
     archiveNum = 0;
+    ArrayList<Card> staysInPlayCards = new ArrayList<Card>();
     while (!player.nextTurnCards.isEmpty()) {
       Card card = player.nextTurnCards.remove(0);
       if (isModifierCard(card.behaveAsCard())) {
@@ -2033,7 +2033,6 @@ public class Game {
     //TODO: integrate this into the main action selection UI if possible to make it more seamless
     //check for start-of-turn callable cards
     callableCards = new ArrayList<Card>();
-    Card toCall = null;
     for (Card c : player.tavern) {
       if (c.behaveAsCard().isCallableWhenTurnStarts()) {
         callableCards.add(c);
@@ -2041,6 +2040,7 @@ public class Game {
     }
     if (!callableCards.isEmpty()) {
       Collections.sort(callableCards, new Util.CardCostComparator());
+      Card toCall = null;
       do {
         toCall = null;
         // we want null entry at the end for None
@@ -2323,30 +2323,30 @@ public class Game {
     addPile(Cards.estate, victoryCardPileSize + (3 * numPlayers));
 
     unfoundCards.clear();
-    int added = 0;
 
     if (cardsSpecifiedAtLaunch != null) {
       platColonyNotPassedIn = true;
       sheltersNotPassedIn = true;
+      int added = 0;
       for (String cardName : cardsSpecifiedAtLaunch) {
-        Card card = null;
         boolean bane = false;
-        boolean obelisk = false;
-        boolean blackMarket = false;
 
         if (cardName.startsWith(BANE)) {
           bane = true;
           cardName = cardName.substring(BANE.length());
         }
+        boolean obelisk = false;
         if (cardName.startsWith(OBELISK)) {
           obelisk = true;
           cardName = cardName.substring(OBELISK.length());
         }
+        boolean blackMarket = false;
         if (cardName.startsWith(BLACKMARKET)) {
           blackMarket = true;
           cardName = cardName.substring(BLACKMARKET.length());
         }
         String s = cardName.replace("/", "").replace(" ", "");
+        Card card = null;
         for (Card c : Cards.actionCards) {
           if (c.getSafeName().equalsIgnoreCase(s)) {
             card = c;
@@ -2945,7 +2945,6 @@ public class Game {
               commandedDiscard = false;
             }
           }
-          boolean handled = false;
 
           //Not sure if this is exactly right for the Trader, but it seems to be based on detailed card explanation in the rules
           //The handling for new cards is done before taking the card from the pile in a different method below.
@@ -2985,6 +2984,7 @@ public class Game {
             Cards.watchTower.equals(player.getInheritance()) && player.hand.contains(Cards.estate);
           boolean hasWatchtower = player.hand.contains(Cards.watchTower);
           Card watchTowerCard = hasWatchtower ? Cards.watchTower : Cards.estate;
+          boolean handled = false;
           if (hasWatchtower || hasInheritedWatchtower) {
             WatchTowerOption choice =
               context.player.controlPlayer.watchTower_chooseOption((MoveContext) context, event.card);
@@ -3498,7 +3498,6 @@ public class Game {
   }
 
   protected CardPile addPile(Card card) {
-    boolean isSupply = true;
     int count = kingdomCardPileSize;
     if (card.is(Type.Victory)) {
       count = victoryCardPileSize;
@@ -3509,6 +3508,7 @@ public class Game {
     if (card.equals(Cards.port)) {
       count = 12;
     }
+    boolean isSupply = true;
     if (card.is(Type.Event) || card.is(Type.Landmark)) {
       count = 1;
       isSupply = false;
@@ -4082,9 +4082,9 @@ public class Game {
   }
 
   String getHandString(Player player) {
-    String handString = null;
     Card[] hand = player.getHand().toArray();
     Arrays.sort(hand, new CardCostComparator());
+    String handString = null;
     for (Card card : hand) {
       if (card == null) {
         continue;
@@ -4101,7 +4101,6 @@ public class Game {
 
   private void markWinner(HashMap<String, Double> gameTypeSpecificWins) {
     double highWins = 0;
-    int winners = 0;
 
     for (String player : gameTypeSpecificWins.keySet()) {
       if (gameTypeSpecificWins.get(player) > highWins) {
@@ -4109,6 +4108,7 @@ public class Game {
       }
     }
 
+    int winners = 0;
     for (String player : gameTypeSpecificWins.keySet()) {
       if (gameTypeSpecificWins.get(player) == highWins) {
         winners++;

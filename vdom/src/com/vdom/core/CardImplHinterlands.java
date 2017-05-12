@@ -265,7 +265,6 @@ public class CardImplHinterlands extends CardImpl {
       boolean trashedCardPotion = cardToTrash.costPotion();
 
       Card lowCardToGain = null;
-      Card highCardToGain = null;
 
       if (context.isNewCardAvailable(trashedCardCost - 1, trashedCardDebt, trashedCardPotion)) {
         lowCardToGain = currentPlayer.controlPlayer
@@ -275,6 +274,7 @@ public class CardImplHinterlands extends CardImpl {
         }
       }
 
+      Card highCardToGain = null;
       if (context.isNewCardAvailable(trashedCardCost + 1, trashedCardDebt, trashedCardPotion)) {
         highCardToGain = currentPlayer.controlPlayer
                            .develop_highCardToGain(context, trashedCardCost + 1, trashedCardDebt, trashedCardPotion);

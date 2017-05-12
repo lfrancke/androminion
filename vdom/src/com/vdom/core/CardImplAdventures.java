@@ -462,7 +462,6 @@ public class CardImplAdventures extends CardImpl {
   }
 
   private void gear(MoveContext context, Player currentPlayer) {
-    boolean cardSetAside = false;
     Card[] cards =
       currentPlayer.getHand().isEmpty() ? null : currentPlayer.controlPlayer.gear_cardsToSetAside(context);
     if (cards != null && cards.length > 2) {
@@ -473,6 +472,7 @@ public class CardImplAdventures extends CardImpl {
       Util.playerError(currentPlayer, "Gear: Tried to set aside cards not in hand. Setting aside zero.");
       cards = null;
     }
+    boolean cardSetAside = false;
     if (cards != null) {
       ArrayList<Card> gearCards = new ArrayList<Card>();
       for (Card card : cards) {

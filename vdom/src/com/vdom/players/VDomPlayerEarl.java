@@ -365,10 +365,9 @@ public class VDomPlayerEarl extends BasePlayer {
       }
     }
 
-    int lowCost = 100;
-    Card lowCard = null;
-
     if (cards.size() < 2) {
+      Card lowCard = null;
+      int lowCost = 100;
       for (Card card : getHand()) {
         if (card.getCost(context) < lowCost) {
           lowCost = card.getCost(context);
@@ -518,7 +517,6 @@ public class VDomPlayerEarl extends BasePlayer {
     }
 
     boolean hasThroneRoom = inHand(Cards.throneRoom);
-    ArrayList<Card> dontPlay = new ArrayList<Card>();
 
     int actionCards = 0;
     for (Card card : hand) {
@@ -564,6 +562,7 @@ public class VDomPlayerEarl extends BasePlayer {
       }
     }
 
+    ArrayList<Card> dontPlay = new ArrayList<Card>();
     if (hasThroneRoom) {
       if (inHand(Cards.feast)) {
         THRONE_ROOM_PLAYS += 1;

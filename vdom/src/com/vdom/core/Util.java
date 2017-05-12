@@ -157,8 +157,8 @@ public class Util {
 
     while (!valid) {
       valid = true;
-      boolean dumpState = false;
       System.out.print("Hit enter >");
+      boolean dumpState = false;
       try {
         do {
           int input = System.in.read();

@@ -67,14 +67,13 @@ public class PlayerAdapter extends ArrayAdapter<PlayerSummary> {
   @Override
   public View getView(int pos, View origView, ViewGroup parent) {
     DeckView dv;
-    PlayerSummary ps;
     if (origView == null) {
       dv = new DeckView(getContext());
       dv.setLongClickable(true);
     } else {
       dv = (DeckView) origView;
     }
-    ps = getItem(pos);
+    PlayerSummary ps = getItem(pos);
     dv.set(ps.name, ps.turns, ps.deckSize, ps.stashOnDeck, ps.handSize, ps.stashesInHand, ps.numCards, ps.pt, ps.vt,
       ps.dt, ps.gct, ps.minusOneCoinTokenOn, ps.minusOneCardTokenOn, ps.journeyToken, ps.highlight, ps.showColor,
       ps.color);

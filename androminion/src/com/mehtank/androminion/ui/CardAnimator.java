@@ -43,11 +43,11 @@ public class CardAnimator {
   }
 
   public void showCard(CardView c, ShowCardType type) {
-    AlphaAnimation alpha = null;
-    TranslateAnimation trans;
     AnimationSet anims = new AnimationSet(true);
     anims.setInterpolator(new LinearInterpolator());
     int cardWidth = (int) c.getResources().getDimension(R.dimen.cardWidth);
+    TranslateAnimation trans;
+    AlphaAnimation alpha = null;
     switch (type) {
       case OBTAINED:
         alpha = new AlphaAnimation(0, 1);

@@ -120,14 +120,10 @@ public class CardSet {
    */
   public static CardSet getRandomCardSet(List<Card> possibleCards, int count, int eventCount, int landmarkCount,
                                           boolean linkMaxEventsAndLandmarks, boolean adjustForAlchemy) {
-    List<Card> cardSetList = new ArrayList<Card>();
-    List<Card> eventList = new ArrayList<Card>();
-    List<Card> landmarkList = new ArrayList<Card>();
 
     possibleCards = new ArrayList<Card>(possibleCards);
     shuffle(possibleCards);
 
-    Card baneCard = null;
     boolean findBandIfNeeded = false;
     if (count < 0) {
       count = 10;
@@ -147,6 +143,9 @@ public class CardSet {
     int numEvents = countEvents(possibleCards);
     int numLandmarks = countLandmarks(possibleCards);
     count = Math.min(possibleCards.size() - numEvents - numLandmarks, count);
+    List<Card> landmarkList = new ArrayList<Card>();
+    List<Card> eventList = new ArrayList<Card>();
+    List<Card> cardSetList = new ArrayList<Card>();
     for (Card c : possibleCards) {
       if (c.is(Type.Event, null)) {
         if (drawEvents) {
@@ -203,6 +202,7 @@ public class CardSet {
     }
 
     // pick a bane card if needed
+    Card baneCard = null;
     if (findBandIfNeeded && cardSetList.contains(Cards.youngWitch)) {
       for (Card c : possibleCards) {
         if (cardSetList.contains(c)) {

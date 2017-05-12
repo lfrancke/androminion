@@ -472,8 +472,6 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       exp = "basecards";
     }
 
-    View v;
-
     String subdir = "/images/full/";
     str = GameActivity.BASEDIR + subdir + titlename + ".jpg";
     File f = new File(str);
@@ -572,7 +570,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       linkView.setGravity(Gravity.CENTER);
       ll.addView(linkView);
     }
-    v = ll;
+    View v = ll;
 
     String title = cardView.getCard().name;
     Log.d(TAG, "card title = " + title);
@@ -901,8 +899,8 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
           boolean first = true;
           for (int tokenId : playerTokens) {
             PlayerSupplyToken tokenType = PlayerSupplyToken.getById(tokenId);
-            int tokenNameId;
             if (tokenType != null) {
+              int tokenNameId;
               switch (tokenType) {
                 case PlusOneCard:
                   tokenNameId = R.string.token_plus_one_card;

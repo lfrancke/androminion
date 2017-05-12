@@ -774,13 +774,13 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       return super.lurker_cardToGainFromTrash(context);
     }
 
-    ArrayList<Card> options = new ArrayList<Card>();
     Set<Card> inTrashPile = new HashSet<Card>();
     for (Card c : game.trashPile) {
       if (c.is(Type.Action)) {
         inTrashPile.add(c);
       }
     }
+    ArrayList<Card> options = new ArrayList<Card>();
     options.addAll(inTrashPile);
     Collections.sort(options, new Util.CardNameComparator());
 
@@ -2116,13 +2116,13 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public Card graverobber_cardToGainFromTrash(MoveContext context) {
-    ArrayList<Card> options = new ArrayList<Card>();
     Set<Card> inTrashPile = new HashSet<Card>();
     for (Card c : game.trashPile) {
       if (!c.costPotion() && c.getCost(context) >= 3 && c.getCost(context) <= 6) {
         inTrashPile.add(c);
       }
     }
+    ArrayList<Card> options = new ArrayList<Card>();
     options.addAll(inTrashPile);
     Collections.sort(options, new Util.CardNameComparator());
 
@@ -2278,13 +2278,13 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
 
   @Override
   public Card rogue_cardToGain(MoveContext context) {
-    ArrayList<Card> options = new ArrayList<Card>();
     Set<Card> inTrashPile = new HashSet<Card>();
     for (Card c : game.trashPile) {
       if (!c.costPotion() && c.getCost(context) >= 3 && c.getCost(context) <= 6) {
         inTrashPile.add(c);
       }
     }
+    ArrayList<Card> options = new ArrayList<Card>();
     options.addAll(inTrashPile);
     Collections.sort(options, new Util.CardNameComparator());
 

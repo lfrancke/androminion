@@ -1372,9 +1372,9 @@ public class Strings {
     String minCostString = (sco.minCost <= 0) ? "" : "" + sco.minCost;
     String maxCostString = (sco.maxCost == Integer.MAX_VALUE) ?
                              "" : "" + sco.maxCost + sco.debtString() + sco.potionString();
-    String selectString;
 
     if (sco.fromTable) {
+      String selectString;
       if (sco.fromPrizes) {
         selectString = header;
       } else if (sco.minCost == sco.maxCost) {
@@ -1923,8 +1923,8 @@ public class Strings {
 
       //Add Castle Total count and VP summary
       Map<Object, Integer> castlecnt = new HashMap<Object, Integer>();
-      Map<Card, Integer> castletot = new HashMap<Card, Integer>();
       castlecnt.put(Cards.virtualCastle, castleTotals);
+      Map<Card, Integer> castletot = new HashMap<Card, Integer>();
       castletot.put(Cards.virtualCastle, castleVpCount);
       sb.append(Strings.getCardText(castlecnt, castletot, Cards.virtualCastle));
 

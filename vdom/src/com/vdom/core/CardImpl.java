@@ -452,7 +452,6 @@ public class CardImpl implements Card, Comparable<Card> {
   @Override
   public void play(Game game, MoveContext context, boolean fromHand, boolean treasurePlay) {
     Player currentPlayer = context.getPlayer();
-    boolean newCard = false;
     Card actualCard = (this.getControlCard() != null ? this.getControlCard() : this);
     boolean isInheritedAbility = actualCard.equals(Cards.estate) && !this.equals(actualCard);
     Card inheritedCard = this.equals(Cards.estate) ? context.player.getInheritance() : null;
@@ -472,6 +471,7 @@ public class CardImpl implements Card, Comparable<Card> {
       attackPlayed(context, game, currentPlayer);
     }
 
+    boolean newCard = false;
     if (this.numberTimesAlreadyPlayed == 0 && this == actualCard) {
       newCard = true;
       this.movedToNextTurnPile = false;
@@ -488,8 +488,7 @@ public class CardImpl implements Card, Comparable<Card> {
     }
 
     if (!isInheritedAbility) {
-      GameEvent event;
-      event = new GameEvent(GameEvent.EventType.PlayingCard, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.PlayingCard, (MoveContext) context);
       event.card = this;
       event.newCard = newCard;
       game.broadcastEvent(event);
@@ -565,8 +564,7 @@ public class CardImpl implements Card, Comparable<Card> {
     if (!isInheritedAbility && !playedCard.is(Type.Treasure, currentPlayer) || playedCard
                                                                                  .is(Type.Action, currentPlayer)) {
       // Don't broadcast card played event for only treasures
-      GameEvent event;
-      event = new GameEvent(GameEvent.EventType.PlayedCard, (MoveContext) context);
+      GameEvent event = new GameEvent(GameEvent.EventType.PlayedCard, (MoveContext) context);
       event.card = playedCard;
       game.broadcastEvent(event);
     } else {
@@ -580,7 +578,6 @@ public class CardImpl implements Card, Comparable<Card> {
     if (is(Type.Action)) {
       boolean isActionInPlay = isInPlay(currentPlayer);
       ArrayList<Card> callableCards = new ArrayList<Card>();
-      Card toCall = null;
       for (Card c : currentPlayer.tavern) {
         if (c.behaveAsCard().isCallableWhenActionResolved()) {
           if (c.behaveAsCard().doesActionStillNeedToBeInPlayToCall() && !isActionInPlay) {
@@ -591,6 +588,7 @@ public class CardImpl implements Card, Comparable<Card> {
       }
       if (!callableCards.isEmpty()) {
         Collections.sort(callableCards, new Util.CardCostComparator());
+        Card toCall = null;
         do {
           toCall = null;
           // we want null entry at the end for None
@@ -911,13 +909,13 @@ public class CardImpl implements Card, Comparable<Card> {
 
   protected Card throneRoomKingsCourt(Game game, MoveContext context, Player currentPlayer) {
     ArrayList<Card> actionCards = new ArrayList<Card>();
-    CardImpl cardToPlay = null;
     for (Card card : currentPlayer.hand) {
       if (card.is(Type.Action, currentPlayer)) {
         actionCards.add(card);
       }
     }
 
+    CardImpl cardToPlay = null;
     if (!actionCards.isEmpty()) {
       switch (this.kind) {
         case ThroneRoom:

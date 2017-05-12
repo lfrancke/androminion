@@ -708,8 +708,7 @@ public class GameActivity extends SherlockActivity implements EventHandler {
   }
 
   boolean getPref(String prefName) {
-    SharedPreferences prefs;
-    prefs = PreferenceManager.getDefaultSharedPreferences(top);
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(top);
     return prefs.getBoolean(prefName, false);
   }
 
@@ -800,8 +799,7 @@ public class GameActivity extends SherlockActivity implements EventHandler {
   }
 
   private void saveLastCards(MyCard[] cards) {
-    SharedPreferences prefs;
-    prefs = PreferenceManager.getDefaultSharedPreferences(top);
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(top);
     SharedPreferences.Editor edit = prefs.edit();
     edit.putInt("LastCardCount", cards.length);
 

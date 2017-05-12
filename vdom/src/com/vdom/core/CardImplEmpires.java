@@ -369,7 +369,6 @@ public class CardImplEmpires extends CardImpl {
   }
 
   private void encampment(Game game, MoveContext context, Player currentPlayer) {
-    boolean revealedCard = false;
     CardList hand = currentPlayer.getHand();
     ArrayList<EncampmentOption> options = new ArrayList<Player.EncampmentOption>();
     if (hand.contains(Cards.gold)) {
@@ -379,6 +378,7 @@ public class CardImplEmpires extends CardImpl {
       options.add(EncampmentOption.RevealPlunder);
     }
     options.add(null);
+    boolean revealedCard = false;
     if (options.size() > 1) {
       EncampmentOption option =
         currentPlayer.controlPlayer.encampment_chooseOption(context, options.toArray(new EncampmentOption[0]));

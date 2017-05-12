@@ -124,8 +124,6 @@ public class Comms {
    * @param timeout in milliseconds. May be 0 if we don't wait (poll), or negative for infinite wait
    */
   public Event doWaitTimeout(long timeout) {
-    Event e = null;
-    long towait = 0;
     long endtime = -1;
     boolean usetimeout = (timeout > 0);
     if (usetimeout) {
@@ -138,6 +136,8 @@ public class Comms {
       return null;
     }
 
+    long towait = 0;
+    Event e = null;
     while (e == null) {
       if (usetimeout) {
         towait = (endtime - System.nanoTime());
@@ -364,7 +364,6 @@ public class Comms {
       if (!done) {
         debug("Comms::SocketThread: 'disconnect' executed, but 'done' is not true.");
       }
-      boolean clean = true;
       debug("Shutting down...");
 
       debug("Waiting for sendqueue to drain");
@@ -377,6 +376,7 @@ public class Comms {
         }
       }
 
+      boolean clean = true;
       try {
         // close I/O streams
         pclient.shutdownInput();
@@ -493,11 +493,11 @@ public class Comms {
         }
       }
 
-      boolean timeout, disconnect = false;
+      boolean disconnect = false;
       Event p = null;
 
       while (!done) {
-        timeout = false;
+        boolean timeout = false;
         if (p == null) { // if p is not null, we handle p without receiving
           try {
             p = get();
@@ -576,8 +576,8 @@ public class Comms {
 
       @Override
       public void run() {
-        Event toSend;
         while (true) {
+          Event toSend;
           try {
             toSend = toSendQueue.take();
           } catch (InterruptedException e) {

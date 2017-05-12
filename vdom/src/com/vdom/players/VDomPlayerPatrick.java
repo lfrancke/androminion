@@ -1452,15 +1452,7 @@ public class VDomPlayerPatrick extends BasePlayer {
       this.redefineStrategy = false;
     }
 
-    double maxmpc = -1;
-    int maxvp = -1;
-
-    Card maxMPC_card = null;
-    Card maxVP_card = null;
-    Card action_card = null;
-    ArrayList<Card> special_cards = new ArrayList<Card>();
     ArrayList<Card> deck = this.getAllCards();
-    ArrayList<Card> potentialBuys = new ArrayList<Card>();
 
     double mpc = this.getMoneyPerCard(deck);
     float cph = this.getCardsPerHand(context);
@@ -1485,6 +1477,12 @@ public class VDomPlayerPatrick extends BasePlayer {
 
     // here we check each card available for buy
     // the goal is to find the best VP card, best treasure and best action card
+    ArrayList<Card> potentialBuys = new ArrayList<Card>();
+    ArrayList<Card> special_cards = new ArrayList<Card>();
+    Card maxVP_card = null;
+    Card maxMPC_card = null;
+    int maxvp = -1;
+    double maxmpc = -1;
     for (CardPile pile : game.piles.values()) {
       Card card = pile.topCard();
 
@@ -1642,6 +1640,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
     int embargopiles = 0;
 
+    Card action_card = null;
     while (!potentialBuys.isEmpty()) {
       action_card = Util.randomCard(potentialBuys);
       potentialBuys.remove(action_card);
@@ -1936,16 +1935,16 @@ public class VDomPlayerPatrick extends BasePlayer {
   }
 
   private void advisorAction() {
-    ArrayList<Card> cards = new ArrayList<Card>();
-    boolean shouldReCurse = false;
     this.strategyPossibleCards.clear();
 
+    boolean shouldReCurse = false;
     for (Card card : this.opponents.getActionCards()) {
       if ((knownCursingCards.contains(card)) && (game.pileSize(Cards.curse) > (this.guessTurnsToReshuffle() + 2))) {
         shouldReCurse = true;
       }
     }
 
+    ArrayList<Card> cards = new ArrayList<Card>();
     for (CardPile pile : game.piles.values()) {
       if ((knownActionCards.contains(pile.topCard())) && (pile.getCount() > 2)) {
         if ((knownCursingCards.contains(pile.topCard())) || (!shouldReCurse)) {
@@ -2076,12 +2075,12 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   @SuppressWarnings("unused")
   private int needPotion() { // TODO must be tested
-    float needpotion = 0;
 
     if (this.strategyPossibleCards.isEmpty()) {
       return 0;
     }
 
+    float needpotion = 0;
     for (Card ac : this.strategyPossibleCards) {
       if (ac.costPotion() && needpotion < 1) {
         needpotion = 1;

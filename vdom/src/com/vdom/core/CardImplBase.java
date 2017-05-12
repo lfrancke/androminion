@@ -342,10 +342,10 @@ public class CardImplBase extends CardImpl {
   }
 
   private void library(Game game, MoveContext context, Player currentPlayer) {
-    ArrayList<Card> toDiscard = new ArrayList<Card>();
     // only time a card is "drawn" without being directly drawn to hand
     //  we need to manually remove the minus one card token
     currentPlayer.setMinusOneCardToken(false, context);
+    ArrayList<Card> toDiscard = new ArrayList<Card>();
     while (currentPlayer.hand.size() < 7) {
       Card draw = game.draw(context, Cards.library, -1);
       if (draw == null) {
@@ -548,10 +548,10 @@ public class CardImplBase extends CardImpl {
       }
     }
 
-    ArrayList<Card> toTrash = new ArrayList<Card>();
-    ArrayList<Card> toDiscard = new ArrayList<Card>();
-    ArrayList<Card> toReplace = new ArrayList<Card>();
     if (!topOfTheDeck.isEmpty()) {
+      ArrayList<Card> toReplace = new ArrayList<Card>();
+      ArrayList<Card> toDiscard = new ArrayList<Card>();
+      ArrayList<Card> toTrash = new ArrayList<Card>();
       for (Card c : topOfTheDeck) {
         SentryOption option = currentPlayer.controlPlayer
                                 .sentry_chooseOption(context, c, topOfTheDeck.toArray(new Card[topOfTheDeck.size()]));

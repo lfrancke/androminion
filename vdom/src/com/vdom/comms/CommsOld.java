@@ -145,12 +145,11 @@ public class CommsOld implements Runnable {
       }
     }
 
-    boolean timeout, disconnect = false;
-    Event p;
+    boolean disconnect = false;
 
     while (!done) {
-      p = null;
-      timeout = false;
+      Event p = null;
+      boolean timeout = false;
       try {
         p = get();
       } catch (SocketTimeoutException e) {
@@ -220,9 +219,9 @@ public class CommsOld implements Runnable {
   }
 
   private boolean disconnect() {
-    boolean clean = true;
     debug("Shutting down...");
 
+    boolean clean = true;
     try {
       // close I/O streams
       pclient.shutdownInput();

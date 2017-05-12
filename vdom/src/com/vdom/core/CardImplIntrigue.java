@@ -240,10 +240,9 @@ public class CardImplIntrigue extends CardImpl {
     switch (option) {
       case TrashActionFromSupply:
         Card cardToTrash = currentPlayer.controlPlayer.lurker_cardToTrash(context);
-        CardPile pile = null;
         boolean bad = false;
         if (cardToTrash != null) {
-          pile = game.getPile(cardToTrash);
+          CardPile pile = game.getPile(cardToTrash);
           if (pile == null || !cardToTrash.equals(pile.topCard()) || !pile.isSupply() || !cardToTrash.is(Type.Action)) {
             Util.playerError(currentPlayer, "Lurker trash error, trashing nothing.");
             return;

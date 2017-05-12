@@ -561,11 +561,10 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   }
 
   public Event sendWithAck(Event tosend, EType resp) throws IOException, NullPointerException {
-    Event p;
 
     for (int i = 0; i < NUM_RETRIES; i++) {
       comm.put_ts(tosend);
-      p = comm.get_ts();
+      Event p = comm.get_ts();
       if (p == null) {
         throw new IOException();
       } else if (p.t == resp) {
@@ -602,16 +601,12 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     checkForAchievements(context, event.getType());
 
     // Now we set up some variables that we need to send an event.
-    boolean sendEvent = true;
     String playerName = "";
     boolean playerNameIncluded = false;
     if (event.getPlayer() != null && event.getPlayer().getPlayerName() != null) {
       playerName += event.getPlayer().getPlayerName() + ": ";
       playerNameIncluded = true;
     }
-    boolean newTurn = false;
-    boolean isFinal = false;
-    Card[] cards = null;
     String playerInt = "" + allPlayers.indexOf(event.getPlayer());
 
     // Because we push all construction of strings to the client that talks to RemotePlayer, we
@@ -635,6 +630,10 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     }
 
     // Now check for event-type-specific things that we should do.
+    Card[] cards = null;
+    boolean isFinal = false;
+    boolean newTurn = false;
+    boolean sendEvent = true;
     if (event.getType() == EventType.VictoryPoints) {
       sendEvent = false;
     } else if (event.getType() == EventType.GameStarting) {
@@ -940,8 +939,8 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   }
 
   private Event query(MoveContext context, Event tosend, EType resp) {
-    Event reply;
     for (int connections = 0; connections < NUM_RETRIES; connections++) {
+      Event reply;
       try {
         //sendWithAck(fullStatusPacket(context, null, false), EType.Success);
         comm.put_ts(fullStatusPacket(context, null, false));
@@ -1095,8 +1094,8 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   }
 
   private int connect() {
-    int port = 0;
     hasJoined = false;
+    int port = 0;
     for (int connections = 0; connections < NUM_RETRIES; connections++) {
       try {
         comm = new Comms(this, nextPort++);

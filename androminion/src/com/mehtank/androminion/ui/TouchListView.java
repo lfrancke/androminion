@@ -135,8 +135,8 @@ public class TouchListView extends ListView {
               mDragPos = itemnum;
               doExpansion();
             }
-            int speed = 0;
             adjustScrollBounds(y);
+            int speed = 0;
             if (y > mLowerBound) {
               // scroll the list up a bit
               speed = y > (mHeight + mLowerBound) / 2 ? 16 : 4;

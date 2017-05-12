@@ -184,7 +184,6 @@ public class CardImplCornucopia extends CardImpl {
   }
 
   private void hornOfPlenty(MoveContext context, Player player, Game game) {
-    GameEvent event;
     int maxCost = context.countUniqueCardsInPlay();
     Card toObtain = player.controlPlayer.hornOfPlenty_cardToObtain(context, maxCost);
     if (toObtain != null) {
@@ -193,7 +192,7 @@ public class CardImplCornucopia extends CardImpl {
         toObtain = game.takeFromPile(toObtain);
         // could still be null here if the pile is empty.
         if (toObtain != null) {
-          event = new GameEvent(GameEvent.EventType.CardObtained, context);
+          GameEvent event = new GameEvent(GameEvent.EventType.CardObtained, context);
           event.card = toObtain;
           event.responsible = this;
           game.broadcastEvent(event);
@@ -256,16 +255,13 @@ public class CardImplCornucopia extends CardImpl {
         if (draw.is(Type.Victory, targetPlayer)) {
           targetPlayer.gainNewCard(Cards.curse, this.getControlCard(), targetContext);
         } else if (Cards.isSupplyCard(draw)) {
-          CardPile pile;
-          pile = game.getPile(draw);
-
-          MoveContext toGainContext = null;
+          CardPile pile = game.getPile(draw);
 
           if (!game.isPileEmpty(draw) &&
               (draw.equals(pile.topCard()))) {
             JesterOption option =
               currentPlayer.controlPlayer.controlPlayer.jester_chooseOption(context, targetPlayer, draw);
-            toGainContext = JesterOption.GainCopy == option ? context : targetContext;
+            MoveContext toGainContext = JesterOption.GainCopy == option ? context : targetContext;
             toGainContext.getPlayer().gainNewCard(draw, this.getControlCard(), toGainContext);
           }
         }

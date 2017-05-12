@@ -57,7 +57,6 @@ public class WinLossView extends FrameLayout {
     }
 
     for (String player : players) {
-      TextView textView;
 
       // Calculate wins, losses and percentage
       int wins = achievements.getTotalWins(player);
@@ -65,7 +64,7 @@ public class WinLossView extends FrameLayout {
       int percent = (int) ((float) wins / (wins + losses) * 100);
 
       // Headline with player name and basic statistics
-      textView = new TextView(top);
+      TextView textView = new TextView(top);
       textView.setTextAppearance(getContext(), android.R.style.TextAppearance_Large);
       //			textView.setTextAppearance(top, android.R.attr.textColorPrimary);
       //			textView.setTextColor(getResources().getColor(android.R.color.primary_text_dark));

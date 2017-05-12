@@ -1216,7 +1216,6 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   @Override
   public Card[] prince_cardCandidates(MoveContext context, ArrayList<Card> cardList, boolean onlyBest) {
     ArrayList<Card> actionCards = new ArrayList<Card>();
-    ArrayList<Card> randList = new ArrayList<Card>();
     int maxCost = -1;
     for (Card card : cardList) {
       if (card.is(Type.Action, context.player) && card.getCost(context) <= 4 && !card.costPotion()) {
@@ -1248,6 +1247,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         }
       }
     }
+    ArrayList<Card> randList = new ArrayList<Card>();
     for (Card card : actionCards) {
       if (!onlyBest
           || card.getCost(context) == maxCost
@@ -1661,7 +1661,6 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public ArrayList<Card> treasureCardsToPlayInOrder(MoveContext context, int maxCards, Card responsible) {
-    ArrayList<Card> ret = new ArrayList<Card>();
 
     ArrayList<Card> cardArray = new ArrayList<Card>();
     for (Card c : context.getPlayer().getHand()) {
@@ -1671,6 +1670,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     }
     //TODO: handle inherited Action-Treasures
 
+    ArrayList<Card> ret = new ArrayList<Card>();
     for (int i = cardArray.size() - 1; i >= 0; i--) {
       Card card = cardArray.get(i);
       if (card.equals(Cards.contraband)) {
@@ -2574,7 +2574,6 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card pillage_opponentCardToDiscard(MoveContext context, ArrayList<Card> handCards) {
-    Card cardToDiscard = null;
 
     ArrayList<Card> goodCards = new ArrayList<Card>();
     for (Card c : handCards) {
@@ -2583,6 +2582,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
+    Card cardToDiscard = null;
     if (!goodCards.isEmpty()) {
       cardToDiscard = Util.getMostExpensiveCard(goodCards.toArray(new Card[0]));
     }
@@ -3322,7 +3322,6 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card raze_cardToKeep(MoveContext context, Card[] cards) {
-    Card cardToKeep = null;
 
     ArrayList<Card> goodCards = new ArrayList<Card>();
     for (Card c : cards) {
@@ -3331,6 +3330,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
+    Card cardToKeep = null;
     if (!goodCards.isEmpty()) {
       cardToKeep = Util.getMostExpensiveCard(goodCards.toArray(new Card[0]));
     }
@@ -4502,12 +4502,12 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   private List<PlayerSupplyToken> getUnplacedTokens(MoveContext context) {
     ArrayList<PlayerSupplyToken> validTokens = new ArrayList<PlayerSupplyToken>();
-    ArrayList<PlayerSupplyToken> unavailableTokens = new ArrayList<PlayerSupplyToken>();
     validTokens.add(PlayerSupplyToken.PlusOneCard);
     validTokens.add(PlayerSupplyToken.PlusOneAction);
     validTokens.add(PlayerSupplyToken.PlusOneCoin);
     validTokens.add(PlayerSupplyToken.PlusOneBuy);
 
+    ArrayList<PlayerSupplyToken> unavailableTokens = new ArrayList<PlayerSupplyToken>();
     for (PlayerSupplyToken token : validTokens) {
       for (Card c : context.game.getCardsInGame(GetCardsInGameOptions.Placeholders)) {
         if (context.game.isPlayerSupplyTokenOnPile(c, context.getPlayer(), token)) {

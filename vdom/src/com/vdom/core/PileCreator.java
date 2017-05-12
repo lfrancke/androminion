@@ -27,7 +27,6 @@ class RuinsPileCreator extends PileCreator {
 
   public CardPile create(Card template, int count) {
     Map<Card, Integer> cardShuffle = new HashMap<Card, Integer>();
-    List<CardPile.CardMultiplicity> cards = new ArrayList<CardPile.CardMultiplicity>();
     for (Card ruin : Cards.ruinsCards) {
       cardShuffle.put(ruin, 0);
     }
@@ -49,6 +48,7 @@ class RuinsPileCreator extends PileCreator {
         break;
       }
     }
+    List<CardPile.CardMultiplicity> cards = new ArrayList<CardPile.CardMultiplicity>();
     for (Map.Entry<Card, Integer> entry : cardShuffle.entrySet()) {
       cards.add(new CardPile.CardMultiplicity(entry.getKey(), entry.getValue()));
     }
@@ -72,7 +72,6 @@ class KnightsPileCreator extends PileCreator {
 class CastlesPileCreator extends PileCreator {
 
   public CardPile create(Card template, int count) {
-    List<CardPile.CardMultiplicity> cards = new ArrayList<CardPile.CardMultiplicity>();
     if (count != 8 && count != 12) {
       //TODO SPLITPILES What to do now?
       if (count < 8) {
@@ -83,6 +82,7 @@ class CastlesPileCreator extends PileCreator {
       }
     }
 
+    List<CardPile.CardMultiplicity> cards = new ArrayList<CardPile.CardMultiplicity>();
     cards.add(new CardPile.CardMultiplicity(Cards.humbleCastle, count == 8 ? 1 : 2));
     cards.add(new CardPile.CardMultiplicity(Cards.crumblingCastle, 1));
     cards.add(new CardPile.CardMultiplicity(Cards.smallCastle, count == 8 ? 1 : 2));

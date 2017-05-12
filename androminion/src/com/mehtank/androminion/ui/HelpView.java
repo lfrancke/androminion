@@ -68,15 +68,15 @@ public class HelpView extends FrameLayout {
   }
 
   public int showHelp(int page) {
-    int curpage = 1;
-    int chapter = -1;
-    int stringID = 0;
-    int bgID = 0;
-    boolean fadein = false;
-    boolean fadeout = false;
 
     hide();
 
+    boolean fadeout = false;
+    boolean fadein = false;
+    int bgID = 0;
+    int stringID = 0;
+    int chapter = -1;
+    int curpage = 1;
     if (page == curpage++) {
       stringID = R.string.help_supply1;
       chapter = 0;

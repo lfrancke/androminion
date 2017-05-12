@@ -201,8 +201,6 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
     }
 
     //Fill card set spinners
-    ArrayList<GameTypeItem> presets = new ArrayList<GameTypeItem>();
-    ArrayList<GameTypeItem> randoms = new ArrayList<GameTypeItem>();
     ArrayList<Expansion> blackListedExpansions = new ArrayList<Expansion>();
     switch (getBaseEdition()) {
       case Base:
@@ -225,6 +223,8 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
         break;
     }
 
+    ArrayList<GameTypeItem> randoms = new ArrayList<GameTypeItem>();
+    ArrayList<GameTypeItem> presets = new ArrayList<GameTypeItem>();
     GameTypeLoop:
     for (GameType type : GameType.values()) {
       if (type == GameType.Specified) {

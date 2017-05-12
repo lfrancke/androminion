@@ -625,7 +625,6 @@ public class CardImplDarkAges extends CardImpl {
   }
 
   private void hermit(MoveContext context, Game game, Player currentPlayer) {
-    ArrayList<Card> options = new ArrayList<Card>();
 
     Set<Card> inDiscard = new HashSet<Card>();
     for (Card c : currentPlayer.discard) {
@@ -633,6 +632,7 @@ public class CardImplDarkAges extends CardImpl {
         inDiscard.add(c);
       }
     }
+    ArrayList<Card> options = new ArrayList<Card>();
     options.addAll(inDiscard);
     Collections.sort(options, new Util.CardNameComparator());
 

@@ -11,8 +11,7 @@ public class HapticFeedback {
   private static final String TAG = "HapticFeedback";
 
   public static void vibrate(Context context, AlertType t) {
-    SharedPreferences prefs;
-    prefs = PreferenceManager.getDefaultSharedPreferences(context);
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
     if (!prefs.getBoolean("allvibeson", false)) {
       return;
