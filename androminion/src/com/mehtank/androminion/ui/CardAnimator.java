@@ -21,7 +21,6 @@ public class CardAnimator {
   private static final String TAG = "CardAnimator";
   private static ArrayList<AnimationSet> runningAnims = new ArrayList<AnimationSet>();
 
-  ;
   private static ArrayList<CardView> cvs = new ArrayList<CardView>();
   private ViewGroup rootView;
   private int left;

@@ -53,8 +53,6 @@ public class HapticFeedback {
     }
   }
 
-  ;
-
   public static enum AlertType {
     CHAT, TURNBEGIN, SELECT, CLICK, LONGCLICK, FINAL,
   }

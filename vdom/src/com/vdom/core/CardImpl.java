@@ -357,8 +357,6 @@ public class CardImpl implements Card, Comparable<Card> {
     return providePotion;
   }
 
-  ;
-
   @Override
   public int getAddBuys() {
     return addBuys;

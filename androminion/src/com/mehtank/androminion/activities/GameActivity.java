@@ -540,8 +540,6 @@ public class GameActivity extends SherlockActivity implements EventHandler {
     }
   }
 
-  ;
-
   public void splash() {
     if (splash != null) {
       splash.setVisibility(View.VISIBLE);

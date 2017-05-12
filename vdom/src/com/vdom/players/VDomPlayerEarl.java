@@ -1117,7 +1117,7 @@ public class VDomPlayerEarl extends BasePlayer {
     }
 
     enum Action {
-      BOUGHT, PLAYED, IN_HAND, VICTORY_HELPER;
+      BOUGHT, PLAYED, IN_HAND, VICTORY_HELPER
     }
   }
 

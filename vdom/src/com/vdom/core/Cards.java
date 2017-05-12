@@ -2114,19 +2114,15 @@ public class Cards {
     for (Card card : nonSupplyCards) {
       nonKingdomCards.add(card);
     }
-    ;
     for (Card card : prizeCards) {
       nonKingdomCards.add(card);
     }
-    ;
     for (Card card : eventsCards) {
       nonKingdomCards.add(card);
     }
-    ;
     for (Card card : landmarkCards) {
       nonKingdomCards.add(card);
     }
-    ;
 
     for (Card card : actionCards) {
       cardNameToCard.put(card.getName(), card);

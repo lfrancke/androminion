@@ -27,7 +27,6 @@ public class CommsOld implements Runnable {
   private ObjectInputStream ois = null;
   private ObjectOutputStream oos = null;
 
-  ;
   private boolean done = false;
 
   public CommsOld(EventHandler parent, int port) throws IOException {

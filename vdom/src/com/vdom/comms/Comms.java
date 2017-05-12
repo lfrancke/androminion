@@ -35,7 +35,6 @@ public class Comms {
   LinkedBlockingQueue<Event> latestEvents = new LinkedBlockingQueue<Event>();
   private boolean isServer = true;
 
-  ;
   private Socket pclient = null;
   private SocketThread networkThread;
 

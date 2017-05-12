@@ -2818,7 +2818,6 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     ArrayList<Card> handCards = context.getPlayer().getTreasuresInHand();
     Collections.sort(handCards, new CardValueComparator());
     while (handCards.remove(Cards.spoils)) {
-      ;
     }
 
     HashSet<Integer> treasureCardValues = new HashSet<Integer>();

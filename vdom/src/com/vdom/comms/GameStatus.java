@@ -77,14 +77,10 @@ public class GameStatus implements Serializable {
     return this;
   }
 
-  ;
-
   public GameStatus setCurName(String s) {
     name = s;
     return this;
   }
-
-  ;
 
   public GameStatus setHand(int[] is) {
     myHand = is;
@@ -101,140 +97,100 @@ public class GameStatus implements Serializable {
     return this;
   }
 
-  ;
-
   public GameStatus setPrince(int[] is) {
     myPrince = is;
     return this;
   }
-
-  ;
 
   public GameStatus setIsland(int[] is) {
     myIsland = is;
     return this;
   }
 
-  ;
-
   public GameStatus setVillage(int[] is) {
     myVillage = is;
     return this;
   }
-
-  ;
 
   public GameStatus setInheritance(int is) {
     myInheritance = is;
     return this;
   }
 
-  ;
-
   public GameStatus setArchive(int[] is) {
     myArchive = is;
     return this;
   }
-
-  ;
 
   public GameStatus setTurnStatus(int[] is) {
     turnStatus = is;
     return this;
   }
 
-  ;
-
   public GameStatus setSupplySizes(int[] is) {
     supplySizes = is;
     return this;
   }
-
-  ;
 
   public GameStatus setEmbargos(int[] is) {
     embargos = is;
     return this;
   }
 
-  ;
-
   public GameStatus setPileVpTokens(int[] is) {
     pileVpTokens = is;
     return this;
   }
-
-  ;
 
   public GameStatus setPileDebtTokens(int[] is) {
     pileDebtTokens = is;
     return this;
   }
 
-  ;
-
   public GameStatus setPileTradeRouteTokens(int[] is) {
     pileTradeRouteTokens = is;
     return this;
   }
-
-  ;
 
   public GameStatus setTokens(int[][][] is) {
     tokens = is;
     return this;
   }
 
-  ;
-
   public GameStatus setCosts(int[] is) {
     costs = is;
     return this;
   }
-
-  ;
 
   public GameStatus setDeckSizes(int[] is) {
     deckSizes = is;
     return this;
   }
 
-  ;
-
   public GameStatus setStashOnDeck(boolean[] is) {
     stashOnDeck = is;
     return this;
   }
-
-  ;
 
   public GameStatus setHandSizes(int[] is) {
     handSizes = is;
     return this;
   }
 
-  ;
-
   public GameStatus setStashesInHand(int[] is) {
     stashesInHand = is;
     return this;
   }
-
-  ;
 
   public GameStatus setNumCards(int[] is) {
     numCards = is;
     return this;
   }
 
-  ;
-
   public GameStatus setPirates(int[] is) {
     pirates = is;
     return this;
   }
-
-  ;
 
   public GameStatus setVictoryTokens(int[] is) {
     victoryTokens = is;

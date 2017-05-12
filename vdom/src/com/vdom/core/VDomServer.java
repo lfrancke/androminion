@@ -31,7 +31,6 @@ public class VDomServer implements EventHandler {
   static boolean debugOutput = false;
   private final boolean DEBUGGING = true;
 
-  ;
   String gameType;
   ArrayList<String> gamePlayers = new ArrayList<String>();
   ArrayList<RemotePlayer> remotePlayers = new ArrayList<RemotePlayer>();

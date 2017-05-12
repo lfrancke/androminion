@@ -98,7 +98,6 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
   String[] mCardsPassOnStartup;
   TypeOptions mGameType;
 
-  ;
   private OnCheckedChangeListener coreSetsListener = new OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

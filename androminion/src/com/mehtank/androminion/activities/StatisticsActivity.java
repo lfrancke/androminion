@@ -131,7 +131,6 @@ public class StatisticsActivity extends SherlockFragmentActivity {
         mDialog = dialog;
       }
     }
-    ;
     final choiceListenerClass choiceListener = new choiceListenerClass();
     AlertDialog.Builder builder = new AlertDialog.Builder(context)
                                     .setTitle(R.string.reset)

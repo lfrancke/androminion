@@ -51,7 +51,6 @@ public class MoveContext {
   public int vpsGainedThisTurn = 0;
   public int cardsTrashedThisTurn = 0;
 
-  ;
   public String message;
   //    public ArrayList<Card> playedCards = new ArrayList<Card>();
   //    public CardList playedCards;
@@ -156,8 +155,6 @@ public class MoveContext {
   public int countVictoryCardsInPlay() {
     return countTypedCardsInPlay(Type.Victory);
   }
-
-  ;
 
   public int countTypedCardsInPlay(Type type) {
     int numInPlay = 0;

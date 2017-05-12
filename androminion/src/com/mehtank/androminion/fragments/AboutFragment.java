@@ -28,7 +28,6 @@ public class AboutFragment extends SherlockFragment {
       Log.e(TAG, "Version string not found. Setting dummy version.");
       version = "0.0";
     }
-    ;
     TextView tv = (TextView) scrollView.findViewById(R.id.version);
     tv.setText(version);
 
