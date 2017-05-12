@@ -231,9 +231,7 @@ public class Game {
     }
 
     double totalGameCount = 0;
-    Iterator<Entry<String, Double>> it = wins.entrySet().iterator();
-    while (it.hasNext()) {
-      Entry<String, Double> e = it.next();
+    for (Entry<String, Double> e : wins.entrySet()) {
       totalGameCount += e.getValue();
     }
     gameCount = (int) totalGameCount;

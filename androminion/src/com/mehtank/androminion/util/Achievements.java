@@ -247,9 +247,7 @@ public class Achievements {
     ArrayList<String> players = new ArrayList<String>();
 
     Map<String, ?> all = prefs.getAll();
-    Iterator<String> keys = all.keySet().iterator();
-    while (keys.hasNext()) {
-      String key = keys.next();
+    for (String key : all.keySet()) {
       if (key.startsWith("wins_")) {
         String name = key.substring("wins_".length());
         if (!players.contains(name)) {
