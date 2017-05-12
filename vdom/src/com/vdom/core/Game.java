@@ -3672,7 +3672,7 @@ public class Game {
 
       // unmask players
       maskPlayerNames = false;
-      int vps[] = gameOver(gameTypeSpecificWins);
+      int[] vps = gameOver(gameTypeSpecificWins);
       if (test) {
         // Compute game stats
         turnCountTotal += turnCount;

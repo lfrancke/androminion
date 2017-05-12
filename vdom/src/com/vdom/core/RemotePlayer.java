@@ -418,21 +418,21 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
 
     int curPlayerIndex = allPlayers.indexOf(player);
 
-    int numCards[] = new int[numPlayers];
-    int turnCounts[] = new int[numPlayers];
-    int deckSizes[] = new int[numPlayers];
-    boolean stashOnDeck[] = new boolean[numPlayers];
-    int discardSizes[] = new int[numPlayers];
-    int handSizes[] = new int[numPlayers];
-    int stashesInHand[] = new int[numPlayers];
-    int pirates[] = new int[numPlayers];
-    int victoryTokens[] = new int[numPlayers];
-    int debtTokens[] = new int[numPlayers];
-    int guildsCoinTokens[] = new int[numPlayers];
-    JourneyTokenState journeyToken[] = new JourneyTokenState[numPlayers];
-    boolean minusOneCoinTokenOn[] = new boolean[numPlayers];
-    boolean minusOneCardTokenOn[] = new boolean[numPlayers];
-    String realNames[] = new String[numPlayers];
+    int[] numCards = new int[numPlayers];
+    int[] turnCounts = new int[numPlayers];
+    int[] deckSizes = new int[numPlayers];
+    boolean[] stashOnDeck = new boolean[numPlayers];
+    int[] discardSizes = new int[numPlayers];
+    int[] handSizes = new int[numPlayers];
+    int[] stashesInHand = new int[numPlayers];
+    int[] pirates = new int[numPlayers];
+    int[] victoryTokens = new int[numPlayers];
+    int[] debtTokens = new int[numPlayers];
+    int[] guildsCoinTokens = new int[numPlayers];
+    JourneyTokenState[] journeyToken = new JourneyTokenState[numPlayers];
+    boolean[] minusOneCoinTokenOn = new boolean[numPlayers];
+    boolean[] minusOneCardTokenOn = new boolean[numPlayers];
+    String[] realNames = new String[numPlayers];
 
     for (int i = 0; i < numPlayers; i++) {
       Player p = allPlayers.get(i);
