@@ -368,14 +368,14 @@ public class UI extends JFrame implements GameEventListener {
   void downloadCards(String site) {
     try {
       if (!site.endsWith("/")) {
-        site = site + "/";
+        site += "/";
       }
       for (String s : downloadSiteDirs) {
         String url = site + s;
         String listPage = downloadUrlAsString(url);
 
         if (!url.endsWith("/")) {
-          url = url + "/";
+          url += "/";
         }
 
         int at = 0;

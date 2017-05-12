@@ -583,7 +583,7 @@ public class Strings {
 
     if (card != null && getCardName(card).equals(getCardName(Cards.prince))) {
       String[] strings2 = new String[(options.length - startIndex) / 2];
-      for (int i = startIndex; i < options.length - 1; i = i + 2) {
+      for (int i = startIndex; i < options.length - 1; i += 2) {
         if (options[i] != null && options[i + 1] != null) {
           if (((Card) options[i]).equals(Cards.haven)) {
             strings2[(i - startIndex) / 2] = getCardName((Card) options[i])
@@ -1974,11 +1974,11 @@ public class Strings {
     if (duration > 1000 * 60 * 60) {
       time += (duration / (1000 * 60 * 60)) + "h ";
     }
-    duration = duration % (1000 * 60 * 60);
+    duration %= (1000 * 60 * 60);
     if (duration > 1000 * 60) {
       time += (duration / (1000 * 60)) + "m ";
     }
-    duration = duration % (1000 * 60);
+    duration %= (1000 * 60);
     time += (duration / (1000)) + "s.\n";
     return time;
   }

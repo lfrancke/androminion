@@ -163,7 +163,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     boolean ret = false;
 
     for (Card c : this.strategyPossibleCards) {
-      ret = ret | c.costPotion();
+      ret |= c.costPotion();
     }
     return ret;
   }
