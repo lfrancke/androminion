@@ -426,11 +426,11 @@ public class VDomPlayerEarl extends BasePlayer {
         count = 0;
       }
       if (card.is(Type.Victory)) {
-        stat.put(id, count.intValue() + card.getVictoryPoints());
+        stat.put(id, count + card.getVictoryPoints());
       } else if (card.is(Type.Curse, null)) {
-        stat.put(id, count.intValue() + card.getVictoryPoints());
+        stat.put(id, count + card.getVictoryPoints());
       } else {
-        stat.put(id, count = count.intValue() + 1);
+        stat.put(id, count = count + 1);
       }
     }
 
@@ -449,11 +449,11 @@ public class VDomPlayerEarl extends BasePlayer {
         count = 0;
       }
       if (card.is(Type.Victory)) {
-        stat.put(id, count.intValue() + card.getVictoryPoints());
+        stat.put(id, count + card.getVictoryPoints());
       } else if (card.is(Type.Curse, null)) {
-        stat.put(id, count.intValue() + card.getVictoryPoints());
+        stat.put(id, count + card.getVictoryPoints());
       } else {
-        stat.put(id, count = count.intValue() + 1);
+        stat.put(id, count = count + 1);
       }
     }
 
