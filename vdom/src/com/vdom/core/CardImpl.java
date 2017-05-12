@@ -645,7 +645,7 @@ public class CardImpl implements Card, Comparable<Card> {
   }
 
   public boolean isImpersonatingAnotherCard() {
-    return !(this.impersonatingCard == null);
+    return this.impersonatingCard != null;
   }
 
   @Override
@@ -836,7 +836,7 @@ public class CardImpl implements Card, Comparable<Card> {
     // If an Urchin has been played, offer the player the option to trash it for a Mercenary
     for (int i = currentPlayer.playedCards.size() - 1; i >= 0; --i) {
       Card c = currentPlayer.playedCards.get(i);
-      if (!(c.behaveAsCard() == this) && c.behaveAsCard().getKind() == Cards.Kind.Urchin && currentPlayer.controlPlayer
+      if (c.behaveAsCard() != this && c.behaveAsCard().getKind() == Cards.Kind.Urchin && currentPlayer.controlPlayer
                                                                                               .urchin_shouldTrashForMercenary(
                                                                                                 context,
                                                                                                 c.getControlCard())) {
