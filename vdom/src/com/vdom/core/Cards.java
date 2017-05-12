@@ -631,29 +631,29 @@ public class Cards {
 
     actionCardsBaseGame2E.add(artisan = new CardImpl.Builder(Cards.Kind.Artisan, 6, Type.Action).description(
       "Gain a card to your hand costing up to (5) Coins. Put a card from your hand onto your deck.")
-                                          .expansion(Expansion.Base).build());
+                                          .expansion(Expansion.Base2E).build());
     actionCardsBaseGame2E.add(bandit = new CardImpl.Builder(Cards.Kind.Bandit, 5, Type.Action, Type.Attack).description(
       "Gain a Gold. Each other player reveals the top two cards of their deck, trashes a revealed Treasure other than Copper, and discards the rest.")
-                                         .expansion(Expansion.Base).build());
+                                         .expansion(Expansion.Base2E).build());
     actionCardsBaseGame2E.add(harbinger =
                                 new CardImpl.Builder(Cards.Kind.Harbinger, 3, Type.Action).addCards(1).addActions(1)
                                   .description(
                                     "Look through your discard pile. You may put a card from it onto your deck.")
-                                  .expansion(Expansion.Base).build());
+                                  .expansion(Expansion.Base2E).build());
     actionCardsBaseGame2E.add(merchant =
                                 new CardImpl.Builder(Cards.Kind.Merchant, 3, Type.Action).addCards(1).addActions(1)
                                   .description("The first time you play a Silver this turn, +(1) Coin.")
-                                  .expansion(Expansion.Base).build());
+                                  .expansion(Expansion.Base2E).build());
     actionCardsBaseGame2E.add(poacher =
                                 new CardImpl.Builder(Cards.Kind.Poacher, 4, Type.Action).addCards(1).addActions(1)
                                   .addGold(1).description("Discard a card per empty Supply pile.")
-                                  .expansion(Expansion.Base).build());
+                                  .expansion(Expansion.Base2E).build());
     actionCardsBaseGame2E.add(sentry = new CardImpl.Builder(Cards.Kind.Sentry, 5, Type.Action).addCards(1).addActions(1)
                                          .description(
                                            "Look at the top 2 cards of your deck. Trash and/or discard any number of them. Put the rest back on top on any order.")
-                                         .expansion(Expansion.Base).build());
+                                         .expansion(Expansion.Base2E).build());
     actionCardsBaseGame2E.add(vassal = new CardImpl.Builder(Cards.Kind.Vassal, 3, Type.Action).addGold(2).description(
-      "Discard the top card of your deck. If it's an Action card, you may play it.").expansion(Expansion.Base).build());
+      "Discard the top card of your deck. If it's an Action card, you may play it.").expansion(Expansion.Base2E).build());
     actionCardsBaseGameAll.addAll(actionCardsBaseGame2E);
     actionCardsBaseGame2E.addAll(actionCardsBaseGame);
 
