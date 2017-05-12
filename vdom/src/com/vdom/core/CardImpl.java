@@ -854,7 +854,7 @@ public class CardImpl implements Card, Comparable<Card> {
     }
     int saunasInPlay = context.countCardsInPlay(Cards.sauna);
     for (int i = 0; i < saunasInPlay; ++i) {
-      if (player.getHand().size() > 0) {
+      if (!player.getHand().isEmpty()) {
         Card cardToTrash = player.controlPlayer.sauna_cardToTrash(context);
         if (cardToTrash != null) {
           if (!player.getHand().contains(cardToTrash)) {
@@ -1043,7 +1043,7 @@ public class CardImpl implements Card, Comparable<Card> {
 
   protected void discardMultiple(MoveContext context, Player currentPlayer, int numToDiscard) {
     CardList hand = currentPlayer.getHand();
-    if (hand.size() == 0) {
+    if (hand.isEmpty()) {
       return;
     }
     Card[] cardsToDiscard;

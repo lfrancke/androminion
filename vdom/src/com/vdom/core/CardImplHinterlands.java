@@ -26,7 +26,7 @@ public class CardImplHinterlands extends CardImpl {
         break;
       case Farmland:
         Player player = context.getPlayer();
-        if (player.getHand().size() > 0) {
+        if (!player.getHand().isEmpty()) {
           Card cardToTrash = player.controlPlayer.farmland_cardToTrash((MoveContext) context);
 
           if (cardToTrash == null) {
@@ -167,7 +167,7 @@ public class CardImplHinterlands extends CardImpl {
       }
     }
 
-    if (topOfTheDeck.size() > 0) {
+    if (!topOfTheDeck.isEmpty()) {
       Card[] cardsToDiscard = currentPlayer.controlPlayer.cartographer_cardsFromTopOfDeckToDiscard(context,
         topOfTheDeck.toArray(new Card[topOfTheDeck.size()]));
       if (cardsToDiscard != null) {
@@ -179,7 +179,7 @@ public class CardImplHinterlands extends CardImpl {
           }
         }
       }
-      if (topOfTheDeck.size() > 0) {
+      if (!topOfTheDeck.isEmpty()) {
         Card[] order;
 
         if (topOfTheDeck.size() == 1) {
@@ -252,7 +252,7 @@ public class CardImplHinterlands extends CardImpl {
   }
 
   private void develop(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() > 0) {
+    if (!currentPlayer.hand.isEmpty()) {
       Card cardToTrash = currentPlayer.controlPlayer.develop_cardToTrash(context);
 
       if (!currentPlayer.hand.contains(cardToTrash)) {
@@ -294,7 +294,7 @@ public class CardImplHinterlands extends CardImpl {
       }
 
       Card[] cardsToGain = null;
-      if (cards.size() > 0) {
+      if (!cards.isEmpty()) {
         cardsToGain = cards.toArray(new Card[cards.size()]);
         if (cards.size() > 1) {
           cardsToGain = currentPlayer.controlPlayer.develop_orderCards(context, cardsToGain);
@@ -380,7 +380,7 @@ public class CardImplHinterlands extends CardImpl {
   }
 
   private void embassy(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() == 0) {
+    if (currentPlayer.hand.isEmpty()) {
       return;
     }
 
@@ -502,7 +502,7 @@ public class CardImplHinterlands extends CardImpl {
   }
 
   private void mandarin(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() > 0) {
+    if (!currentPlayer.hand.isEmpty()) {
       Card toTopOfDeck = currentPlayer.controlPlayer.mandarin_cardToReplace(context);
 
       if (toTopOfDeck == null) {
@@ -612,7 +612,7 @@ public class CardImplHinterlands extends CardImpl {
       i++;
     }
 
-    if (trashed.size() > 0) {
+    if (!trashed.isEmpty()) {
       for (Card c : trashed) {
         player.controlPlayer.gainCardAlreadyInPlay(c, this.getControlCard(), moveContext);
         context.game.trashPile.remove(c);
@@ -621,7 +621,7 @@ public class CardImplHinterlands extends CardImpl {
   }
 
   private void oasis(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() > 0) {
+    if (!currentPlayer.hand.isEmpty()) {
       Card cardToDiscard = currentPlayer.controlPlayer.oasis_cardToDiscard(context);
       if (cardToDiscard == null || !currentPlayer.hand.contains(cardToDiscard)) {
         Util.playerError(currentPlayer, "Returned an invalid card to discard with Oasis, picking one for you.");
@@ -650,7 +650,7 @@ public class CardImplHinterlands extends CardImpl {
           cards.add(c);
         }
 
-        if (cards.size() > 0) {
+        if (!cards.isEmpty()) {
           if (currentPlayer.controlPlayer.oracle_shouldDiscard(context, targetPlayer, cards)) {
             for (Card c : cards) {
               targetPlayer.discard(c, this.getControlCard(), targetContext);
@@ -753,7 +753,7 @@ public class CardImplHinterlands extends CardImpl {
   }
 
   private void trader(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() > 0) {
+    if (!currentPlayer.hand.isEmpty()) {
       Card card = currentPlayer.controlPlayer.trader_cardToTrash(context);
       if (card == null || !currentPlayer.hand.contains(card)) {
         Util.playerError(currentPlayer, "Trader card to trash invalid, picking one");

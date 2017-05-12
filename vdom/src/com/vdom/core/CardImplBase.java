@@ -131,7 +131,7 @@ public class CardImplBase extends CardImpl {
       }
     }
     CardList hand = currentPlayer.getHand();
-    if (hand.size() > 0) {
+    if (!hand.isEmpty()) {
       Card toTopOfDeck = currentPlayer.controlPlayer.artisan_cardToReplace(context);
       if (toTopOfDeck == null || !hand.contains(toTopOfDeck)) {
         Util.playerError(currentPlayer,
@@ -216,7 +216,7 @@ public class CardImplBase extends CardImpl {
           }
         }
 
-        if (victoryCards.size() == 0) {
+        if (victoryCards.isEmpty()) {
           for (int i = 0; i < player.hand.size(); i++) {
             Card card = player.hand.get(i);
             player.reveal(card, this.getControlCard(), playerContext);
@@ -490,7 +490,7 @@ public class CardImplBase extends CardImpl {
   }
 
   private void remodel(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card cardToTrash = currentPlayer.controlPlayer.remodel_cardToTrash(context);
 
       if (cardToTrash == null) {
@@ -551,7 +551,7 @@ public class CardImplBase extends CardImpl {
     ArrayList<Card> toTrash = new ArrayList<Card>();
     ArrayList<Card> toDiscard = new ArrayList<Card>();
     ArrayList<Card> toReplace = new ArrayList<Card>();
-    if (topOfTheDeck.size() > 0) {
+    if (!topOfTheDeck.isEmpty()) {
       for (Card c : topOfTheDeck) {
         SentryOption option = currentPlayer.controlPlayer
                                 .sentry_chooseOption(context, c, topOfTheDeck.toArray(new Card[topOfTheDeck.size()]));
@@ -580,7 +580,7 @@ public class CardImplBase extends CardImpl {
       for (Card c : toDiscard) {
         currentPlayer.discard(c, this.getControlCard(), context);
       }
-      if (toReplace.size() > 0) {
+      if (!toReplace.isEmpty()) {
         Card[] order;
         if (toReplace.size() == 1) {
           order = toReplace.toArray(new Card[toReplace.size()]);
@@ -655,7 +655,7 @@ public class CardImplBase extends CardImpl {
       }
     }
 
-    if (trashed.size() > 0) {
+    if (!trashed.isEmpty()) {
       Card[] treasuresToGain =
         currentPlayer.controlPlayer.thief_treasuresToGain(context, trashed.toArray(new Card[] {}));
 

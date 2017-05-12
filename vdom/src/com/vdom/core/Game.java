@@ -1137,7 +1137,7 @@ public class Game {
       }
     }
 
-    if (hovelsToTrash.size() > 0) {
+    if (!hovelsToTrash.isEmpty()) {
       for (Card c : hovelsToTrash) {
         player.hand.remove(c);
         player.trash(c, responsible, context);
@@ -1414,7 +1414,7 @@ public class Game {
     event = new GameEvent(GameEvent.EventType.TurnEnd, context);
     broadcastEvent(event);
 
-    if (cardsObtainedLastTurn[playersTurn].size() == 0 && cardInGame(Cards.baths)) {
+    if (cardsObtainedLastTurn[playersTurn].isEmpty() && cardInGame(Cards.baths)) {
       int tokensLeft = getPileVpTokens(Cards.baths);
       if (tokensLeft > 0) {
         int tokensToTake = Math.min(tokensLeft, 2);
@@ -1750,7 +1750,7 @@ public class Game {
             allDurationAreSimple = false;
           }
           if (thisCard.equals(Cards.haven)) {
-            if (player.haven != null && player.haven.size() > 0) {
+            if (player.haven != null && !player.haven.isEmpty()) {
               durationEffects.add(thisCard);
               durationEffects.add(player.haven.remove(0));
               durationEffectsAreCards.add(clone == cloneCount
@@ -1758,7 +1758,7 @@ public class Game {
               durationEffectsAreCards.add(false);
             }
           } else if (thisCard.equals(Cards.gear)) {
-            if (player.gear.size() > 0) {
+            if (!player.gear.isEmpty()) {
               durationEffects.add(thisCard);
               durationEffects.add(player.gear.remove(0));
               durationEffectsAreCards.add(clone == cloneCount
@@ -1766,7 +1766,7 @@ public class Game {
               durationEffectsAreCards.add(false);
             }
           } else if (thisCard.equals(Cards.archive)) {
-            if (player.archive.size() > 0) {
+            if (!player.archive.isEmpty()) {
               durationEffects.add(thisCard);
               durationEffects.add(player.archive.get(archiveNum++));
               durationEffectsAreCards.add(clone == cloneCount
@@ -1992,7 +1992,7 @@ public class Game {
           if (nextCard != null && (nextCard.behaveAsCard().equals(Cards.hireling) || nextCard.behaveAsCard()
                                                                                        .equals(Cards.champion) ||
                                    (nextCard.behaveAsCard().equals(Cards.archive)
-                                    && player.archive.get(archiveNum++).size() > 0))) {
+                                    && !player.archive.get(archiveNum++).isEmpty()))) {
             staysInPlayCards.add(card);
             for (int i = 0; i < additionalModifierCards; ++i) {
               staysInPlayCards.add(player.nextTurnCards.remove(0));
@@ -2005,7 +2005,7 @@ public class Game {
       }
 
       if (card.behaveAsCard().equals(Cards.hireling) || card.behaveAsCard().equals(Cards.champion) ||
-          (card.behaveAsCard().equals(Cards.archive) && player.archive.get(archiveNum++).size() > 0)) {
+          (card.behaveAsCard().equals(Cards.archive) && !player.archive.get(archiveNum++).isEmpty())) {
         staysInPlayCards.add(card);
       } else {
         CardImpl behaveAsCard = (CardImpl) card.behaveAsCard();
@@ -2451,7 +2451,7 @@ public class Game {
             }
           }
 
-          if (cardsWithSameCost.size() > 0) {
+          if (!cardsWithSameCost.isEmpty()) {
             c = cardsWithSameCost.get(rand.nextInt(cardsWithSameCost.size()));
           }
         }
@@ -2498,7 +2498,7 @@ public class Game {
       int count = Math.max(blackMarketCount - blackMarketPile.size(), 0);
       if (blackMarketOnlyCardsFromUsedExpansions) {
         List<Expansion> expansions = new ArrayList<Expansion>();
-        if (randomExpansions != null && randomExpansions.size() > 0) {
+        if (randomExpansions != null && !randomExpansions.isEmpty()) {
           expansions.addAll(randomExpansions);
         } else {
           for (CardPile pile : placeholderPiles.values()) {
@@ -2594,7 +2594,7 @@ public class Game {
         Cards.blackMarketCards.add(blackMarketPile.get(i));
       }
       // shuffle
-      while (cards.size() > 0) {
+      while (!cards.isEmpty()) {
         blackMarketPileShuffled.add(cards.remove(Game.rand.nextInt(cards.size())));
       }
     }
@@ -2771,7 +2771,7 @@ public class Game {
             validObeliskCards.add(placeholder);
           }
         }
-        if (validObeliskCards.size() > 0) {
+        if (!validObeliskCards.isEmpty()) {
           obeliskCard = validObeliskCards.get(rand.nextInt(validObeliskCards.size()));
         }
       }
@@ -2852,7 +2852,7 @@ public class Game {
     Util.debug("");
     debug = oldDebug;
 
-    if (unfoundCards != null && unfoundCards.size() > 0) {
+    if (unfoundCards != null && !unfoundCards.isEmpty()) {
       unfoundCardText += "\n";
       String cardList = "";
       boolean first = true;
@@ -3219,7 +3219,7 @@ public class Game {
 
             Util.debug((String.format("Inn: %d action(s) found in %d-card discard pile", actionCardsFound,
               player.discard.size())), true);
-            if (cards.size() > 0) {
+            if (!cards.isEmpty()) {
               for (Card c : cards) {
                 player.discard.remove(c);
                 player.deck.add(c);
@@ -3263,7 +3263,7 @@ public class Game {
               }
             }
 
-            if (treasureCardsInPlay.size() > 0) {
+            if (!treasureCardsInPlay.isEmpty()) {
               Card[] order;
               if (treasureCardsInPlay.size() == 1) {
                 order = treasureCardsInPlay.toArray(new Card[treasureCardsInPlay.size()]);
@@ -3798,7 +3798,7 @@ public class Game {
     buy.isBuying(context);
 
     if (!buy.is(Type.Event, null)) {
-      if (player.getHand().size() > 0 && isPlayerSupplyTokenOnPile(buy, player, PlayerSupplyToken.Trashing)) {
+      if (!player.getHand().isEmpty() && isPlayerSupplyTokenOnPile(buy, player, PlayerSupplyToken.Trashing)) {
         Card cardToTrash = player.controlPlayer.trashingToken_cardToTrash((MoveContext) context);
         if (cardToTrash != null) {
           if (!player.getHand().contains(cardToTrash)) {
@@ -3815,7 +3815,7 @@ public class Game {
       }
 
       if (hauntedWoodsAttacks(player)) {
-        if (player.hand.size() > 0) {
+        if (!player.hand.isEmpty()) {
           Card[] order;
           if (player.hand.size() == 1) {
             order = player.hand.toArray();
@@ -4185,7 +4185,7 @@ public class Game {
         }
       }
 
-      if (validCards.size() > 0) {
+      if (!validCards.isEmpty()) {
         Card toGain = context.getPlayer().controlPlayer.haggler_cardToObtain(context, cost, debt, potion);
         if (toGain != null) {
           if (!validCards.contains(toGain)) {

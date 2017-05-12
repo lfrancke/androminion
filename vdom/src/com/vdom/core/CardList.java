@@ -167,11 +167,11 @@ public class CardList implements Iterable<Card> {
   }
 
   public Card getLastCard() {
-    return a.size() == 0 ? null : a.get(a.size() - 1);
+    return a.isEmpty() ? null : a.get(a.size() - 1);
   }
 
   public Card removeLastCard() {
-    return a.size() == 0 ? null : a.remove(a.size() - 1);
+    return a.isEmpty() ? null : a.remove(a.size() - 1);
   }
 
   public Card[] sort(Comparator<Card> comp) {

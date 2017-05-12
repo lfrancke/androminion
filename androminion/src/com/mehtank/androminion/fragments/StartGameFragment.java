@@ -240,7 +240,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
           }
         }
         String suffix = "";
-        if (type.getExpansions().size() > 0) {
+        if (!type.getExpansions().isEmpty()) {
           suffix = " (";
           String separator = "";
           for (Expansion expansion : type.getExpansions()) {
@@ -654,7 +654,7 @@ public class StartGameFragment extends SherlockFragment implements OnClickListen
           } else if (getIntrigueEdition() == Expansion.Intrigue2E) {
             exclusions += "-" + Expansion.Intrigue;
           }
-          if (exclusions.length() > 0) {
+          if (!exclusions.isEmpty()) {
             strs.add("-randomexcludes" + exclusions);
           }
         }

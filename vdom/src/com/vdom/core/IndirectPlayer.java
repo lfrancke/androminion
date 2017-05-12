@@ -875,7 +875,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       }
     }
 
-    if (options.size() > 0) {
+    if (!options.isEmpty()) {
       int o = selectOption(context, Cards.smugglers, options.toArray());
       return options.get(o);
     } else {
@@ -1942,7 +1942,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
     for (Card c : getAttackReactionCards(defended)) {
       reactionCards.add(c);
     }
-    if (reactionCards.size() > 0) {
+    if (!reactionCards.isEmpty()) {
       ArrayList<Card> cards = new ArrayList<Card>();
       for (Card c : reactionCards) {
         Card a = c;
@@ -1960,7 +1960,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
           cards.add(c);
         }
       }
-      if (cards.size() > 0) {
+      if (!cards.isEmpty()) {
         cards.add(null);
         Object[] options = new Object[1 + cards.size()];
         options[0] = OPTION_REACTION;
@@ -3651,7 +3651,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       differentCards = cards.toArray(differentCards);
     }
 
-    if (localHand.size() == 0) {
+    if (localHand.isEmpty()) {
       return null;
     } else if (localHand.size() == 1 && sco.minCount == 1) {
       return new Card[] {localHand.get(0)};
@@ -3674,7 +3674,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       }
     }
 
-    if (sco.allowedCards.size() == 0) {
+    if (sco.allowedCards.isEmpty()) {
       return null;
     }
         /*Select no Card by default if TRASH and not forced*/
@@ -3729,7 +3729,7 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
       sco.applyOptionsToPile ? GetCardsInGameOptions.Placeholders : GetCardsInGameOptions.TopOfPiles);
 
     for (Card card : cards) {
-      boolean hasTokens = context.game.getPlayerSupplyTokens(card, context.getPlayer()).size() > 0;
+      boolean hasTokens = !context.game.getPlayerSupplyTokens(card, context.getPlayer()).isEmpty();
       if ((sco.allowEmpty || !context.game.isPileEmpty(card))) {
         if (sco.checkValid(card, card.getCost(context), card.is(Type.Victory), null)
             && (!(sco.noTokens && hasTokens))

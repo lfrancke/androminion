@@ -116,7 +116,7 @@ public class CardAnimator {
     public void onAnimationEnd(Animation animation) {
       v.setVisibility(View.GONE);
       runningAnims.remove(animation);
-      if (runningAnims.size() == 0) {
+      if (runningAnims.isEmpty()) {
         for (CardView c : cvs) {
           rootView.removeView(c);
         }

@@ -101,7 +101,7 @@ public class CardImplGuilds extends CardImpl {
       }
     }
 
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return;
     }
 
@@ -122,7 +122,7 @@ public class CardImplGuilds extends CardImpl {
 
     cards.remove(toDiscard);
 
-    if (cards.size() > 0) {
+    if (!cards.isEmpty()) {
       for (Card c : cards) {
         currentPlayer.hand.add(c);
       }
@@ -140,7 +140,7 @@ public class CardImplGuilds extends CardImpl {
     sendGuildsTokenObtainedEvent(game, context);
     sendGuildsTokenObtainedEvent(game, context);
 
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card card = currentPlayer.controlPlayer.butcher_cardToTrash(context);
 
       if (card != null) {
@@ -210,7 +210,7 @@ public class CardImplGuilds extends CardImpl {
       }
     }
 
-    if (revealedCards.size() > 0) {
+    if (!revealedCards.isEmpty()) {
       ArrayList<Card> orderedCards = currentPlayer.controlPlayer.doctor_cardsForDeck(context, revealedCards);
 
       // Put the cards back on the deck
@@ -263,13 +263,13 @@ public class CardImplGuilds extends CardImpl {
   private void heraldOverpay(MoveContext context, Player currentPlayer) {
     for (int i = 0; i < context.overpayAmount; ++i) {
       // Only allow a choice if there are cards in the discard pile
-      if (currentPlayer.discard.size() > 0) {
+      if (!currentPlayer.discard.isEmpty()) {
         // Create a list of all cards in the player's discard pile
         ArrayList<Card> options = currentPlayer.getDiscard().toArrayList();
 
         Collections.sort(options, new Util.CardNameComparator());
 
-        if (options.size() > 0) {
+        if (!options.isEmpty()) {
           Card cardToTopDeck = context.player.herald_cardTopDeck(context, options.toArray(new Card[options.size()]));
 
           if (cardToTopDeck != null) {
@@ -358,7 +358,7 @@ public class CardImplGuilds extends CardImpl {
 
   private void stonemason(Game game, MoveContext context, Player currentPlayer) {
 
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card card = currentPlayer.controlPlayer.stonemason_cardToTrash(context);
 
       if (card != null) {
@@ -411,7 +411,7 @@ public class CardImplGuilds extends CardImpl {
   }
 
   private void taxman(Game game, MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card card = currentPlayer.controlPlayer.taxman_treasureToTrash(context);
 
       if (card != null && card.is(Type.Treasure, currentPlayer)) {

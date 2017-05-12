@@ -2013,10 +2013,10 @@ public class Strings {
     if (cardSet.getBaneCard() != null) {
       cardSetParts.add(format(R.string.card_set_bane, getCardName(cardSet.getBaneCard())));
     }
-    if (events.size() > 0) {
+    if (!events.isEmpty()) {
       cardSetParts.add(format(R.string.card_set_events, joinList(events, ", ")));
     }
-    if (landmarks.size() > 0) {
+    if (!landmarks.isEmpty()) {
       cardSetParts.add(format(R.string.card_set_landmarks, joinList(landmarks, ", ")));
     }
     if (cardSet.getUsePlatColony() == UseOptionalCards.Use) {

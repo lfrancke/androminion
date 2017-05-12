@@ -119,7 +119,7 @@ public class VDomPlayerChuck extends BasePlayer {
         }
       }
 
-      if (randList.size() > 0) {
+      if (!randList.isEmpty()) {
         return randList.get(rand.nextInt(randList.size()));
       }
 
@@ -256,7 +256,7 @@ public class VDomPlayerChuck extends BasePlayer {
       randList.remove(Cards.masterpiece);
     }
 
-    if (randList.size() > 0) {
+    if (!randList.isEmpty()) {
       return randList.get(rand.nextInt(randList.size()));
     }
 

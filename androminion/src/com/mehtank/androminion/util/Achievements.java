@@ -127,7 +127,7 @@ public class Achievements {
       }
     }
 
-    if (prefsToClear.size() > 0) {
+    if (!prefsToClear.isEmpty()) {
       Editor editor = prefs.edit();
       editor.remove(WIN_STREAK_COUNT_KEY);
       editor.remove(WIN_STREAK_PLAYER_KEY);

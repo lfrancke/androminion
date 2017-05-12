@@ -91,7 +91,7 @@ public class CardImplPromo extends CardImpl {
           canBuy.add(cards.get(i));
         }
       }
-      if (canBuy.size() > 0) {
+      if (!canBuy.isEmpty()) {
         Card card = currentPlayer.controlPlayer.blackMarket_chooseCard(context, canBuy);
         if (card != null) {
           //see playerBuy()
@@ -116,7 +116,7 @@ public class CardImplPromo extends CardImpl {
     Collections.sort(context.game.blackMarketPile, new Util.CardCostNameComparator());
 
     // put rest back
-    if (cards.size() > 0) {
+    if (!cards.isEmpty()) {
       Card[] order = currentPlayer.controlPlayer.blackMarket_orderCards(context, cards.toArray(new Card[cards.size()]));
       boolean bad = false;
       if (order == null || order.length != cards.size()) {
@@ -159,7 +159,7 @@ public class CardImplPromo extends CardImpl {
       }
     }
 
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return;
     }
 
@@ -179,7 +179,7 @@ public class CardImplPromo extends CardImpl {
 
     cards.remove(toDiscard);
 
-    if (cards.size() > 0) {
+    if (!cards.isEmpty()) {
       for (Card c : cards) {
         currentPlayer.hand.add(c);
       }
@@ -209,7 +209,7 @@ public class CardImplPromo extends CardImpl {
           }
         }
       } else if (option == Player.GovernorOption.Upgrade) {
-        if (currentPlayer.getHand().size() > 0) {
+        if (!currentPlayer.getHand().isEmpty()) {
           Card card = currentPlayer.controlPlayer.governor_cardToTrash(context);
                     /*You MAY trash a card*/
           if (card != null) {
@@ -234,7 +234,7 @@ public class CardImplPromo extends CardImpl {
         for (Player player : game.getPlayersInTurnOrder()) {
           if (player != context.getPlayer()) {
             MoveContext playerContext = new MoveContext(game, player);
-            if (player.getHand().size() > 0) {
+            if (!player.getHand().isEmpty()) {
               Card card = player.controlPlayer.governor_cardToTrash(playerContext);
                             /*You MAY trash a card*/
               if (card != null) {

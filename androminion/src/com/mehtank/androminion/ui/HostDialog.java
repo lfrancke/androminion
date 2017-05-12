@@ -73,7 +73,7 @@ public class HostDialog implements DialogInterface.OnClickListener {
     port.setSingleLine();
     // vg.addView(port);
 
-    if (hostString.trim().length() == 0) {
+    if (hostString.trim().isEmpty()) {
       local.setChecked(true);
       host.setVisibility(View.INVISIBLE);
       prompt.setVisibility(View.INVISIBLE);
@@ -104,7 +104,7 @@ public class HostDialog implements DialogInterface.OnClickListener {
       int p = GameActivity.DEFAULT_PORT;
       String h = host.getText().toString();
 
-      if (gamehost.getCheckedRadioButtonId() == local.getId() || h.trim().length() == 0) {
+      if (gamehost.getCheckedRadioButtonId() == local.getId() || h.trim().isEmpty()) {
         h = "localhost";
       } else {
         try {

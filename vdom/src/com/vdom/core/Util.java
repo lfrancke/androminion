@@ -320,7 +320,7 @@ public class Util {
       game.drawToHand(context, Cards.secretChamber, 2);
       game.drawToHand(context, Cards.secretChamber, 1);
 
-      if (player.hand.size() > 0) {
+      if (!player.hand.isEmpty()) {
         Card[] cards = player.controlPlayer.secretChamber_cardsToPutOnDeck(context);
         boolean bad = false;
         if (cards == null || cards.length > 2 || (cards.length < 2 && cards.length != player.hand.size())) {
@@ -430,7 +430,7 @@ public class Util {
       game.drawToHand(context, reactionCard, 2);
       game.drawToHand(context, reactionCard, 1);
 
-      if (player.hand.size() > 0) {
+      if (!player.hand.isEmpty()) {
         Card[] cards = player.controlPlayer.diplomat_cardsToDiscard(context);
         boolean bad = false;
         if (cards == null || cards.length > 3 || (cards.length < 3 && cards.length != player.hand.size())) {
@@ -564,14 +564,14 @@ public class Util {
   }
 
   public static Card randomCard(ArrayList<Card> list) {
-    if (list == null || list.size() == 0) {
+    if (list == null || list.isEmpty()) {
       return null;
     }
     return list.get(Game.rand.nextInt(list.size()));
   }
 
   public static Card randomCard(CardList list) {
-    if (list == null || list.size() == 0) {
+    if (list == null || list.isEmpty()) {
       return null;
     }
     return list.get(Game.rand.nextInt(list.size()));

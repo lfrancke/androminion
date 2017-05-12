@@ -289,7 +289,7 @@ public class VDomPlayerPatrick extends BasePlayer {
       }
     }
 
-    if (ret.size() > 0) {
+    if (!ret.isEmpty()) {
       return ret.toArray(new Card[ret.size()]);
     }
 
@@ -532,7 +532,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     Card ret = null;
     ArrayList<Card> temphand = this.hand.toArrayListClone();
 
-    while (temphand.size() > 0) {
+    while (!temphand.isEmpty()) {
       ret = getCardToDiscard(temphand, DiscardOption.Destructive, context);
       temphand.remove(ret);
       if (this.isOnlyVictory(ret, context.getPlayer())) {
@@ -713,7 +713,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     }
     this.log("vault: chosen " + ret);
 
-    if (ret.size() > 0) {
+    if (!ret.isEmpty()) {
       return ret.toArray(new Card[ret.size()]);
     }
     return null;
@@ -824,7 +824,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   @Override
   public Card jackOfAllTrades_nonTreasureToTrash(MoveContext context) {
     ArrayList<Card> temphand = hand.toArrayListClone();
-    while (temphand.size() > 0) {
+    while (!temphand.isEmpty()) {
       Card tcard = this.getCardToTrash(temphand, DiscardOption.SemiDestructive);
       temphand.remove(tcard);
       temphand.trimToSize();
@@ -1205,7 +1205,7 @@ public class VDomPlayerPatrick extends BasePlayer {
             cards2discard.remove(card);
           }
         }
-        if (cards2discard.size() > 0) {
+        if (!cards2discard.isEmpty()) {
           StrategyOption saveStrategy = this.strategy;
           this.strategy = StrategyOption.Nothing;
           Card card = getCardToDiscard(cards2discard, destructive, context);
@@ -1642,7 +1642,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
     int embargopiles = 0;
 
-    while (potentialBuys.size() > 0) {
+    while (!potentialBuys.isEmpty()) {
       action_card = Util.randomCard(potentialBuys);
       potentialBuys.remove(action_card);
       if (game.embargos.containsKey(action_card.getName())) {
@@ -1963,7 +1963,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
     ArrayList<Card> tier1 = new ArrayList<Card>(cards);
     tier1.retainAll(VDomPlayerPatrick.knownDoubleActionCards);
-    if (tier1.size() > 0) {
+    if (!tier1.isEmpty()) {
       this.log("advisorAction: found Tier1 cards " + tier1);
       cards.clear();
       for (Card c : tier1) {
@@ -1973,10 +1973,10 @@ public class VDomPlayerPatrick extends BasePlayer {
       }
     }
 
-    if (cards.size() > 0) {
+    if (!cards.isEmpty()) {
       // pick random card to base strategy on
       this.strategyCard = null;
-      while ((cards.size() > 0) && (this.strategyCard == null)) {
+      while ((!cards.isEmpty()) && (this.strategyCard == null)) {
         this.strategyCard = cards.get(this.rand.nextInt(cards.size()));
         cards.remove(this.strategyCard);
         if (game.pileSize(this.strategyCard) < 3) {
@@ -2049,7 +2049,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   }
 
   private boolean needMorePotion(ArrayList<Card> deck) {
-    if (this.strategyPossibleCards.size() > 0) {
+    if (!this.strategyPossibleCards.isEmpty()) {
       if (this.strategyCard.costPotion()) {
         switch (strategy) {
           case SingleAction:
@@ -2179,7 +2179,7 @@ public class VDomPlayerPatrick extends BasePlayer {
     }
     ArrayList<Card> temphand = new ArrayList<Card>(hand);
 
-    if (ac.size() > 0) {
+    if (!ac.isEmpty()) {
       if (ac.contains(Cards.kingsCourt)) {
         temphand.remove(Cards.kingsCourt);
         Card temp = advisorPlayAction(temphand, player);

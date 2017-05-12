@@ -291,7 +291,7 @@ public class SelectCardOptions implements Serializable {
   }
 
   public boolean cardInList(int card) {
-    if (allowedCards.size() == 0) {
+    if (allowedCards.isEmpty()) {
       return true;
     }
     return allowedCards.contains(new Integer(card));

@@ -459,14 +459,14 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
           cards[i] = ci.cs.c.id;
         }
 
-        if (sco.getPickType() == PickType.SELECT_WITH_ALL && openedCards.size() == 0 && !select.getText().toString()
+        if (sco.getPickType() == PickType.SELECT_WITH_ALL && openedCards.isEmpty() && !select.getText().toString()
                                                                                            .endsWith("!")) {
           // Hack to notify that "All" was selected
           top.handle(new Event(Event.EType.CARD)
                        .setInteger(1)
                        .setObject(new EventObject(new int[] {-1})));
         } else if ((sco.getPickType() == PickType.PLAY_IN_ORDER || sco.getPickType() == PickType.PLAY)
-                   && openedCards.size() == 0 && !select.getText().toString().endsWith("!")) {
+                   && openedCards.isEmpty() && !select.getText().toString().endsWith("!")) {
           // Hack to notify that "All" was selected
           top.handle(new Event(Event.EType.CARD).setInteger(1).setObject(new EventObject(new int[] {-1})));
         } else {
@@ -1119,7 +1119,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
     }
 
     // nothing picked yet
-    if (openedCards.size() == 0) {
+    if (openedCards.isEmpty()) {
       setSelectText(sco.pickType);
       if (sco.pickType == SelectCardOptions.PickType.SELECT_WITH_ALL) {
         canSelect();

@@ -380,7 +380,7 @@ public class CardImplAdventures extends CardImpl {
       currentPlayer.gainNewCard(Cards.silver, this.getControlCard(), context);
     } else if (option == Player.AmuletOption.TrashCard) {
       CardList hand = currentPlayer.getHand();
-      if (hand.size() == 0) {
+      if (hand.isEmpty()) {
         return;
       }
 
@@ -397,7 +397,7 @@ public class CardImplAdventures extends CardImpl {
   private void artificer(Game game, MoveContext context, Player currentPlayer) {
     int numberOfCards = 0;
     Card[] cards =
-      currentPlayer.getHand().size() == 0 ? null : currentPlayer.controlPlayer.artificer_cardsToDiscard(context);
+      currentPlayer.getHand().isEmpty() ? null : currentPlayer.controlPlayer.artificer_cardsToDiscard(context);
     if (cards != null) {
       for (Card card : cards) {
         if (card != null) {
@@ -449,7 +449,7 @@ public class CardImplAdventures extends CardImpl {
   }
 
   private void fugitive(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() > 0) {
+    if (!currentPlayer.hand.isEmpty()) {
       Card cardToDiscard = currentPlayer.controlPlayer.fugitive_cardToDiscard(context);
       if (cardToDiscard == null || !currentPlayer.hand.contains(cardToDiscard)) {
         Util.playerError(currentPlayer, "Returned an invalid card to discard with Fugitive, picking one for you.");
@@ -464,7 +464,7 @@ public class CardImplAdventures extends CardImpl {
   private void gear(MoveContext context, Player currentPlayer) {
     boolean cardSetAside = false;
     Card[] cards =
-      currentPlayer.getHand().size() == 0 ? null : currentPlayer.controlPlayer.gear_cardsToSetAside(context);
+      currentPlayer.getHand().isEmpty() ? null : currentPlayer.controlPlayer.gear_cardsToSetAside(context);
     if (cards != null && cards.length > 2) {
       Util.playerError(currentPlayer, "Gear: Tried to set aside too many cards. Setting aside zero.");
       cards = null;
@@ -530,7 +530,7 @@ public class CardImplAdventures extends CardImpl {
   }
 
   private void guide(MoveContext context, Game game, Player currentPlayer) {
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       while (!currentPlayer.getHand().isEmpty()) {
         currentPlayer.discard(currentPlayer.getHand().remove(0), this.getControlCard(), context);
       }
@@ -625,7 +625,7 @@ public class CardImplAdventures extends CardImpl {
   }
 
   private void ratcatcher(MoveContext context, Game game, Player currentPlayer) {
-    if (currentPlayer.getHand().size() == 0) {
+    if (currentPlayer.getHand().isEmpty()) {
       return;
     }
     Card cardToTrash = currentPlayer.getHand().size() == 1 ? currentPlayer.getHand().get(0)
@@ -650,7 +650,7 @@ public class CardImplAdventures extends CardImpl {
         currentPlayer.playedCards.remove(currentPlayer.playedCards.lastIndexOf(this.getControlCard()));
         currentPlayer.trash(this.getControlCard(), this.getControlCard(), context);
       }
-    } else if (currentPlayer.getHand().size() > 0) {
+    } else if (!currentPlayer.getHand().isEmpty()) {
       Card cardToTrash = currentPlayer.controlPlayer.raze_cardToTrash(context);
       if (cardToTrash == null || !currentPlayer.getHand().contains(cardToTrash)) {
         Util.playerError(currentPlayer, "Raze trash error, trashing a random card.");
@@ -676,7 +676,7 @@ public class CardImplAdventures extends CardImpl {
         }
         lookAtCards.add(c);
       }
-      if (lookAtCards.size() > 0) {
+      if (!lookAtCards.isEmpty()) {
         Card cardToKeep = lookAtCards.size() == 1 ? lookAtCards.get(0)
                             : currentPlayer.controlPlayer.raze_cardToKeep(context, lookAtCards.toArray(new Card[0]));
         if (cardToKeep == null || !lookAtCards.contains(cardToKeep)) {
@@ -766,7 +766,7 @@ public class CardImplAdventures extends CardImpl {
     int numFreePiles = 0;
     Card lastFreePile = null;
     for (Card c : game.getCardsInGame(GetCardsInGameOptions.TopOfPiles.Placeholders, true, Type.Action)) {
-      if (game.getPlayerSupplyTokens(c, currentPlayer).size() == 0) {
+      if (game.getPlayerSupplyTokens(c, currentPlayer).isEmpty()) {
         numFreePiles++;
         lastFreePile = c;
       }
@@ -798,7 +798,7 @@ public class CardImplAdventures extends CardImpl {
   //Events
 
   private void transmogrify(MoveContext context, Game game, Player currentPlayer) {
-    if (currentPlayer.getHand().size() == 0) {
+    if (currentPlayer.getHand().isEmpty()) {
       return;
     }
     Card cardToTrash = currentPlayer.controlPlayer.transmogrify_cardToTrash(context);
@@ -995,7 +995,7 @@ public class CardImplAdventures extends CardImpl {
   private void quest(MoveContext context) {
     Player player = context.getPlayer();
     CardList hand = player.getHand();
-    if (hand.size() == 0) {
+    if (hand.isEmpty()) {
       return;
     }
     QuestOption option = player.controlPlayer.quest_chooseOption(context);
@@ -1009,7 +1009,7 @@ public class CardImplAdventures extends CardImpl {
           attackSet.add(card);
         }
       }
-      if (attackSet.size() == 0) {
+      if (attackSet.isEmpty()) {
         return;
       } else if (attackSet.size() == 1) {
         Card toDiscard = attackSet.toArray(new Card[0])[0];
@@ -1069,7 +1069,7 @@ public class CardImplAdventures extends CardImpl {
   private void save(MoveContext context) {
     context.cantBuy.add(this); //once per turn
     CardList hand = context.getPlayer().getHand();
-    if (hand.size() == 0) {
+    if (hand.isEmpty()) {
       return;
     }
 
@@ -1096,12 +1096,12 @@ public class CardImplAdventures extends CardImpl {
       }
     }
 
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return;
     }
 
     for (int i = 0; i < 3; i++) {
-      if (cards.size() > 0) {
+      if (!cards.isEmpty()) {
         Card toDiscard = null;
         if (cards.size() > 3 - i) {
           toDiscard = context.player.scoutingParty_cardToDiscard(context, cards.toArray(new Card[cards.size()]));
@@ -1120,7 +1120,7 @@ public class CardImplAdventures extends CardImpl {
       }
     }
 
-    if (cards.size() > 0) {
+    if (!cards.isEmpty()) {
       Card[] order = context.player.controlPlayer.survivors_cardOrder(context, cards.toArray(new Card[cards.size()]));
 
       // Check that they returned the right cards

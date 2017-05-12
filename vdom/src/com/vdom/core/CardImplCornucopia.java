@@ -291,7 +291,7 @@ public class CardImplCornucopia extends CardImpl {
 
   private void remake(MoveContext context, Player currentPlayer) {
     for (int i = 0; i < 2; i++) {
-      if (currentPlayer.getHand().size() == 0) {
+      if (currentPlayer.getHand().isEmpty()) {
         return;
       }
 

@@ -467,7 +467,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
 			exp = "prosperity";
 		else if (filename.equals("platinum"))
 			exp = "prosperity";*/
-    if (exp.length() == 0) {
+    if (exp.isEmpty()) {
       exp = "basecards";
     }
 
@@ -517,7 +517,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     textView.setGravity(Gravity.CENTER);
     String text = GetCardTypeString(cardView.getCard());
 
-    if (cardView.getCard().expansion != null && cardView.getCard().expansion.length() != 0) {
+    if (cardView.getCard().expansion != null && !cardView.getCard().expansion.isEmpty()) {
       text += " (" + cardView.getCard().expansion + ")";
     }
 
@@ -856,7 +856,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       text += getContext().getString(R.string.bane_card);
     }
     if (state.c.isObeliskCard) {
-      if (text.length() > 0) {
+      if (!text.isEmpty()) {
         text += "\n";
       }
       text += getContext().getString(R.string.obelisk_card);
@@ -864,7 +864,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     boolean hasPlayerTokens = players != null && currentTokens != null && countTokens(currentTokens) > 0;
     if (hasPlayerTokens || numEmbargos > 0 || numPileVpTokens > 0 || numPileDebtTokens > 0
         || numPileTradeRouteTokens > 0) {
-      if (text.length() > 0) {
+      if (!text.isEmpty()) {
         text += "\n\n";
       }
       text += getContext().getString(R.string.token_header);

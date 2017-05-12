@@ -316,7 +316,7 @@ public abstract class Player {
   }
 
   public int getStashesInHand() {
-    if (hand.size() == 0) {
+    if (hand.isEmpty()) {
       return 0;
     }
     int result = 0;
@@ -337,7 +337,7 @@ public abstract class Player {
   }
 
   public boolean isStashOnDeck() {
-    if (deck.size() == 0) {
+    if (deck.isEmpty()) {
       return false;
     }
     return deck.get(0).equals(Cards.stash);
@@ -908,7 +908,7 @@ public abstract class Player {
 
   public void shuffleDeck(MoveContext context, Card responsible) {
     CardList tempDeck = new CardList(this, name);
-    while (deck.size() > 0) {
+    while (!deck.isEmpty()) {
       tempDeck.add(deck.remove(0));
     }
     shuffleIntoDeck(context, responsible, tempDeck, 0);
@@ -1049,7 +1049,7 @@ public abstract class Player {
 
   // test if any prince card left the play
   public void princeCardLeftThePlay(Player currentPlayer) {
-    if (currentPlayer.playedByPrince.size() > 0) {
+    if (!currentPlayer.playedByPrince.isEmpty()) {
       ArrayList<Card> playedByPrince = new ArrayList<Card>();
       for (int i = 0; i < currentPlayer.playedByPrince.size(); i++) {
         playedByPrince.add(currentPlayer.playedByPrince.remove(i));
@@ -1984,7 +1984,7 @@ public abstract class Player {
             }
           }
 
-          if (treasureCards.size() > 0) {
+          if (!treasureCards.isEmpty()) {
             Card treasureCard = controlPlayer.herbalist_backOnDeck(context, treasureCards.toArray(new Card[0]));
             if (treasureCard != null && treasureCard.is(Type.Treasure, this)) {
               if (nextTurnCards.contains(treasureCard)) {
@@ -2004,7 +2004,7 @@ public abstract class Player {
               actions.add(c);
             }
           }
-          if (actions.size() == 0) {
+          if (actions.isEmpty()) {
             break;
           }
 
@@ -2060,7 +2060,7 @@ public abstract class Player {
     // Discard hand
     // /////////////////////////////////
 
-    while (getHand().size() > 0) {
+    while (!getHand().isEmpty()) {
       discard(hand.remove(0, false), null, null, false, false);
     }
 
@@ -2205,16 +2205,16 @@ public abstract class Player {
     }
 
     // shuffle
-    while (source.size() > 0) {
+    while (!source.isEmpty()) {
       deck.add(source.remove(Game.rand.nextInt(source.size())));
     }
 
-    while (stashes.size() > 0) {
+    while (!stashes.isEmpty()) {
       source.add(stashes.remove(0));
     }
 
     // add pulled Stash cards back into deck
-    if (source.size() > 0) {
+    if (!source.isEmpty()) {
       int numStashes = source.size();
       for (int i = 0; i < numStashes; ++i) {
         int position;

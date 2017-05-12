@@ -146,7 +146,7 @@ public class CardImplIntrigue extends CardImpl {
   }
 
   private void courtier(Game game, MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() == 0) {
+    if (currentPlayer.getHand().isEmpty()) {
       return;
     }
 
@@ -194,7 +194,7 @@ public class CardImplIntrigue extends CardImpl {
 
   private void courtyard(MoveContext context, Player currentPlayer) {
     // TODO do this.getControlCard() check at the top of the block for EVERY Util...
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card card = currentPlayer.controlPlayer.courtyard_cardToPutBackOnDeck(context);
 
       if (card == null || !currentPlayer.hand.contains(card)) {
@@ -277,7 +277,7 @@ public class CardImplIntrigue extends CardImpl {
 
       for (int i = 0; i < passingPlayers.size(); i++) {
         Player player = passingPlayers.get(i);
-        if (player.getHand().size() == 0) {
+        if (player.getHand().isEmpty()) {
           continue;
         }
         Card card = player.controlPlayer.masquerade_cardToPass(new MoveContext(context, game, player));
@@ -330,7 +330,7 @@ public class CardImplIntrigue extends CardImpl {
   }
 
   private void mill(Game game, MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() == 0) {
+    if (currentPlayer.getHand().isEmpty()) {
       return;
     }
     ArrayList<Card> handCopy = Util.copy(currentPlayer.getHand());
@@ -578,7 +578,7 @@ public class CardImplIntrigue extends CardImpl {
       }
     }
 
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return;
     }
 
@@ -637,7 +637,7 @@ public class CardImplIntrigue extends CardImpl {
   }
 
   private void secretPassage(Game game, MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() == 0) {
+    if (currentPlayer.getHand().isEmpty()) {
       return;
     }
 
@@ -688,7 +688,7 @@ public class CardImplIntrigue extends CardImpl {
         game.drawToHand(context, this, 1);
       } else if (option == Player.StewardOption.TrashCards) {
         CardList hand = currentPlayer.getHand();
-        if (hand.size() == 0) {
+        if (hand.isEmpty()) {
           return;
         }
 
@@ -849,7 +849,7 @@ public class CardImplIntrigue extends CardImpl {
   }
 
   private void tradingPost(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() == 0) {
+    if (currentPlayer.getHand().isEmpty()) {
       return;
     }
     ArrayList<Card> handCopy = Util.copy(currentPlayer.getHand());
@@ -930,7 +930,7 @@ public class CardImplIntrigue extends CardImpl {
   }
 
   private void upgrade(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card card = currentPlayer.controlPlayer.upgrade_cardToTrash(context);
       if (card == null || !currentPlayer.hand.contains(card)) {
         Util.playerError(currentPlayer, "Upgrade trash error, upgrading a random card.");
@@ -958,8 +958,8 @@ public class CardImplIntrigue extends CardImpl {
 
   private void wishingWell(Game game, MoveContext context, Player currentPlayer) {
 
-    if (currentPlayer.deck.size() > 0
-        || currentPlayer.discard.size() > 0) {  // Only allow a guess if there are cards in the deck or discard pile
+    if (!currentPlayer.deck.isEmpty()
+        || !currentPlayer.discard.isEmpty()) {  // Only allow a guess if there are cards in the deck or discard pile
 
       // Create a list of possible cards to guess, using the player's hand, discard pile, and deck
       // (even though the player could technically name a card he doesn't have)

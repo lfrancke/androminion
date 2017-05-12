@@ -83,7 +83,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       return null;
     }
 
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return null;
     }
 
@@ -179,7 +179,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       return null;
     }
 
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return null;
     }
 
@@ -196,7 +196,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    if (ret.size() == 0) {
+    if (ret.isEmpty()) {
       return null;
     }
 
@@ -404,7 +404,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   @Override
   public Card remodel_cardToTrash(MoveContext context) {
     //TODO: better logic
-    if (context.getPlayer().getHand().size() == 0) {
+    if (context.getPlayer().getHand().isEmpty()) {
       return null;
     }
 
@@ -479,7 +479,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    if (handCards.size() > 0) {
+    if (!handCards.isEmpty()) {
       return handCards.get(0);
     }
 
@@ -654,7 +654,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   @Override
   public boolean vassal_shouldPlayCard(MoveContext context, Card card) {
     CardList playerHand = context.getPlayer().getHand();
-    if (playerHand.size() > 0 && card.trashForced()) {
+    if (!playerHand.isEmpty() && card.trashForced()) {
       return pickOutCard(playerHand, getTrashCards()) != null;
     }
     return true;
@@ -795,10 +795,10 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    if (changeList.size() > 0) {
+    if (!changeList.isEmpty()) {
       return changeList.get(rand.nextInt(changeList.size()));
     }
-    if (keyList.size() > 0) {
+    if (!keyList.isEmpty()) {
       return keyList.get(rand.nextInt(keyList.size()));
     }
 
@@ -919,7 +919,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card upgrade_cardToTrash(MoveContext context) {
-    if (context.getPlayer().getHand().size() == 0) {
+    if (context.getPlayer().getHand().isEmpty()) {
       return null;
     }
 
@@ -1054,10 +1054,10 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
       }
     }
-    if (good_options.size() > 0) {
+    if (!good_options.isEmpty()) {
       return Util.randomCard(good_options);
     }
-    if (bad_options.size() > 0) {
+    if (!bad_options.isEmpty()) {
       return Util.randomCard(bad_options);
     }
     return null;
@@ -1097,7 +1097,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card salvager_cardToTrash(MoveContext context) {
-    if (context.getPlayer().getHand().size() == 0) {
+    if (context.getPlayer().getHand().isEmpty()) {
       return null;
     }
 
@@ -1160,7 +1160,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   }
 
   public boolean nativeVillage_takeCards(MoveContext context) {
-    if (getNativeVillage().size() == 0) {
+    if (getNativeVillage().isEmpty()) {
       return false;
     }
 
@@ -1285,7 +1285,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         keyList.add(card);
       }
     }
-    if (keyList.size() > 0) {
+    if (!keyList.isEmpty()) {
       return keyList.get(rand.nextInt(keyList.size()));
     }
 
@@ -1298,7 +1298,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         }
       }
     }
-    if (keyList.size() > 0 && rand.nextInt(100) < 70) {
+    if (!keyList.isEmpty() && rand.nextInt(100) < 70) {
       return keyList.get(rand.nextInt(keyList.size()));
     }
 
@@ -1313,7 +1313,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   @Override
   public Card haven_cardToSetAside(MoveContext context) {
     //TODO: better logic
-    if (context.getPlayer().getHand().size() == 0) {
+    if (context.getPlayer().getHand().isEmpty()) {
       return null;
     }
 
@@ -2073,7 +2073,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card trader_cardToTrash(MoveContext context) {
-    if (context.getPlayer().getHand().size() == 0) {
+    if (context.getPlayer().getHand().isEmpty()) {
       return null;
     }
 
@@ -2282,7 +2282,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   public Card squire_cardToObtain(MoveContext context) {
     ArrayList<Card> options = getAttackCardsLeft();
 
-    if (options.size() > 0) {
+    if (!options.isEmpty()) {
       return Util.randomCard(options);
     } else {
       return null;
@@ -2373,7 +2373,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    if (ac.size() > 0) {
+    if (!ac.isEmpty()) {
       Card card = pickOutCard(ac, getTrashCards());
       if (card == null) {
         card = lowestCard(context, ac, false);
@@ -2398,7 +2398,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card junkDealer_cardToTrash(MoveContext context) {
-    if (context.getPlayer().getHand().size() == 0) {
+    if (context.getPlayer().getHand().isEmpty()) {
       return null;
     }
 
@@ -2517,7 +2517,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         cards.add(c);
       }
     }
-    return (cards.size() == 0) ? null : this.getBestVictoryCard(context, cards.toArray(new Card[0]));
+    return (cards.isEmpty()) ? null : this.getBestVictoryCard(context, cards.toArray(new Card[0]));
   }
 
   @Override
@@ -2584,7 +2584,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    if (goodCards.size() > 0) {
+    if (!goodCards.isEmpty()) {
       cardToDiscard = Util.getMostExpensiveCard(goodCards.toArray(new Card[0]));
     }
 
@@ -2839,7 +2839,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    if (ret.size() > 0) {
+    if (!ret.isEmpty()) {
       return ret.get(0);
     }
 
@@ -2886,7 +2886,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card butcher_cardToTrash(MoveContext context) {
-    if (context.getPlayer().getHand().size() == 0) {
+    if (context.getPlayer().getHand().isEmpty()) {
       return null;
     }
 
@@ -2937,7 +2937,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   @Override
   public Card stonemason_cardToTrash(MoveContext context) {
     Player p = context.getPlayer();
-    if (p.getHand().size() == 0) {
+    if (p.getHand().isEmpty()) {
       return null;
     }
 
@@ -3288,7 +3288,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public boolean raze_shouldTrashRazePlayed(MoveContext context, Card responsible) {
-    if (getHand().size() == 0) {
+    if (getHand().isEmpty()) {
       return true;
     }
     int numLowCostTrashCards = 0;
@@ -3333,7 +3333,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    if (goodCards.size() > 0) {
+    if (!goodCards.isEmpty()) {
       cardToKeep = Util.getMostExpensiveCard(goodCards.toArray(new Card[0]));
     }
 
@@ -3353,7 +3353,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   public PlayerSupplyToken teacher_tokenTypeToMove(MoveContext context) {
     //get a token that hasn't been used yet if possible
     List<PlayerSupplyToken> validTokens = getUnplacedTokens(context);
-    if (validTokens.size() > 0) {
+    if (!validTokens.isEmpty()) {
       return validTokens.get(0);
     }
     return PlayerSupplyToken.PlusOneCard;
@@ -3365,7 +3365,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     Card[] cards = context.game.getCardsInGame(GetCardsInGameOptions.Placeholders, true, Type.Action);
     Arrays.sort(cards, new Util.CardCostComparatorDesc());
     for (Card c : cards) {
-      if (game.getPlayerSupplyTokens(c, this).size() == 0) {
+      if (game.getPlayerSupplyTokens(c, this).isEmpty()) {
         return c;
       }
     }
@@ -3382,7 +3382,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       return bestCard;
     }
 
-    if (getAttackCardsLeft().size() > 0 && hand.contains(Cards.squire)) {
+    if (!getAttackCardsLeft().isEmpty() && hand.contains(Cards.squire)) {
       return Cards.squire;
     }
 
@@ -3948,7 +3948,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         }
       }
     }
-    if (cardsToMatch.size() == 0) {
+    if (cardsToMatch.isEmpty()) {
       //pick worst card to trash if we have no trash cards left
       ArrayList<Card> cards = new ArrayList<Card>(context.getPlayer().getHand().toArrayList());
       Collections.sort(cards, new Util.CardCostComparator());
@@ -3978,7 +3978,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card governor_cardToTrash(MoveContext context) {
-    if (context.getPlayer().getHand().size() == 0) {
+    if (context.getPlayer().getHand().isEmpty()) {
       return null;
     }
 
@@ -4025,7 +4025,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     }
 
     // not enough to choose from
-    if (cl.size() == 0) {
+    if (cl.isEmpty()) {
       if (containsCopper) {
         return Cards.copper;
       }
@@ -4301,11 +4301,11 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     }
 
     int variance = 1;
-    if (cardListGood.size() > 0) {
+    if (!cardListGood.isEmpty()) {
       return pickRandomBestCardFromList(cardListGood, variance);
     }
 
-    if (mustPick && cardListBad.size() > 0) {
+    if (mustPick && !cardListBad.isEmpty()) {
       return pickRandomBestCardFromList(cardListBad, variance);
     }
 

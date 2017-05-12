@@ -52,7 +52,7 @@ public class WinLossView extends FrameLayout {
     }
 
     // When there are neither human nor computer players, create the human player
-    if (players.size() == 0) {
+    if (players.isEmpty()) {
       players.add("You");
     }
 

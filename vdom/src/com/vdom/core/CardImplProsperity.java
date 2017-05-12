@@ -103,7 +103,7 @@ public class CardImplProsperity extends CardImpl {
   }
 
   private void bishop(Game game, MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card card = currentPlayer.controlPlayer.bishop_cardToTrashForVictoryTokens(context);
 
       if (card == null || !currentPlayer.hand.contains(card)) {
@@ -183,7 +183,7 @@ public class CardImplProsperity extends CardImpl {
   }
 
   private void expand(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() == 0) {
+    if (currentPlayer.getHand().isEmpty()) {
       return;
     }
 

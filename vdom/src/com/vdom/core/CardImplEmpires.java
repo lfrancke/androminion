@@ -19,7 +19,7 @@ public class CardImplEmpires extends CardImpl {
   private static final long serialVersionUID = 1L;
 
   public static void archiveSelect(Game game, MoveContext context, Player currentPlayer, ArrayList<Card> cards) {
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return;
     }
 
@@ -220,7 +220,7 @@ public class CardImplEmpires extends CardImpl {
 
     archiveSelect(game, context, currentPlayer, topOfTheDeck);
 
-    if (topOfTheDeck.size() == 0) {
+    if (topOfTheDeck.isEmpty()) {
       for (int i = 0; i < currentPlayer.nextTurnCards.size(); ++i) {
         if (currentPlayer.nextTurnCards.get(i) == this.getControlCard()) {
           currentPlayer.nextTurnCards.remove(i);
@@ -268,7 +268,7 @@ public class CardImplEmpires extends CardImpl {
       }
     }
 
-    if (currentPlayer.getHand().size() == 0) {
+    if (currentPlayer.getHand().isEmpty()) {
       return;
     }
     Card cardToTrash = currentPlayer.controlPlayer.catapult_cardToTrash(context);
@@ -457,7 +457,7 @@ public class CardImplEmpires extends CardImpl {
 
   private void gladiator(Game game, MoveContext context, Player currentPlayer) {
     boolean revealedCopy = false;
-    if (currentPlayer.hand.size() > 0) {
+    if (!currentPlayer.hand.isEmpty()) {
       Card card = currentPlayer.controlPlayer.gladiator_revealedCard(context);
       if (card == null) {
         card = Util.randomCard(currentPlayer.hand);
@@ -490,7 +490,7 @@ public class CardImplEmpires extends CardImpl {
         attackedPlayers.add(player);
       }
     }
-    if (currentPlayer.hand.size() == 0) {
+    if (currentPlayer.hand.isEmpty()) {
       return;
     }
     if (currentPlayer.hand.contains(Cards.gold) && currentPlayer.controlPlayer.legionary_revealGold(context)) {
@@ -625,7 +625,7 @@ public class CardImplEmpires extends CardImpl {
   }
 
   private void sacrifice(Game game, MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() == 0) {
+    if (currentPlayer.getHand().isEmpty()) {
       return;
     }
     Card cardToTrash = currentPlayer.controlPlayer.sacrifice_cardToTrash(context);
@@ -691,7 +691,7 @@ public class CardImplEmpires extends CardImpl {
         currentPlayer.trash(this.getControlCard(), this.getControlCard(), context);
         didTrash = true;
       }
-    } else if (currentPlayer.getHand().size() > 0) {
+    } else if (!currentPlayer.getHand().isEmpty()) {
       int numCastles = 0;
       Card handCastle = null;
       for (Card c : currentPlayer.getHand()) {
@@ -724,7 +724,7 @@ public class CardImplEmpires extends CardImpl {
   }
 
   private void temple(Game game, MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card[] cards = currentPlayer.controlPlayer.temple_cardsToTrash(context);
       if (cards == null || cards.length == 0) {
         Util.playerError(currentPlayer, "Temple trash error, not trashing enough cards, trashing first.");
@@ -817,7 +817,7 @@ public class CardImplEmpires extends CardImpl {
     Card card = null;
     final int MAX_CARDS_TO_KEEP = 5;
     do {
-      if (player.discard.size() == 0) {
+      if (player.discard.isEmpty()) {
         break;
       }
       Card[] sortedCards = player.discard.toArrayListClone().toArray(new Card[0]);
@@ -889,7 +889,7 @@ public class CardImplEmpires extends CardImpl {
     Player p = context.getPlayer();
     CardList hand = p.getHand();
     if (Cards.curse.equals(p.gainNewCard(Cards.curse, Cards.ritual, context))) {
-      if (hand.size() == 0) {
+      if (hand.isEmpty()) {
         return;
       }
       Card toTrash = p.controlPlayer.ritual_cardToTrash(context);

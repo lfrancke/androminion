@@ -236,7 +236,7 @@ public class VDomPlayerEarl extends BasePlayer {
       }
     }
 
-    if ((cards.size() == 0) && (inHand(Cards.throneRoom))) {
+    if ((cards.isEmpty()) && (inHand(Cards.throneRoom))) {
       cards.add(Cards.throneRoom);
     }
 
@@ -282,7 +282,7 @@ public class VDomPlayerEarl extends BasePlayer {
       }
     }
 
-    if (randList.size() > 0) {
+    if (!randList.isEmpty()) {
       return randList.get(this.rand.nextInt(randList.size()));
     }
 
@@ -298,7 +298,7 @@ public class VDomPlayerEarl extends BasePlayer {
   }
 
   public Card masquerade_cardToPass(MoveContext context) {
-    if (getHand().size() == 0) {
+    if (getHand().isEmpty()) {
       return null;
     }
 

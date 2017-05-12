@@ -290,7 +290,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
 
   @Override
   protected Card[] pickCards(MoveContext context, SelectCardOptions sco, int count, boolean exact) {
-    if (sco.allowedCards.size() == 0) {
+    if (sco.allowedCards.isEmpty()) {
       return null;
     }
 

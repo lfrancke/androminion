@@ -286,7 +286,7 @@ public class CardImplDarkAges extends CardImpl {
       }
     }
 
-    if (topOfTheDeck.size() > 0) {
+    if (!topOfTheDeck.isEmpty()) {
       if (currentPlayer.controlPlayer
             .catacombs_shouldDiscardTopCards(context, topOfTheDeck.toArray(new Card[topOfTheDeck.size()]))) {
         while (!topOfTheDeck.isEmpty()) {
@@ -305,7 +305,7 @@ public class CardImplDarkAges extends CardImpl {
   }
 
   private void altar(Player currentPlayer, MoveContext context) {
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card card = currentPlayer.controlPlayer.altar_cardToTrash(context);
 
       if (card == null || !currentPlayer.hand.contains(card)) {
@@ -436,7 +436,7 @@ public class CardImplDarkAges extends CardImpl {
           }
           break;
         case PutOnDeck:
-          if (currentPlayer.getHand().size() > 0) {
+          if (!currentPlayer.getHand().isEmpty()) {
             Card card = currentPlayer.controlPlayer.count_cardToPutBackOnDeck(context);
 
             if (card == null || !currentPlayer.hand.contains(card)) {
@@ -463,7 +463,7 @@ public class CardImplDarkAges extends CardImpl {
           context.addCoins(3);
           break;
         case TrashHand:
-          if (currentPlayer.hand.size() > 0) {
+          if (!currentPlayer.hand.isEmpty()) {
             Card[] temp = currentPlayer.hand.toArray();
             for (Card c : temp) {
               currentPlayer.hand.remove(c);
@@ -550,7 +550,7 @@ public class CardImplDarkAges extends CardImpl {
   }
 
   private void forager(Game game, Player currentPlayer, MoveContext context) {
-    if (currentPlayer.getHand().size() > 0) {
+    if (!currentPlayer.getHand().isEmpty()) {
       Card card = currentPlayer.controlPlayer.forager_cardToTrash(context);
 
       if (card == null || !currentPlayer.hand.contains(card)) {
@@ -792,15 +792,15 @@ public class CardImplDarkAges extends CardImpl {
 
   private void mystic(Game game, MoveContext context, Player currentPlayer) {
 
-    if (currentPlayer.deck.size() > 0
-        || currentPlayer.discard.size() > 0) {  // Only allow a guess if there are cards in the deck or discard pile
+    if (!currentPlayer.deck.isEmpty()
+        || !currentPlayer.discard.isEmpty()) {  // Only allow a guess if there are cards in the deck or discard pile
 
       // Create a list of all possible cards to guess, using the player's hand, discard pile, and deck
       // (even though the player could technically name a card he doesn't have)
       ArrayList<Card> options = new ArrayList<Card>(currentPlayer.getDistinctCards());
       Collections.sort(options, new Util.CardNameComparator());
 
-      if (options.size() > 0) {
+      if (!options.isEmpty()) {
         Card toName = currentPlayer.controlPlayer.mystic_cardGuess(context, options);
         currentPlayer.controlPlayer.namedCard(toName, this.getControlCard(), context);
         Card draw = game.draw(context, Cards.mystic, 1);
@@ -865,7 +865,7 @@ public class CardImplDarkAges extends CardImpl {
   private void rats(MoveContext context, Player currentPlayer) {
     currentPlayer.gainNewCard(Cards.rats, this.getControlCard(), context);
 
-    if (currentPlayer.hand.size() > 0) {
+    if (!currentPlayer.hand.isEmpty()) {
       boolean hasother = false;
       for (Card c : currentPlayer.hand) {
         if (!c.equals(Cards.rats)) {
@@ -948,7 +948,7 @@ public class CardImplDarkAges extends CardImpl {
       }
     }
 
-    if (options.size() > 0) { // gain a card
+    if (!options.isEmpty()) { // gain a card
       Card toGain = currentPlayer.controlPlayer.rogue_cardToGain(context);
       if (toGain == null) {
         Util.playerError(currentPlayer, "Rogue error, no card to gain selected, picking random");
@@ -1167,7 +1167,7 @@ public class CardImplDarkAges extends CardImpl {
       }
     }
 
-    if (topOfTheDeck.size() > 0) {
+    if (!topOfTheDeck.isEmpty()) {
       if (currentPlayer.controlPlayer
             .survivors_shouldDiscardTopCards(context, topOfTheDeck.toArray(new Card[topOfTheDeck.size()]))) {
         while (!topOfTheDeck.isEmpty()) {
@@ -1257,7 +1257,7 @@ public class CardImplDarkAges extends CardImpl {
       }
     }
 
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return;
     }
 

@@ -65,7 +65,7 @@ public class CardImplAlchemy extends CardImpl {
       }
     }
 
-    if (residue.size() > 0) {
+    if (!residue.isEmpty()) {
       ArrayList<Card> playerCards = currentPlayer.controlPlayer.apothecary_cardsForDeck(context, residue);
       if (playerCards == null) {
         playerCards = residue;
@@ -78,7 +78,7 @@ public class CardImplAlchemy extends CardImpl {
   }
 
   private void apprentice(Game game, MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() > 0) {
+    if (!currentPlayer.hand.isEmpty()) {
       Card cardToTrash = currentPlayer.controlPlayer.apprentice_cardToTrash(context);
       if (cardToTrash == null || !currentPlayer.hand.contains(cardToTrash)) {
         Util.playerError(currentPlayer, "Apprentice card to trash was invalid, trashing random card.");

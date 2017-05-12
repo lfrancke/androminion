@@ -184,7 +184,7 @@ public class HelpView extends FrameLayout {
 
         fullfade.addAnimation(fade);
       }
-      if (fullfade.getAnimations().size() > 0) {
+      if (!fullfade.getAnimations().isEmpty()) {
         v.startAnimation(fullfade);
       }
     }

@@ -54,7 +54,7 @@ public class CardSet {
 
     if (set.isRandom) {
       List<Card> cards;
-      if (randomExpansions != null && randomExpansions.size() > 0) {
+      if (randomExpansions != null && !randomExpansions.isEmpty()) {
         Set<Card> cardSet = new HashSet<Card>();
         for (Expansion expansion : randomExpansions) {
           if (randomExcludedExpansions != null && randomExcludedExpansions.contains(expansion)) {

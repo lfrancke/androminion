@@ -527,7 +527,7 @@ public class VDomPlayerSarah extends BasePlayer {
         }
       }
 
-      if (randList.size() > 0) {
+      if (!randList.isEmpty()) {
         return randList.get(rand.nextInt(randList.size()));
       }
 
@@ -549,7 +549,7 @@ public class VDomPlayerSarah extends BasePlayer {
         }
       }
 
-      if (randList.size() > 0) {
+      if (!randList.isEmpty()) {
         earlyCardBuyCount++;
         return randList.get(rand.nextInt(randList.size()));
       }
@@ -758,7 +758,7 @@ public class VDomPlayerSarah extends BasePlayer {
         randList.remove(Cards.masterpiece);
       }
 
-      if (randList.size() > 0) {
+      if (!randList.isEmpty()) {
         return randList.get(rand.nextInt(randList.size()));
       }
 

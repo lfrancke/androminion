@@ -88,7 +88,7 @@ public class CardImplSeaside extends CardImpl {
   }
 
   private void ambassador(Game game, MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() == 0) {
+    if (currentPlayer.hand.isEmpty()) {
       return;
     }
 
@@ -257,8 +257,8 @@ public class CardImplSeaside extends CardImpl {
   }
 
   private void haven(MoveContext context, Player currentPlayer) {
-    Card card = currentPlayer.getHand().size() == 0 ? null : currentPlayer.controlPlayer.haven_cardToSetAside(context);
-    if ((card == null && currentPlayer.getHand().size() > 0) || (card != null && !currentPlayer.getHand()
+    Card card = currentPlayer.getHand().isEmpty() ? null : currentPlayer.controlPlayer.haven_cardToSetAside(context);
+    if ((card == null && !currentPlayer.getHand().isEmpty()) || (card != null && !currentPlayer.getHand()
                                                                                     .contains(card))) {
       Util.playerError(currentPlayer, "Haven set aside card error, setting aside the first card in hand.");
       card = currentPlayer.getHand().get(0);
@@ -314,7 +314,7 @@ public class CardImplSeaside extends CardImpl {
       }
     }
 
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return;
     }
 
@@ -334,7 +334,7 @@ public class CardImplSeaside extends CardImpl {
     currentPlayer.trash(toTrash, this.getControlCard(), context);
 
     cards.remove(toTrash);
-    if (cards.size() == 0) {
+    if (cards.isEmpty()) {
       return;
     }
 
@@ -354,7 +354,7 @@ public class CardImplSeaside extends CardImpl {
 
     cards.remove(toDiscard);
 
-    if (cards.size() > 0) {
+    if (!cards.isEmpty()) {
       currentPlayer.putOnTopOfDeck(cards.get(0));
     }
   }
@@ -382,7 +382,7 @@ public class CardImplSeaside extends CardImpl {
       }
     }
 
-    if (topOfTheDeck.size() > 0) {
+    if (!topOfTheDeck.isEmpty()) {
       if (currentPlayer.controlPlayer
             .navigator_shouldDiscardTopCards(context, topOfTheDeck.toArray(new Card[topOfTheDeck.size()]))) {
         while (!topOfTheDeck.isEmpty()) {
@@ -429,7 +429,7 @@ public class CardImplSeaside extends CardImpl {
   }
 
   private void pearlDiver(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.getDeckSize() == 0 && currentPlayer.discard.size() > 0) {
+    if (currentPlayer.getDeckSize() == 0 && !currentPlayer.discard.isEmpty()) {
       context.game.replenishDeck(context, Cards.pearlDiver, 0);
     }
 
@@ -511,7 +511,7 @@ public class CardImplSeaside extends CardImpl {
   }
 
   private void salvager(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() == 0) {
+    if (currentPlayer.hand.isEmpty()) {
       return;
     }
 
@@ -579,7 +579,7 @@ public class CardImplSeaside extends CardImpl {
     // throneroom has no effect since hand is already empty
     if (this.getControlCard().numberTimesAlreadyPlayed == 0) {
       // Only works if at least one card discarded
-      if (currentPlayer.hand.size() > 0) {
+      if (!currentPlayer.hand.isEmpty()) {
         while (!currentPlayer.hand.isEmpty()) {
           currentPlayer.discard(currentPlayer.hand.remove(0), this.getControlCard(), context);
         }
@@ -627,7 +627,7 @@ public class CardImplSeaside extends CardImpl {
   }
 
   private void warehouse(MoveContext context, Player currentPlayer) {
-    if (currentPlayer.hand.size() == 0) {
+    if (currentPlayer.hand.isEmpty()) {
       return;
     }
 

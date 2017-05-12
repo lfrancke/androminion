@@ -919,7 +919,7 @@ public abstract class QuickPlayPlayer extends BasePlayer {
   }
 
   public boolean shouldAutoPlay_raze_shouldTrashRazePlayed(MoveContext context, Card responsible) {
-    if (getHand().size() == 0) {
+    if (getHand().isEmpty()) {
       return true;
     }
     return containsCardCostingAtLeast(context, getHand(), getTrashCards(), Cards.raze.getCost(context));
