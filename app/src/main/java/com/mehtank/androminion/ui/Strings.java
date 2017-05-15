@@ -1478,10 +1478,11 @@ public class Strings {
             str =
               format(R.string.select_from_x_to_y_different_cards_from_hand, String.valueOf(sco.minCount),
                 String.valueOf(sco.count),
-                      header);
+                header);
           } else {
             str =
-              format(R.string.select_from_x_to_y_cards_from_hand, String.valueOf(sco.minCount), String.valueOf(sco.count), header);
+              format(R.string.select_from_x_to_y_cards_from_hand, String.valueOf(sco.minCount),
+                String.valueOf(sco.count), header);
           }
         } else {
           str = format(R.string.select_up_to_x_cards_from_hand, String.valueOf(sco.count), header);

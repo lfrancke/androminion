@@ -85,6 +85,16 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
   ToggleButton mRandomAdventures;
   ToggleButton mRandomEmpires;
   Map<Expansion, ToggleButton> completeSets;
+  private final OnCheckedChangeListener coreSetsListener = new OnCheckedChangeListener() {
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+      if (isChecked) {
+        enableAll();
+      } else if (getNumChecked() == 1) {
+        disableFirstSelected();
+      }
+    }
+  };
   ToggleButton mRandomPromo;
   Spinner mPlayer2;
   Spinner mPlayer3;
@@ -98,17 +108,6 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
   String[] mLastCards;
   String[] mCardsPassOnStartup;
   TypeOptions mGameType;
-
-  private final OnCheckedChangeListener coreSetsListener = new OnCheckedChangeListener() {
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-      if (isChecked) {
-        enableAll();
-      } else if (getNumChecked() == 1) {
-        disableFirstSelected();
-      }
-    }
-  };
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

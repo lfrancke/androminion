@@ -30,11 +30,11 @@ public class GameScrollerView extends HorizontalScrollView {
 
   private final Context top;
   private final LinearLayout gameEventsRow;
+  private final ArrayList<View> views = new ArrayList<>();
   private ScrollView latestTurnSV;
   private TextView latestTurn;
   private boolean onlyShowOneTurn = false;
   private int numPlayers;
-  private final ArrayList<View> views = new ArrayList<>();
   private File logfile;
 
   public GameScrollerView(Context context) {

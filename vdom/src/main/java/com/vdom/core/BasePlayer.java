@@ -4052,7 +4052,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     } else if (cl.contains(Cards.possession)) {
       return cl.get(Cards.possession);
     } else if (game.pileSize(Cards.curse) > 0 && !hand.contains(Cards.moat) && !hand
-                                                                                       .contains(Cards.watchTower)
+                                                                                  .contains(Cards.watchTower)
                && (cl.contains(Cards.witch) || cl.contains(Cards.seaHag) || cl.contains(Cards.torturer))) {
       if (cl.contains(Cards.witch)) {
         return cl.get(Cards.witch);

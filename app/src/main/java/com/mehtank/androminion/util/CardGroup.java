@@ -21,6 +21,9 @@ import com.vdom.core.Type;
 public class CardGroup extends BaseAdapter {
 
   private static final String TAG = "CardGroup";
+  private final Context top;
+  private final ArrayList<CardState> cards = new ArrayList<>();
+  private final boolean sorted = false;
   // fix bug that lets item countLeft jump around
   int[] supplySizes = null;
   int[] embargos = null;
@@ -28,11 +31,8 @@ public class CardGroup extends BaseAdapter {
   int[] pileDebtTokens = null;
   int[] pileTradeRouteTokens = null;
   int[][][] tokens = null;
-  private final Context top;
   private boolean onTable = false;
-  private final ArrayList<CardState> cards = new ArrayList<>();
   private Comparator<MyCard> cmp = new MyCard.CardCostNameComparator();
-  private final boolean sorted = false;
   private PlayerAdapter players;
 
   public CardGroup(Context top, boolean onTable) {

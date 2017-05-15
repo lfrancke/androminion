@@ -33,7 +33,11 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   static int nextPort = 2255;
   static int maxPause = 300000; // Maximum time to wait for new player to connect = 5 minutes in ms;
   private static VDomServer vdomServer = null; // points to the VDomServer object
-
+  private final HashMap<String, Integer> cardNamesInPlay = new HashMap<>();
+  private final ArrayList<Card> cardsInPlay = new ArrayList<>();
+  private final ArrayList<Player> allPlayers = new ArrayList<>();
+  private final ArrayList<Card> playedCards = new ArrayList<>();
+  private final ArrayList<Boolean> playedCardsNew = new ArrayList<>();
   // private static final String DISTINCT_CARDS = "Distinct Cards";
   protected String name;
   Comms comm = null;
@@ -44,12 +48,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
   // communication thread handled internally now
   // Thread commThread;
   private int myPort = 0;
-  private final HashMap<String, Integer> cardNamesInPlay = new HashMap<>();
-  private final ArrayList<Card> cardsInPlay = new ArrayList<>();
-  private final ArrayList<Player> allPlayers = new ArrayList<>();
   private MyCard[] myCardsInPlay;
-  private final ArrayList<Card> playedCards = new ArrayList<>();
-  private final ArrayList<Boolean> playedCardsNew = new ArrayList<>();
   private boolean hasJoined = false;
   private Object hasJoinedMonitor;
   private Thread gameThread = null; // vdom-engine-thread
@@ -557,7 +556,7 @@ public class RemotePlayer extends IndirectPlayer implements GameEventListener, E
     }
 
     return new Event(EType.STATUS)
-                .setObject(new EventObject(gs));
+             .setObject(new EventObject(gs));
   }
 
   public Event sendWithAck(Event tosend, EType resp) throws IOException, NullPointerException {

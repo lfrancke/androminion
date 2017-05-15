@@ -3,7 +3,6 @@ package com.mehtank.androminion.activities;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
@@ -40,6 +39,23 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements OnS
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+    prefs.unregisterOnSharedPreferenceChangeListener(this);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        NavUtils.navigateUpFromSameTask(this);
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
+  @Override
   public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
     if (key.equals("userlang")) {
       Strings.initContext(getApplicationContext());
@@ -58,22 +74,5 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements OnS
     bar.setTitle(R.string.settingsactivity_title);
 
     addPreferencesFromResource(R.xml.preferences);
-  }
-
-  @Override
-  protected void onPause() {
-    super.onPause();
-    prefs.unregisterOnSharedPreferenceChangeListener(this);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        NavUtils.navigateUpFromSameTask(this);
-        return true;
-      default:
-        return super.onOptionsItemSelected(item);
-    }
   }
 }

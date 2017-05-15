@@ -23,19 +23,6 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
 
   private AppCompatDelegate mDelegate;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    getDelegate().installViewFactory();
-    getDelegate().onCreate(savedInstanceState);
-    super.onCreate(savedInstanceState);
-  }
-
-  @Override
-  protected void onPostCreate(Bundle savedInstanceState) {
-    super.onPostCreate(savedInstanceState);
-    getDelegate().onPostCreate(savedInstanceState);
-  }
-
   public ActionBar getSupportActionBar() {
     return getDelegate().getSupportActionBar();
   }
@@ -45,8 +32,40 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
   }
 
   @Override
-  public MenuInflater getMenuInflater() {
-    return getDelegate().getMenuInflater();
+  protected void onCreate(Bundle savedInstanceState) {
+    getDelegate().installViewFactory();
+    getDelegate().onCreate(savedInstanceState);
+    super.onCreate(savedInstanceState);
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    getDelegate().onStop();
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    getDelegate().onDestroy();
+  }
+
+  @Override
+  protected void onPostCreate(Bundle savedInstanceState) {
+    super.onPostCreate(savedInstanceState);
+    getDelegate().onPostCreate(savedInstanceState);
+  }
+
+  @Override
+  protected void onPostResume() {
+    super.onPostResume();
+    getDelegate().onPostResume();
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    getDelegate().onConfigurationChanged(newConfig);
   }
 
   @Override
@@ -69,38 +88,19 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
     getDelegate().addContentView(view, params);
   }
 
+  public void invalidateOptionsMenu() {
+    getDelegate().invalidateOptionsMenu();
+  }
+
   @Override
-  protected void onPostResume() {
-    super.onPostResume();
-    getDelegate().onPostResume();
+  public MenuInflater getMenuInflater() {
+    return getDelegate().getMenuInflater();
   }
 
   @Override
   protected void onTitleChanged(CharSequence title, int color) {
     super.onTitleChanged(title, color);
     getDelegate().setTitle(title);
-  }
-
-  @Override
-  public void onConfigurationChanged(Configuration newConfig) {
-    super.onConfigurationChanged(newConfig);
-    getDelegate().onConfigurationChanged(newConfig);
-  }
-
-  @Override
-  protected void onStop() {
-    super.onStop();
-    getDelegate().onStop();
-  }
-
-  @Override
-  protected void onDestroy() {
-    super.onDestroy();
-    getDelegate().onDestroy();
-  }
-
-  public void invalidateOptionsMenu() {
-    getDelegate().invalidateOptionsMenu();
   }
 
   private AppCompatDelegate getDelegate() {

@@ -38,17 +38,18 @@ public class VDomPlayerPatrick extends BasePlayer {
   // cantrips and other cards which don't work on their own but need other cards
   private static final ArrayList<Card> knownDefenseCards = new ArrayList<>();
   // can be bought as reaction to aggressive opponent, normally no
-  private static final ArrayList<Card> knownCursingCards = new ArrayList<>(); // cards that add curses to opponent's deck
+  private static final ArrayList<Card> knownCursingCards = new ArrayList<>();
+  // cards that add curses to opponent's deck
   private static final ArrayList<Card> knownTrashingCards = new ArrayList<>();
   // cards that allow trashing of Curse by playing them from hand
   private static final ArrayList<Card> knownTier3Cards = new ArrayList<>();
   // cards that can be played without any additional implementation, but are not so good
   private static final ArrayList<Card> knownPrizeCards = new ArrayList<>(); // prize cards that we know how to play
   private static final ArrayList<Card> knownGood52Cards = new ArrayList<>(); // cards that play well with 5/2 start
+  private final boolean debug = Game.debug;
   Random rand = new Random(System.currentTimeMillis());
   private OpponentList opponents = new OpponentList();
   private boolean redefineStrategy = false;
-  private final boolean debug = Game.debug;
   private StrategyOption strategy = StrategyOption.Nothing;
   private Card strategyCard = null;
   private ArrayList<Card> strategyPossibleCards = new ArrayList<>();
@@ -1558,8 +1559,8 @@ public class VDomPlayerPatrick extends BasePlayer {
 
           // action cards
           if ((strategyPossibleCards.contains(card)) && ((game.pileSize(Cards.curse) > 3) || (!knownCursingCards
-                                                                                                      .contains(
-                                                                                                        card)))) {
+                                                                                                 .contains(
+                                                                                                   card)))) {
 
             // we can buy another piece of "single" card only when the deck is big enough
 
@@ -1593,12 +1594,12 @@ public class VDomPlayerPatrick extends BasePlayer {
                 if (strategyPossibleCards.contains(card)) {
                   log("action: evaluating another " + card);
                   if ((!knownComboActionCards.contains(card)) || (rand.nextBoolean()) || (card
-                                                                                                                   .costPotion())) {
+                                                                                            .costPotion())) {
                     ArrayList<Card> temp = new ArrayList<>(getAllCards());
                     temp.retainAll(knownComboActionCards);
                     //this.log(card + (isCantrip(ac) ? " is " : " isn't ") + "cantrip");
                     if (temp.size() * 2 <= getStrategyCardsInDeck(context, false).size() + (isCantrip(card) ? 1
-                                                                                                   : 0)) {
+                                                                                              : 0)) {
                       potentialBuys.add(card);
                     }
                   }
@@ -2106,8 +2107,8 @@ public class VDomPlayerPatrick extends BasePlayer {
     }
 
     if (opponents != null && opponents.getIsAttacking() && strategyCard != null && !strategyCard
-                                                                                                     .is(Type.Attack,
-                                                                                                       this)) {
+                                                                                      .is(Type.Attack,
+                                                                                        this)) {
       return true;
     }
 
@@ -2250,8 +2251,8 @@ public class VDomPlayerPatrick extends BasePlayer {
       }
 
       if ((bestcoin.getAddGold() > (bestcards.getAddCards() * getMoneyPerCard(deck.toArrayList()))) && (!bestcoin
-                                                                                                                .equals(
-                                                                                                                  Cards.village))) {
+                                                                                                           .equals(
+                                                                                                             Cards.village))) {
         return bestcoin;
       }
       if (!bestcards.equals(Cards.militia)) {
@@ -2283,9 +2284,9 @@ public class VDomPlayerPatrick extends BasePlayer {
   private static class Opponent {
 
     private final ArrayList<Card> actionCards;
+    private final int playerID;
     private int VP;
     private boolean isAttacking;
-    private final int playerID;
 
     public Opponent(int id) {
       actionCards = new ArrayList<>();
@@ -2378,13 +2379,13 @@ public class VDomPlayerPatrick extends BasePlayer {
     }
 
     @Override
-    public boolean isEmpty() {
-      return opponents.isEmpty();
+    public int size() {
+      return opponents.size();
     }
 
     @Override
-    public int size() {
-      return opponents.size();
+    public boolean isEmpty() {
+      return opponents.isEmpty();
     }
 
     @Override

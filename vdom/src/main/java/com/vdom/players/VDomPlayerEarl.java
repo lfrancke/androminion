@@ -25,11 +25,11 @@ public class VDomPlayerEarl extends BasePlayer {
   static int THRONE_ROOM_PLAYS = 0;
   static int THRONE_ROOM_DUDS = 0;
   static HashSet<Card> DEFENDABLE_ATTACK_CARDS = new HashSet<>();
+  private final int silverTurnCount = 0;
+  private final ArrayList<HistoryItem> historyItems = new ArrayList<>();
   Random rand = new Random(System.currentTimeMillis());
   // int turnCount = 0;
   private int treasureMapsBought = 0;
-  private final int silverTurnCount = 0;
-  private final ArrayList<HistoryItem> historyItems = new ArrayList<>();
 
   @Override
   public boolean isAi() {

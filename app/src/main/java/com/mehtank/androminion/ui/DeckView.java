@@ -37,7 +37,8 @@ public class DeckView extends RelativeLayout implements OnLongClickListener {
   private final TextView countsMiddle;
   private final TextView countsStashesInHand;
   private final TextView countsSuffix;
-
+  private final int textColor;
+  private final int stashColor;
   private String nameStr;
   private int turns;
   private int deckSize;
@@ -53,10 +54,6 @@ public class DeckView extends RelativeLayout implements OnLongClickListener {
   private boolean hasMinusOneCoinToken;
   private JourneyTokenState journeyTokenState;
   private boolean isCurrentTurn;
-
-  private final int textColor;
-  private final int stashColor;
-
   private boolean showCardCounts = true;
 
   public DeckView(Context context) {

@@ -28,15 +28,13 @@ public class Comms {
 
   static final int TIMEOUT = 15000; // 15 seconds in ms
   static final boolean DEBUGGING = false;
-
+  private final SocketThread networkThread;
   String host;
   int port;
   EventHandler parent;
   LinkedBlockingQueue<Event> latestEvents = new LinkedBlockingQueue<>();
   private boolean isServer = true;
-
   private Socket pclient = null;
-  private final SocketThread networkThread;
 
   /**
    * Initialize this as server.
@@ -227,6 +225,8 @@ public class Comms {
 
   private class SocketThread implements Runnable {
 
+    private final MonitorObject exceptionMonitorObject = new MonitorObject();
+    private final LinkedBlockingQueue<Event> toSendQueue = new LinkedBlockingQueue<>();
     /**
      * Exception can be UnknownHostException, IOException, or StreamCorruptedException
      */
@@ -238,10 +238,7 @@ public class Comms {
     private ObjectInputStream ois = null;
     private ObjectOutputStream oos = null;
     private volatile boolean done = false; // this is true if and only if the dispatchLoop is working
-    private final MonitorObject exceptionMonitorObject = new MonitorObject();
-
     private SendingThread sendingThread = null;
-    private final LinkedBlockingQueue<Event> toSendQueue = new LinkedBlockingQueue<>();
 
     public SocketThread() {
 

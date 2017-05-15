@@ -466,23 +466,11 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   }
 
   @Override
-  public void onResume() {
-    super.onResume();
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(top);
-    ThemeSetter.setTheme(this,
-      prefs.getBoolean("show_action_bar", "true".equals(getString(R.string.pref_showactionbar_default))));
-    ThemeSetter.setLanguage(this);
-    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    if (prefs.getBoolean("show_statusbar", true)) {
-      getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    } else {
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-    if (gameRunning) {
-      Game.processUserPrefArgs(getUserPrefs().toArray(new String[0]));
-      gt.setGameScrollerVisibilityFromPrefs();
-      gt.resumeGameTimer();
-    }
+  public void onDestroy() {
+    disconnect();
+    stopServer();
+    super.onDestroy();
+    //System.exit(0);
   }
 
   @Override
@@ -508,14 +496,62 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   }
 
   @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    //Result of StartGameActivity
-    if (requestCode == 0 && resultCode == RESULT_OK && data.hasExtra("command")) {
-      ArrayList<String> strs = data.getStringArrayListExtra("command");
-      handle(new Event(Event.EType.STARTGAME)
-               .setObject(new EventObject(strs.toArray(new String[0]))));
-      Toast.makeText(top, top.getString(R.string.toast_starting), Toast.LENGTH_SHORT).show();
+  public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.game_menu, menu);
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    if (gameRunning) {
+      menu.findItem(R.id.startgame_menu).setVisible(false);
+      menu.findItem(R.id.help_menu).setVisible(true);
+    } else {
+      menu.findItem(R.id.startgame_menu).setVisible(true);
+      menu.findItem(R.id.help_menu).setVisible(false);
     }
+    return super.onPrepareOptionsMenu(menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    super.onOptionsItemSelected(item);
+    int id = item.getItemId();
+    if (id == android.R.id.home) {
+      // Code from somewhere above, redundant
+      if (getPref("exitonback") || !getPref("show_action_bar")) {
+        long now = System.currentTimeMillis();
+        if (now - lastBackClick < 3000) // 3 seconds
+        {
+          finish();
+        } else {
+          lastBackClick = now;
+          Toast.makeText(top, getString(R.string.toast_quitconfirm), Toast.LENGTH_SHORT).show();
+        }
+        return true;
+      } else {
+        return false;
+      }
+    } else if (id == R.id.startgame_menu) {
+      quickstart();
+      return true;
+    } else if (id == R.id.help_menu) {
+      gt.showHelp(1);
+    } else if (id == R.id.settings_menu) {
+      startActivity(new Intent(this, SettingsActivity.class));
+      return true;
+    } else if (id == R.id.about_menu) {
+      startActivity(new Intent(this, AboutActivity.class));
+      return true;
+    } else if (id == R.id.stats_menu) {
+      startActivity(new Intent(this, StatisticsActivity.class));
+      return true;
+    } else if (id == R.id.quit_menu) {
+      finish();
+      return true;
+    }
+    return false;
   }
 
   public void quickstart() {
@@ -584,6 +620,17 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   }
 
   @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    //Result of StartGameActivity
+    if (requestCode == 0 && resultCode == RESULT_OK && data.hasExtra("command")) {
+      ArrayList<String> strs = data.getStringArrayListExtra("command");
+      handle(new Event(Event.EType.STARTGAME)
+               .setObject(new EventObject(strs.toArray(new String[0]))));
+      Toast.makeText(top, top.getString(R.string.toast_starting), Toast.LENGTH_SHORT).show();
+    }
+  }
+
+  @Override
   protected void onPause() {
     super.onPause();
     if (gameRunning) {
@@ -592,70 +639,23 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   }
 
   @Override
-  public void onDestroy() {
-    disconnect();
-    stopServer();
-    super.onDestroy();
-    //System.exit(0);
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.game_menu, menu);
-    return super.onCreateOptionsMenu(menu);
-  }
-
-  @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
-    if (gameRunning) {
-      menu.findItem(R.id.startgame_menu).setVisible(false);
-      menu.findItem(R.id.help_menu).setVisible(true);
+  public void onResume() {
+    super.onResume();
+    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(top);
+    ThemeSetter.setTheme(this,
+      prefs.getBoolean("show_action_bar", "true".equals(getString(R.string.pref_showactionbar_default))));
+    ThemeSetter.setLanguage(this);
+    getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    if (prefs.getBoolean("show_statusbar", true)) {
+      getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     } else {
-      menu.findItem(R.id.startgame_menu).setVisible(true);
-      menu.findItem(R.id.help_menu).setVisible(false);
+      getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
-    return super.onPrepareOptionsMenu(menu);
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    super.onOptionsItemSelected(item);
-    int id = item.getItemId();
-    if (id == android.R.id.home) {
-      // Code from somewhere above, redundant
-      if (getPref("exitonback") || !getPref("show_action_bar")) {
-        long now = System.currentTimeMillis();
-        if (now - lastBackClick < 3000) // 3 seconds
-        {
-          finish();
-        } else {
-          lastBackClick = now;
-          Toast.makeText(top, getString(R.string.toast_quitconfirm), Toast.LENGTH_SHORT).show();
-        }
-        return true;
-      } else {
-        return false;
-      }
-    } else if (id == R.id.startgame_menu) {
-      quickstart();
-      return true;
-    } else if (id == R.id.help_menu) {
-      gt.showHelp(1);
-    } else if (id == R.id.settings_menu) {
-      startActivity(new Intent(this, SettingsActivity.class));
-      return true;
-    } else if (id == R.id.about_menu) {
-      startActivity(new Intent(this, AboutActivity.class));
-      return true;
-    } else if (id == R.id.stats_menu) {
-      startActivity(new Intent(this, StatisticsActivity.class));
-      return true;
-    } else if (id == R.id.quit_menu) {
-      finish();
-      return true;
+    if (gameRunning) {
+      Game.processUserPrefArgs(getUserPrefs().toArray(new String[0]));
+      gt.setGameScrollerVisibilityFromPrefs();
+      gt.resumeGameTimer();
     }
-    return false;
   }
 
   protected void invite() {

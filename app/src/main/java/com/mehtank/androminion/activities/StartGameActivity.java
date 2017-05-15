@@ -48,6 +48,13 @@ public class StartGameActivity extends AppCompatActivity implements
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setLanguage(this);
+  }
+
+  @Override
   protected void onCreate(Bundle savedInstanceState) {
     ThemeSetter.setTheme(this, true);
     ThemeSetter.setLanguage(this);
@@ -72,12 +79,5 @@ public class StartGameActivity extends AppCompatActivity implements
       mStartGameFragment = getSupportFragmentManager().findFragmentById(
         android.R.id.content);
     }
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    ThemeSetter.setTheme(this, true);
-    ThemeSetter.setLanguage(this);
   }
 }

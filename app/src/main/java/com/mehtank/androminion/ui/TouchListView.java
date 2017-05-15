@@ -44,6 +44,7 @@ public class TouchListView extends ListView {
   @SuppressWarnings("unused")
   private static final String TAG = "TouchListView";
   private final int mTouchSlop;
+  private final Rect mTempRect = new Rect();
   private ImageView mDragView;
   private WindowManager mWindowManager;
   private WindowManager.LayoutParams mWindowParams;
@@ -59,7 +60,6 @@ public class TouchListView extends ListView {
   private int mHeight;
   private GestureDetector mGestureDetector;
   private int mRemoveMode = -1;
-  private final Rect mTempRect = new Rect();
   private Bitmap mDragBitmap;
   private int mItemHeightNormal = -1;
   private int mItemHeightExpanded = -1;

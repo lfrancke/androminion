@@ -55,6 +55,13 @@ public class StatisticsActivity extends AppCompatActivity {
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setLanguage(this);
+  }
+
+  @Override
   protected void onCreate(Bundle savedInstanceState) {
     ThemeSetter.setTheme(this, true);
     ThemeSetter.setLanguage(this);
@@ -81,13 +88,6 @@ public class StatisticsActivity extends AppCompatActivity {
                                       .setText(R.string.achievements_menu)
                                       .setIcon(android.R.drawable.ic_menu_agenda);
     mTabsAdapter.addTab(achievementsTab, AchievementsFragment.class, null);
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    ThemeSetter.setTheme(this, true);
-    ThemeSetter.setLanguage(this);
   }
 
   private AlertDialog buildResetDialog(final Context context) {

@@ -17,10 +17,9 @@ public class SelectStringView extends BottomInputView implements AdapterView.OnI
 
   @SuppressWarnings("unused")
   private static final String TAG = "SelectStringView";
-
-  ListView lv;
   private final Event.EType returnType;
   private final List<String> options;
+  ListView lv;
 
   public SelectStringView(GameActivity top,
                            String header,

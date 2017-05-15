@@ -14,10 +14,8 @@ public class PlayerAdapter extends ArrayAdapter<PlayerSummary> {
 
   @SuppressWarnings("unused")
   private static final String TAG = "PlayerAdapter";
-
-  private LinearLayout container = null;
-
   private final ArrayList<View> deckStatusItems = new ArrayList<>();
+  private LinearLayout container = null;
 
   public PlayerAdapter(Context context) {
     super(context, 0);

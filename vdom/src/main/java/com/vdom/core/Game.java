@@ -37,6 +37,7 @@ public class Game {
   public static final HashSet<GameEvent.EventType> showEvents = new HashSet<>();
   public static final HashSet<String> showPlayers = new HashSet<>();
   private static final int kingdomCardPileSize = 10;
+  private static final HashMap<String, Player> playerCache = new HashMap<>();
   public static boolean junit = false;
   public static boolean debug = false;
   public static Integer cardSequence = 1;
@@ -108,7 +109,8 @@ public class Game {
   static boolean forceDownload = false;
   static HashMap<String, Double> overallWins = new HashMap<>();
   static int playersTurn;
-  private static final HashMap<String, Player> playerCache = new HashMap<>();
+  private final HashMap<String, HashMap<Player, List<PlayerSupplyToken>>> playerSupplyTokens =
+    new HashMap<>();
   public ArrayList<GameEventListener> listeners = new ArrayList<>();
   public GameEventListener gameListener;
   public HashMap<String, CardPile> piles = new HashMap<>();
@@ -143,8 +145,6 @@ public class Game {
   int turnCount = 0;
   int consecutiveTurnCounter = 0;
   boolean gameOver = false;
-  private final HashMap<String, HashMap<Player, List<PlayerSupplyToken>>> playerSupplyTokens =
-    new HashMap<>();
 
   public static void main(String[] args) {
     try {

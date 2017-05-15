@@ -260,7 +260,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       if (c.pile == MyCard.MONEYPILE || c.pile == MyCard.VPPILE) {
         ViewGroup.LayoutParams params = cardDesc.getLayoutParams();
         params.height = (int) (0.5f + (viewstyle.equals("viewstyle-condensed") ? 15 : 20) * getContext().getResources()
-                                                                                           .getDisplayMetrics().density);
+                                                                                              .getDisplayMetrics().density);
         cardDesc.setLayoutParams(params);
       }
     }
@@ -327,9 +327,6 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     alphaAnimation.setDuration(0L);
     alphaAnimation.setFillAfter(true);
     cardBox.startAnimation(alphaAnimation);
-  }  @Override
-  public boolean isChecked() {
-    return state.opened;
   }
 
   public void setEmbargos(int s) {
@@ -340,6 +337,11 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       embargos.setText(" " + s + " ");
       embargos.setVisibility(VISIBLE);
     }
+  }
+
+  @Override
+  public boolean isChecked() {
+    return state.opened;
   }
 
   public void setPileVpTokens(int val) {
@@ -360,9 +362,6 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       pileDebtTokens.setText(" " + val + " ");
       pileDebtTokens.setVisibility(VISIBLE);
     }
-  }  @Override
-  public void toggle() {
-    setChecked(!state.opened);
   }
 
   public void setPileTradeRouteTokens(int val) {
@@ -409,12 +408,14 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     }
   }
 
+  @Override
+  public void toggle() {
+    setChecked(!state.opened);
+  }
+
   public void setCost(int newCost, boolean overpay, int newDebtCost) {
     debtCost.setText(" " + newDebtCost + " ");
     cost.setText(" " + newCost + (overpay ? "+" : "") + " ");
-  }  @Override
-  public void setChecked(boolean arg0) {
-    setChecked(arg0, -1, "");
   }
 
   public CardState getState() {
@@ -461,15 +462,16 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       // This is currently needed as the download location differs for 2e cards
       // TODO: This should probably be a property of the expansion instead of being hardcoded here
       String nextToken = st.nextToken();
-         if (nextToken.equals("base2e")) {
-           expBuilder.append("2nd");
-         } else {
-           expBuilder.append(nextToken);
-         }    }
+      if (nextToken.equals("base2e")) {
+        expBuilder.append("2nd");
+      } else {
+        expBuilder.append(nextToken);
+      }
+    }
     String exp = expBuilder.toString();
 
 		/*if (exp.length() == 0)
-			exp = "common";
+      exp = "common";
 		if (filename.equals("potion"))
 			exp = "alchemy";
 		else if (filename.equals("colony"))
@@ -603,6 +605,11 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     ad.getButton(AlertDialog.BUTTON_POSITIVE).setGravity(Gravity.CENTER);
 
     return true;
+  }
+
+  @Override
+  public void setChecked(boolean arg0) {
+    setChecked(arg0, -1, "");
   }
 
   public String GetCardTypeString(MyCard c) {
@@ -979,11 +986,5 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       this.shade = shade;
     }
   }
-
-
-
-
-
-
 
 }

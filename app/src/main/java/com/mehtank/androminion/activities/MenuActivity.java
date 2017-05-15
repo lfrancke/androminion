@@ -123,18 +123,19 @@ public class MenuActivity extends AppCompatActivity implements
   }
 
   @Override
-  protected void onSaveInstanceState(Bundle savedInstanceState) {
-    savedInstanceState.putInt("mState", mState);
-    super.onSaveInstanceState(savedInstanceState);
-  }
-
-  @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     if (requestCode == 0 && resultCode == RESULT_OK) {
       Intent i = new Intent(this, GameActivity.class);
       i.putExtras(data);
       startActivity(i);
     }
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setLanguage(this);
   }
 
   @Override
@@ -196,10 +197,9 @@ public class MenuActivity extends AppCompatActivity implements
   }
 
   @Override
-  public void onResume() {
-    super.onResume();
-    ThemeSetter.setTheme(this, true);
-    ThemeSetter.setLanguage(this);
+  protected void onSaveInstanceState(Bundle savedInstanceState) {
+    savedInstanceState.putInt("mState", mState);
+    super.onSaveInstanceState(savedInstanceState);
   }
 
   private Fragment createStartGameFragment() {

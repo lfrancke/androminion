@@ -40,6 +40,13 @@ public class AboutActivity extends AppCompatActivity {
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setLanguage(this);
+  }
+
+  @Override
   protected void onCreate(Bundle savedInstanceState) {
     ThemeSetter.setTheme(this, true);
     ThemeSetter.setLanguage(this);
@@ -80,12 +87,5 @@ public class AboutActivity extends AppCompatActivity {
     ActionBar.Tab creditsTab = bar.newTab().setText(R.string.contrib_menu)
                                  .setIcon(android.R.drawable.ic_menu_my_calendar);
     mTabsAdapter.addTab(creditsTab, CreditsFragment.class, null);
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    ThemeSetter.setTheme(this, true);
-    ThemeSetter.setLanguage(this);
   }
 }

@@ -24,6 +24,7 @@ public abstract class Player {
   public static final String NON_VICTORY_EMPTY_SUPPLY_PILE_CARDS = "Non Victory Empty Supply Pile Cards";
   public static final String SECOND_MOST_COMMON_ACTION_CARDS = "Second Most Common Action Cards";
   public static final String VICTORY_TOKENS = "Victory Tokens";
+  private final Map<Card, Integer> victoryTokensSource = new TreeMap<>();
   public int playerNumber;
   public int shuffleCount = 0;
   public int vps;
@@ -62,7 +63,6 @@ public abstract class Player {
   private int debtTokenCount;
   private Card checkLeadCard;
   private int victoryTokens;
-  private final Map<Card, Integer> victoryTokensSource = new TreeMap<>();
   private boolean journeyTokenFaceUp;
   private boolean minusOneCoinTokenOn;
   private boolean minusOneCardTokenOn;
@@ -539,7 +539,7 @@ public abstract class Player {
   }
 
   public Map<Object, Integer> getVictoryCardCounts() {
-      Map<Object, Integer> cardCounts = new HashMap<>();
+    Map<Object, Integer> cardCounts = new HashMap<>();
 
     // seed counts with all victory cards in play
     for (CardPile pile : game.piles.values()) {
@@ -550,9 +550,9 @@ public abstract class Player {
       }
     }
 
-      Map<Object, Integer> allCardCounts = new HashMap<>();
-      HashSet<String> distinctCards = new HashSet<>();
-      for (Card card : getAllCards()) {
+    Map<Object, Integer> allCardCounts = new HashMap<>();
+    HashSet<String> distinctCards = new HashSet<>();
+    for (Card card : getAllCards()) {
       distinctCards.add(card.getName());
       if (card.is(Type.Victory, this) || card.is(Type.Curse, this)) {
         if (cardCounts.containsKey(card)) {
@@ -929,7 +929,7 @@ public abstract class Player {
                        boolean cleanup) { // See rules explanation of Tunnel for what commandedDiscard means.
     boolean willDiscard = false;
 
-      if (card.behaveAsCard().equals(Cards.hermit)) {
+    if (card.behaveAsCard().equals(Cards.hermit)) {
       if (!commandedDiscard &&
           (context != null) &&
           (context.totalCardsBoughtThisTurn == 0)) {
@@ -950,8 +950,8 @@ public abstract class Player {
       willDiscard = true;
     }
 
-      Card exchange = null;
-      if (willDiscard) {
+    Card exchange = null;
+    if (willDiscard) {
       if (!commandedDiscard && cleanup && card.equals(Cards.capital)) {
         context.getPlayer().controlPlayer.gainDebtTokens(6);
         GameEvent event = new GameEvent(GameEvent.EventType.DebtTokensObtained, context);
@@ -1920,7 +1920,7 @@ public abstract class Player {
     }
 
     // Check for return-to-deck options
-      int actionsPlayed = context.countActionCardsInPlay();
+    int actionsPlayed = context.countActionCardsInPlay();
 
     //return Encampments
     while (!encampment.isEmpty()) {
@@ -1928,9 +1928,9 @@ public abstract class Player {
       game.getGamePile(toReturn).addCard(toReturn);
     }
 
-      ArrayList<Card> putBackCards = new ArrayList<>();
-      List<PutBackOption> putBackOptions;
-      while (!(putBackOptions = controlPlayer.getPutBackOptions(context, actionsPlayed)).isEmpty()) {
+    ArrayList<Card> putBackCards = new ArrayList<>();
+    List<PutBackOption> putBackOptions;
+    while (!(putBackOptions = controlPlayer.getPutBackOptions(context, actionsPlayed)).isEmpty()) {
       PutBackOption putBackOption = controlPlayer.selectPutBackOption(context, putBackOptions);
       if (putBackOption == PutBackOption.None || (isPossessed() && controlPlayer.isAi())) {
         break;

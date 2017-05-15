@@ -33,11 +33,11 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
    */
   HorizontalScrollView hsv;
 
-	/*
+  /*
    * The CardGroup objects are the Adapters and hence contain the actual information.
-	 * The GridViews are the table of cards
-	 * The LinearLayout contain this GridView and a Title
-	 */
+   * The GridViews are the table of cards
+   * The LinearLayout contain this GridView and a Title
+   */
 
   /*
    * orig and ordered: show both next to each other; the user clicks on orig-elements in the
@@ -70,9 +70,9 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
       origCards.add(i);
     }
 
-		/*
+    /*
      * Two ListViews containing GridVidws showing /orig/ and /ordered/
-		 */
+     */
     orig = new CardGroup(top, false);
     origGV = GameTableViews.makeGV(top, orig, 1);
     origGV.setOnItemClickListener(this);
@@ -83,9 +83,9 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
     orderedGV.setOnItemClickListener(this);
     orderedCS = (GameTableViews.myCardSet(top, top.getString(R.string.top_of_deck), orderedGV, null));
 
-    	/*
-    	 * DragNDropListView showing /orig/
-    	 */
+    /*
+     * DragNDropListView showing /orig/
+     */
     touch = new DragNDropListView(top);
     float scale = getResources().getDisplayMetrics().density;
     System.out.println(scale);
@@ -104,9 +104,9 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
     touch.setAdapter(orig); // orig is now the adapter of origGV /and/ touch
     touchCS = (GameTableViews.myCardSet(top, top.getString(R.string.top_of_deck), touch, null));
 
-    	/*
-    	 * Accept-button
-    	 */
+    /*
+     * Accept-button
+     */
     select = new Button(top);
     select.setText(R.string.accept);
     select.setOnClickListener(new View.OnClickListener() {
@@ -116,9 +116,9 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
       }
     });
 
-        /*
-         * Reset-button, not shown in standard layout
-         */
+    /*
+     * Reset-button, not shown in standard layout
+     */
     reset = new Button(top);
     reset.setText(R.string.reset);
     reset.setOnClickListener(new View.OnClickListener() {
@@ -128,22 +128,22 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
       }
     });
 
-        /*
-         * instructions: "Drag/drop the cards blablabla
-         */
+    /*
+     * instructions: "Drag/drop the cards blablabla
+     */
     TextView inst = new TextView(top);
     inst.setText(R.string.order_cards_summary);
 
     ll.setOrientation(LinearLayout.HORIZONTAL);
     ll.addView(select);
-		/*
-		 * The following two make us the drag/drop
-		 */
+    /*
+     * The following two make us the drag/drop
+     */
     ll.addView(touchCS);
     ll.addView(inst);
-		/*
-		 * The following would make us click each card in order
-		 */
+    /*
+     * The following would make us click each card in order
+     */
     // ll.addView(origCS); // original order
     // ll.addView(orderedCS); // order we want to submut
     // ll.addView(reset); // reset to old order
@@ -178,13 +178,13 @@ public class OrderCardsView extends BottomInputView implements OnItemClickListen
     ll = new LinearLayout(top);
 
     hsv = new HorizontalScrollView(top);/* {
-    		@Override
-    		public void onSizeChanged (int w, int h, int oldw, int oldh) {
-    			i += 20;
-    			RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(w, Math.max(h, oldh) + i); // this doesn't work
-    			setLayoutParams(p);
-    		}
-    	};*/
+        @Override
+        public void onSizeChanged (int w, int h, int oldw, int oldh) {
+          i += 20;
+          RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(w, Math.max(h, oldh) + i); // this doesn't work
+          setLayoutParams(p);
+        }
+      };*/
     hsv.addView(ll);
 
     return hsv;

@@ -765,12 +765,12 @@ public class CardImpl implements Card, Comparable<Card> {
     this.controlCard = controlCard;
   }
 
-  public boolean equals(Object object) {
-    return (object != null) && name.equals(((Card) object).getName()); // took away typecheck
-  }
-
   public int hashCode() {
     return name.hashCode();
+  }
+
+  public boolean equals(Object object) {
+    return (object != null) && name.equals(((Card) object).getName()); // took away typecheck
   }
 
   public String toString() {
@@ -856,9 +856,9 @@ public class CardImpl implements Card, Comparable<Card> {
     for (int i = currentPlayer.playedCards.size() - 1; i >= 0; --i) {
       Card c = currentPlayer.playedCards.get(i);
       if (c.behaveAsCard() != this && c.behaveAsCard().getKind() == Cards.Kind.Urchin && currentPlayer.controlPlayer
-                                                                                              .urchin_shouldTrashForMercenary(
-                                                                                                context,
-                                                                                                c.getControlCard())) {
+                                                                                           .urchin_shouldTrashForMercenary(
+                                                                                             context,
+                                                                                             c.getControlCard())) {
         currentPlayer.trash(c.getControlCard(), this, context);
         currentPlayer.gainNewCard(Cards.mercenary, this, context);
         currentPlayer.playedCards.remove(i);

@@ -27,9 +27,9 @@ public class CardSet {
 
   public static final GameType defaultGameType = GameType.Random;
   private static final Map<GameType, CardSet> CardSetMap = new HashMap<>();
-  public static Random rand = new Random(System.currentTimeMillis());
   private static final int MIN_RECOMMENDED_ALCHEMY = 3;
   private static final int MAX_RECOMMENDED_ALCHEMY = 5;
+  public static Random rand = new Random(System.currentTimeMillis());
   private final List<Card> cards;
   private final Card baneCard;
   private final boolean isRandom;

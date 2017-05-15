@@ -47,6 +47,8 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   private static final String TAG = "GameTable";
   private static int[] costs = {};
   private final GameActivity top;
+  private final PlayerAdapter players = new PlayerAdapter(getContext());
+  private final HelpView helpView;
   GridView handGV, playedGV, tavernGV, archiveGV, princeGV, islandGV, villageGV, inheritanceGV, blackMarketGV, trashGV;
   CardGroup hand, played, tavern, archive, prince, island, village, inheritance, blackMarket, trash;
   View tavernColumn, archiveColumn, princeColumn, islandColumn, villageColumn, inheritanceColumn, blackMarketColumn,
@@ -98,8 +100,6 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   boolean firstPass = false;
   boolean canClick = true;
   String prompt = "";
-  private final PlayerAdapter players = new PlayerAdapter(getContext());
-  private final HelpView helpView;
   private int[] lastSupplySizes;
   private int[] lastEmbargos;
   private int[] lastPileVpTokens;
@@ -460,7 +460,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
         }
 
         if (sco.getPickType() == PickType.SELECT_WITH_ALL && openedCards.isEmpty() && !select.getText().toString()
-                                                                                           .endsWith("!")) {
+                                                                                         .endsWith("!")) {
           // Hack to notify that "All" was selected
           top.handle(new Event(Event.EType.CARD)
                        .setInteger(1)
@@ -817,7 +817,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   /**
    * The RemotePlayer updated us about the setup of the game, and we display the changes to the user.
    *
-   * @param gs      GameStatus object contains all this information
+   * @param gs GameStatus object contains all this information
    */
   public void setStatus(GameStatus gs, Object[] objects, Event event) {
     boolean newTurn = event.b;
