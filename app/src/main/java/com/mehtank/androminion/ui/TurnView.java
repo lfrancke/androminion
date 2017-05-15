@@ -24,7 +24,6 @@ public class TurnView extends LinearLayout {
   Uri trURI, actionURI, buyURI, bridgeURI;
   TextView coins;
 
-  @SuppressWarnings("deprecation")
   public TurnView(Context context) {
     super(context);
 
@@ -63,7 +62,7 @@ public class TurnView extends LinearLayout {
 
     lp = new LinearLayout.LayoutParams(
                                         ViewGroup.LayoutParams.WRAP_CONTENT,
-                                        ViewGroup.LayoutParams.FILL_PARENT);
+                                        ViewGroup.LayoutParams.MATCH_PARENT);
 
     tv = new TextView(top);
     tv.setLayoutParams(lp);

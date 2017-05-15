@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
   <LinearLayout
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
     android:gravity="center_horizontal"
@@ -27,7 +27,7 @@
 
     <Button
       android:id="@+id/but_start"
-      android:layout_width="fill_parent"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginBottom="20dp"
       android:layout_marginTop="20dp"
@@ -40,7 +40,7 @@
 
     <Button
       android:id="@+id/but_stats"
-      android:layout_width="fill_parent"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:onClick="onClickStats"
       android:paddingLeft="20dp"
@@ -49,7 +49,7 @@
 
     <Button
       android:id="@+id/but_settings"
-      android:layout_width="fill_parent"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:onClick="onClickSettings"
       android:paddingLeft="20dp"
@@ -58,7 +58,7 @@
 
     <Button
       android:id="@+id/but_about"
-      android:layout_width="fill_parent"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:onClick="onClickAbout"
       android:paddingLeft="20dp"

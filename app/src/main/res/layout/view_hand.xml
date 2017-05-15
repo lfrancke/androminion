@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                       android:id="@+id/myCardView"
-                      android:layout_width="fill_parent"
+                      android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:fadeScrollbars="true">
 
   <LinearLayout
     android:layout_width="wrap_content"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:orientation="horizontal">
 
     <!-- Hand -->
 
     <LinearLayout
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_hands"
       android:orientation="vertical">
 
@@ -30,7 +30,7 @@
       <GridView
         android:id="@+id/handGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:scrollbarStyle="outsideOverlay"
@@ -42,7 +42,7 @@
 
     <LinearLayout
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_hands"
       android:orientation="vertical">
 
@@ -59,7 +59,7 @@
       <GridView
         android:id="@+id/playedGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:stretchMode="columnWidth"
@@ -71,7 +71,7 @@
     <LinearLayout
       android:id="@+id/princeColumn"
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_cards"
       android:orientation="vertical"
       android:visibility="gone">
@@ -84,7 +84,7 @@
       <GridView
         android:id="@+id/princeGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:stretchMode="columnWidth"/>
@@ -95,7 +95,7 @@
     <LinearLayout
       android:id="@+id/islandColumn"
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_cards"
       android:orientation="vertical"
       android:visibility="gone">
@@ -112,7 +112,7 @@
       <GridView
         android:id="@+id/islandGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:stretchMode="columnWidth"
@@ -124,7 +124,7 @@
     <LinearLayout
       android:id="@+id/tavernColumn"
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_cards"
       android:orientation="vertical"
       android:visibility="gone">
@@ -141,7 +141,7 @@
       <GridView
         android:id="@+id/tavernGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:stretchMode="columnWidth"
@@ -153,7 +153,7 @@
     <LinearLayout
       android:id="@+id/archiveColumn"
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_cards"
       android:orientation="vertical"
       android:visibility="gone">
@@ -166,7 +166,7 @@
       <GridView
         android:id="@+id/archiveGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:stretchMode="columnWidth"/>
@@ -177,7 +177,7 @@
     <LinearLayout
       android:id="@+id/villageColumn"
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_hands"
       android:orientation="vertical"
       android:visibility="gone">
@@ -194,7 +194,7 @@
       <GridView
         android:id="@+id/villageGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:stretchMode="columnWidth"
@@ -207,7 +207,7 @@
     <LinearLayout
       android:id="@+id/inheritanceColumn"
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_cards"
       android:orientation="vertical"
       android:visibility="gone">
@@ -220,7 +220,7 @@
       <GridView
         android:id="@+id/inheritanceGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:stretchMode="columnWidth"/>
@@ -231,7 +231,7 @@
     <LinearLayout
       android:id="@+id/blackMarketColumn"
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_cards"
       android:orientation="vertical"
       android:visibility="gone">
@@ -244,7 +244,7 @@
       <GridView
         android:id="@+id/blackMarketGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:stretchMode="columnWidth"/>
@@ -255,7 +255,7 @@
     <LinearLayout
       android:id="@+id/trashColumn"
       android:layout_width="@dimen/cardWidth"
-      android:layout_height="fill_parent"
+      android:layout_height="match_parent"
       android:layout_marginLeft="@dimen/margin_cards"
       android:orientation="vertical"
       android:visibility="gone">
@@ -268,7 +268,7 @@
       <GridView
         android:id="@+id/trashGV"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:listSelector="@android:color/transparent"
         android:numColumns="1"
         android:stretchMode="columnWidth"/>

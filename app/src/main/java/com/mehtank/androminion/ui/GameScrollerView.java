@@ -100,9 +100,8 @@ public class GameScrollerView extends HorizontalScrollView {
       latestTurnSV =
         (ScrollView) LayoutInflater.from(top).inflate(R.layout.view_gamescrollercolumn, gameEventsRow, false);
 
-      @SuppressWarnings("deprecation")
       LinearLayout.LayoutParams layoutParams =
-        new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT);
+        new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
       layoutParams.setMargins((int) getResources().getDimension(R.dimen.margin_gamelog),
         (int) getResources().getDimension(R.dimen.margin_gamelog),
         (int) getResources().getDimension(R.dimen.margin_gamelog),
