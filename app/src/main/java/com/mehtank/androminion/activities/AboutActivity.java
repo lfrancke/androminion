@@ -1,18 +1,14 @@
 package com.mehtank.androminion.activities;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import com.mehtank.androminion.R;
-import com.mehtank.androminion.fragments.AboutFragment;
-import com.mehtank.androminion.fragments.ConnectionsFragment;
-import com.mehtank.androminion.fragments.CreditsFragment;
-import com.mehtank.androminion.fragments.WhatsnewFragment;
 import com.mehtank.androminion.util.ThemeSetter;
-import com.mehtank.androminion.util.compat.TabsAdapter;
+import com.mehtank.androminion.util.compat.AboutFragmentsAdapter;
 
 /**
  * This activity just shows four tabs: about, connections, what's new and credits.
@@ -21,12 +17,6 @@ import com.mehtank.androminion.util.compat.TabsAdapter;
  * to API7).
  */
 public class AboutActivity extends AppCompatActivity {
-
-  @SuppressWarnings("unused")
-  private static final String TAG = "AboutActivity";
-
-  private ViewPager mViewPager;
-  private TabsAdapter mTabsAdapter;
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
@@ -48,22 +38,25 @@ public class AboutActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    ThemeSetter.setTheme(this, true);
-    ThemeSetter.setLanguage(this);
     super.onCreate(savedInstanceState);
 
-    mViewPager = new ViewPager(this);
-    mViewPager.setId(R.id.about_pager);
+    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setLanguage(this);
 
-    setContentView(mViewPager);
+    setContentView(R.layout.activity_about);
 
+    ViewPager pager = (ViewPager) findViewById(R.id.about_pager);
+    pager.setAdapter(new AboutFragmentsAdapter(getFragmentManager(), this));
+
+
+    /*
     ActionBar bar = getSupportActionBar();
-    bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
     bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
     bar.setDisplayHomeAsUpEnabled(true);
     bar.setDisplayShowTitleEnabled(true);
     bar.setTitle(R.string.aboutactivity_title);
-
+    */
+    /*
     mTabsAdapter = new TabsAdapter(this, mViewPager);
 
     // About tab
@@ -87,5 +80,6 @@ public class AboutActivity extends AppCompatActivity {
     ActionBar.Tab creditsTab = bar.newTab().setText(R.string.contrib_menu)
                                  .setIcon(android.R.drawable.ic_menu_my_calendar);
     mTabsAdapter.addTab(creditsTab, CreditsFragment.class, null);
+     */
   }
 }
