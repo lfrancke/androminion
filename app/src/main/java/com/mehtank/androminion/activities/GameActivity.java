@@ -441,7 +441,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     if (!prefs.getString("LastVersion", "None").equals(getString(R.string.version))) {
       SharedPreferences.Editor edit = prefs.edit();
       edit.putString("LastVersion", getString(R.string.version));
-      edit.commit();
+      edit.apply();
 
       //new AboutDialog(this, true);
     }
@@ -809,7 +809,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
         + c.originalSafeName);
     }
 
-    edit.commit();
+    edit.apply();
   }
 
   private void disconnect() {

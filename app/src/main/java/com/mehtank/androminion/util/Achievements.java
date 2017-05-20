@@ -131,7 +131,7 @@ public class Achievements {
       for (String pref : prefsToClear) {
         editor.remove(pref);
       }
-      editor.commit();
+      editor.apply();
     }
   }
 
@@ -141,7 +141,7 @@ public class Achievements {
       editor.remove(KEYS[i]);
       achievementsDone[i] = false;
     }
-    editor.commit();
+    editor.apply();
   }
 
   public boolean hasAchieved(String achievement) {
@@ -171,7 +171,7 @@ public class Achievements {
       achievementsDone[index] = true;
       Editor editor = prefs.edit();
       editor.putBoolean(KEYS[index], true);
-      editor.commit();
+      editor.apply();
       Toast.makeText(context, context.getString(R.string.achievements_menu) + "!!!\n" + text[index], Toast.LENGTH_SHORT)
         .show();
     }
@@ -204,7 +204,7 @@ public class Achievements {
           Editor editor = prefs.edit();
           editor.putString(WIN_STREAK_PLAYER_KEY, winStreakPlayer);
           editor.putInt(WIN_STREAK_COUNT_KEY, winStreakCount);
-          editor.commit();
+          editor.apply();
         }
         totalLosses++;
         numPlayersLosses++;
@@ -215,7 +215,7 @@ public class Achievements {
       editor.putInt("losses_" + name, totalLosses);
       editor.putInt(numPlayersPrefix + "wins_" + name, numPlayersWins);
       editor.putInt(numPlayersPrefix + "losses_" + name, numPlayersLosses);
-      editor.commit();
+      editor.apply();
     }
 
     for (Integer winner : winners) {
@@ -230,7 +230,7 @@ public class Achievements {
         Editor editor = prefs.edit();
         editor.putString(WIN_STREAK_PLAYER_KEY, winStreakPlayer);
         editor.putInt(WIN_STREAK_COUNT_KEY, winStreakCount);
-        editor.commit();
+        editor.apply();
         break;
       }
     }

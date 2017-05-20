@@ -155,7 +155,7 @@ public class MenuActivity extends AppCompatActivity implements
       Log.d(TAG, "Resetting theme setting to default value");
       Editor editor = pref.edit();
       editor.remove("theme");
-      editor.commit();
+      editor.apply();
     }
 
     super.onCreate(savedInstanceState);
@@ -179,7 +179,7 @@ public class MenuActivity extends AppCompatActivity implements
     if (!prefs.getString("LastVersion", "None").equals(getString(R.string.version))) {
       SharedPreferences.Editor edit = prefs.edit();
       edit.putString("LastVersion", getString(R.string.version));
-      edit.commit();
+      edit.apply();
 
       LayoutInflater inflator = LayoutInflater.from(getApplicationContext());
       View v = inflator.inflate(R.layout.fragment_whatsnew, null);

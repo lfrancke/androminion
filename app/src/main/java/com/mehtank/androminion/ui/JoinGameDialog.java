@@ -124,7 +124,7 @@ public class JoinGameDialog implements DialogInterface.OnClickListener {
     SharedPreferences.Editor edit = prefs.edit();
 
     edit.putString("name", name.getText().toString());
-    edit.commit();
+    edit.apply();
 
     joinGame(port, name.getText().toString());
     a.dismiss();

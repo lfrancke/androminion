@@ -820,7 +820,7 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
       Log.d("Cards specified", sb.toString());
       strs.add(sb.toString());
     }
-    edit.commit();
+    edit.apply();
 
     try {
       ((OnStartGameListener) getActivity()).onStartGameClick(strs);
