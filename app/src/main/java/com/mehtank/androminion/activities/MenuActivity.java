@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.mehtank.androminion.BuildConfig;
 import com.mehtank.androminion.R;
 import com.mehtank.androminion.fragments.StartGameFragment;
 import com.mehtank.androminion.fragments.StartGameFragment.OnStartGameListener;
@@ -140,6 +142,7 @@ public class MenuActivity extends AppCompatActivity implements
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    setupStrictMode();
     ThemeSetter.setTheme(this, true);
     ThemeSetter.setLanguage(this);
     PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
@@ -212,5 +215,18 @@ public class MenuActivity extends AppCompatActivity implements
 
   private void changeFragment(Fragment newFragment) {
     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_content, newFragment).commit();
+  }
+
+  private void setupStrictMode() {
+    StrictMode.ThreadPolicy.Builder builder =
+      new StrictMode.ThreadPolicy.Builder()
+        .detectAll()
+        .penaltyLog();
+
+    if (BuildConfig.DEBUG) {
+      builder.penaltyFlashScreen();
+    }
+
+    StrictMode.setThreadPolicy(builder.build());
   }
 }
