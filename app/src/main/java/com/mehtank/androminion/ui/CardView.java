@@ -253,7 +253,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     countLeft.setTextColor(countColor);
 
     if (cardDesc != null) {
-      cardDesc.setTextColor(countColor);
+      cardDesc.setTextColor(textColor);
       if (c.pile == MyCard.MONEYPILE || c.pile == MyCard.VPPILE) {
         ViewGroup.LayoutParams params = cardDesc.getLayoutParams();
         params.height = (int) (0.5f + (viewstyle.equals("viewstyle-condensed") ? 15 : 20) * getContext().getResources()
