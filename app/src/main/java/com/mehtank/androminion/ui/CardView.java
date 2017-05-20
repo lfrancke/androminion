@@ -717,6 +717,8 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       cardType += context.getString(R.string.type_landmark);
     } else if (c.name.equalsIgnoreCase("hovel")) {
       cardType += context.getString(R.string.type_reaction) + " - " + context.getString(R.string.type_shelter);
+    } else if (c.isCurse) {
+      cardType += context.getString(R.string.type_curse);
     }
 
     return cardType;
