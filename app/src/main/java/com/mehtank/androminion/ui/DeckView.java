@@ -20,7 +20,6 @@ import com.vdom.comms.GameStatus.JourneyTokenState;
 
 public class DeckView extends RelativeLayout implements OnLongClickListener {
 
-  @SuppressWarnings("unused")
   private static final String TAG = "DeckView";
 
   private final TextView name;
@@ -116,12 +115,12 @@ public class DeckView extends RelativeLayout implements OnLongClickListener {
     String txt = nameStr + getContext().getString(R.string.turn_header) + turns;
     name.setText(txt);
     if (highlight) {
-      //			name.setTextColor(Color.BLACK);
-      //			name.setBackgroundColor(Color.GRAY);
+      // name.setTextColor(Color.BLACK);
+      // name.setBackgroundColor(Color.GRAY);
       name.setTypeface(Typeface.DEFAULT_BOLD);
     } else {
-      //			name.setTextColor(Color.WHITE);
-      //			name.setBackgroundColor(Color.TRANSPARENT);
+      // name.setTextColor(Color.WHITE);
+      // name.setBackgroundColor(Color.TRANSPARENT);
       name.setTypeface(Typeface.DEFAULT);
     }
     if (showColor) {
@@ -215,38 +214,38 @@ public class DeckView extends RelativeLayout implements OnLongClickListener {
     Context c = getContext();
     StringBuilder sb = new StringBuilder();
     sb.append(String.format(c.getString(R.string.status_turn_number), turns,
-      (isCurrentTurn ? c.getString(R.string.status_current_turn) : "")));
+      isCurrentTurn ? c.getString(R.string.status_current_turn) : ""));
     sb.append("\n\n");
     if (showCardCounts) {
       sb.append(String.format(c.getString(R.string.status_deck_size), deckSize,
-        (stashOnDeck ? c.getString(R.string.status_stash_on_deck) : "")) + "\n");
-      sb.append(String.format(c.getString(R.string.status_hand_size), handSize) + "\n");
+        stashOnDeck ? c.getString(R.string.status_stash_on_deck) : "")).append("\n");
+      sb.append(String.format(c.getString(R.string.status_hand_size), handSize)).append("\n");
       if (stashesInHand > 0) {
-        sb.append(String.format(c.getString(R.string.status_hand_stashes), stashesInHand) + "\n");
+        sb.append(String.format(c.getString(R.string.status_hand_stashes), stashesInHand)).append("\n");
       }
-      sb.append(String.format(c.getString(R.string.status_total_cards), numCards) + "\n\n");
+      sb.append(String.format(c.getString(R.string.status_total_cards), numCards)).append("\n\n");
     }
     if (hasMinusOneCoinToken) {
-      sb.append(c.getString(R.string.status_has_minus_coin_token) + "\n");
+      sb.append(c.getString(R.string.status_has_minus_coin_token)).append("\n");
     }
     if (hasMinusOneCardToken) {
-      sb.append(c.getString(R.string.status_has_minus_card_token) + "\n");
+      sb.append(c.getString(R.string.status_has_minus_card_token)).append("\n");
     }
     if (journeyTokenState != null) {
       sb.append(c.getString(journeyTokenState == JourneyTokenState.FACE_UP ? R.string.status_journey_token_up
-                              : R.string.status_journey_token_down) + "\n");
+                              : R.string.status_journey_token_down)).append("\n");
     }
     if (numCoinTokens > 0) {
-      sb.append(String.format(c.getString(R.string.status_coin_tokens), numCoinTokens) + "\n");
+      sb.append(String.format(c.getString(R.string.status_coin_tokens), numCoinTokens)).append("\n");
     }
     if (numPirateTokens > 0) {
-      sb.append(String.format(c.getString(R.string.status_pirate_tokens), numPirateTokens) + "\n");
+      sb.append(String.format(c.getString(R.string.status_pirate_tokens), numPirateTokens)).append("\n");
     }
     if (numDebtTokens > 0) {
-      sb.append(String.format(c.getString(R.string.status_debt_tokens), numDebtTokens) + "\n");
+      sb.append(String.format(c.getString(R.string.status_debt_tokens), numDebtTokens)).append("\n");
     }
     if (numVictoryTokens > 0) {
-      sb.append(String.format(c.getString(R.string.status_victory_tokens), numVictoryTokens) + "\n");
+      sb.append(String.format(c.getString(R.string.status_victory_tokens), numVictoryTokens)).append("\n");
     }
 
     return sb.toString();

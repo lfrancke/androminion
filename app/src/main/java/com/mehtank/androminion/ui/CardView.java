@@ -145,11 +145,8 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
    *
    * from: http://stackoverflow.com/questions/3028306/download-a-file-with-android-and-showing-the-progress-in-a-progressdialog
    */
-  public static boolean isDownloadManagerAvailable(Context context) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
-      return true;
-    }
-    return false;
+  private static boolean isDownloadManagerAvailable(Context context) {
+    return Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD;
   }
 
   public CardView(Context context) {
@@ -269,22 +266,22 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
   //TODO: Use this to update the VirtualKnights pile
   /*public void updateCardStyle(MyCard c) {
     int cardStyleId = getStyleForCard(c);
-		TypedArray cardStyle = getContext().obtainStyledAttributes(cardStyleId,
-				new int[] {
-					R.attr.cardBackgroundColor,
-					R.attr.cardNameBackgroundColor,
-					R.attr.cardTextColor,
-					R.attr.cardCountColor });
-		int bgColor = cardStyle.getColor(0, R.color.cardDefaultBackgroundColor);
-		int textColor = cardStyle.getColor(2, R.color.cardDefaultTextColor);
+    TypedArray cardStyle = getContext().obtainStyledAttributes(cardStyleId,
+        new int[] {
+          R.attr.cardBackgroundColor,
+          R.attr.cardNameBackgroundColor,
+          R.attr.cardTextColor,
+          R.attr.cardCountColor });
+    int bgColor = cardStyle.getColor(0, R.color.cardDefaultBackgroundColor);
+    int textColor = cardStyle.getColor(2, R.color.cardDefaultTextColor);
         int nameBgColor = cardStyle.getColor(1, R.color.cardDefaultTextBackgroundColor);
-		int countColor = cardStyle.getColor(3, R.color.cardDefaultTextColor);
+    int countColor = cardStyle.getColor(3, R.color.cardDefaultTextColor);
 
-		cardBox.setBackgroundColor(bgColor);
-		name.setTextColor(textColor);
+    cardBox.setBackgroundColor(bgColor);
+    name.setTextColor(textColor);
         name.setBackgroundColor(nameBgColor);
-		countLeft.setTextColor(countColor);		
-	}*/
+    countLeft.setTextColor(countColor);
+  }*/
 
   @Override
   public void setChecked(boolean arg0, String indicator) {
@@ -320,8 +317,8 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     }
   }
 
-  public void shade(boolean on) {
-    float alpha = (on ? 0.3f : 1.0f);
+  private void shade(boolean on) {
+    float alpha = on ? 0.3f : 1.0f;
     // setAlpha() is API level 11+ only, so we use an instant animation instead.
     AlphaAnimation alphaAnimation = new AlphaAnimation(alpha, alpha);
     alphaAnimation.setDuration(0L);
@@ -470,14 +467,14 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     }
     String exp = expBuilder.toString();
 
-		/*if (exp.length() == 0)
+    /*if (exp.length() == 0)
       exp = "common";
-		if (filename.equals("potion"))
-			exp = "alchemy";
-		else if (filename.equals("colony"))
-			exp = "prosperity";
-		else if (filename.equals("platinum"))
-			exp = "prosperity";*/
+    if (filename.equals("potion"))
+      exp = "alchemy";
+    else if (filename.equals("colony"))
+      exp = "prosperity";
+    else if (filename.equals("platinum"))
+      exp = "prosperity";*/
     if (exp.isEmpty()) {
       exp = "basecards";
     }
@@ -524,7 +521,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     //textView.setPadding(15, 0, 15, 5);
     textView.setPadding(30, 10, 30, 5);
     textView.setGravity(Gravity.CENTER);
-    String text = GetCardTypeString(cardView.getCard());
+    String text = getCardTypeString(cardView.getCard());
 
     if (cardView.getCard().expansion != null && !cardView.getCard().expansion.isEmpty()) {
       text += " (" + cardView.getCard().expansion + ")";
@@ -612,7 +609,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     setChecked(arg0, -1, "");
   }
 
-  public String GetCardTypeString(MyCard c) {
+  private String getCardTypeString(MyCard c) {
     String cardType = "";
     Context context = getContext();
 
@@ -734,14 +731,14 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     }
     if (onTable && "viewstyle-classic".equals(viewstyle)) {
       FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(
-                                                                 FrameLayout.LayoutParams.WRAP_CONTENT,
-                                                                 FrameLayout.LayoutParams.WRAP_CONTENT,
+                                                                 ViewGroup.LayoutParams.WRAP_CONTENT,
+                                                                 ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                  Gravity.TOP + Gravity.CENTER_HORIZONTAL);
       name.setLayoutParams(p);
     } else if ("viewstyle-classic".equals(viewstyle)) {
       FrameLayout.LayoutParams p = new FrameLayout.LayoutParams(
-                                                                 FrameLayout.LayoutParams.WRAP_CONTENT,
-                                                                 FrameLayout.LayoutParams.WRAP_CONTENT,
+                                                                 ViewGroup.LayoutParams.WRAP_CONTENT,
+                                                                 ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                  Gravity.CENTER);
       name.setLayoutParams(p);
     }
@@ -812,7 +809,6 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     return result;
   }
 
-  @SuppressWarnings("deprecation")
   private View getViewForToken(int player, int tokenId, int multiplier) {
     int backgroundId = R.drawable.circulartoken;
     String text;
@@ -851,7 +847,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       GradientDrawable background = (GradientDrawable) getResources().getDrawable(backgroundId).mutate();
       background.setColor(getPlayerColor(player));
       background.setStroke((int) Math.ceil(2 * dp), getPlayerStrokeColor(player));
-      token.setBackgroundDrawable(background);
+      token.setBackground(background);
     }
     int pad = (int) Math.ceil(dp);
     int padSides = (int) Math.ceil(dp * 2);

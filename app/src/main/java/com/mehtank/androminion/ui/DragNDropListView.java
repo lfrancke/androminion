@@ -18,18 +18,18 @@ public class DragNDropListView extends ListView {
   @SuppressWarnings("unused")
   private static final String TAG = "DragNDropListView";
 
-  boolean mDragMode;
+  private boolean mDragMode;
 
-  int mStartPosition;
-  int mCurrentPosition;
-  int mEndPosition;
-  int mDragPointYOffset;    //Used to adjust drag view location
-  int mDragPointXOffset;    //Used to adjust drag view location
-  int mOrigX;
+  private int mStartPosition;
+  private int mCurrentPosition;
+  private int mEndPosition;
+  private int mDragPointYOffset;    //Used to adjust drag view location
+  private int mDragPointXOffset;    //Used to adjust drag view location
+  private int mOrigX;
 
-  ImageView mDragView;
-  View mHiddenView;
-  GestureDetector mGestureDetector;
+  private ImageView mDragView;
+  private View mHiddenView;
+  private GestureDetector mGestureDetector;
 
   DragListener mDragListener;
 
@@ -63,9 +63,9 @@ public class DragNDropListView extends ListView {
     switch (action) {
     /*	default:
         if (mDragView != null)
-					drag(x,y);
-				break;
-		*/
+          drag(x,y);
+        break;
+    */
       case MotionEvent.ACTION_MOVE:
         if (mDragView != null) {
           drag(x, y);

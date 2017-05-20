@@ -18,12 +18,10 @@ import com.mehtank.androminion.activities.GameActivity;
  * The subclass has to overload makeContentView to generate what is supposed to
  * be shown.
  */
-@SuppressLint("ViewConstructor")
 public abstract class BottomInputView extends RelativeLayout implements OnClickListener {
 
-  @SuppressWarnings("unused")
   private static final String TAG = "BottomInputView";
-  private final TextView title;
+
   private final ImageView arrow;
   private final View content;
   protected GameActivity top;
@@ -37,7 +35,7 @@ public abstract class BottomInputView extends RelativeLayout implements OnClickL
     setBackgroundResource(R.drawable.solidround); // frame
     setLayoutParams(new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT,
                                                   Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL));
-    title = (TextView) findViewById(R.id.title);
+    TextView title = (TextView) findViewById(R.id.title);
     title.setText(header);
     title.setOnClickListener(this);
     arrow = (ImageView) findViewById(R.id.arrow);
@@ -52,7 +50,7 @@ public abstract class BottomInputView extends RelativeLayout implements OnClickL
     top.addView(this);
   }
 
-  public void toggle() {
+  private void toggle() {
     if (hidden) {
       content.setVisibility(VISIBLE);
       arrow.setImageResource(android.R.drawable.arrow_down_float);

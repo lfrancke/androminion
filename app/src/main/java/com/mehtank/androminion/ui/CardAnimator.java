@@ -1,6 +1,7 @@
 package com.mehtank.androminion.ui;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +18,11 @@ import com.mehtank.androminion.R;
 
 public class CardAnimator {
 
-  @SuppressWarnings("unused")
   private static final String TAG = "CardAnimator";
-  private static final ArrayList<AnimationSet> runningAnims = new ArrayList<>();
 
-  private static final ArrayList<CardView> cvs = new ArrayList<>();
+  private static final List<AnimationSet> RUNNING_ANIMS = new ArrayList<>();
+  private static final List<CardView> CARD_VIEWS = new ArrayList<>();
+
   private ViewGroup rootView;
   private int left;
   private int top;
@@ -34,12 +35,6 @@ public class CardAnimator {
     left = location[0];
     top = location[1];
     height = anchor.getHeight();
-    /* ViewParent vp = anchor.getParent();
-    while (vp != rootView) {
-			left += ((View)vp).getLeft();
-			top += ((View)vp).getTop();
-			vp = vp.getParent();
-		} */
   }
 
   public void showCard(CardView c, ShowCardType type) {
@@ -94,8 +89,8 @@ public class CardAnimator {
     rootView.addView(c);
     c.startAnimation(anims);
 
-    cvs.add(c);
-    runningAnims.add(anims);
+    CARD_VIEWS.add(c);
+    RUNNING_ANIMS.add(anims);
   }
 
   public enum ShowCardType {OBTAINED, TRASHED, REVEALED}
@@ -104,7 +99,7 @@ public class CardAnimator {
 
     CardView v;
 
-    public CVAnimListener(CardView v) {
+    private CVAnimListener(CardView v) {
       this.v = v;
     }
 
@@ -115,12 +110,12 @@ public class CardAnimator {
     @Override
     public void onAnimationEnd(Animation animation) {
       v.setVisibility(View.GONE);
-      runningAnims.remove(animation);
-      if (runningAnims.isEmpty()) {
-        for (CardView c : cvs) {
+      RUNNING_ANIMS.remove(animation);
+      if (RUNNING_ANIMS.isEmpty()) {
+        for (CardView c : CARD_VIEWS) {
           rootView.removeView(c);
         }
-        cvs.clear();
+        CARD_VIEWS.clear();
       }
     }
 
