@@ -5,11 +5,13 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -17,6 +19,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
@@ -431,7 +434,6 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     }
   }
 
-  @SuppressLint("NewApi")
   @Override
   public boolean onLongClick(View view) {
     CardView cardView = (CardView) view;
@@ -488,7 +490,9 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     }
 
     if (!f.exists() && autodownload) {
-      if (isDownloadManagerAvailable(top)) {
+      if (isDownloadManagerAvailable(top) &&
+          ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+
         new File(GameActivity.BASEDIR + subdir).mkdirs();
         String imgurl = "http://dominion.diehrstraits.com/scans/" + exp + "/" + filename + ".jpg";
 
@@ -502,6 +506,8 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
           request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         }
         request.setDestinationInExternalPublicDir(GameActivity.BASEDIRFROMEXT + subdir, filename + ".jpg");
+
+        
 
         // get download service and enqueue file
         DownloadManager manager = (DownloadManager) top.getSystemService(Context.DOWNLOAD_SERVICE);
@@ -849,7 +855,7 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
       GradientDrawable background = (GradientDrawable) getResources().getDrawable(backgroundId).mutate();
       background.setColor(getPlayerColor(player));
       background.setStroke((int) Math.ceil(2 * dp), getPlayerStrokeColor(player));
-      token.setBackground(background);
+      token.setBackgroundDrawable(background);
     }
     int pad = (int) Math.ceil(dp);
     int padSides = (int) Math.ceil(dp * 2);

@@ -9,16 +9,19 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -463,6 +466,13 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     if (gameRunning) {
       Game.processUserPrefArgs(getUserPrefs().toArray(new String[0]));
     }
+
+    if (prefs.getBoolean("autodownload", false)
+        && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+           != PackageManager.PERMISSION_GRANTED) {
+      requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1337);
+    }
+
   }
 
   @Override
