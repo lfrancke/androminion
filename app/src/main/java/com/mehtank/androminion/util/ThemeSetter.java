@@ -53,8 +53,7 @@ public class ThemeSetter {
    *                    ActionBar.
    */
   public static void setTheme(Activity act, boolean showActionbar) {
-    SharedPreferences pref = PreferenceManager
-                               .getDefaultSharedPreferences(act);
+    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(act);
     if (showActionbar) {
       act.setTheme(THEMES_BAR.get(pref.getString("theme",
         "androminion-dark")));

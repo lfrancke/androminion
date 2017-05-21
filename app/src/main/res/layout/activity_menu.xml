@@ -3,8 +3,6 @@
           xmlns:tools="http://schemas.android.com/tools" android:id="@+id/menufragment"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          class="com.mehtank.androminion.fragments.MenuFragment" tools:layout="@layout/fragment_menu">
-
-  <!-- Preview: layout=@layout/menufragment -->
-
+          class="com.mehtank.androminion.fragments.MenuFragment"
+          tools:layout="@layout/fragment_menu">
 </fragment>

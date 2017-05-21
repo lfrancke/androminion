@@ -20,13 +20,7 @@ import com.mehtank.androminion.util.ThemeSetter;
  *
  * Rewrite to support actionbar (backwards compatible to API7).
  */
-public class StartGameActivity extends AppCompatActivity implements
-  OnStartGameListener {
-
-  @SuppressWarnings("unused")
-  private static final String TAG = "StartGameActivity";
-
-  private Fragment mStartGameFragment;
+public class StartGameActivity extends AppCompatActivity implements OnStartGameListener {
 
   @Override
   public void onStartGameClick(ArrayList<String> values) {
@@ -67,17 +61,13 @@ public class StartGameActivity extends AppCompatActivity implements
     bar.setTitle(R.string.startgameactivity_title);
 
     if (savedInstanceState == null) {
-      mStartGameFragment = new StartGameFragment();
+      Fragment startGameFragment = new StartGameFragment();
 
       if (getIntent().hasExtra("cards")) {
-        mStartGameFragment.setArguments(getIntent().getExtras());
+        startGameFragment.setArguments(getIntent().getExtras());
       }
 
-      getSupportFragmentManager().beginTransaction()
-        .add(android.R.id.content, mStartGameFragment).commit();
-    } else {
-      mStartGameFragment = getSupportFragmentManager().findFragmentById(
-        android.R.id.content);
+      getSupportFragmentManager().beginTransaction().add(android.R.id.content, startGameFragment).commit();
     }
   }
 }

@@ -34,8 +34,8 @@ public class MenuActivity extends AppCompatActivity implements
 
   private static final String TAG = "MenuActivity";
 
-  private boolean mTwoColums = false; // Two-Column-Layout, possibly tablet
-  private int mState = 0;
+  private boolean mTwoColums; // Two-Column-Layout, possibly tablet
+  private int mState;
 
   public void onClickStartGame(View view) {
     if (mTwoColums) {
@@ -148,11 +148,11 @@ public class MenuActivity extends AppCompatActivity implements
     PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
     // Fix so Androminion doesn't crash when updating
-    SharedPreferences pref = PreferenceManager
-                               .getDefaultSharedPreferences(this);
-    Log.d(TAG,
-      "Theme is set to "
-      + pref.getString("theme", "androminion-dark"));
+    SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+    if (BuildConfig.DEBUG) {
+      Log.d(TAG, "Theme is set to " + pref.getString("theme", "androminion-dark"));
+    }
+
     if (pref.getString("theme", getString(R.string.pref_theme_default)).equals("androminion")) {
       // Settings from previous Androminion version exist
       Log.d(TAG, "Resetting theme setting to default value");
@@ -166,10 +166,9 @@ public class MenuActivity extends AppCompatActivity implements
 
     if (findViewById(R.id.fragment_content) != null) {
       mTwoColums = true;
-      if (savedInstanceState == null
-          || getSupportFragmentManager().findFragmentById(
-        R.id.fragment_content) == null) {
-        getSupportFragmentManager().beginTransaction()
+      if (savedInstanceState == null || getSupportFragmentManager().findFragmentById(R.id.fragment_content) == null) {
+        getSupportFragmentManager()
+          .beginTransaction()
           .add(R.id.fragment_content, createStartGameFragment())
           .commit();
         mState = R.id.but_start;
@@ -178,9 +177,9 @@ public class MenuActivity extends AppCompatActivity implements
         mState = savedInstanceState.getInt("mState");
       }
     }
-    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-    if (!prefs.getString("LastVersion", "None").equals(getString(R.string.version))) {
-      SharedPreferences.Editor edit = prefs.edit();
+
+    if (!pref.getString("LastVersion", "None").equals(getString(R.string.version))) {
+      SharedPreferences.Editor edit = pref.edit();
       edit.putString("LastVersion", getString(R.string.version));
       edit.apply();
 
@@ -218,14 +217,13 @@ public class MenuActivity extends AppCompatActivity implements
   }
 
   private void setupStrictMode() {
-    StrictMode.ThreadPolicy.Builder builder =
-      new StrictMode.ThreadPolicy.Builder()
-        .detectAll()
-        .penaltyLog();
+    StrictMode.ThreadPolicy.Builder builder = new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog();
 
+    /*
     if (BuildConfig.DEBUG) {
       builder.penaltyFlashScreen();
     }
+    */
 
     StrictMode.setThreadPolicy(builder.build());
   }

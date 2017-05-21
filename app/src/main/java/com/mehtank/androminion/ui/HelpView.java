@@ -16,16 +16,13 @@ import com.mehtank.androminion.R;
 
 public class HelpView extends FrameLayout {
 
-  @SuppressWarnings("unused")
-  private static final String TAG = "HelpView";
-
   private final Context ctx;
 
-  TextView helpText;
-  FrameLayout callout;
-  Button helpNext;
-  View[] showViews;
-  View[] parentViews;
+  private final TextView helpText;
+  private final FrameLayout callout;
+  private final Button helpNext;
+  private final View[] showViews;
+  private final View[] parentViews;
 
   public HelpView(Context context, View[] showViews, View[] parentViews) {
     super(context);
@@ -56,12 +53,12 @@ public class HelpView extends FrameLayout {
     FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
                                                                 ViewGroup.LayoutParams.WRAP_CONTENT,
                                                                 ViewGroup.LayoutParams.WRAP_CONTENT,
-                                                                Gravity.BOTTOM + Gravity.LEFT);
+                                                                Gravity.BOTTOM + Gravity.START);
     callout.addView(helpNext, lp);
 
     lp = new FrameLayout.LayoutParams(
                                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT,
-                                       Gravity.BOTTOM + Gravity.RIGHT);
+                                       Gravity.BOTTOM + Gravity.END);
     callout.addView(helpQuit, lp);
     addView(callout);
     setVisibility(INVISIBLE);
@@ -199,11 +196,11 @@ public class HelpView extends FrameLayout {
     return 0;
   }
 
-  public void hide() {
+  private void hide() {
     setVisibility(INVISIBLE);
   }
 
-  int helpText(int stringID, View parent, final int page, int bgID) {
+  private int helpText(int stringID, View parent, final int page, int bgID) {
     helpNext.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -216,21 +213,21 @@ public class HelpView extends FrameLayout {
     int left = location[0];
     int top = location[1];
 
-    //	int left = parent.getLeft();
-    //	int top = parent.getTop();
-    //	ViewParent vp = parent.getParent();
-    //	while (vp != getRootView()) {
-    //		left += ((View)vp).getLeft();
-    //		top += ((View)vp).getTop();
-    //		vp = vp.getParent();
-    //	}
+    // int left = parent.getLeft();
+    // int top = parent.getTop();
+    // ViewParent vp = parent.getParent();
+    // while (vp != getRootView()) {
+    //   left += ((View)vp).getLeft();
+    //   top += ((View)vp).getTop();
+    //   vp = vp.getParent();
+    // }
 
     if (bgID != 0) {
       callout.setBackgroundResource(bgID);
     }
     /*
      * This has to be subtracted since getLocationOnScreen gives the
-		 */
+     */
     ((View) getParent()).getLocationOnScreen(location);
     left -= location[0];
     top -= location[1];

@@ -3,6 +3,7 @@ package com.mehtank.androminion.fragments;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.content.SharedPreferences;
@@ -35,8 +36,8 @@ import com.vdom.core.Expansion;
 public class StartGameFragment extends Fragment implements OnClickListener, OnItemSelectedListener {
 
   //TODO: find a better solution for these
-  static final String HUMANPLAYER = "Human Player";
-  static final String[] PLAYERTYPES = {
+  private static final String HUMANPLAYER = "Human Player";
+  private static final String[] PLAYERTYPES = {
     "Human Player",
     "Drew (AI)",
     "Earl (AI)",
@@ -46,8 +47,6 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
     "Patrick (AI)",
     "Random AI",
   };
-  @SuppressWarnings("unused")
-  private static final String TAG = "StartGameFragment";
   private static final String PLAT_COLONY_PREF = "platinumColonyChance";
   private static final String SHELTERS_PREF = "sheltersChance";
   private static final String RANDOM_ALL_CARDS_PREF = "randomAllCards";
@@ -59,32 +58,32 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
   private static final int DEFAULT_MAX_RANDOM_EVENTS = 2;
   private static final int DEFAULT_MAX_RANDOM_LANDMARKS = 2;
   //Views
-  View mView;
-  Spinner mCardsetSpinner;
-  Spinner mPresetSpinner;
-  CheckBox mRandomAllCheckbox;
-  TextView mGameCards;
-  LinearLayout mPlatColonyLayout;
-  Spinner mPlatColonySpinner;
-  LinearLayout mSheltersLayout;
-  Spinner mSheltersSpinner;
-  LinearLayout mRandomEventsLayout;
-  Spinner mRandomEventsSpinner;
-  LinearLayout mRandomLandmarksLayout;
-  Spinner mRandomLandmarksSpinner;
-  LinearLayout mRandomOptionsLayout;
-  ToggleButton mRandomBase;
-  ToggleButton mRandomIntrigue;
-  ToggleButton mRandomSeaside;
-  ToggleButton mRandomAlchemy;
-  ToggleButton mRandomProsperity;
-  ToggleButton mRandomCornucopia;
-  ToggleButton mRandomHinterlands;
-  ToggleButton mRandomDarkAges;
-  ToggleButton mRandomGuilds;
-  ToggleButton mRandomAdventures;
-  ToggleButton mRandomEmpires;
-  Map<Expansion, ToggleButton> completeSets;
+  private View mView;
+  private Spinner mCardsetSpinner;
+  private Spinner mPresetSpinner;
+  private CheckBox mRandomAllCheckbox;
+  private TextView mGameCards;
+  private LinearLayout mPlatColonyLayout;
+  private Spinner mPlatColonySpinner;
+  private LinearLayout mSheltersLayout;
+  private Spinner mSheltersSpinner;
+  private LinearLayout mRandomEventsLayout;
+  private Spinner mRandomEventsSpinner;
+  private LinearLayout mRandomLandmarksLayout;
+  private Spinner mRandomLandmarksSpinner;
+  private LinearLayout mRandomOptionsLayout;
+  private ToggleButton mRandomBase;
+  private ToggleButton mRandomIntrigue;
+  private ToggleButton mRandomSeaside;
+  private ToggleButton mRandomAlchemy;
+  private ToggleButton mRandomProsperity;
+  private ToggleButton mRandomCornucopia;
+  private ToggleButton mRandomHinterlands;
+  private ToggleButton mRandomDarkAges;
+  private ToggleButton mRandomGuilds;
+  private ToggleButton mRandomAdventures;
+  private ToggleButton mRandomEmpires;
+  private Map<Expansion, ToggleButton> completeSets;
   private final OnCheckedChangeListener coreSetsListener = new OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -95,19 +94,19 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
       }
     }
   };
-  ToggleButton mRandomPromo;
-  Spinner mPlayer2;
-  Spinner mPlayer3;
-  Spinner mPlayer4;
-  Spinner mPlayer5;
-  Spinner mPlayer6;
-  Button mStartGame;
+  private ToggleButton mRandomPromo;
+  private Spinner mPlayer2;
+  private Spinner mPlayer3;
+  private Spinner mPlayer4;
+  private Spinner mPlayer5;
+  private Spinner mPlayer6;
+  private Button mStartGame;
   // Options & Co
-  SharedPreferences mPrefs;
-  boolean mMultiplayer = false;
-  String[] mLastCards;
-  String[] mCardsPassOnStartup;
-  TypeOptions mGameType;
+  private SharedPreferences mPrefs;
+  private boolean mMultiplayer;
+  private String[] mLastCards;
+  private String[] mCardsPassOnStartup;
+  private TypeOptions mGameType;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -167,7 +166,7 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
     getLastCards();
 
     // Fill cardset spinner with values
-    ArrayList<String> cardspinnerlist = new ArrayList<>();
+    List<String> cardspinnerlist = new ArrayList<>();
     cardspinnerlist.add(getResources().getString(R.string.game_type_random));
     cardspinnerlist.add(getResources().getString(R.string.game_type_preset));
     if (mLastCards != null) {
@@ -201,7 +200,7 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
     }
 
     //Fill card set spinners
-    ArrayList<Expansion> blackListedExpansions = new ArrayList<>();
+    List<Expansion> blackListedExpansions = new ArrayList<>();
     switch (getBaseEdition()) {
       case Base:
         blackListedExpansions.add(Expansion.Base2E);
@@ -223,8 +222,8 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
         break;
     }
 
-    ArrayList<GameTypeItem> randoms = new ArrayList<>();
-    ArrayList<GameTypeItem> presets = new ArrayList<>();
+    List<GameTypeItem> randoms = new ArrayList<>();
+    List<GameTypeItem> presets = new ArrayList<>();
     GameTypeLoop:
     for (GameType type : GameType.values()) {
       if (type == GameType.Specified) {
@@ -286,7 +285,7 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
 
     // Fill platinum/colony & shelters spinners
     int platColonyChance = mPrefs.getInt(PLAT_COLONY_PREF, -1);
-    ArrayList<String> platColonySpinnerList = new ArrayList<>();
+    List<String> platColonySpinnerList = new ArrayList<>();
     platColonySpinnerList.add(getResources().getString(R.string.include_cards_random));
     platColonySpinnerList.add(getResources().getString(R.string.include_cards_yes));
     platColonySpinnerList.add(getResources().getString(R.string.include_cards_no));
@@ -298,7 +297,7 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
     mPlatColonySpinner.setSelection(chanceToPos(platColonyChance));
 
     int sheltersChance = mPrefs.getInt(SHELTERS_PREF, -1);
-    ArrayList<String> sheltersSpinnerList = new ArrayList<>();
+    List<String> sheltersSpinnerList = new ArrayList<>();
     sheltersSpinnerList.add(getResources().getString(R.string.include_cards_random));
     sheltersSpinnerList.add(getResources().getString(R.string.include_cards_yes));
     sheltersSpinnerList.add(getResources().getString(R.string.include_cards_no));
@@ -317,7 +316,7 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
     numEvents = Math.min(totalEvents, numEvents);
     numEvents = Math.max(numEvents, -1);
 
-    ArrayList<String> eventsSpinnerList = new ArrayList<>();
+    List<String> eventsSpinnerList = new ArrayList<>();
     eventsSpinnerList.add(getResources().getString(R.string.random_events_none));
     eventsSpinnerList.add(getResources().getString(R.string.random_events_random));
     for (int i = 0; i < totalEvents; ++i) {
@@ -332,7 +331,7 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
     numLandmarks = Math.min(totalLandmarks, numLandmarks);
     numLandmarks = Math.max(numLandmarks, -1);
 
-    ArrayList<String> landmarksSpinnerList = new ArrayList<>();
+    List<String> landmarksSpinnerList = new ArrayList<>();
     landmarksSpinnerList.add(getResources().getString(R.string.random_landmarks_none));
     landmarksSpinnerList.add(getResources().getString(R.string.random_landmarks_random));
     for (int i = 0; i < totalLandmarks; ++i) {
@@ -566,9 +565,8 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
     }
   }
 
-  private <T> ArrayAdapter<T> createArrayAdapter(ArrayList<T> list) {
-    ArrayAdapter<T> adapter = new ArrayAdapter<>
-                                (getActivity(), android.R.layout.simple_spinner_item, list);
+  private <T> ArrayAdapter<T> createArrayAdapter(List<T> list) {
+    ArrayAdapter<T> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, list);
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     return adapter;
   }
@@ -588,12 +586,12 @@ public class StartGameFragment extends Fragment implements OnClickListener, OnIt
     private final GameType gameType;
     private final String displayString;
 
-    public GameTypeItem(GameType gameType, String displayString) {
+    private GameTypeItem(GameType gameType, String displayString) {
       this.gameType = gameType;
       this.displayString = displayString;
     }
 
-    public GameType getGameType() {
+    private GameType getGameType() {
       return gameType;
     }
 
