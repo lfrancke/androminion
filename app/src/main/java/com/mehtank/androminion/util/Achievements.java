@@ -3,6 +3,7 @@ package com.mehtank.androminion.util;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
@@ -20,7 +21,7 @@ import com.mehtank.androminion.R;
 
 public class Achievements {
 
-  public static final String[] KEYS = {
+  private static final String[] KEYS = {
     "2players8provinces",
     "3or4players10provinces",
     "score100",
@@ -39,11 +40,10 @@ public class Achievements {
     "13curses",
     "allEmpty"
   };
-  public static final String WIN_STREAK_PLAYER_KEY = "win_streak_player";
-  public static final String WIN_STREAK_COUNT_KEY = "win_streak_count";
-  @SuppressWarnings("unused")
-  private static final String TAG = "Achievements";
-  private static final int[] ids = {
+  private static final String WIN_STREAK_PLAYER_KEY = "win_streak_player";
+  private static final String WIN_STREAK_COUNT_KEY = "win_streak_count";
+
+  private static final int[] IDS = {
     R.string.achievements_2players8provinces,
     R.string.achievements_3or4players10provinces,
     R.string.achievements_score100,
@@ -63,11 +63,11 @@ public class Achievements {
     R.string.achievements_allEmpty
   };
   public String[] text = new String[KEYS.length];
-  boolean[] achievementsDone = new boolean[KEYS.length];
-  SharedPreferences prefs;
-  Context context;
+  private final boolean[] achievementsDone = new boolean[KEYS.length];
+  private final SharedPreferences prefs;
+  private final Context context;
 
-  public static String getSafeName(String name) {
+  private static String getSafeName(String name) {
     if (name == null) {
       name = "";
     }
@@ -82,11 +82,8 @@ public class Achievements {
   }
 
   public static boolean isHumanPlayer(String s) {
-    if (!s.equals("Mary") && !s.equals("Sarah") && !s.equals("Earl") && !s.equals("Drew") && !s.equals("Chuck")
-        && !s.equals("Patrick")) {
-      return true;
-    }
-    return false;
+    return !s.equals("Mary") && !s.equals("Sarah") && !s.equals("Earl") && !s.equals("Drew") && !s.equals("Chuck")
+           && !s.equals("Patrick");
   }
 
   public Achievements(Context context) {
@@ -94,13 +91,13 @@ public class Achievements {
     prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
     for (int i = 0; i < KEYS.length; i++) {
-      text[i] = context.getString(ids[i]);
+      text[i] = context.getString(IDS[i]);
       achievementsDone[i] = hasAchieved(i);
     }
   }
 
   public void resetStats() {
-    ArrayList<String> prefsToClear = new ArrayList<>();
+    List<String> prefsToClear = new ArrayList<>();
 
     Map<String, ?> all = prefs.getAll();
     for (String key : all.keySet()) {
@@ -177,7 +174,7 @@ public class Achievements {
     }
   }
 
-  public void gameOver(ArrayList<String> allPlayers, ArrayList<Integer> winners) {
+  public void gameOver(List<String> allPlayers, Iterable<Integer> winners) {
     String winStreakPlayer = prefs.getString(WIN_STREAK_PLAYER_KEY, "");
     int winStreakCount = prefs.getInt(WIN_STREAK_COUNT_KEY, 0);
 
@@ -240,8 +237,8 @@ public class Achievements {
     }
   }
 
-  public ArrayList<String> getAllPlayers() {
-    ArrayList<String> players = new ArrayList<>();
+  public Iterable<String> getAllPlayers() {
+    List<String> players = new ArrayList<>();
 
     Map<String, ?> all = prefs.getAll();
     for (String key : all.keySet()) {

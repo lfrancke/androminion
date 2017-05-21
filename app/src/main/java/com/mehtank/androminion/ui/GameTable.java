@@ -2,6 +2,7 @@ package com.mehtank.androminion.ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -759,7 +760,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
     try {
       if (!finalStatsReported) {
         finalStatsReported = true;
-        ArrayList<String> pl = new ArrayList<>(players.getCount());
+        List<String> pl = new ArrayList<>(players.getCount());
         pl.addAll(Arrays.asList(gs.realNames).subList(0, players.getCount()));
         achievements.gameOver(pl, winners);
       }
