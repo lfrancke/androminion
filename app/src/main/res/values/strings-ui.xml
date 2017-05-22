@@ -35,78 +35,80 @@
   <string name="connections_title">Connections:</string>
   <string name="connections">
     <![CDATA[
-        <h3>On network permissions and usage</h3>
-		This app functions by using a strictly local networking layer to talk between the player and the game -- currently, unless using multiplayer,  <b>no data is sent in or out of the phone</b>.  Nonetheless, this local network still requires networking permission, and such internal data transfer may show up as total app usage.<br><br>
-    	<h3>Steps to run a multiplayer game</h3>
-      	<b><font color="red">You need the source code to compile the server vdom!</font></b> In the vdom\\ directory, type \'ant run\' (or just start com.vdom.core.Game with whatever arguments you want - the build file build.xml has some default arguments).  Be sure you know the host name or ip address for the machine that\'s running the game server, and that the player ports (by default 2255 and 2256) aren\'t blocked by your machine\'s firewall.<br>
-      	Open the app on two separate devices.  Use the \"join game\" dialog to enter your name, the host name or ip address of the machine running the server, then the port that shows up in the terminal where you\'re running the server.  Once the first player connects, a second port will show up; enter that one in on the second device (should be 2255 and 2256). The interface for the first player that connects will be missing a lot of stuff until the second player connects, but once both players are there, things work fine.<br><br>
-		Source: <a href="https://code.google.com/p/androminion/issues/detail?id=582">https://code.google.com/p/androminion/issues/detail?id=582</a><br>
-	]]>
+    <h3>On network permissions and usage</h3>
+    This app functions by using a strictly local networking layer to talk between the player and the game &#8212; currently, unless using multiplayer, <b>no data is sent in or out of the phone</b>. Nonetheless, this local network still requires networking permission, and such internal data transfer may show up as total app usage.<br><br>
+
+    <h3>Steps to run a multiplayer game</h3>
+    <b><font color="red">You need the source code to compile the server vdom!</font></b> In the vdom\\ directory, type \'ant run\' (or just start com.vdom.core.Game with whatever arguments you want - the build file build.xml has some default arguments).  Be sure you know the host name or ip address for the machine that\'s running the game server, and that the player ports (by default 2255 and 2256) aren\'t blocked by your machine\'s firewall.<br>
+
+    Open the app on two separate devices.  Use the \"join game\" dialog to enter your name, the host name or ip address of the machine running the server, then the port that shows up in the terminal where you\'re running the server.  Once the first player connects, a second port will show up; enter that one in on the second device (should be 2255 and 2256). The interface for the first player that connects will be missing a lot of stuff until the second player connects, but once both players are there, things work fine.<br><br>
+    Source: <a href="https://code.google.com/p/androminion/issues/detail?id=582">https://code.google.com/p/androminion/issues/detail?id=582</a><br>
+  ]]>
   </string>
   <string name="whatsnew_menu">What\'s new</string>
   <string name="whatsnew_title">What\'s new:</string>
   <string name="whatsnew">
     <![CDATA[
-		<h3>Please Read!</h3>
-		By request of Rio Grande Games, the publisher of Dominion, we have removed Androminion from the Play Store. Please do not publish it in any public app store as there is an official Dominion app.<br><br>
-		<h3>Version 7.05</h3>
-		* Empires Expansion! <br>
-		* Second Edition of Dominion and Intrigue! <br>
-		* Promo Card: Sauna/Avanto
-		<h3>Version 6.07</h3>
-		* Adventures Expansion! <br>
-		* Promo Cards: Stash, Summon
-		<h3>Version 6.00</h3>
-		* Adventures (beta)
-		<h3>Version 5.01</h3>
-		* Promo Black Market!!! <br>
-		* Promo Prince!!! <br>
-		* Additional language translations <br>
-		* Lots of bugfixes and enhancements
-		<h3>Version 5.00</h3>
-		* Includes Guilds expansion! <br>
-		* Additional language translations <br>
-		* Many bugfixes <br>
-		<h3>Version 4.02</h3>
-		* Band of Misfits now implemented <br>
-		* Lots of bugfixes 
-		<h3>Version 4.00</h3>
-		* Dark Ages! <br>
-		* Promo cards: Envoy, Governor, Walled Village <br>
-		* Bugfixes, enhancements, updates, etc. 
-		<h3>Version 3.01</h3>
-	    * Fixed UI for smaller screens <br>
-	    * Added solitare play <br>
-	    * Some more bugfixes 
-		<h3>Version 3.00</h3>
-	    * Many gameplay bugfixes <br>
-	    * Optimized user interface with tablet support <br>
-	    * Compatibility: Android 2.2+
-	    <h3>Version 2.05</h3>
-	    * Many gameplay bugfixes <br>
-	    * We lied about 2.04 -- this actually the last version for Android 1.5 - 2.1
-	    <h3>Version 2.04</h3>
-	    * Translation to Dutch <br>
-	    * Bugfixes <br>
-	    * Last version for Android 1.5 and 1.6
-	    <h3>Version 2.03</h3>
-	    * Possession! <br>
-	    * Additional translations <br>
-		* Many, many bugfixes and enhancements <br> <br>
-	    <h3>Version 2.02</h3>
-	    * Fix crashes on Android 4.x <br>
-	    * More intuitive Moat behavior <br>
-		* Many other bugfixes and enhancements <br> <br>
-		Want greater ability to choose your own kingdom cards?  You can now launch Androminion directly from <a href="https://market.android.com/details?id=nl.spellenclubeindhoven.dominionshuffle">DominionShuffle</a>!
-	    <h3>Version 2.0</h3>
-		It has been a long while in coming, but we hope this update will have been worth the wait!  There are so many changes that we can\'t list them all here, but below are some highlights:<br/><br/>
-		<b><font color="lime">* More expansions!</font></b>  Most of the cards from Alchemy, Prosperity, Cornucopia, and Hinterlands are now available.<br/>
-		<b><font color="lime">* More game options!</font></b>  Chose from various random or preset decks, with 2-4 players.<br/>
-		<b><font color="lime">* More AI options!</font></b>  Introducing new AIs Chuck, Mary, and Sarah.<br/>
-		<b><font color="lime">* More bugfixes!</font></b>  Also more bugs, probably.<br/>
-		* Same great taste!<br/>
-		<br/><font color="lime">Androminion is now open source!</font>  This update would not have been possible without the help of a number of contributors; please view the credits tab.  You too can help!  Submit bug reports, feature requests, translations, and more on <br/><a href="http://androminion.googlecode.com">http://androminion.googlecode.com</a><br/><br/>
-	]]>
+    <h3>Please Read!</h3>
+    By request of Rio Grande Games, the publisher of Dominion, we have removed Androminion from the Play Store. Please do not publish it in any public app store as there is an official Dominion app.<br><br>
+    <h3>Version 7.05</h3>
+    * Empires Expansion! <br>
+    * Second Edition of Dominion and Intrigue! <br>
+    * Promo Card: Sauna/Avanto
+    <h3>Version 6.07</h3>
+    * Adventures Expansion! <br>
+    * Promo Cards: Stash, Summon
+    <h3>Version 6.00</h3>
+    * Adventures (beta)
+    <h3>Version 5.01</h3>
+    * Promo Black Market!!! <br>
+    * Promo Prince!!! <br>
+    * Additional language translations <br>
+    * Lots of bugfixes and enhancements
+    <h3>Version 5.00</h3>
+    * Includes Guilds expansion! <br>
+    * Additional language translations <br>
+    * Many bugfixes <br>
+    <h3>Version 4.02</h3>
+    * Band of Misfits now implemented <br>
+    * Lots of bugfixes
+    <h3>Version 4.00</h3>
+    * Dark Ages! <br>
+    * Promo cards: Envoy, Governor, Walled Village <br>
+    * Bugfixes, enhancements, updates, etc.
+    <h3>Version 3.01</h3>
+      * Fixed UI for smaller screens <br>
+      * Added solitare play <br>
+      * Some more bugfixes
+    <h3>Version 3.00</h3>
+      * Many gameplay bugfixes <br>
+      * Optimized user interface with tablet support <br>
+      * Compatibility: Android 2.2+
+      <h3>Version 2.05</h3>
+      * Many gameplay bugfixes <br>
+      * We lied about 2.04 -- this actually the last version for Android 1.5 - 2.1
+      <h3>Version 2.04</h3>
+      * Translation to Dutch <br>
+      * Bugfixes <br>
+      * Last version for Android 1.5 and 1.6
+      <h3>Version 2.03</h3>
+      * Possession! <br>
+      * Additional translations <br>
+    * Many, many bugfixes and enhancements <br> <br>
+      <h3>Version 2.02</h3>
+      * Fix crashes on Android 4.x <br>
+      * More intuitive Moat behavior <br>
+    * Many other bugfixes and enhancements <br> <br>
+    Want greater ability to choose your own kingdom cards?  You can now launch Androminion directly from <a href="https://market.android.com/details?id=nl.spellenclubeindhoven.dominionshuffle">DominionShuffle</a>!
+      <h3>Version 2.0</h3>
+    It has been a long while in coming, but we hope this update will have been worth the wait!  There are so many changes that we can\'t list them all here, but below are some highlights:<br/><br/>
+    <b><font color="lime">* More expansions!</font></b>  Most of the cards from Alchemy, Prosperity, Cornucopia, and Hinterlands are now available.<br/>
+    <b><font color="lime">* More game options!</font></b>  Chose from various random or preset decks, with 2-4 players.<br/>
+    <b><font color="lime">* More AI options!</font></b>  Introducing new AIs Chuck, Mary, and Sarah.<br/>
+    <b><font color="lime">* More bugfixes!</font></b>  Also more bugs, probably.<br/>
+    * Same great taste!<br/>
+    <br/><font color="lime">Androminion is now open source!</font>  This update would not have been possible without the help of a number of contributors; please view the credits tab.  You too can help!  Submit bug reports, feature requests, translations, and more on <br/><a href="http://androminion.googlecode.com">http://androminion.googlecode.com</a><br/><br/>
+  ]]>
   </string>
   <string name="contrib_menu">Credits</string>
   <string name="contrib_title">Contributors:</string>

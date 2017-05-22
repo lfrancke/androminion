@@ -34,6 +34,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.mehtank.androminion.BuildConfig;
 import com.mehtank.androminion.R;
 import com.mehtank.androminion.ui.GameTable;
 import com.mehtank.androminion.ui.JoinGameDialog;
@@ -86,16 +87,15 @@ import com.vdom.core.Game;
 public class GameActivity extends AppCompatActivity implements EventHandler {
 
   public static final String DEFAULT_NAME = "You";
-  public static final String DEFAULT_HOST = "localhost";
+  private static final String DEFAULT_HOST = "localhost";
   public static final int DEFAULT_PORT = 1251;
   public static final String BASEDIRFROMEXT = "/Androminion";
   public static final String BASEDIR = Environment.getExternalStorageDirectory().getPath() + BASEDIRFROMEXT;
   static final boolean MULTIPLAYER = false;
-  static final int MESSAGE_EVENT = 0;
-  static final int MESSAGE_LOSTCONNECTION = 1;
+  private static final int MESSAGE_EVENT = 0;
+  private static final int MESSAGE_LOSTCONNECTION = 1;
   @SuppressWarnings("unused")
   private static final String TAG = "GameActivity";
-  private final boolean DEBUGGING = false;
   private final GameActivity top = this;
   private FrameLayout topView;
   private GameTable gt;
@@ -114,7 +114,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   private String name;  // Name the player has in the game
   private String host;
   private int port;
-  final Handler mHandler = new Handler() {
+  private final Handler mHandler = new Handler() {
     @Override
     public void handleMessage(Message msg) {
 
@@ -406,16 +406,6 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
       bar.setTitle(R.string.app_name);
     }
 
-        /*
-         * Disable Strict mode (quick fix to make it run with targetSDKversion
-         * 16). Should be properly fixed by putting all network dependent
-         * behavior in a seperate thread.
-         */
-    //        if (Build.VERSION.SDK_INT >= 11) {
-    //            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-    //            StrictMode.setThreadPolicy(policy);
-    //        }
-
     gt = (GameTable) findViewById(R.id.gameTable);
     splash = findViewById(R.id.splash);
 
@@ -480,7 +470,6 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     disconnect();
     stopServer();
     super.onDestroy();
-    //System.exit(0);
   }
 
   @Override
@@ -564,7 +553,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     return false;
   }
 
-  public void quickstart() {
+  private void quickstart() {
     // startServer();
     host = "localhost";
     startGame(port);
@@ -598,7 +587,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
 
   @Override
   public void debug(String s) {
-    if (DEBUGGING) {
+    if (BuildConfig.DEBUG) {
       Log.d("Androminion", s);
     }
   }
@@ -671,7 +660,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   protected void invite() {
   }
 
-  protected void alert(String title, String message) {
+  private void alert(String title, String message) {
     new AlertDialog.Builder(this)
       .setTitle(title)
       .setMessage(message)
@@ -688,7 +677,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   /**
    * @param e GAMESTATS event
    */
-  protected void handshake(Event e) {
+  private void handshake(Event e) {
     if (e.b) // true if the game is started
     {
       new JoinGameDialog(top, e);
@@ -697,7 +686,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     }
   }
 
-  protected void startNewGame(Event e) {
+  private void startNewGame(Event e) {
     //        if (!NOTOASTS) Toast.makeText(top, "Starting game...", Toast.LENGTH_SHORT).show();
     //        handle(new Event(Event.EType.STARTGAME)
     //            .setObject(new String[] { "Random", "Human Player",
@@ -711,12 +700,12 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     //new StartGameDialog(top, e, MULTIPLAYER, cardsPassedInExtras);
   }
 
-  boolean getPref(String prefName) {
+  private boolean getPref(String prefName) {
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(top);
     return prefs.getBoolean(prefName, false);
   }
 
-  ArrayList<String> getUserPrefs() {
+  private ArrayList<String> getUserPrefs() {
     ArrayList<String> strs = new ArrayList<>();
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(top);
 
@@ -794,13 +783,13 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     return strs;
   }
 
-  void startServer() {
+  private void startServer() {
     Intent intent = new Intent("com.mehtank.androminion.SERVER");
     intent.setPackage(getPackageName());
     startService(intent);
   }
 
-  void stopServer() {
+  private void stopServer() {
     Intent intent = new Intent("com.mehtank.androminion.SERVER");
     intent.setPackage(getPackageName());
     stopService(intent);

@@ -50,57 +50,92 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   private final GameActivity top;
   private final PlayerAdapter players = new PlayerAdapter(getContext());
   private final HelpView helpView;
-  GridView handGV, playedGV, tavernGV, archiveGV, princeGV, islandGV, villageGV, inheritanceGV, blackMarketGV, trashGV;
-  CardGroup hand, played, tavern, archive, prince, island, village, inheritance, blackMarket, trash;
-  View tavernColumn, archiveColumn, princeColumn, islandColumn, villageColumn, inheritanceColumn, blackMarketColumn,
-    trashColumn;
-  TextView playedHeader;
+  private GridView handGV;
+  private GridView playedGV;
+  private GridView tavernGV;
+  private GridView archiveGV;
+  private GridView princeGV;
+  private GridView islandGV;
+  private GridView villageGV;
+  private GridView inheritanceGV;
+  private GridView blackMarketGV;
+  private GridView trashGV;
+  private CardGroup hand;
+  private CardGroup played;
+  private CardGroup tavern;
+  private CardGroup archive;
+  private CardGroup prince;
+  private CardGroup island;
+  private CardGroup village;
+  private CardGroup inheritance;
+  private CardGroup blackMarket;
+  private CardGroup trash;
+  private View tavernColumn;
+  private View archiveColumn;
+  private View princeColumn;
+  private View islandColumn;
+  private View villageColumn;
+  private View inheritanceColumn;
+  private View blackMarketColumn;
+  private View trashColumn;
+  private TextView playedHeader;
   LinearLayout myCards;
-  GridView moneyPileGV, vpPileGV, supplyPileGV, prizePileGV, nonSupplyPileGV, eventPileGV;
-  CardGroup moneyPile, vpPile, supplyPile, prizePile, nonSupplyPile, eventPile;
-  LinearLayout tr;
-  LinearLayout gameOver;
-  ScrollView gameOverScroll;
-  View supply;
-  LinearLayout turnView;
-  View myCardView;
-  TextView actionText;
-  LinearLayout deckStatus;
-  TurnView turnStatus;
+  private GridView moneyPileGV;
+  private GridView vpPileGV;
+  private GridView supplyPileGV;
+  private GridView prizePileGV;
+  private GridView nonSupplyPileGV;
+  private GridView eventPileGV;
+  private CardGroup moneyPile;
+  private CardGroup vpPile;
+  private CardGroup supplyPile;
+  private CardGroup prizePile;
+  private CardGroup nonSupplyPile;
+  private CardGroup eventPile;
+  private final LinearLayout tr;
+  private final LinearLayout gameOver;
+  private final ScrollView gameOverScroll;
+  private final View supply;
+  private LinearLayout turnView;
+  private View myCardView;
+  private TextView actionText;
+  private LinearLayout deckStatus;
+  private TurnView turnStatus;
   /**
    * Button that are pressed to confirm or decline an option
    */
-  Button select, pass;
-  String indicator;
-  GameScrollerView gameScroller;
+  private Button select;
+  private Button pass;
+  private String indicator;
+  private final GameScrollerView gameScroller;
   TextView latestTurn;
   SelectStringView sv;
-  Achievements achievements;
-  CardAnimator animator;
-  ArrayList<ToggleButton> showCardsButtons = new ArrayList<>();
-  long gameTime = 0;
-  long lastTimeClockStarted = 0;
-  boolean gameTimePaused = true;
+  private Achievements achievements;
+  private final CardAnimator animator;
+  private final List<ToggleButton> showCardsButtons = new ArrayList<>();
+  private long gameTime = 0;
+  private long lastTimeClockStarted = 0;
+  private boolean gameTimePaused = true;
   /**
    * List of cards that were selected
    */
-  ArrayList<CardInfo> openedCards = new ArrayList<>();
-  int maxOpened = 0;
-  boolean exactOpened = true;
-  int minOpened = 0;
-  boolean myTurn;
-  boolean finalStatsReported = false;
+  private final ArrayList<CardInfo> openedCards = new ArrayList<>();
+  private int maxOpened = 0;
+  private boolean exactOpened = true;
+  private int minOpened = 0;
+  private boolean myTurn;
+  private boolean finalStatsReported = false;
   double textScale = GameTableViews.textScale;
   /**
    * Save the state of what kind of cards we may currently select
    */
-  SelectCardOptions sco = null;
+  private SelectCardOptions sco = null;
   /**
    * firstPass is true if the user clicked 'pass' once already and is asked if he is sure right now.
    */
-  boolean firstPass = false;
-  boolean canClick = true;
-  String prompt = "";
+  private boolean firstPass = false;
+  private boolean canClick = true;
+  private String prompt = "";
   private int[] lastSupplySizes;
   private int[] lastEmbargos;
   private int[] lastPileVpTokens;
@@ -154,7 +189,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
     }
   }
 
-  public static int getPlayerTextBackgroundColor(Context context, int playerIndex) {
+  private static int getPlayerTextBackgroundColor(Context context, int playerIndex) {
     int attrId;
     switch (playerIndex) {
       case 0:
@@ -415,7 +450,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    *
    * @param c cart type
    */
-  public void addCardToTable(MyCard c) {
+  private void addCardToTable(MyCard c) {
     // Localize a few strings in the card before actually saving it.
     Strings.localizeMyCard(c);
     GameTableViews.addCard(c.id, c);
@@ -440,7 +475,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    *
    * @param b Button that was clicked
    */
-  public void cardSelected(Button b) {
+  private void cardSelected(Button b) {
     if (sco == null) {
       return;
     }
@@ -542,7 +577,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    * @param title   Message to the user about what to choose
    * @param options Options that the user has
    */
-  public void selectString(String title, String[] options, Event.EType eventType) {
+  private void selectString(String title, String[] options, Event.EType eventType) {
         /*
          * TODO(matt): Because we got rid of the STRING event, we need to handle this differently
          * for each eventType we're passed in (it could be OPTION or BOOLEAN).  But I think all of
@@ -633,7 +668,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    *
    * @param key PickType
    */
-  public void setSelectText(SelectCardOptions.PickType key) {
+  private void setSelectText(SelectCardOptions.PickType key) {
     indicator = key.indicator();
     String text;
 
@@ -727,7 +762,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    *
    * This gets executed /for each player/.
    */
-  public void finalStatus(GameStatus gs) {
+  private void finalStatus(GameStatus gs) {
     if (!gs.isFinal) // does not happen as far as we know
     {
       return;
@@ -1015,7 +1050,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    *
    * @return "&lt;playername&gt;: &lt;cardname&gt;"
    */
-  public String showCard(int card, String playerInt, CardAnimator.ShowCardType type) {
+  private String showCard(int card, String playerInt, CardAnimator.ShowCardType type) {
     int player = 0;
     CardView c = GameTableViews.getCardView(top, this, card);
     try {
@@ -1108,7 +1143,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   /**
    * Update the 'state' (grayed out or not, text) of the select button, when a card was (un)selected.
    */
-  protected void selectButtonState() {
+  private void selectButtonState() {
     if (sco == null || sco.pickType == null) {
       setSelectText(PickType.SELECT);
       canSelect();
@@ -1179,7 +1214,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    * @param cs     chosen card
    * @param parent which pile the card was selected from
    */
-  boolean isAcceptable(CardState cs, CardGroup parent) {
+  private boolean isAcceptable(CardState cs, CardGroup parent) {
     MyCard c = cs.c;
     if (cs.shade) {
       return false;
@@ -1218,7 +1253,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
     return sco.checkValid(c, getCardCost(c));
   }
 
-  void resetButtons() {
+  private void resetButtons() {
     CharSequence selectText = select.getText();
     pass.setText(selectText.subSequence(0, selectText.length() - 1));
     selectButtonState();
@@ -1229,7 +1264,7 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
   /**
    * Something was declined and we ask if the user is really, really sure
    */
-  void passButtons() {
+  private void passButtons() {
     select.setText(pass.getText() + "!");
     pass.setText(R.string.confirm_no);
     actionText.setText(R.string.confirmation);
@@ -1464,11 +1499,11 @@ public class GameTable extends LinearLayout implements OnItemClickListener, OnIt
    */
   private static class CardInfo {
 
-    public CardState cs;
+    private final CardState cs;
     public CardGroup parent;
-    public int pos;
+    private final int pos;
 
-    public CardInfo(CardState cs, CardGroup parent, int pos) {
+    private CardInfo(CardState cs, CardGroup parent, int pos) {
       this.cs = cs;
       this.parent = parent;
       this.pos = pos;
