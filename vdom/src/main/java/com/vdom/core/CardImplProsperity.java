@@ -247,7 +247,7 @@ public class CardImplProsperity extends CardImpl {
 
         int keepCardCount = 3;
         if (player.hand.size() > keepCardCount) {
-          Card[] cardsToKeep = player.controlPlayer.goons_attack_cardsToKeep(playerContext);
+          Card[] cardsToKeep = player.controlPlayer.goonsAttackCardsToKeep(playerContext);
           player.discardRemainingCardsFromHand(playerContext, cardsToKeep, getControlCard(), keepCardCount);
         }
 

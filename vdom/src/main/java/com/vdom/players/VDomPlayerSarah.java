@@ -16,10 +16,10 @@ import com.vdom.core.Type;
 
 public class VDomPlayerSarah extends BasePlayer {
 
-  protected static final int earlyGame = 5;
-  protected static final int MAX_OF_ONE_ACTION_CARD = 4;
+  private static final int earlyGame = 5;
+  private static final int MAX_OF_ONE_ACTION_CARD = 4;
   protected Random rand = new Random(System.currentTimeMillis());
-  protected int earlyCardBuyCount;
+  private int earlyCardBuyCount;
 
   protected boolean alwaysBuyProvince;
   protected boolean buyEstates;
@@ -30,14 +30,9 @@ public class VDomPlayerSarah extends BasePlayer {
   protected Card[] earlyCardBuys;
   protected int earlyCardBuyMax;
   protected boolean onlyBuyEarlySingle;
-  protected int throneRoomsAndKingsCourtsMax = 2;
+  private int throneRoomsAndKingsCourtsMax = 2;
   protected boolean improvise = false;
   protected Card[] trashCards;
-
-  @Override
-  public boolean isAi() {
-    return true;
-  }
 
   @Override
   public String getPlayerName() {
@@ -403,7 +398,7 @@ public class VDomPlayerSarah extends BasePlayer {
     }
   }
 
-  public boolean shouldPassOnBuy(MoveContext context, Card card) {
+  private boolean shouldPassOnBuy(MoveContext context, Card card) {
     return
       !context.canBuy(card) ||
       card.is(Type.Action, context.player) && actionCardCount >= actionCardMax ||
@@ -731,7 +726,7 @@ public class VDomPlayerSarah extends BasePlayer {
     return super.treasureCardsToPlayInOrder(context, maxCards, responsible);
   }
 
-  public Card bestBuy(int coinAvailableForBuy, MoveContext context, Card[] cards) {
+  private Card bestBuy(int coinAvailableForBuy, MoveContext context, Card[] cards) {
     // Try to buy valued cards...
     int cost = coinAvailableForBuy;
     while (cost >= 0) {

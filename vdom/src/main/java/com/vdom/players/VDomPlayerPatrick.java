@@ -260,7 +260,7 @@ public class VDomPlayerPatrick extends BasePlayer {
   }
 
   @Override
-  public Card[] militia_attack_cardsToKeep(MoveContext context) {
+  public Card[] militiaAttackCardsToKeep(MoveContext context) {
     ArrayList<Card> cards2keep = hand.toArrayListClone();
     Card card2discard = null;
 
@@ -631,8 +631,8 @@ public class VDomPlayerPatrick extends BasePlayer {
   }
 
   @Override
-  public Card[] goons_attack_cardsToKeep(MoveContext context) {
-    return militia_attack_cardsToKeep(context);
+  public Card[] goonsAttackCardsToKeep(MoveContext context) {
+    return militiaAttackCardsToKeep(context);
   }
 
   @Override
@@ -761,7 +761,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   @Override
   public Card[] followers_attack_cardsToKeep(MoveContext context) {
-    return militia_attack_cardsToKeep(context);
+    return militiaAttackCardsToKeep(context);
   }
 
   @Override
@@ -889,7 +889,7 @@ public class VDomPlayerPatrick extends BasePlayer {
 
   @Override
   public Card[] margrave_attack_cardsToKeep(MoveContext context) {
-    return militia_attack_cardsToKeep(context);
+    return militiaAttackCardsToKeep(context);
   }
 
   @Override

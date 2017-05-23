@@ -33,6 +33,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       Cards.fortress, Cards.curse, Cards.estate, Cards.copper, Cards.overgrownEstate, Cards.ruinedVillage,
       Cards.ruinedMarket, Cards.hovel, Cards.survivors, Cards.ruinedLibrary, Cards.abandonedMine, Cards.virtualRuins};
   protected static final int COST_MAX = 14;
+  private static final Card[] EMPTY_CARDS_ARRAY = new Card[0];
   protected Random rand = new Random(System.currentTimeMillis());
   protected int actionCardCount = 0;
   protected int throneRoomAndKingsCourtCount = 0;
@@ -89,7 +90,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     }
 
     if (cards.size() <= num) {
-      return cards.toArray(new Card[0]);
+      return cards.toArray(EMPTY_CARDS_ARRAY);
     }
 
     CardList cardArray = new CardList(controlPlayer, getPlayerName(false));
@@ -163,7 +164,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
     }
 
     // Should never get here, but just in case...
-    return ret.toArray(new Card[0]);
+    return ret.toArray(EMPTY_CARDS_ARRAY);
   }
 
   public Card pickOutCard(CardList cards, Card[] cardsToMatch) {
@@ -192,7 +193,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         }
 
         if (ret.size() == num) {
-          return ret.toArray(new Card[0]);
+          return ret.toArray(EMPTY_CARDS_ARRAY);
         }
       }
     }
@@ -201,7 +202,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       return null;
     }
 
-    return ret.toArray(new Card[0]);
+    return ret.toArray(EMPTY_CARDS_ARRAY);
   }
 
   // ////////////////////////
@@ -275,7 +276,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
     Collections.addAll(cards, context.getCardsInGame(GetCardsInGameOptions.TopOfPiles, true, Type.Victory));
 
-    return getBestVictoryCard(context, cards.toArray(new Card[0]));
+    return getBestVictoryCard(context, cards.toArray(EMPTY_CARDS_ARRAY));
   }
 
   public Card getBestVictoryCard(MoveContext context, Card[] cards) {
@@ -430,7 +431,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   }
 
   @Override
-  public Card[] militia_attack_cardsToKeep(MoveContext context) {
+  public Card[] militiaAttackCardsToKeep(MoveContext context) {
     return discardAttackCardsToKeep(context, 3);
   }
 
@@ -448,7 +449,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    return cards.toArray(new Card[0]);
+    return cards.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -531,7 +532,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    return cards.toArray(new Card[0]);
+    return cards.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -671,7 +672,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         cards.add(card);
       }
     }
-    return cards.toArray(new Card[0]);
+    return cards.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -1092,7 +1093,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       cards.add(context.attackedPlayer.getHand().get(i));
     }
 
-    return cards.toArray(new Card[0]);
+    return cards.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -1133,13 +1134,13 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         cardsToDiscard.add(handCopy.remove(0));
 
         // Card c = pickACard(context, "Warehouse:Card " + (cardsToDiscard.size() + 1) +
-        // " to discard", handCopy.toArray(new Card[0]), false);
+        // " to discard", handCopy.toArray(EMPTY_CARDS_ARRAY), false);
         // handCopy.remove(c);
         // cardsToDiscard.add(c);
       }
     }
 
-    return cardsToDiscard.toArray(new Card[0]);
+    return cardsToDiscard.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -1257,7 +1258,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         randList.add(card);
       }
     }
-    return randList.toArray(new Card[0]);
+    return randList.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -1376,7 +1377,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         ambassadorCards.add(c);
       }
     }
-    Card card = pickOutCard(context.getPlayer().getHand(), ambassadorCards.toArray(new Card[0]));
+    Card card = pickOutCard(context.getPlayer().getHand(), ambassadorCards.toArray(EMPTY_CARDS_ARRAY));
 
     if (card == null) {
       card = lowestCard(context, context.getPlayer().getHand(), false);
@@ -1503,7 +1504,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card contraband_cardPlayerCantBuy(MoveContext context) {
-    ArrayList<Card> cantBuy = context.getCantBuy();
+    List<Card> cantBuy = context.getCantBuy();
 
     if (game.isColonyInGame() && turnCount > midGame && !cantBuy.contains(Cards.colony)) {
       return Cards.colony;
@@ -1551,8 +1552,8 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   }
 
   @Override
-  public Card[] goons_attack_cardsToKeep(MoveContext context) {
-    return controlPlayer.militia_attack_cardsToKeep(context);
+  public Card[] goonsAttackCardsToKeep(MoveContext context) {
+    return controlPlayer.militiaAttackCardsToKeep(context);
   }
 
   @Override
@@ -1640,7 +1641,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         it.remove();
       }
     }
-    return discardCards.toArray(new Card[0]);
+    return discardCards.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -1876,7 +1877,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card[] followers_attack_cardsToKeep(MoveContext context) {
-    return controlPlayer.militia_attack_cardsToKeep(context);
+    return controlPlayer.militiaAttackCardsToKeep(context);
   }
 
   @Override
@@ -2027,7 +2028,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    return cardsToDiscard.toArray(new Card[0]);
+    return cardsToDiscard.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -2168,7 +2169,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    return cardsToDiscard.toArray(new Card[0]);
+    return cardsToDiscard.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -2191,7 +2192,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card[] margrave_attack_cardsToKeep(MoveContext context) {
-    return controlPlayer.militia_attack_cardsToKeep(context);
+    return controlPlayer.militiaAttackCardsToKeep(context);
   }
 
   @Override
@@ -2463,7 +2464,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    return cards.toArray(new Card[0]);
+    return cards.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -2486,7 +2487,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    return cards.toArray(new Card[0]);
+    return cards.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -2519,7 +2520,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         cards.add(c);
       }
     }
-    return (cards.isEmpty()) ? null : getBestVictoryCard(context, cards.toArray(new Card[0]));
+    return (cards.isEmpty()) ? null : getBestVictoryCard(context, cards.toArray(EMPTY_CARDS_ARRAY));
   }
 
   @Override
@@ -2587,7 +2588,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
     Card cardToDiscard = null;
     if (!goodCards.isEmpty()) {
-      cardToDiscard = Util.getMostExpensiveCard(goodCards.toArray(new Card[0]));
+      cardToDiscard = Util.getMostExpensiveCard(goodCards.toArray(EMPTY_CARDS_ARRAY));
     }
 
     if (cardToDiscard == null) {
@@ -2696,7 +2697,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       keepers.remove(0);
     }
 
-    return keepers.toArray(new Card[0]);
+    return keepers.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -2715,7 +2716,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card[] mercenary_attack_cardsToKeep(MoveContext context) {
-    return controlPlayer.militia_attack_cardsToKeep(context);
+    return controlPlayer.militiaAttackCardsToKeep(context);
   }
 
   @Override
@@ -2959,7 +2960,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         trashCards.add(c);
       }
     }
-    Card card = pickOutCard(p.getHand(), trashCards.toArray(new Card[0]));
+    Card card = pickOutCard(p.getHand(), trashCards.toArray(EMPTY_CARDS_ARRAY));
 
     if (card == null) {
       card = lowestCard(context, p.getHand(), false);
@@ -3222,7 +3223,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       }
     }
 
-    return cards.toArray(new Card[0]);
+    return cards.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -3341,7 +3342,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
     Card cardToKeep = null;
     if (!goodCards.isEmpty()) {
-      cardToKeep = Util.getMostExpensiveCard(goodCards.toArray(new Card[0]));
+      cardToKeep = Util.getMostExpensiveCard(goodCards.toArray(EMPTY_CARDS_ARRAY));
     }
 
     if (cardToKeep == null) {
@@ -3680,7 +3681,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card[] catapult_attack_cardsToKeep(MoveContext context) {
-    return militia_attack_cardsToKeep(context);
+    return militiaAttackCardsToKeep(context);
   }
 
   @Override
@@ -3768,7 +3769,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         }
       }
     }
-    return result.isEmpty() ? null : result.toArray(new Card[0]);
+    return result.isEmpty() ? null : result.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -3849,7 +3850,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         result.add(c);
       }
     }
-    return result.toArray(new Card[0]);
+    return result.toArray(EMPTY_CARDS_ARRAY);
   }
 
   @Override
@@ -3964,7 +3965,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
       return new Card[] {cards.get(0)};
     }
     Card[] result = new Card[Math.min(3, cardsToMatch.size())];
-    Card[] trashCards = cardsToMatch.toArray(new Card[0]);
+    Card[] trashCards = cardsToMatch.toArray(EMPTY_CARDS_ARRAY);
     System.arraycopy(trashCards, 0, result, 0, result.length);
     return result;
   }
@@ -4172,7 +4173,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   @Override
   public Card[] sirMichael_attack_cardsToKeep(MoveContext context) {
-    return controlPlayer.militia_attack_cardsToKeep(context);
+    return controlPlayer.militiaAttackCardsToKeep(context);
   }
 
   @Override
@@ -4366,7 +4367,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
         reactionCards.add(c);
       }
     }
-    return reactionCards.toArray(new Card[0]);
+    return reactionCards.toArray(EMPTY_CARDS_ARRAY);
   }
 
   protected boolean isAttackReaction(Card c) {
@@ -4417,7 +4418,7 @@ public abstract class BasePlayer extends Player implements GameEventListener {
 
   private Card[] discardAttackCardsToKeep(MoveContext context, int numToKeep) {
     ArrayList<Card> keepers = new ArrayList<>();
-    ArrayList<Card> discards = new ArrayList<>();
+    List<Card> discards = new ArrayList<>();
 
     // Just add in the non-victory cards...
     for (Card card : context.attackedPlayer.getHand()) {

@@ -154,7 +154,7 @@ public class VDomPlayerEarl extends BasePlayer {
   }
 
   @Override
-  public Card[] militia_attack_cardsToKeep(MoveContext context) {
+  public Card[] militiaAttackCardsToKeep(MoveContext context) {
     ArrayList<Card> cards = new ArrayList<>();
     for (Card card : getHand()) {
       if (!(card.is(Type.Victory, context.getPlayer()))

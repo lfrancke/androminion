@@ -173,9 +173,9 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
   }
 
   @Override
-  public Card[] militia_attack_cardsToKeep(MoveContext context) {
+  public Card[] militiaAttackCardsToKeep(MoveContext context) {
     if (context.isQuickPlay() && shouldAutoPlay_militia_attack_cardsToKeep(context)) {
-      return super.militia_attack_cardsToKeep(context);
+      return super.militiaAttackCardsToKeep(context);
     }
     SelectCardOptions sco = new SelectCardOptions().setCount(3).exactCount()
                               .setPickType(PickType.KEEP).setCardResponsible(Cards.militia);
@@ -1215,9 +1215,9 @@ public abstract class IndirectPlayer extends QuickPlayPlayer {
   }
 
   @Override
-  public Card[] goons_attack_cardsToKeep(MoveContext context) {
+  public Card[] goonsAttackCardsToKeep(MoveContext context) {
     if (context.isQuickPlay() && shouldAutoPlay_goons_attack_cardsToKeep(context)) {
-      return super.goons_attack_cardsToKeep(context);
+      return super.goonsAttackCardsToKeep(context);
     }
     SelectCardOptions sco = new SelectCardOptions().setCount(3).exactCount()
                               .setPickType(PickType.KEEP).setCardResponsible(Cards.goons);

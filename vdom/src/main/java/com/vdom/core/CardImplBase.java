@@ -382,7 +382,7 @@ public class CardImplBase extends CardImpl {
 
         int keepCardCount = 3;
         if (player.hand.size() > keepCardCount) {
-          Card[] cardsToKeep = player.controlPlayer.militia_attack_cardsToKeep(playerContext);
+          Card[] cardsToKeep = player.controlPlayer.militiaAttackCardsToKeep(playerContext);
           player.discardRemainingCardsFromHand(playerContext, cardsToKeep, getControlCard(), keepCardCount);
         }
       }

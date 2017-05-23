@@ -1230,7 +1230,7 @@ public abstract class Player {
 
   public abstract Card remodel_cardToObtain(MoveContext context, int maxCost, int maxDebtCost, boolean potion);
 
-  public abstract Card[] militia_attack_cardsToKeep(MoveContext context);
+  public abstract Card[] militiaAttackCardsToKeep(MoveContext context);
 
   public abstract Card thief_treasureToTrash(MoveContext context, Card[] treasures);
 
@@ -1429,7 +1429,7 @@ public abstract class Player {
 
   public abstract Card forge_cardToObtain(MoveContext context, int exactCost);
 
-  public abstract Card[] goons_attack_cardsToKeep(MoveContext context);
+  public abstract Card[] goonsAttackCardsToKeep(MoveContext context);
 
   public abstract Card kingsCourt_cardToPlay(MoveContext context);
 
