@@ -21,26 +21,23 @@ public class CardImplProsperity extends CardImpl {
   @Override
   public void isBuying(MoveContext context) {
     super.isBuying(context);
-    switch (getControlCard().getKind()) {
-      case Mint:
-        for (Iterator<Card> it = context.player.playedCards.iterator(); it.hasNext(); ) {
-          Card playedCard = it.next();
-          if (playedCard.is(Type.Treasure, context.player)) {
-            context.player.trash(playedCard, getControlCard(), context);
-            it.remove();
-          }
+    if (getControlCard().getKind() == Cards.Kind.Mint) {
+      for (Iterator<Card> it = context.player.playedCards.iterator(); it.hasNext(); ) {
+        Card playedCard = it.next();
+        if (playedCard.is(Type.Treasure, context.player)) {
+          context.player.trash(playedCard, getControlCard(), context);
+          it.remove();
         }
-        for (Iterator<Card> it = context.player.nextTurnCards.iterator(); it.hasNext(); ) {
-          Card playedCard = it.next();
-          if (playedCard.is(Type.Treasure, context.player)) {
-            context.player.trash(playedCard, getControlCard(), context);
-            it.remove();
-          }
+      }
+      for (Iterator<Card> it = context.player.nextTurnCards.iterator(); it.hasNext(); ) {
+        Card playedCard = it.next();
+        if (playedCard.is(Type.Treasure, context.player)) {
+          context.player.trash(playedCard, getControlCard(), context);
+          it.remove();
         }
-        break;
-      default:
-        break;
+      }
     }
+
   }
 
   @Override
@@ -119,7 +116,7 @@ public class CardImplProsperity extends CardImpl {
     for (Player player : game.getPlayersInTurnOrder()) {
       if (player != currentPlayer) {
         MoveContext playerContext = new MoveContext(game, player);
-        Card card = (player).controlPlayer.bishop_cardToTrash(playerContext);
+        Card card = player.controlPlayer.bishop_cardToTrash(playerContext);
 
         if (card != null && player.hand.contains(card)) {
           player.hand.remove(card);
@@ -243,7 +240,7 @@ public class CardImplProsperity extends CardImpl {
 
   private void goons(Game game, MoveContext context, Player currentPlayer) {
     for (Player player : game.getPlayersInTurnOrder()) {
-      if (player != currentPlayer && !Util.isDefendedFromAttack(game, player, this)) {
+      if (!player.equals(currentPlayer) && !Util.isDefendedFromAttack(game, player, this)) {
         player.attacked(getControlCard(), context);
         MoveContext playerContext = new MoveContext(game, player);
         playerContext.attackedPlayer = player;
@@ -259,9 +256,8 @@ public class CardImplProsperity extends CardImpl {
   }
 
   private void loanVenture(MoveContext context, Player player, Game game) {
-    ArrayList<Card> toDiscard = new ArrayList<>();
+    List<Card> toDiscard = new ArrayList<>();
     Card treasureCardFound = null;
-    GameEvent event = null;
 
     while (treasureCardFound == null) {
       Card draw = game.draw(context, this, -1);
@@ -269,7 +265,7 @@ public class CardImplProsperity extends CardImpl {
         break;
       }
 
-      event = new GameEvent(GameEvent.EventType.CardRevealed, context);
+      GameEvent event = new GameEvent(GameEvent.EventType.CardRevealed, context);
       event.card = draw;
       game.broadcastEvent(event);
 
@@ -325,7 +321,7 @@ public class CardImplProsperity extends CardImpl {
           }
         }
 
-        if (curseCard != null && (player).controlPlayer.mountebank_attack_shouldDiscardCurse(playerContext)) {
+        if (curseCard != null && player.controlPlayer.mountebank_attack_shouldDiscardCurse(playerContext)) {
           player.hand.remove(curseCard);
           player.discard(curseCard, getControlCard(), playerContext);
         } else {
@@ -362,7 +358,7 @@ public class CardImplProsperity extends CardImpl {
         }
 
         if (!topOfTheDeck.isEmpty()) {
-          Card[] order = (player).controlPlayer
+          Card[] order = player.controlPlayer
                            .rabble_attack_cardOrder(playerContext, topOfTheDeck.toArray(new Card[topOfTheDeck.size()]));
 
           // Check that they returned the right cards
@@ -371,10 +367,7 @@ public class CardImplProsperity extends CardImpl {
           if (order == null) {
             bad = true;
           } else {
-            ArrayList<Card> copy = new ArrayList<>();
-            for (Card card : topOfTheDeck) {
-              copy.add(card);
-            }
+            List<Card> copy = new ArrayList<>(topOfTheDeck);
 
             for (Card card : order) {
               if (!copy.remove(card)) {
@@ -440,7 +433,7 @@ public class CardImplProsperity extends CardImpl {
     for (Player player : game.getPlayersInTurnOrder()) {
       if (player != currentPlayer) {
         MoveContext playerContext = new MoveContext(game, player);
-        cards = (player).controlPlayer.vault_cardsToDiscardForCard(playerContext);
+        cards = player.controlPlayer.vault_cardsToDiscardForCard(playerContext);
 
         if (cards != null) {
           int numberOfCardsDiscarded = 0;
