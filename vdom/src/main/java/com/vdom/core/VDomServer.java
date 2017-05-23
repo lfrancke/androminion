@@ -253,7 +253,7 @@ public class VDomServer implements EventHandler {
           //while (remotePlayers.size() <= currentHuman); // WE SOLVE THIS WITH THE COUNTDOWN LATCH
           RemotePlayer rp = remotePlayers.get(currentHuman++);
           String name = "Human player";
-          if (rp.getPlayerName().isEmpty()) {
+          if (rp.getPlayerName() != null && rp.getPlayerName().isEmpty()) {
             name += ": " + rp.getPlayerName(); // name is now "Human player: <chosen player name>"
           }
           if (rp.hasJoined()) {

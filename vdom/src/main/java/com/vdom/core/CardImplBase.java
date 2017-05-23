@@ -557,16 +557,16 @@ public class CardImplBase extends CardImpl {
                                 .sentry_chooseOption(context, c, topOfTheDeck.toArray(new Card[topOfTheDeck.size()]));
         if (option == null) {
           Util.playerError(currentPlayer, "Sentry chose null option - trashing card");
-          option = SentryOption.Trash;
+          option = SentryOption.TRASH;
         }
         switch (option) {
-          case Trash:
+          case TRASH:
             toTrash.add(c);
             break;
-          case Discard:
+          case DISCARD:
             toDiscard.add(c);
             break;
-          case PutBack:
+          case PUT_BACK:
             toReplace.add(c);
             break;
           default:

@@ -637,12 +637,12 @@ public abstract class BasePlayer extends Player implements GameEventListener {
   @Override
   public SentryOption sentry_chooseOption(MoveContext context, Card card, Card[] cards) {
     if (arrayContains(getTrashCards(), card)) {
-      return SentryOption.Trash;
+      return SentryOption.TRASH;
     }
     if (isOnlyVictory(card, context.getPlayer()) || Cards.tunnel.equals(card)) {
-      return SentryOption.Discard;
+      return SentryOption.DISCARD;
     }
-    return SentryOption.PutBack;
+    return SentryOption.PUT_BACK;
   }
 
   @Override

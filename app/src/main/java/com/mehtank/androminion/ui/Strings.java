@@ -1088,11 +1088,11 @@ public class Strings {
         return getString(R.string.lurker_trashActionFromSupply);
       }
     } else if (option instanceof SentryOption) {
-      if (option == SentryOption.Trash) {
+      if (option == SentryOption.TRASH) {
         return getString(R.string.trash);
-      } else if (option == SentryOption.Discard) {
+      } else if (option == SentryOption.DISCARD) {
         return getString(R.string.discard);
-      } else if (option == SentryOption.PutBack) {
+      } else if (option == SentryOption.PUT_BACK) {
         return getString(R.string.doctor_overpay_option_three);
       }
     } else if (option instanceof Card) {
