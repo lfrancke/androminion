@@ -6,7 +6,6 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.Context;
@@ -238,22 +237,20 @@ public class CardView extends FrameLayout implements OnLongClickListener, Checka
     }
 
     int cardStyleId = getStyleForCard(c);
-    TypedArray cardStyle = getContext().obtainStyledAttributes(cardStyleId,
-      new int[] {
-        R.attr.cardBackgroundColor,
-        R.attr.cardNameBackgroundColor,
-        R.attr.cardTextColor,
-        R.attr.cardCountColor});
-    int bgColor = cardStyle.getColor(0, R.color.cardDefaultBackgroundColor);
-    int textColor = cardStyle.getColor(2, R.color.cardDefaultTextColor);
-    int nameBgColor = cardStyle.getColor(1, R.color.cardDefaultTextBackgroundColor);
-    int countColor = cardStyle.getColor(3, R.color.cardDefaultTextColor);
+    TypedArray cardStyle = getContext().obtainStyledAttributes(cardStyleId, R.styleable.CardView);
+
+    int bgColor = cardStyle.getColor(R.styleable.CardView_cardBackgroundColor, R.color.cardDefaultBackgroundColor);
+    int countColor = cardStyle.getColor(R.styleable.CardView_cardCountColor, R.color.cardDefaultTextColor);
+    int nameBgColor =
+      cardStyle.getColor(R.styleable.CardView_cardNameBackgroundColor, R.color.cardDefaultTextBackgroundColor);
+    int textColor = cardStyle.getColor(R.styleable.CardView_cardTextColor, R.color.cardDefaultTextColor);
+
     cardStyle.recycle();
 
     cardBox.setBackgroundColor(bgColor);
-    name.setTextColor(textColor);
-    name.setBackgroundColor(nameBgColor);
     countLeft.setTextColor(countColor);
+    name.setBackgroundColor(nameBgColor);
+    name.setTextColor(textColor);
 
     if (cardDesc != null) {
       cardDesc.setTextColor(textColor);
