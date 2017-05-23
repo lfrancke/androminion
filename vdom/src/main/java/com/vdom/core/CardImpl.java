@@ -661,13 +661,18 @@ public class CardImpl implements Card, Comparable<Card> {
 
   @Override
   public Card behaveAsCard() {
-    if (impersonatingCard != null && impersonatingCard != this) {
-      return impersonatingCard.behaveAsCard();
+    CardImpl other = this;
+    while (true) {
+      if (other.impersonatingCard != null && other.impersonatingCard != other) {
+        other = other.impersonatingCard;
+        continue;
+      }
+      if (other.inheritingAbilitiesCard != null && other.inheritingAbilitiesCard != other) {
+        other = other.inheritingAbilitiesCard;
+        continue;
+      }
+      return other;
     }
-    if (inheritingAbilitiesCard != null && inheritingAbilitiesCard != this) {
-      return inheritingAbilitiesCard.behaveAsCard();
-    }
-    return this;
   }
 
   @Override

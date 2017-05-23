@@ -2905,7 +2905,7 @@ public class Game {
           }
 
           if (Cards.inn.equals(event.responsible)) {
-            Util.debug((String.format("discard pile: %d", player.discard.size())), true);
+            Util.debug(String.format("discard pile: %d", player.discard.size()), true);
           }
 
           // See rules explanation of Tunnel for what commandedDiscard means.

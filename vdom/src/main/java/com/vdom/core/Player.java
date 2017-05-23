@@ -15,8 +15,12 @@ import java.util.TreeMap;
 
 import com.vdom.api.Card;
 import com.vdom.api.GameEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class Player {
+
+  private static final Logger LOG = LoggerFactory.getLogger(Player.class);
 
   public static final String RANDOM_AI = "Random AI";
   private static final String DISTINCT_CARDS = "Distinct Cards";
@@ -982,10 +986,8 @@ public abstract class Player {
       } else {
         discard.add(card);
       }
-    }
-    if (willDiscard) {
-      if (commandedDiscard && card.equals(Cards.tunnel)) {
 
+      if (commandedDiscard && card.equals(Cards.tunnel)) {
         MoveContext tunnelContext = new MoveContext(game, this);
 
         if (game.pileSize(Cards.gold) > 0 && controlPlayer.tunnel_shouldReveal(tunnelContext)) {
@@ -1012,6 +1014,7 @@ public abstract class Player {
       }
 
       event.setPlayer(this);
+      LOG.debug("Card {} discarded because of {}", card, responsible);
       context.game.broadcastEvent(event);
     }
   }
