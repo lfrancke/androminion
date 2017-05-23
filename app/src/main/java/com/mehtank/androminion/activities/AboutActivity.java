@@ -32,7 +32,7 @@ public class AboutActivity extends AppCompatActivity {
   @Override
   public void onResume() {
     super.onResume();
-    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
   }
 
@@ -40,7 +40,7 @@ public class AboutActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
 
     setContentView(R.layout.activity_about);

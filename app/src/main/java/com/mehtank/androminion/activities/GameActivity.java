@@ -27,7 +27,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -94,8 +93,6 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   static final boolean MULTIPLAYER = false;
   private static final int MESSAGE_EVENT = 0;
   private static final int MESSAGE_LOSTCONNECTION = 1;
-  @SuppressWarnings("unused")
-  private static final String TAG = "GameActivity";
   private final GameActivity top = this;
   private FrameLayout topView;
   private GameTable gt;
@@ -383,12 +380,10 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     }
   };
 
-  @SuppressLint("NewApi")
   @Override
   public void onCreate(Bundle savedInstanceState) {
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(top);
-    ThemeSetter.setTheme(this,
-      prefs.getBoolean("show_action_bar", "true".equals(getString(R.string.pref_showactionbar_default))));
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
     super.onCreate(savedInstanceState);
 
@@ -496,8 +491,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.game_menu, menu);
+    getMenuInflater().inflate(R.menu.game_menu, menu);
     return super.onCreateOptionsMenu(menu);
   }
 
@@ -641,8 +635,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   public void onResume() {
     super.onResume();
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(top);
-    ThemeSetter.setTheme(this,
-      prefs.getBoolean("show_action_bar", "true".equals(getString(R.string.pref_showactionbar_default))));
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     if (prefs.getBoolean("show_statusbar", true)) {

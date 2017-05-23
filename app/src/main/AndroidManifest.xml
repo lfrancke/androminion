@@ -21,6 +21,7 @@
     android:theme="@style/Theme.Androminion.Light"
     android:allowBackup="false"
     tools:ignore="GoogleAppIndexingWarning">
+
     <activity android:name=".activities.MenuActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
@@ -41,21 +42,25 @@
     <activity
       android:name=".activities.GameActivity"
       android:screenOrientation="portrait"/>
+
     <activity android:name=".activities.StartGameActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
         android:value="com.mehtank.androminion.activities.MenuActivity"/>
     </activity>
+
     <activity android:name=".activities.StatisticsActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
         android:value="com.mehtank.androminion.activities.MenuActivity"/>
     </activity>
+
     <activity android:name=".activities.SettingsActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"
         android:value="com.mehtank.androminion.activities.MenuActivity"/>
     </activity>
+
     <activity android:name=".activities.AboutActivity">
       <meta-data
         android:name="android.support.PARENT_ACTIVITY"

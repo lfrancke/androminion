@@ -44,13 +44,13 @@ public class StartGameActivity extends AppCompatActivity implements OnStartGameL
   @Override
   public void onResume() {
     super.onResume();
-    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
   }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
     super.onCreate(savedInstanceState);
 

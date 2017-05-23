@@ -136,21 +136,21 @@ public class MenuActivity extends AppCompatActivity implements
   @Override
   public void onResume() {
     super.onResume();
-    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
   }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     setupStrictMode();
-    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
     PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
     // Fix so Androminion doesn't crash when updating
     SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
     if (BuildConfig.DEBUG) {
-      Log.d(TAG, "Theme is set to " + pref.getString("theme", "androminion-dark"));
+      Log.d(TAG, "Theme is set to " + pref.getString("theme", getString(R.string.pref_theme_default)));
     }
 
     if (pref.getString("theme", getString(R.string.pref_theme_default)).equals("androminion")) {

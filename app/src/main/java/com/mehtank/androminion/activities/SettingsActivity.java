@@ -25,14 +25,12 @@ import com.mehtank.androminion.util.ThemeSetter;
  */
 public class SettingsActivity extends AppCompatPreferenceActivity implements OnSharedPreferenceChangeListener {
 
-  @SuppressWarnings("unused")
-  private static final String TAG = "SettingsActivity";
   private SharedPreferences prefs;
 
   @Override
   public void onResume() {
     super.onResume();
-    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
     prefs = PreferenceManager.getDefaultSharedPreferences(this);
     prefs.registerOnSharedPreferenceChangeListener(this);
@@ -62,10 +60,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements OnS
     }
   }
 
-  @SuppressWarnings("deprecation")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    ThemeSetter.setTheme(this, true);
+    ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
     super.onCreate(savedInstanceState);
 
