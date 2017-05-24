@@ -116,8 +116,8 @@
   <string name="erratathroneroom_pref_summary">Ausspielen ist optional (Basisspiel 2. Edition)</string>
 
   <string-array name="theme_names">
-    <item>Dunkel</item>
     <item>Hell</item>
+    <item>Dunkel</item>
     <item>Hell mit dunkler Leiste</item>
   </string-array>
 

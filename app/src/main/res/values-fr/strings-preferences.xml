@@ -32,8 +32,8 @@
   </string>
   <string name="pref_theme_title">Thème de l\'interface</string>
   <string-array name="theme_names">
-    <item>Sombre</item>
     <item>Clair</item>
+    <item>Sombre</item>
     <item>Clair avec barre de statut sombre</item>
   </string-array>
   <string name="game_screen_pref_title">Écran de jeu</string>

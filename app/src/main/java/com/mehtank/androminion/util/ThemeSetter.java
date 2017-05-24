@@ -25,7 +25,7 @@ public class ThemeSetter {
     private static final long serialVersionUID = 1L;
 
     {
-      put("androminion-dark", R.style.Theme_Androminion);
+      put("androminion-dark", R.style.Theme_Androminion_Dark);
       put("androminion-light", R.style.Theme_Androminion_Light);
       put("androminion-light-darkbar", R.style.Theme_Androminion_Light_DarkActionBar);
       // sync with R.array.theme_keys and themes

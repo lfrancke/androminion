@@ -28,8 +28,8 @@
   <string name="showenglishnames_pref_summary">Después del nombre de la carta</string>
   <string name="pref_theme_title">Tema del app</string>
   <string-array name="theme_names">
-    <item>Oscuro</item>
     <item>Claro</item>
+    <item>Oscuro</item>
     <item>Claro con barra de app oscura</item>
   </string-array>
   <string name="game_screen_pref_title">Pantalla del juego</string>

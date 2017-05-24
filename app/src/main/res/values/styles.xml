@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <style name="Theme.Androminion" parent="Theme.AppCompat">
+  <style name="Theme.Androminion.Light" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="player1TextBackgroundColor">@color/player1Color</item>
+    <item name="player2TextBackgroundColor">@color/player2Color</item>
+    <item name="player3TextBackgroundColor">@color/player3Color</item>
+    <item name="player4TextBackgroundColor">@color/player4Color</item>
+    <item name="player5TextBackgroundColor">@color/player5Color</item>
+    <item name="player6TextBackgroundColor">@color/player6Color</item>
+    <item name="stashTextColor">@color/stashTextDark</item>
+  </style>
+
+  <style name="Theme.Androminion.Dark" parent="Theme.AppCompat.NoActionBar">
     <item name="player1TextBackgroundColor">@color/player1LineColor</item>
     <item name="player2TextBackgroundColor">@color/player2LineColor</item>
     <item name="player3TextBackgroundColor">@color/player3LineColor</item>
@@ -20,16 +30,5 @@
     <item name="player6TextBackgroundColor">@color/player6Color</item>
     <item name="stashTextColor">@color/stashTextDark</item>
   </style>
-
-  <style name="Theme.Androminion.Light" parent="Theme.AppCompat.Light">
-    <item name="player1TextBackgroundColor">@color/player1Color</item>
-    <item name="player2TextBackgroundColor">@color/player2Color</item>
-    <item name="player3TextBackgroundColor">@color/player3Color</item>
-    <item name="player4TextBackgroundColor">@color/player4Color</item>
-    <item name="player5TextBackgroundColor">@color/player5Color</item>
-    <item name="player6TextBackgroundColor">@color/player6Color</item>
-    <item name="stashTextColor">@color/stashTextDark</item>
-  </style>
-
 
 </resources>
