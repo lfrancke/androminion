@@ -23,7 +23,7 @@ import com.mehtank.androminion.util.compat.StatisticsFragmentsAdapter;
  * This activity just shows two tabs: statistics and achievements.
  */
 public class StatisticsActivity extends AppCompatActivity {
-  
+
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();

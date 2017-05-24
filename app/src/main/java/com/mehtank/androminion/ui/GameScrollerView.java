@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -30,10 +32,10 @@ public class GameScrollerView extends HorizontalScrollView {
 
   private final Context top;
   private final LinearLayout gameEventsRow;
-  private final ArrayList<View> views = new ArrayList<>();
+  private final List<View> views = new ArrayList<>();
   private ScrollView latestTurnSV;
   private TextView latestTurn;
-  private boolean onlyShowOneTurn = false;
+  private boolean onlyShowOneTurn;
   private int numPlayers;
   private File logfile;
 
@@ -101,8 +103,9 @@ public class GameScrollerView extends HorizontalScrollView {
         (ScrollView) LayoutInflater.from(top).inflate(R.layout.view_gamescrollercolumn, gameEventsRow, false);
 
       LinearLayout.LayoutParams layoutParams =
-        new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
-      layoutParams.setMargins((int) getResources().getDimension(R.dimen.margin_gamelog),
+        new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+      layoutParams.setMargins(
+        (int) getResources().getDimension(R.dimen.margin_gamelog),
         (int) getResources().getDimension(R.dimen.margin_gamelog),
         (int) getResources().getDimension(R.dimen.margin_gamelog),
         (int) getResources().getDimension(R.dimen.margin_gamelog));

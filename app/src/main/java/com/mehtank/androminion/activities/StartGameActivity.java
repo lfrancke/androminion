@@ -58,7 +58,7 @@ public class StartGameActivity extends AppCompatActivity implements OnStartGameL
     assert actionBar != null;
     actionBar.setDisplayHomeAsUpEnabled(true);
     actionBar.setDisplayShowTitleEnabled(true);
-    
+
     if (savedInstanceState == null) {
       Fragment startGameFragment = new StartGameFragment();
 

@@ -31,7 +31,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.mehtank.androminion.BuildConfig;
 import com.mehtank.androminion.R;
@@ -86,11 +85,11 @@ import com.vdom.core.Game;
 public class GameActivity extends AppCompatActivity implements EventHandler {
 
   public static final String DEFAULT_NAME = "You";
-  private static final String DEFAULT_HOST = "localhost";
   public static final int DEFAULT_PORT = 1251;
   public static final String BASEDIRFROMEXT = "/Androminion";
   public static final String BASEDIR = Environment.getExternalStorageDirectory().getPath() + BASEDIRFROMEXT;
   static final boolean MULTIPLAYER = false;
+  private static final String DEFAULT_HOST = "localhost";
   private static final int MESSAGE_EVENT = 0;
   private static final int MESSAGE_LOSTCONNECTION = 1;
   private final GameActivity top = this;
@@ -537,12 +536,6 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     return false;
   }
 
-  private void quickstart() {
-    // startServer();
-    host = "localhost";
-    startGame(port);
-  }
-
   public void addView(View v) {
     topView.addView(v);
   }
@@ -641,6 +634,12 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   }
 
   protected void invite() {
+  }
+
+  private void quickstart() {
+    // startServer();
+    host = "localhost";
+    startGame(port);
   }
 
   private void alert(String title, String message) {
