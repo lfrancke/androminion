@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -24,6 +23,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -97,9 +97,8 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   private FrameLayout topView;
   private GameTable gt;
   private View splash;
-  private TextView miniactionbar;
-  private boolean gameRunning = false;
-  private long lastBackClick = 0;
+  private boolean gameRunning;
+  private long lastBackClick;
   private Comms comm;
 
   //    // for invites
@@ -107,7 +106,7 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
   //    private String serverHost;
   //    private int serverPort;
   private volatile boolean readyForMessages = true; //This is set to true when we may receive messages.
-  private boolean gotQuit = false;
+  private boolean gotQuit;
   private String name;  // Name the player has in the game
   private String host;
   private int port;
@@ -305,13 +304,9 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
       gt.setStatus(gs, e.o.os, e);
       String name = gt.getPlayerAdapter().getItem(gs.whoseTurn).name;
       String subtitle = buildHintString(gs, e.s, e.b);
-      ActionBar bar = getSupportActionBar();
-      if (bar == null) {
-        miniactionbar.setText(name + ": " + subtitle);
-      } else {
-        bar.setSubtitle(subtitle);
-        bar.setTitle(getResources().getString(R.string.currentplayer) + ": " + name);
-      }
+      ActionBar actionBar = getSupportActionBar();
+      actionBar.setSubtitle(subtitle);
+      actionBar.setTitle(getResources().getString(R.string.currentplayer) + ": " + name);
     }
 
     /**
@@ -390,16 +385,11 @@ public class GameActivity extends AppCompatActivity implements EventHandler {
     topView = (FrameLayout) getLayoutInflater().inflate(R.layout.activity_game, null);
     setContentView(topView);
 
-    ActionBar bar = getSupportActionBar();
-    if (bar == null) {
-      miniactionbar = (TextView) topView.findViewById(R.id.miniactionbar);
-      miniactionbar.setVisibility(View.VISIBLE);
-    } else {
-      bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-      bar.setDisplayHomeAsUpEnabled(true);
-      bar.setDisplayShowTitleEnabled(true);
-      bar.setTitle(R.string.app_name);
-    }
+    setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    ActionBar actionBar = getSupportActionBar();
+    assert actionBar != null;
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setDisplayShowTitleEnabled(true);
 
     gt = (GameTable) findViewById(R.id.gameTable);
     splash = findViewById(R.id.splash);

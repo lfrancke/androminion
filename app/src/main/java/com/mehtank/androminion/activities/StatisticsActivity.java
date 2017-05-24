@@ -9,31 +9,21 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Button;
 import com.mehtank.androminion.R;
-import com.mehtank.androminion.fragments.AchievementsFragment;
-import com.mehtank.androminion.fragments.WinlossFragment;
 import com.mehtank.androminion.util.Achievements;
 import com.mehtank.androminion.util.ThemeSetter;
-import com.mehtank.androminion.util.compat.TabsAdapter;
+import com.mehtank.androminion.util.compat.StatisticsFragmentsAdapter;
 
 /**
  * This activity just shows two tabs: statistics and achievements.
- *
- * Rewrite to support actionbar, tabs and swipe gestures (backwards compatible
- * to API8).
  */
 public class StatisticsActivity extends AppCompatActivity {
-
-  @SuppressWarnings("unused")
-  private static final String TAG = "StatisticsActivity";
-
-  private ViewPager mViewPager;
-  private TabsAdapter mTabsAdapter;
-
+  
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
@@ -67,32 +57,33 @@ public class StatisticsActivity extends AppCompatActivity {
     ThemeSetter.setLanguage(this);
     super.onCreate(savedInstanceState);
 
-    mViewPager = new ViewPager(this);
-    mViewPager.setId(R.id.combinedstats_pager);
-    setContentView(mViewPager);
+    setContentView(R.layout.activity_combinedstats);
 
-    ActionBar bar = getSupportActionBar();
-    bar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-    bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-    bar.setDisplayHomeAsUpEnabled(true);
-    bar.setDisplayShowTitleEnabled(true);
-    bar.setTitle(R.string.statisticsactivity_title);
+    ViewPager pager = (ViewPager) findViewById(R.id.statistics_pager);
+    pager.setAdapter(new StatisticsFragmentsAdapter(getFragmentManager(), this));
 
-    mTabsAdapter = new TabsAdapter(this, mViewPager);
+    setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    ActionBar actionBar = getSupportActionBar();
+    assert actionBar != null;
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setDisplayShowTitleEnabled(true);
 
-    ActionBar.Tab statsTab = bar.newTab().setText(R.string.win_loss_menu)
+/*    mTabsAdapter = new TabsAdapter(this, mViewPager);
+
+    ActionBar.Tab statsTab = actionBar.newTab().setText(R.string.win_loss_menu)
                                .setIcon(android.R.drawable.ic_menu_myplaces);
     mTabsAdapter.addTab(statsTab, WinlossFragment.class, null);
 
-    ActionBar.Tab achievementsTab = bar.newTab()
+    ActionBar.Tab achievementsTab = actionBar.newTab()
                                       .setText(R.string.achievements_menu)
                                       .setIcon(android.R.drawable.ic_menu_agenda);
     mTabsAdapter.addTab(achievementsTab, AchievementsFragment.class, null);
+    */
   }
 
   private AlertDialog buildResetDialog(final Context context) {
     final boolean[] choices = {true, true};
-    class choiceListenerClass implements
+    class ChoiceListenerClass implements
       DialogInterface.OnMultiChoiceClickListener, OnClickListener {
 
       private boolean resetStats = choices[0];
@@ -107,12 +98,11 @@ public class StatisticsActivity extends AppCompatActivity {
         } else if (which == 1) {
           resetAchievements = isChecked;
         }
-        Button ResetButton = mDialog
-                               .getButton(DialogInterface.BUTTON_POSITIVE);
+        Button resetButton = mDialog.getButton(DialogInterface.BUTTON_POSITIVE);
         if (resetStats || resetAchievements) {
-          ResetButton.setEnabled(true);
+          resetButton.setEnabled(true);
         } else {
-          ResetButton.setEnabled(false);
+          resetButton.setEnabled(false);
         }
       }
 
@@ -131,12 +121,11 @@ public class StatisticsActivity extends AppCompatActivity {
         mDialog = dialog;
       }
     }
-    choiceListenerClass choiceListener = new choiceListenerClass();
+    ChoiceListenerClass choiceListener = new ChoiceListenerClass();
     AlertDialog.Builder builder = new AlertDialog.Builder(context)
                                     .setTitle(R.string.reset)
                                     .setNegativeButton(android.R.string.cancel, null)
-                                    .setMultiChoiceItems(R.array.reset_choices, choices,
-                                      choiceListener)
+                                    .setMultiChoiceItems(R.array.reset_choices, choices, choiceListener)
                                     .setPositiveButton(R.string.reset, choiceListener);
     AlertDialog dialog = builder.create();
     choiceListener.setDialog(dialog);

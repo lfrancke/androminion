@@ -1,10 +1,11 @@
 package com.mehtank.androminion.activities;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.mehtank.androminion.R;
 import com.mehtank.androminion.util.ThemeSetter;
@@ -31,31 +32,29 @@ public class AboutActivity extends AppCompatActivity {
 
   @Override
   public void onResume() {
-    super.onResume();
     ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
+    super.onResume();
   }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-
     ThemeSetter.setTheme(this);
     ThemeSetter.setLanguage(this);
+    super.onCreate(savedInstanceState);
 
     setContentView(R.layout.activity_about);
 
     ViewPager pager = (ViewPager) findViewById(R.id.about_pager);
     pager.setAdapter(new AboutFragmentsAdapter(getFragmentManager(), this));
 
+    setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    ActionBar actionBar = getSupportActionBar();
+    assert actionBar != null;
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setDisplayShowTitleEnabled(true);
 
-    /*
-    ActionBar bar = getSupportActionBar();
-    bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-    bar.setDisplayHomeAsUpEnabled(true);
-    bar.setDisplayShowTitleEnabled(true);
-    bar.setTitle(R.string.aboutactivity_title);
-    */
+
     /*
     mTabsAdapter = new TabsAdapter(this, mViewPager);
 

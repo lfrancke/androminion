@@ -39,7 +39,7 @@ public class ThemeSetter {
    */
   public static void setTheme(Context ctx) {
     SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ctx);
-    ctx.setTheme(THEMES_BAR.get(pref.getString("theme", "androminion-dark")));
+    ctx.setTheme(THEMES_BAR.get(pref.getString("theme", "androminion-light")));
   }
 
   public static void setLanguage(Activity act) {

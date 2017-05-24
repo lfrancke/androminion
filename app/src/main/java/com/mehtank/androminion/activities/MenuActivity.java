@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -29,8 +31,7 @@ import com.mehtank.androminion.util.ThemeSetter;
 /**
  * Start screen of the application, showing a menu.
  */
-public class MenuActivity extends AppCompatActivity implements
-  OnStartGameListener {
+public class MenuActivity extends AppCompatActivity implements OnStartGameListener {
 
   private static final String TAG = "MenuActivity";
 
@@ -163,6 +164,8 @@ public class MenuActivity extends AppCompatActivity implements
 
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_menu);
+
+    setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
     if (findViewById(R.id.fragment_content) != null) {
       mTwoColums = true;

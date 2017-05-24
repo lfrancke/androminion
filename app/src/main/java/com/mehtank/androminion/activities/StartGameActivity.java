@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.mehtank.androminion.R;
 import com.mehtank.androminion.fragments.StartGameFragment;
@@ -15,10 +16,8 @@ import com.mehtank.androminion.fragments.StartGameFragment.OnStartGameListener;
 import com.mehtank.androminion.util.ThemeSetter;
 
 /**
- * This activity shows the start game screen where players can be selected. The
- * actual content is in StartGameFragment.
- *
- * Rewrite to support actionbar (backwards compatible to API7).
+ * This activity shows the start game screen where players can be selected.
+ * The actual content is in StartGameFragment.
  */
 public class StartGameActivity extends AppCompatActivity implements OnStartGameListener {
 
@@ -54,12 +53,12 @@ public class StartGameActivity extends AppCompatActivity implements OnStartGameL
     ThemeSetter.setLanguage(this);
     super.onCreate(savedInstanceState);
 
-    ActionBar bar = getSupportActionBar();
-    bar.setDisplayOptions(0, ActionBar.DISPLAY_SHOW_TITLE);
-    bar.setDisplayHomeAsUpEnabled(true);
-    bar.setDisplayShowTitleEnabled(true);
-    bar.setTitle(R.string.startgameactivity_title);
-
+    setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    ActionBar actionBar = getSupportActionBar();
+    assert actionBar != null;
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setDisplayShowTitleEnabled(true);
+    
     if (savedInstanceState == null) {
       Fragment startGameFragment = new StartGameFragment();
 

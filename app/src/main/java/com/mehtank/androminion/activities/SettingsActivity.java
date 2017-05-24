@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import com.mehtank.androminion.R;
 import com.mehtank.androminion.ui.Strings;
@@ -66,9 +67,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity implements OnS
     ThemeSetter.setLanguage(this);
     super.onCreate(savedInstanceState);
 
-    ActionBar bar = getSupportActionBar();
-    bar.setDisplayHomeAsUpEnabled(true);
-    bar.setTitle(R.string.settingsactivity_title);
+    setContentView(R.layout.activity_settings);
+    setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+
+    ActionBar actionBar = getSupportActionBar();
+    actionBar.setDisplayHomeAsUpEnabled(true);
+    actionBar.setDisplayShowTitleEnabled(true);
 
     addPreferencesFromResource(R.xml.preferences);
   }
